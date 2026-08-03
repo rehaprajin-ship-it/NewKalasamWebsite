@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if request is from the admin user
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'srinisrkp@gmail.com';
+    }
+
+    // Public collections: read-only for public, full access for admin
+    match /products/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /blogs/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /gallery/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /settings/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /popups/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /seo/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Public submission collections: create for anyone, full access for admin
+    match /contacts/{document} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /newsletter/{document} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /distributors/{document} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /exports/{document} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Admin-only collections
+    match /users/{document} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

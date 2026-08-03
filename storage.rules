@@ -1,0 +1,31 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper to check if request is from the admin user
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'srinisrkp@gmail.com';
+    }
+
+    // Allow read access to all public assets (gallery, products, blogs)
+    match /gallery/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /blogs/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Fallback rule for other paths
+    match /{allPaths=**} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
