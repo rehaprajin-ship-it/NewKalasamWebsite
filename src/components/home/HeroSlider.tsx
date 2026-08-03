@@ -1,24 +1,21 @@
 'use client';
 
 /* ═══════════════════════════════════════════════════════════════
-   Hero Slider — Full-Viewport Animated Slider
+   Hero Video Background — Full-Viewport Autoplay Video Hero
    ═══════════════════════════════════════════════════════════════ */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
     id: 1,
     overline: 'Since 1995',
-    title: 'India\'s Premier\nCamphor Manufacturer',
+    title: "India's Premier\nCamphor Manufacturer",
     subtitle: 'World-class synthetic camphor, D-camphor, and isoborneol — exported to 17+ countries with uncompromising quality standards.',
     cta: { label: 'Explore Products', href: '/products' },
     ctaSecondary: { label: 'Export Inquiry', href: '/export' },
-    gradient: 'from-primary-dark/95 via-primary/80 to-transparent',
-    image: '/images/hero/factory-campus.png',
   },
   {
     id: 2,
@@ -27,8 +24,6 @@ const slides = [
     subtitle: 'From Bangladesh to the UAE, our industrial chemicals and premium pooja products serve global markets with ISO-certified quality.',
     cta: { label: 'Our Export Markets', href: '/export' },
     ctaSecondary: { label: 'Get a Quote', href: '/contact' },
-    gradient: 'from-gray-900/90 via-gray-900/60 to-transparent',
-    image: '/images/hero/export-port.png',
   },
   {
     id: 3,
@@ -37,8 +32,6 @@ const slides = [
     subtitle: 'Custom formulations, private label packaging, and OEM manufacturing for chemical companies and FMCG brands worldwide.',
     cta: { label: 'OEM Services', href: '/oem-manufacturing' },
     ctaSecondary: { label: 'Private Label', href: '/private-label' },
-    gradient: 'from-primary/90 via-primary-dark/70 to-transparent',
-    image: '/images/hero/manufacturing-line.png',
   },
   {
     id: 4,
@@ -47,22 +40,19 @@ const slides = [
     subtitle: 'Pure camphor tablets, sambrani, agarbathi, lamp oil, and rose water — crafted for temples, homes, and spiritual stores.',
     cta: { label: 'Pooja Products', href: '/pooja-products' },
     ctaSecondary: { label: 'Become a Distributor', href: '/distributors' },
-    gradient: 'from-gray-900/85 via-primary-dark/60 to-transparent',
-    image: '/images/hero/pooja-temple.png',
   },
 ];
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const goTo = useCallback((index: number) => {
-    setDirection(index > current ? 1 : -1);
     setCurrent(index);
-  }, [current]);
+  }, []);
 
   const goNext = useCallback(() => {
-    setDirection(1);
     setCurrent((prev) => (prev + 1) % slides.length);
   }, []);
 
@@ -72,37 +62,62 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, [goNext]);
 
+  // Listen to prefers-reduced-motion media query
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (prefersReducedMotion) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  }, [prefersReducedMotion]);
+
   const slide = slides[current];
 
   return (
-    <section className="relative h-[100svh] min-h-[600px] max-h-[1000px] overflow-hidden bg-primary-dark">
-      {/* Background Layers */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={slide.id}
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 1.05, opacity: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
+    <section className="relative h-[80vh] md:h-[90vh] lg:h-screen w-full overflow-hidden bg-gray-950">
+      
+      {/* Autoplay Video Background */}
+      {!prefersReducedMotion ? (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controlsList="nodownload nofullscreen noremoteplayback"
+          poster="/images/hero/factory-campus.png"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-90"
         >
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradient} z-10`} />
-          {/* Real background image */}
-          <Image
-            src={slide.image}
-            alt={slide.overline}
-            fill
-            priority={slide.id === 1}
-            className="object-cover"
-            sizes="100vw"
-          />
-        </motion.div>
-      </AnimatePresence>
+          <source src="/images/hero vedio.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
+          style={{ backgroundImage: `url('/images/hero/factory-campus.png')` }}
+        />
+      )}
 
-      {/* Content */}
-      <div className="relative z-20 container-custom h-full flex items-center">
-        <div className="max-w-3xl">
+      {/* Premium Gradient Overlay with Deep Green Tint */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-emerald-950/45 to-black/85 z-10" />
+
+      {/* Hero Content (Centered) */}
+      <div className="relative z-20 container-custom h-full flex items-center justify-center text-center">
+        <div className="max-w-3xl mx-auto flex flex-col items-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -111,33 +126,35 @@ export default function HeroSlider() {
               exit="exit"
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.15 } },
+                visible: { transition: { staggerChildren: 0.12 } },
                 exit: {},
               }}
+              className="flex flex-col items-center"
             >
               {/* Overline */}
               <motion.div
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                   exit: { opacity: 0, y: -10, transition: { duration: 0.3 } },
                 }}
-                className="flex items-center gap-3 mb-6"
+                className="flex items-center gap-3 mb-4"
               >
-                <span className="w-10 h-px bg-accent" />
-                <span className="text-accent text-xs font-600 uppercase tracking-[0.2em]">
+                <span className="w-8 h-px bg-accent" />
+                <span className="text-accent text-[11px] sm:text-xs font-700 uppercase tracking-[0.25em]">
                   {slide.overline}
                 </span>
+                <span className="w-8 h-px bg-accent" />
               </motion.div>
 
               {/* Title */}
               <motion.h1
                 variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+                  exit: { opacity: 0, y: -15, transition: { duration: 0.3 } },
                 }}
-                className="heading-display text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-pre-line"
+                className="heading-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-900 tracking-tight leading-[1.15] whitespace-pre-line"
               >
                 {slide.title}
               </motion.h1>
@@ -145,11 +162,11 @@ export default function HeroSlider() {
               {/* Subtitle */}
               <motion.p
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                   exit: { opacity: 0, transition: { duration: 0.2 } },
                 }}
-                className="mt-6 text-white/70 text-base sm:text-lg max-w-xl leading-relaxed"
+                className="mt-5 text-white/80 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed font-500"
               >
                 {slide.subtitle}
               </motion.p>
@@ -157,19 +174,19 @@ export default function HeroSlider() {
               {/* CTAs */}
               <motion.div
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                  hidden: { opacity: 0, y: 15 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                   exit: { opacity: 0, transition: { duration: 0.2 } },
                 }}
-                className="mt-8 flex flex-wrap gap-4"
+                className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
-                <Link href={slide.cta.href} className="btn btn-gold btn-lg">
+                <Link href={slide.cta.href} className="btn btn-gold btn-lg justify-center w-full sm:w-auto">
                   {slide.cta.label}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
-                <Link href={slide.ctaSecondary.href} className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20">
+                <Link href={slide.ctaSecondary.href} className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20 justify-center w-full sm:w-auto">
                   {slide.ctaSecondary.label}
                 </Link>
               </motion.div>
@@ -179,16 +196,16 @@ export default function HeroSlider() {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className="group relative h-10 flex items-center"
+            className="group relative h-8 flex items-center"
             aria-label={`Go to slide ${i + 1}`}
           >
             <div className={`h-0.5 rounded-full transition-all duration-500 ${
-              i === current ? 'w-12 bg-accent' : 'w-6 bg-white/30 group-hover:bg-white/50'
+              i === current ? 'w-10 bg-accent' : 'w-5 bg-white/30 group-hover:bg-white/50'
             }`}>
               {i === current && (
                 <motion.div
@@ -208,16 +225,16 @@ export default function HeroSlider() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-10 right-8 z-30 hidden lg:flex flex-col items-center gap-2"
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 right-8 z-30 hidden lg:flex flex-col items-center gap-2"
       >
-        <span className="text-white/40 text-xs tracking-widest uppercase" style={{ writingMode: 'vertical-rl' }}>
+        <span className="text-white/40 text-[10px] font-700 tracking-[0.25em] uppercase" style={{ writingMode: 'vertical-rl' }}>
           Scroll
         </span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-8 bg-white/20"
+          className="w-px h-6 bg-white/30"
         />
       </motion.div>
     </section>
