@@ -13,6 +13,7 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common
 import SectionHeader from '@/components/ui/SectionHeader';
 
 import { getProducts } from '@/lib/firestore';
+import { COMPANY } from '@/lib/constants';
 
 const seedProducts = [
   {
@@ -67,7 +68,7 @@ function EmailIcon() {
 }
 
 export default function ProductCategories() {
-  const whatsappNumber = '919876543210';
+  const whatsappNumber = COMPANY.contact.whatsapp;
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function ProductCategories() {
                       <WhatsAppIcon />
                     </a>
                     <a
-                      href={`mailto:info@kalasam.com?subject=Enquiry about ${product.title}`}
+                      href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.title}`}
                       aria-label={`Email enquiry for ${product.title}`}
                       className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
                                  shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"

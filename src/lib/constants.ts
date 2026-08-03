@@ -5,31 +5,31 @@
 // ── Company Information ────────────────────────────────────────
 
 export const COMPANY = {
-  name: 'Kalasam Jaikrishna Industries',
-  shortName: 'Kalasam',
-  tagline: 'Premium Manufacturer & Global Exporter',
+  name: 'Jaikrishna Industries',
+  shortName: 'Jaikrishna',
+  tagline: 'Premium Manufacturer & Global Exporter of Kalasam & Temple Dharisana Brands',
   description:
-    'India\'s leading manufacturer and exporter of synthetic camphor, industrial chemicals, and premium pooja products. Trusted by global buyers across 17+ countries.',
+    'India\'s leading manufacturer and exporter of synthetic camphor, D-camphor, isoborneol flakes, and organic intermediates under the brand names Kalasam and Temple Dharisana. Trusted by global buyers across 17+ countries.',
   founded: '1995',
   location: {
-    address: 'Theni, Tamil Nadu, India',
+    address: 'Telephone Nagar, Theni, Tamil Nadu-625531, India.',
     city: 'Theni',
     state: 'Tamil Nadu',
     country: 'India',
     pincode: '625531',
   },
   contact: {
-    phone: '+91 9876543210',
-    email: 'info@kalasam.com',
-    exportEmail: 'export@kalasam.com',
-    whatsapp: '+919876543210',
+    phone: '+91 6383020848',
+    email: 'jaikrishnaindustries1@gmail.com',
+    exportEmail: 'jaikrishnaindustries1@gmail.com',
+    whatsapp: '916383020848',
   },
   social: {
-    facebook: 'https://facebook.com/kalasam',
-    instagram: 'https://instagram.com/kalasam',
-    linkedin: 'https://linkedin.com/company/kalasam',
-    youtube: 'https://youtube.com/@kalasam',
-    twitter: 'https://twitter.com/kalasam',
+    facebook: 'https://facebook.com/jaikrishnaindustries',
+    instagram: 'https://instagram.com/jaikrishnaindustries',
+    linkedin: 'https://linkedin.com/company/jaikrishnaindustries',
+    youtube: 'https://youtube.com/@jaikrishnaindustries',
+    twitter: 'https://twitter.com/jaikrishna_ind',
   },
   businessHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
 } as const;
@@ -112,5 +112,5 @@ export const CERTIFICATIONS = [
 
 // ── Site URLs ──────────────────────────────────────────────────
 
-export const SITE_URL = 'https://kalasam.com';
-export const SITE_NAME = 'Kalasam Jaikrishna Industries';
+export const SITE_URL = 'https://kalasamjaikrishna.co.in';
+export const SITE_NAME = 'Jaikrishna Industries';

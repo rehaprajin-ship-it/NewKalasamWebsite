@@ -12,10 +12,11 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { seedProducts } from '@/data/products';
+import { COMPANY } from '@/lib/constants';
 
 const categories = ['All', 'Industrial Chemicals', 'Camphor', 'Sambrani', 'Agarbathi', 'Lamp Oil', 'Rose Water', 'Temple Products'];
 
-const whatsappNumber = '919876543210';
+const whatsappNumber = COMPANY.contact.whatsapp;
 
 /* ── WhatsApp Icon ────────────────────────────────────────────── */
 function WhatsAppIcon() {
@@ -168,7 +169,7 @@ export default function ProductsPage() {
                         <WhatsAppIcon />
                       </a>
                       <a
-                        href={`mailto:info@kalasam.com?subject=Enquiry about ${product.name}`}
+                        href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.name}`}
                         aria-label={`Email enquiry for ${product.name}`}
                         className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
                                    shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
