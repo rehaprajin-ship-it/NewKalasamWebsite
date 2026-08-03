@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    About Page — Our Story
    ═══════════════════════════════════════════════════════════════ */
@@ -25,21 +26,12 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero Banner */}
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="absolute inset-0">
-          <Image src="/images/hero/factory-campus.png" alt="" fill className="object-cover opacity-20" sizes="100vw" />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">About Us</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">
-            Our Story
-          </h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Three decades of manufacturing excellence, innovation, and trust — from a humble beginning in Theni to global markets.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Our Story"
+        overline="About Us"
+        description="Three decades of manufacturing excellence, innovation, and trust — from a humble beginning in Theni to global markets."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       {/* Company Story */}
       <section className="section-padding bg-white">

@@ -30,19 +30,17 @@ const products = [
   { name: 'Temple Pooja Kit', desc: 'Complete kit — camphor, agarbathi, lamp oil, wicks, sambrani in a premium gift box.', icon: '🎁', slug: 'kalasam-temple-pooja-kit' },
 ];
 
+import PageHero from '@/components/ui/PageHero';
+
 export default function PoojaProductsPage() {
   return (
     <div>
-      <section className="relative bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Traditional Range</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Pooja Products</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Sacred traditions, modern quality — premium pooja essentials for temples, homes, and devotional stores.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Pooja Products"
+        overline="Traditional Range"
+        description="Sacred traditions, modern quality — premium pooja essentials for temples, homes, and devotional stores."
+        backgroundImage="/images/hero/pooja-temple.png"
+      />
 
       <section className="section-padding bg-cream">
         <div className="container-custom">

@@ -14,6 +14,7 @@ import { saveContact } from '@/lib/firestore';
 import { sendEmailWithAutoReply } from '@/lib/emailjs';
 import { useToast } from '@/context/ToastProvider';
 import type { ContactFormData } from '@/types';
+import PageHero from '@/components/ui/PageHero';
 
 const departments = [
   { value: 'sales', label: 'Sales & Inquiries' },
@@ -53,17 +54,12 @@ export default function ContactPage() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Get in Touch</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Contact Us</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Product inquiries, export quotations, OEM partnerships, or distributor applications — our team is ready to help.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Contact Us"
+        overline="Get in Touch"
+        description="Product inquiries, export quotations, OEM partnerships, or distributor applications — our team is ready to help."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       {/* Contact Grid */}
       <section className="section-padding bg-gray-50">

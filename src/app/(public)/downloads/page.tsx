@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* Downloads Page */
 import type { Metadata } from 'next';
 import ScrollReveal from '@/components/common/ScrollReveal';
@@ -20,14 +21,12 @@ const downloads = [
 export default function DownloadsPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Resources</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Downloads</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">Product catalogs, brochures, and technical documents.</p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Document Downloads"
+        overline="Resource Center"
+        description="Access and download our catalogs, brochures, quality certificates, and product datasheets."
+        backgroundImage="/images/sections/warehouse.png"
+      />
 
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">

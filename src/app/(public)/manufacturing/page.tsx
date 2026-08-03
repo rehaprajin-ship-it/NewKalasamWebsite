@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Manufacturing Page
    ═══════════════════════════════════════════════════════════════ */
@@ -28,16 +29,12 @@ export default function ManufacturingPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Our Facility</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Manufacturing Excellence</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            A state-of-the-art production facility combining advanced chemical processing with rigorous quality control.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Manufacturing Operations"
+        overline="Excellence in Production"
+        description="State-of-the-art chemical synthesis facilities, vacuum distillation towers, and clean packing zones."
+        backgroundImage="/images/hero/manufacturing-line.png"
+      />
 
       {/* Stats */}
       <section className="py-16 bg-primary">

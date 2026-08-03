@@ -1,4 +1,5 @@
 'use client';
+import PageHero from '@/components/ui/PageHero';
 
 /* ═══════════════════════════════════════════════════════════════
    Products Page — Green-Bordered Card Grid (Reference Design)
@@ -85,24 +86,12 @@ export default function ProductsPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" viewBox="0 0 1920 400">
-            <pattern id="prodGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="30" r="1" fill="white" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#prodGrid)" />
-          </svg>
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Product Range</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Our Products</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            From pharmaceutical-grade synthetic camphor to sacred pooja products — discover our complete portfolio.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="B2B Product Catalog"
+        overline="Our Products"
+        description="Explore our complete catalog of industrial chemicals, premium camphor, isoborneol flakes, and organic intermediates."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       {/* Filters & Grid */}
       <section className="section-padding bg-gray-50">

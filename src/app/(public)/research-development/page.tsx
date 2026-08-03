@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -21,26 +22,12 @@ const rdFocus = [
 export default function ResearchDevelopmentPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/sections/qc-laboratory.png"
-            alt="R&D Chemistry Laboratory"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Innovation</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Research & Development</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Our dedicated R&D laboratory drives innovation in camphor chemistry, product development, and process optimization.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Research & Development"
+        overline="Innovation"
+        description="Advanced laboratories, cutting-edge formulation development, and state-of-the-art testing systems."
+        backgroundImage="/images/sections/qc-laboratory.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom">

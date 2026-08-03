@@ -1,4 +1,5 @@
 'use client';
+import PageHero from '@/components/ui/PageHero';
 
 /* ═══════════════════════════════════════════════════════════════
    FAQ Page — Accordion
@@ -71,16 +72,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function FAQPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Help Center</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">FAQ</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Frequently asked questions about our products, exports, OEM services, and distributor partnerships.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Frequently Asked Questions"
+        overline="Help Center"
+        description="Frequently asked questions about our products, exports, OEM services, and distributor partnerships."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">

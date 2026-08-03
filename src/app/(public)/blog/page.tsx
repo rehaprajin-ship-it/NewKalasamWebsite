@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Blog Page — Revamped Article Listing with Search, Categories & Pagination
    ═══════════════════════════════════════════════════════════════ */
@@ -68,17 +69,12 @@ export default async function BlogPage({ searchParams }: PageProps) {
   return (
     <div>
       {/* Hero Banner with Background Image overlay */}
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-25" style={{ backgroundImage: "url('/images/hero/factory-campus.png')" }} />
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light tracking-widest text-xs uppercase font-600">Enterprise Resource & Insights</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4 font-700">Knowledge Hub</h1>
-          <p className="mt-4 text-white/70 text-lg max-w-2xl mx-auto">
-            Deep dive into technical reports, market intelligence, manufacturing chemistry, and cultural traditions from India&apos;s premier chemical manufacturer.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Latest Industry News"
+        overline="Knowledge Hub"
+        description="Deep dives into chemical properties, global export trends, temple rituals, and camphor manufacturing."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       {/* Main Blog Container */}
       <section className="section-padding bg-gray-50">

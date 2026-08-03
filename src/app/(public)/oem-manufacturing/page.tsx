@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    OEM Manufacturing Page
    ═══════════════════════════════════════════════════════════════ */
@@ -35,16 +36,12 @@ const oemProducts = [
 export default function OEMManufacturingPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Partnership</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">OEM Manufacturing</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Your formulation, our manufacturing expertise. Custom contract manufacturing for chemical and FMCG companies worldwide.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="OEM Manufacturing Services"
+        overline="B2B Contract Manufacturing"
+        description="Custom formulation and bulk contract manufacturing for chemical and FMCG brands globally."
+        backgroundImage="/images/hero/manufacturing-line.png"
+      />
 
       {/* How It Works */}
       <section className="section-padding bg-white">

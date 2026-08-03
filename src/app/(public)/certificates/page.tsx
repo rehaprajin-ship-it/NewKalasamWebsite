@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* Certificates Page */
 import type { Metadata } from 'next';
 import ScrollReveal from '@/components/common/ScrollReveal';
@@ -12,14 +13,12 @@ export const metadata: Metadata = {
 export default function CertificatesPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Compliance</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Certificates</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">Our certifications reflect our unwavering commitment to quality, safety, and regulatory compliance.</p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Quality & ISO Certificates"
+        overline="Accreditations"
+        description="Review our official ISO, quality control compliance certifications, and industry memberships."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom max-w-4xl">

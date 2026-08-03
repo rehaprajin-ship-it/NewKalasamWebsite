@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Industrial Chemicals Page
    ═══════════════════════════════════════════════════════════════ */
@@ -31,26 +32,12 @@ const chemicals = [
 export default function IndustrialChemicalsPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero/manufacturing-line.png"
-            alt="Industrial Chemical Manufacturing Line"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Chemical Division</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Industrial Chemicals</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            High-purity camphor, isoborneol, and chemical intermediates — manufactured to international quality standards and exported globally.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Industrial Chemicals"
+        overline="B2B Intermediates"
+        description="Refined synthetic camphor, D-camphor, isoborneol flakes, and organic compounds for chemical plants."
+        backgroundImage="/images/hero/manufacturing-line.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom">

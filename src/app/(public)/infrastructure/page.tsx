@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Infrastructure Page
    ═══════════════════════════════════════════════════════════════ */
@@ -27,16 +28,12 @@ const facilities = [
 export default function InfrastructurePage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Our Facility</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Infrastructure</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            A world-class integrated manufacturing campus spanning 50,000+ sq ft in Theni, Tamil Nadu.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Factory Infrastructure"
+        overline="Industrial Scale"
+        description="Exploring our chemical manufacturing reactors, steam plants, and safety layouts in Theni, Tamil Nadu."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       <section className="py-16 bg-primary">
         <div className="container-custom">

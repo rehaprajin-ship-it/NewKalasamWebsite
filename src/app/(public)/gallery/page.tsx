@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Gallery Page
    ═══════════════════════════════════════════════════════════════ */
@@ -23,16 +24,12 @@ const galleryCategories = [
 export default function GalleryPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Visual Tour</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Gallery</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Take a visual tour of our manufacturing facility, products, laboratory, and operations.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Media Gallery"
+        overline="Our Facilities"
+        description="Walk through our manufacturing units, QA laboratory, warehouse facilities, and corporate campus."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       <section className="section-padding bg-gray-50">
         <div className="container-custom">

@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* COA Library */
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -9,14 +10,12 @@ export const metadata: Metadata = { title: 'COA Library — Certificates of Anal
 export default function COALibraryPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Quality Data</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">COA Library</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">Batch-wise Certificates of Analysis for all our products.</p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="COA Library"
+        overline="Quality Certificates"
+        description="Search and download official Certificates of Analysis (COA) for your specific product batches."
+        backgroundImage="/images/sections/qc-laboratory.png"
+      />
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-2xl text-center">
           <div className="bg-white rounded-2xl border border-gray-200 p-10">

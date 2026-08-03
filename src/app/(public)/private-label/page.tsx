@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Private Label Page
    ═══════════════════════════════════════════════════════════════ */
@@ -35,16 +36,12 @@ const privateLabelProducts = [
 export default function PrivateLabelPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Your Brand</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Private Label</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Launch your own brand of premium pooja products and camphor — backed by 25+ years of manufacturing expertise.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Private Label Manufacturing"
+        overline="B2B Solutions"
+        description="Package our premium-grade camphor and incense under your brand with custom box printing, labeling, and design."
+        backgroundImage="/images/hero/manufacturing-line.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom">

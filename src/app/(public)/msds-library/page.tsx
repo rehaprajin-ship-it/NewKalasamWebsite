@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* MSDS Library */
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -17,14 +18,12 @@ const msdsList = [
 export default function MSDSLibraryPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28">
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Safety Data</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">MSDS Library</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">Material Safety Data Sheets for all our industrial chemical products.</p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="MSDS Document Library"
+        overline="Regulatory Compliance"
+        description="Download official Material Safety Data Sheets (MSDS) for all our chemical grades and compounds."
+        backgroundImage="/images/sections/qc-laboratory.png"
+      />
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
           <SectionHeader overline="Documents" title="Available MSDS" />

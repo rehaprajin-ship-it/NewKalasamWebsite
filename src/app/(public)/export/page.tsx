@@ -1,4 +1,5 @@
 'use client';
+import PageHero from '@/components/ui/PageHero';
 
 /* ═══════════════════════════════════════════════════════════════
    Export Division Page — Global Reach with Interactive Map
@@ -26,26 +27,12 @@ export default function ExportPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero/export-port.png"
-            alt="Global Export Port"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Global Division</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Export Division</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Serving chemical importers, distributors, and OEM clients across 17+ countries with reliable supply and international quality standards.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Global Export Division"
+        overline="International Shipments"
+        description="Exporting premium synthetic camphor and pooja products to 17+ countries with full regulatory documentation."
+        backgroundImage="/images/hero/export-port.png"
+      />
 
       {/* Export Services */}
       <section className="section-padding bg-white">

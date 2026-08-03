@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Quality Control Page
    ═══════════════════════════════════════════════════════════════ */
@@ -37,26 +38,12 @@ const labEquipment = [
 export default function QualityControlPage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/sections/qc-laboratory.png"
-            alt="Quality Control Laboratory"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Standards</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Quality Control</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            ISO 9001:2015 certified quality management system with in-house analytical laboratory and batch-wise documentation.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Quality Control & QA"
+        overline="Accreditations"
+        description="ISO 9001:2015 certified, gas chromatography systems, and strict batch-wise laboratory testing checklists."
+        backgroundImage="/images/sections/qc-laboratory.png"
+      />
 
       {/* QC Stages */}
       <section className="section-padding bg-white">

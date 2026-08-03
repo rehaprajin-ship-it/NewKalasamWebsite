@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 /* ═══════════════════════════════════════════════════════════════
    Wholesale Page
    ═══════════════════════════════════════════════════════════════ */
@@ -32,26 +33,12 @@ const wholesaleAdvantages = [
 export default function WholesalePage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/sections/warehouse.png"
-            alt="Wholesale Storage Facility"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Bulk Orders</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Wholesale</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Direct factory pricing on camphor, pooja products, and temple supplies. Become a Kalasam wholesale stockist.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Wholesale & B2B Distribution"
+        overline="Partnerships"
+        description="Connect with our team to secure direct bulk factory pricing and regular wholesale supply chains across India."
+        backgroundImage="/images/sections/warehouse.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom">

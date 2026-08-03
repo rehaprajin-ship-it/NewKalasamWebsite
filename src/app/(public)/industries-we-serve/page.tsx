@@ -1,3 +1,4 @@
+import PageHero from '@/components/ui/PageHero';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,26 +15,12 @@ export const metadata: Metadata = {
 export default function IndustriesWeServePage() {
   return (
     <div>
-      <section className="relative bg-primary-dark py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero/factory-campus.png"
-            alt="Industries We Serve Facility"
-            fill
-            priority
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <span className="overline text-accent-light">Applications</span>
-          <h1 className="heading-display text-white text-4xl sm:text-5xl lg:text-6xl mt-4">Industries We Serve</h1>
-          <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            From pharmaceutical labs to sacred temples — our products power diverse industries across the globe.
-          </p>
-          <div className="accent-line accent-line-center mt-6" />
-        </div>
-      </section>
+      <PageHero
+        title="Industries We Serve"
+        overline="Global Impact"
+        description="Powering incense, pharmaceutical, paint, rubber, cosmetics, and fragrance industries worldwide."
+        backgroundImage="/images/hero/factory-campus.png"
+      />
 
       <section className="section-padding bg-white">
         <div className="container-custom">
