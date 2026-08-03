@@ -187,6 +187,24 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Google Map Section */}
+      <section className="pb-24 bg-gray-50">
+        <div className="container-custom">
+          <div className="bg-white p-4 rounded-3xl border border-gray-200/80 shadow-sm overflow-hidden h-[450px]">
+            <iframe
+              title="Jaikrishna Industries Location Map"
+              src="https://maps.google.com/maps?q=Telephone%20Nagar,%20Theni,%20Tamil%20Nadu%20625531,%20India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              className="border-0 rounded-2xl"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
