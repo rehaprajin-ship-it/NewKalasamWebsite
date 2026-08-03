@@ -104,19 +104,6 @@ export default function ContactPage() {
                   </ScrollReveal>
                 ))}
               </div>
-
-              {/* Map Placeholder */}
-              <ScrollReveal delay={0.3}>
-                <div className="mt-8 aspect-[4/3] rounded-xl bg-gray-200 flex items-center justify-center">
-                  <div className="text-center text-gray-400">
-                    <svg className="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                    </svg>
-                    <p className="text-sm">Google Maps Integration</p>
-                  </div>
-                </div>
-              </ScrollReveal>
             </div>
 
             {/* Contact Form */}
