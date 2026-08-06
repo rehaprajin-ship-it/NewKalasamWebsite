@@ -185,7 +185,7 @@ export default function ProductsPage() {
                         {product.images && product.images.length > 0 ? (
                           <Image
                             src={product.images[0]}
-                            alt={product.name || ''}
+                            alt={`${product.name} — Jaikrishna Industries product`}
                             fill
                             className="object-contain p-6 pt-12 group-hover:scale-105 transition-transform duration-500"
                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"

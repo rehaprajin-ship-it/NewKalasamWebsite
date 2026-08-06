@@ -12,6 +12,7 @@ import { footerNav } from '@/data/navigation';
 import { COMPANY, CERTIFICATIONS } from '@/lib/constants';
 import { subscribeNewsletter } from '@/lib/firestore';
 import { useToast } from '@/context/ToastProvider';
+import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -97,7 +98,7 @@ export default function Footer() {
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                {COMPANY.contact.email}
+                <ObfuscatedEmail encoded={ENCODED_EMAIL} className="" asLink={false} />
               </a>
               <div className="flex items-start gap-2.5 text-gray-400">
                 <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -185,7 +186,7 @@ export default function Footer() {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-500">
-              © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+              © {new Date().getFullYear()} {COMPANY.name}. All rights reserved. | Last updated: August {new Date().getFullYear()}
             </p>
             <div className="flex items-center gap-6">
               {footerNav.legal.map((link) => (

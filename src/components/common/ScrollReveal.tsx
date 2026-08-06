@@ -48,24 +48,33 @@ export default function ScrollReveal({
   scale = 1,
 }: ScrollRevealProps) {
   return (
-    <motion.div
-      initial={getInitialVariant(direction, distance, scale)}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        scale: 1,
-      }}
-      viewport={{ once, margin: '-60px' }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <>
+      {/*
+        Inline style ensures content is visible in SSR HTML before JS hydrates.
+        Framer-motion overrides this immediately on hydration.
+        This fixes AI/LLM crawler readability (GPTBot, ClaudeBot, etc.)
+      */}
+      <style dangerouslySetInnerHTML={{ __html: `[data-sr]{opacity:1!important;transform:none!important}` }} />
+      <motion.div
+        data-sr=""
+        initial={getInitialVariant(direction, distance, scale)}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+        }}
+        viewport={{ once, margin: '-60px' }}
+        transition={{
+          duration,
+          delay,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    </>
   );
 }
 

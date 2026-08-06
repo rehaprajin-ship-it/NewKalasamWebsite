@@ -26,10 +26,10 @@ export default function PrivacyPolicyPage() {
       <p>We use Firebase (Google) for authentication and data storage, Cloudinary for image hosting, and EmailJS for email notifications. These services have their own privacy policies.</p>
 
       <h2>Your Rights</h2>
-      <p>You have the right to access, correct, or delete your personal information. Contact us at {COMPANY.contact.email} for any privacy-related requests.</p>
+      <p>You have the right to access, correct, or delete your personal information. <a href="/contact">Contact us</a> for any privacy-related requests.</p>
 
       <h2>Contact</h2>
-      <p>{COMPANY.name}<br />{COMPANY.location.address}<br />Email: {COMPANY.contact.email}<br />Phone: {COMPANY.contact.phone}</p>
+      <p>{COMPANY.name}<br />{COMPANY.location.address}<br />Phone: {COMPANY.contact.phone}<br /><a href="/contact">Contact Form</a></p>
     </LegalPage>
   );
 }

@@ -77,7 +77,7 @@ export default function AboutPage() {
             </div>
             <ScrollReveal direction="right">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image src="/images/sections/logo-wall.png" alt="Kalasam Jaikrishna Industries" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src="/images/sections/logo-wall.png" alt="Jaikrishna Industries manufacturing facility and product showcase" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
             </ScrollReveal>
           </div>

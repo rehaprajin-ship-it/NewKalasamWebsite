@@ -25,8 +25,8 @@ import ContactCTA from '@/components/home/ContactCTA';
 import { SITE_NAME, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} — Premium Manufacturer & Global Exporter of Camphor & Industrial Chemicals`,
-  description: `${COMPANY.description} Based in Theni, Tamil Nadu, we supply premium synthetic camphor, isoborneol powder, and ceremonial pooja products to distributors and manufacturers across all districts, Indian states, and global markets.`,
+  title: `${SITE_NAME} — Camphor Manufacturer & Exporter India`,
+  description: `Jaikrishna Industries manufactures synthetic camphor, D-camphor, and isoborneol in Theni, Tamil Nadu. ISO-certified, exported to 17+ countries. Get a quote today.`,
   alternates: { canonical: '/' },
   keywords: [
     'synthetic camphor manufacturer Theni Tamil Nadu',

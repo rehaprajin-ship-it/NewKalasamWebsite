@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthProvider';
 import { ToastProvider } from '@/context/ToastProvider';
@@ -24,10 +25,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Premium Manufacturer & Global Exporter`,
+    default: `${SITE_NAME} | Camphor & Chemical Manufacturer`,
     template: `%s | ${SITE_NAME}`,
   },
-  description: COMPANY.description,
+  description: COMPANY.metaDescription,
   keywords: [
     // 1. Company Keywords
     'Kalasam Jaikrishna Industries', 'Jaikrishna Industries', 'Kalasam India', 'Jaikrishna Exporters',
@@ -109,21 +110,21 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Premium Manufacturer & Global Exporter`,
-    description: COMPANY.description,
+    title: `${SITE_NAME} | Camphor & Chemical Manufacturer`,
+    description: COMPANY.metaDescription,
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: SITE_NAME,
+        alt: 'Jaikrishna Industries — Camphor and industrial chemical manufacturing facility',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} — Premium Manufacturer & Global Exporter`,
-    description: COMPANY.description,
+    title: `${SITE_NAME} | Camphor & Chemical Manufacturer`,
+    description: COMPANY.metaDescription,
     images: ['/og-image.jpg'],
   },
   alternates: {
@@ -152,6 +153,7 @@ export default function RootLayout({
               description: COMPANY.description,
               address: {
                 '@type': 'PostalAddress',
+                streetAddress: 'Telephone Nagar',
                 addressLocality: COMPANY.location.city,
                 addressRegion: COMPANY.location.state,
                 addressCountry: 'IN',
@@ -164,16 +166,64 @@ export default function RootLayout({
                   contactType: 'sales',
                   availableLanguage: ['English', 'Tamil', 'Hindi'],
                 },
-                {
-                  '@type': 'ContactPoint',
-                  email: COMPANY.contact.exportEmail,
-                  contactType: 'export inquiries',
-                },
               ],
               sameAs: Object.values(COMPANY.social),
             }),
           }}
         />
+
+        {/* JSON-LD LocalBusiness / Manufacturer Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              '@id': `${SITE_URL}/#localbusiness`,
+              name: SITE_NAME,
+              description: COMPANY.description,
+              url: SITE_URL,
+              telephone: COMPANY.contact.phone,
+              image: `${SITE_URL}/og-image.jpg`,
+              logo: `${SITE_URL}/images/logo.png`,
+              priceRange: '$$',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Telephone Nagar',
+                addressLocality: 'Theni',
+                addressRegion: 'Tamil Nadu',
+                postalCode: '625531',
+                addressCountry: 'IN',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 10.0104,
+                longitude: 77.4768,
+              },
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                opens: '09:00',
+                closes: '18:00',
+              },
+              sameAs: Object.values(COMPANY.social),
+            }),
+          }}
+        />
+
+        {/* Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
       </head>
       <body className="min-h-full flex flex-col bg-white text-gray-800 antialiased">
         <AuthProvider>

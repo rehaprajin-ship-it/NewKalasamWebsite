@@ -14,6 +14,7 @@ import { saveContact } from '@/lib/firestore';
 import { sendEmailWithAutoReply } from '@/lib/emailjs';
 import { useToast } from '@/context/ToastProvider';
 import type { ContactFormData } from '@/types';
+import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
 import PageHero from '@/components/ui/PageHero';
 
 const departments = [
@@ -85,8 +86,7 @@ export default function ContactPage() {
                 {[
                   { icon: '📍', label: 'Address', value: COMPANY.location.address },
                   { icon: '📞', label: 'Phone', value: COMPANY.contact.phone, href: `tel:${COMPANY.contact.phone}` },
-                  { icon: '📧', label: 'General', value: COMPANY.contact.email, href: `mailto:${COMPANY.contact.email}` },
-                  { icon: '🌍', label: 'Export', value: COMPANY.contact.exportEmail, href: `mailto:${COMPANY.contact.exportEmail}` },
+                  { icon: '📧', label: 'General', value: 'email', href: `mailto:${COMPANY.contact.email}`, isEmail: true },
                   { icon: '🕐', label: 'Hours', value: COMPANY.businessHours },
                 ].map((item) => (
                   <ScrollReveal key={item.label} delay={0.05}>
@@ -94,7 +94,9 @@ export default function ContactPage() {
                       <span className="text-2xl">{item.icon}</span>
                       <div>
                         <div className="text-xs font-600 uppercase tracking-wider text-gray-400 mb-1">{item.label}</div>
-                        {item.href ? (
+                        {'isEmail' in item && item.isEmail ? (
+                          <ObfuscatedEmail encoded={ENCODED_EMAIL} className="text-sm text-gray-700 hover:text-primary transition-colors" />
+                        ) : item.href ? (
                           <a href={item.href} className="text-sm text-gray-700 hover:text-primary transition-colors">{item.value}</a>
                         ) : (
                           <p className="text-sm text-gray-700">{item.value}</p>

@@ -70,8 +70,30 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function FAQPage() {
+  // Flatten all FAQ items for JSON-LD schema
+  const allFaqs = faqCategories.flatMap((cat) => cat.faqs);
+
   return (
     <div>
+      {/* FAQPage JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: allFaqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.q,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.a,
+              },
+            })),
+          }),
+        }}
+      />
+
       <PageHero
         title="Frequently Asked Questions"
         overline="Help Center"

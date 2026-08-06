@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   Kalasam Jaikrishna Industries — Constants & Company Data
+   Jaikrishna Industries — Constants & Company Data
    ═══════════════════════════════════════════════════════════════ */
 
 // ── Company Information ────────────────────────────────────────
@@ -10,6 +10,8 @@ export const COMPANY = {
   tagline: 'Premium Manufacturer & Global Exporter of Kalasam & Temple Dharisana Brands',
   description:
     'India\'s leading manufacturer and exporter of synthetic camphor, D-camphor, isoborneol flakes, and organic intermediates under the brand names Kalasam and Temple Dharisana. Trusted by global buyers across 17+ countries.',
+  metaDescription:
+    'Jaikrishna Industries — India\'s trusted manufacturer & exporter of synthetic camphor, D-camphor, and isoborneol. ISO-certified quality, 17+ countries served.',
   founded: '1995',
   location: {
     address: 'Telephone Nagar, Theni, Tamil Nadu-625531, India.',
