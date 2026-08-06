@@ -5,6 +5,7 @@ import { AuthProvider } from '@/context/AuthProvider';
 import { ToastProvider } from '@/context/ToastProvider';
 import { COMPANY, SITE_URL, SITE_NAME } from '@/lib/constants';
 import EnquiryModal from '@/components/common/EnquiryModal';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -179,6 +180,7 @@ export default function RootLayout({
           <ToastProvider>
             {children}
             <EnquiryModal />
+            <Analytics />
           </ToastProvider>
         </AuthProvider>
       </body>
