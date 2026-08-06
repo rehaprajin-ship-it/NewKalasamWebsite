@@ -213,7 +213,7 @@ export default function RootLayout({
 
         {/* Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-6RY7XSD72L"
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
