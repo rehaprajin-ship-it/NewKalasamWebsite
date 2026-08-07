@@ -83,8 +83,8 @@ export default function ProductCategories() {
     getProducts()
       .then((data) => {
         if (data) {
-          const bestsellers = data.filter((p) => p.bestseller === true);
-          const mapped = bestsellers.map((p) => ({
+          const topSelling = data.filter((p) => p.featured === true);
+          const mapped = topSelling.map((p) => ({
             title: p.name,
             href: `/products/${p.slug}`,
             image: optimizeImageUrl(p.images?.[0] || '/images/products/synthetic-camphor.png'),

@@ -744,7 +744,7 @@ export default function AdminProductsCMS() {
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                     <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
                       <input type="checkbox" {...register('featured')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>Featured Item</span>
+                      <span>Top Selling Product</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
                       <input type="checkbox" {...register('bestseller')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
