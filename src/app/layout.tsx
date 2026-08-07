@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   description: COMPANY.metaDescription,
   verification: {
-    google: 'googlebf649ec64225c793',
+    google: '0eYZe7AYbI2_cdaJ4TddTcfy8HTrMrZYL35TSuO9iN8',
   },
   keywords: [
     // 1. Company Keywords
