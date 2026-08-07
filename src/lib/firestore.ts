@@ -135,8 +135,25 @@ export async function getProducts(
   const constraints: QueryConstraint[] = [];
   if (category) constraints.push(where('category', '==', category));
   if (featuredOnly) constraints.push(where('featured', '==', true));
-  constraints.push(orderBy('order', 'asc'));
-  return getCollectionData<Product>(COLLECTIONS.products, ...constraints);
+  constraints.push(orderBy('sortOrder', 'asc'));
+  constraints.push(orderBy('name', 'asc'));
+
+  try {
+    return await getCollectionData<Product>(COLLECTIONS.products, ...constraints);
+  } catch (err) {
+    // Graceful fallback for missing indexes or unmigrated products
+    const fallbackConstraints: QueryConstraint[] = [];
+    if (category) fallbackConstraints.push(where('category', '==', category));
+    if (featuredOnly) fallbackConstraints.push(where('featured', '==', true));
+    
+    const raw = await getCollectionData<Product>(COLLECTIONS.products, ...fallbackConstraints);
+    return raw.sort((a, b) => {
+      const sA = a.sortOrder !== undefined ? a.sortOrder : (a.order !== undefined ? a.order : 9999);
+      const sB = b.sortOrder !== undefined ? b.sortOrder : (b.order !== undefined ? b.order : 9999);
+      if (sA !== sB) return sA - sB;
+      return (a.name || '').localeCompare(b.name || '');
+    });
+  }
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
@@ -161,6 +178,21 @@ export async function saveProduct(
     await updateDocument(COLLECTIONS.products, id, product);
     return id;
   }
+
+  // Sensible default for new products: (max sortOrder in category) + 10
+  if (product.sortOrder === undefined && product.category) {
+    try {
+      const categoryProducts = await getProducts(product.category);
+      const maxSortOrder = categoryProducts.reduce(
+        (max, p) => (p.sortOrder !== undefined && p.sortOrder > max ? p.sortOrder : max),
+        0
+      );
+      product.sortOrder = maxSortOrder + 10;
+    } catch (e) {
+      product.sortOrder = 10;
+    }
+  }
+
   return addDocument(COLLECTIONS.products, product);
 }
 

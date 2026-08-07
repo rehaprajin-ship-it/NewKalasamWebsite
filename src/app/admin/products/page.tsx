@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { Reorder } from 'framer-motion';
 import { getProducts, saveProduct, removeProduct } from '@/lib/firestore';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 import type { Product, ProductCategory } from '@/types';
@@ -42,6 +43,7 @@ const productSchema = z.object({
   oemAvailable: z.boolean(),
   privateLabelAvailable: z.boolean(),
   order: z.number(),
+  sortOrder: z.number().int().optional(),
   seo: z.object({
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
@@ -70,6 +72,11 @@ export default function AdminProductsCMS() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [previewTab, setPreviewTab] = useState<'seo' | 'card' | 'faq'>('seo');
+
+  // Reordering State
+  const [isReorderMode, setIsReorderMode] = useState(false);
+  const [activeReorderCategory, setActiveReorderCategory] = useState<ProductCategory>('Industrial Chemicals');
+  const [reorderList, setReorderList] = useState<Product[]>([]);
 
   const {
     register,
@@ -101,6 +108,7 @@ export default function AdminProductsCMS() {
       oemAvailable: false,
       privateLabelAvailable: false,
       order: 0,
+      sortOrder: undefined,
       seo: {
         metaTitle: '',
         metaDescription: '',
@@ -151,6 +159,19 @@ export default function AdminProductsCMS() {
     loadCatalog();
   }, []);
 
+  // Sync reorder list when category or products list changes
+  useEffect(() => {
+    const filteredForReorder = products
+      .filter((p) => p.category === activeReorderCategory)
+      .sort((a, b) => {
+        const sA = a.sortOrder !== undefined ? a.sortOrder : (a.order !== undefined ? a.order : 9999);
+        const sB = b.sortOrder !== undefined ? b.sortOrder : (b.order !== undefined ? b.order : 9999);
+        if (sA !== sB) return sA - sB;
+        return (a.name || '').localeCompare(b.name || '');
+      });
+    setReorderList(filteredForReorder);
+  }, [products, activeReorderCategory, isReorderMode]);
+
   const handleOpenAdd = () => {
     setEditingId(null);
     reset({
@@ -174,6 +195,7 @@ export default function AdminProductsCMS() {
       oemAvailable: false,
       privateLabelAvailable: false,
       order: 0,
+      sortOrder: undefined,
       seo: {
         metaTitle: '',
         metaDescription: '',
@@ -207,6 +229,7 @@ export default function AdminProductsCMS() {
       oemAvailable: !!p.oemAvailable,
       privateLabelAvailable: !!p.privateLabelAvailable,
       order: p.order || 0,
+      sortOrder: p.sortOrder,
       seo: {
         metaTitle: (p as any).seo?.metaTitle || '',
         metaDescription: (p as any).seo?.metaDescription || '',
@@ -260,6 +283,70 @@ export default function AdminProductsCMS() {
     } catch (err: any) {
       alert(`Seeding failed: ${err.message}`);
     }
+  };
+
+  const runSortOrderMigration = async () => {
+    if (!confirm('Warning: Running this migration will reset all custom manual ordering back to default creation-date order. Are you sure?')) return;
+    try {
+      const allProducts = await getProducts();
+      
+      const grouped: Record<string, Product[]> = {};
+      for (const p of allProducts) {
+        if (!grouped[p.category]) grouped[p.category] = [];
+        grouped[p.category].push(p);
+      }
+      
+      for (const cat of Object.keys(grouped)) {
+        const list = grouped[cat];
+        list.sort((a, b) => {
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          if (dateA !== dateB) return dateA - dateB;
+          return (a.id || '').localeCompare(b.id || '');
+        });
+        
+        for (let i = 0; i < list.length; i++) {
+          const prod = list[i];
+          const newOrder = i * 10;
+          await saveProduct({ sortOrder: newOrder }, prod.id);
+        }
+      }
+      
+      alert('Sort order migration completed successfully! All products have been backfilled with increments of 10.');
+      loadCatalog();
+    } catch (err: any) {
+      alert(`Migration failed: ${err.message}`);
+    }
+  };
+
+  const handleInlineSortOrderChange = async (productId: string, newOrder: number) => {
+    try {
+      await saveProduct({ sortOrder: newOrder }, productId);
+      loadCatalog();
+    } catch (err: any) {
+      alert(`Failed to update sort order: ${err.message}`);
+    }
+  };
+
+  const saveNewOrder = async () => {
+    try {
+      for (let i = 0; i < reorderList.length; i++) {
+        const p = reorderList[i];
+        const newOrder = i * 10;
+        if (p.sortOrder !== newOrder) {
+          await saveProduct({ sortOrder: newOrder }, p.id);
+        }
+      }
+      alert('New display sequence saved successfully!');
+      setIsReorderMode(false);
+      loadCatalog();
+    } catch (err: any) {
+      alert(`Failed to save reorder: ${err.message}`);
+    }
+  };
+
+  const handleReorder = (newOrder: Product[]) => {
+    setReorderList(newOrder);
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -346,9 +433,18 @@ export default function AdminProductsCMS() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-800 text-gray-900 tracking-tight">Enterprise Product CMS</h2>
-          <p className="text-xs text-gray-500 mt-1 font-500">Configure catalog properties, chemical specifications, and media items.</p>
+          <p className="text-xs text-gray-500 mt-1 font-500">Configure catalog properties, chemical specifications, and display sequence.</p>
         </div>
         <div className="flex gap-2">
+          {/* Hide/Disable migration button if products already have sortOrder to prevent accidental overwrites */}
+          {products.some((p) => p.sortOrder === undefined) && (
+            <button onClick={runSortOrderMigration} className="px-4 py-2 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
+              ⚙️ Run Sort Migration
+            </button>
+          )}
+          <button onClick={() => setIsReorderMode(!isReorderMode)} className={`px-4 py-2 border font-700 rounded-[12px] text-xs transition-colors cursor-pointer ${isReorderMode ? 'bg-[#128C7E] text-white border-[#128C7E]' : 'bg-gray-100 border-gray-200 hover:bg-gray-200 text-gray-700'}`}>
+            {isReorderMode ? '✕ Exit Reorder' : '⇅ Reorder Mode'}
+          </button>
           <button onClick={handleSeedProducts} className="px-4 py-2 bg-gray-100 border border-gray-200 hover:bg-gray-200 text-gray-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
             Seed Default Products
           </button>
@@ -358,21 +454,47 @@ export default function AdminProductsCMS() {
         </div>
       </div>
 
-      {/* Filter and Search */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
-        <div className="relative flex-1 max-w-md">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search products by name, category..."
-            className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-[10px] text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
-          />
-          <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+      {/* Filter and Search / Reorder Controls */}
+      {isReorderMode ? (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-emerald-50/50 p-4 rounded-[14px] border border-emerald-100 shadow-xs">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-800 text-emerald-800 uppercase tracking-wider">Reordering Category:</span>
+            <select
+              value={activeReorderCategory}
+              onChange={(e) => setActiveReorderCategory(e.target.value as ProductCategory)}
+              className="px-3 py-1.5 border border-emerald-200 rounded-[10px] text-xs bg-white text-gray-900 focus:outline-hidden font-600"
+            >
+              {CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+            <span className="text-[10px] text-emerald-600 font-500">Drag items to sort. Changes are saved back in increments of 10.</span>
+          </div>
+          <div className="flex gap-2">
+            <button onClick={() => setIsReorderMode(false)} className="px-4 py-2 border border-gray-200 hover:bg-gray-50 text-gray-500 font-700 rounded-[12px] text-xs transition-colors cursor-pointer bg-white">
+              Cancel
+            </button>
+            <button onClick={saveNewOrder} className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-700 rounded-[12px] text-xs transition-colors shadow-sm cursor-pointer">
+              Save Display Sequence
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-center gap-4 bg-white p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
+          <div className="relative flex-1 max-w-md">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search products by name, category..."
+              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-[10px] text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
+            />
+            <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+      )}
 
       {/* Grid List */}
       {loadingData ? (
@@ -380,6 +502,39 @@ export default function AdminProductsCMS() {
           <div className="w-8 h-8 border-3 border-[#25D366] border-t-transparent rounded-full animate-spin mx-auto animate-pulse" />
           <p className="text-xs text-gray-400 mt-3 font-600">Retrieving catalog datasets...</p>
         </div>
+      ) : isReorderMode ? (
+        reorderList.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-[18px] border border-gray-200/80 shadow-xs">
+            <p className="text-gray-400 text-sm font-700">No products registered in this category.</p>
+          </div>
+        ) : (
+          <div className="bg-white rounded-[18px] border border-gray-200/80 shadow-xs p-6">
+            <Reorder.Group axis="y" values={reorderList} onReorder={handleReorder} className="space-y-2">
+              {reorderList.map((p) => (
+                <Reorder.Item
+                  key={p.id}
+                  value={p}
+                  className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200/60 rounded-[12px] hover:border-emerald-500/30 hover:bg-emerald-50/10 cursor-grab active:cursor-grabbing transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 font-mono">☰</span>
+                    <div className="w-10 h-10 bg-white border border-gray-100 rounded-[8px] overflow-hidden p-1 flex items-center justify-center flex-shrink-0">
+                      <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt="" className="object-contain w-full h-full" />
+                    </div>
+                    <div>
+                      <h4 className="font-800 text-gray-955 leading-tight">{p.name}</h4>
+                      <p className="text-[10px] text-gray-400 mt-0.5 font-sans leading-none">{p.slug}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs">
+                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-600">{p.category}</span>
+                    <span className="font-mono text-gray-500">Order: {p.sortOrder !== undefined ? p.sortOrder : '—'}</span>
+                  </div>
+                </Reorder.Item>
+              ))}
+            </Reorder.Group>
+          </div>
+        )
       ) : filtered.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-[18px] border border-gray-200/80 shadow-xs">
           <p className="text-gray-400 text-sm font-700">No products registered yet.</p>
@@ -392,6 +547,7 @@ export default function AdminProductsCMS() {
                 <th className="px-5 py-4 w-2/5">Product Profile</th>
                 <th className="px-5 py-4">Category</th>
                 <th className="px-5 py-4">CAS Registry</th>
+                <th className="px-5 py-4">Sort Order</th>
                 <th className="px-5 py-4">Status</th>
                 <th className="px-5 py-4 text-right">Actions</th>
               </tr>
@@ -421,6 +577,41 @@ export default function AdminProductsCMS() {
                     ) : (
                       <span className="text-gray-300 font-500">—</span>
                     )}
+                  </td>
+                  <td className="px-5 py-4 text-gray-500">
+                    <div className="flex items-center gap-1.5">
+                      <input
+                        type="number"
+                        defaultValue={p.sortOrder !== undefined ? p.sortOrder : 0}
+                        onBlur={(e) => {
+                          const val = parseInt(e.target.value, 10);
+                          if (!isNaN(val)) {
+                            handleInlineSortOrderChange(p.id, val);
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            const val = parseInt((e.target as HTMLInputElement).value, 10);
+                            if (!isNaN(val)) {
+                              handleInlineSortOrderChange(p.id, val);
+                            }
+                          }
+                        }}
+                        className={`w-14 px-1.5 py-1 border rounded-[6px] text-center text-xs font-mono focus:outline-hidden ${
+                          products.some((oth) => oth.id !== p.id && oth.category === p.category && oth.sortOrder === p.sortOrder)
+                            ? 'border-amber-400 bg-amber-50/50 text-amber-700'
+                            : 'border-gray-200 text-gray-800'
+                        }`}
+                        title={
+                          products.some((oth) => oth.id !== p.id && oth.category === p.category && oth.sortOrder === p.sortOrder)
+                            ? 'Warning: Duplicate sortOrder in this category!'
+                            : 'Adjust sort order value'
+                        }
+                      />
+                      {products.some((oth) => oth.id !== p.id && oth.category === p.category && oth.sortOrder === p.sortOrder) && (
+                        <span className="text-amber-500 font-bold" title="Duplicate sortOrder in this category">⚠️</span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-5 py-4">
                     <span className={`px-2 py-0.5 text-[10px] rounded-md font-700 uppercase tracking-wider ${
@@ -481,7 +672,7 @@ export default function AdminProductsCMS() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">Category *</label>
                       <select
@@ -498,6 +689,15 @@ export default function AdminProductsCMS() {
                       <input
                         type="text"
                         {...register('subcategory')}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-700 text-gray-600 mb-1">Sort Order</label>
+                      <input
+                        type="number"
+                        {...register('sortOrder', { valueAsNumber: true })}
+                        placeholder="Leave blank for auto (+10)"
                         className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
                       />
                     </div>
