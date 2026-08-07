@@ -11,7 +11,7 @@ import { BLOG_POSTS_BATCH9 } from './blog-posts-batch9';
 import { BLOG_POSTS_BATCH10 } from './blog-posts-batch10';
 import { BLOG_POSTS_BATCH11 } from './blog-posts-batch11';
 
-export const BLOG_POSTS: BlogPost[] = [
+const ALL_RAW_POSTS: BlogPost[] = [
   ...BLOG_POSTS_BATCH1,
   ...BLOG_POSTS_BATCH2,
   ...BLOG_POSTS_BATCH3,
@@ -24,6 +24,17 @@ export const BLOG_POSTS: BlogPost[] = [
   ...BLOG_POSTS_BATCH10,
   ...BLOG_POSTS_BATCH11,
 ];
+
+// Deduplicate by slug to prevent React key duplication console warnings
+const seenSlugs = new Set<string>();
+export const BLOG_POSTS: BlogPost[] = [];
+
+for (const post of ALL_RAW_POSTS) {
+  if (!seenSlugs.has(post.slug)) {
+    seenSlugs.add(post.slug);
+    BLOG_POSTS.push(post);
+  }
+}
 
 export const getPostBySlug = (slug: string): BlogPost | undefined =>
   BLOG_POSTS.find((p) => p.slug === slug);
