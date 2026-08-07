@@ -70,10 +70,22 @@ export function useScrollDirection(): 'up' | 'down' {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    // Save initial scroll position on mount
+    lastScrollY.current = window.scrollY;
+
     const handleScroll = () => {
       const currentY = window.scrollY;
-      setDirection(currentY > lastScrollY.current ? 'down' : 'up');
-      lastScrollY.current = currentY;
+      // Ignore bounce/elastic scroll on iOS (top and bottom)
+      if (currentY < 0) return;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (currentY > maxScroll) return;
+
+      const diff = currentY - lastScrollY.current;
+      // 8px threshold to trigger deliberate scroll appearance/disappearance
+      if (Math.abs(diff) > 8) {
+        setDirection(diff > 0 ? 'down' : 'up');
+        lastScrollY.current = currentY;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
