@@ -8,6 +8,7 @@ import { COMPANY, SITE_URL, SITE_NAME } from '@/lib/constants';
 import EnquiryModal from '@/components/common/EnquiryModal';
 import MobileBottomBar from '@/components/layout/MobileBottomBar';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
   subsets: ['latin'],
