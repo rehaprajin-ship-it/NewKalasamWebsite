@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', 'firebase', 'react-hook-form', 'react-icons'],
   },
+  async redirects() {
+    return [
+      // Example standard redirects could be placed here if needed at application level,
+      // though DNS/Hosting provider rules are recommended for apex domain (non-www to www) redirection.
+    ];
+  },
 };
 
 export default nextConfig;

@@ -25,8 +25,8 @@ import ContactCTA from '@/components/home/ContactCTA';
 import { SITE_NAME, SITE_URL, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} — Camphor Manufacturer & Exporter India`,
-  description: `Jaikrishna Industries manufactures synthetic camphor, D-camphor, and isoborneol in Theni, Tamil Nadu. ISO-certified, exported to 17+ countries. Get a quote today.`,
+  title: 'Kalasam Jaikrishna Industries | Camphor Manufacturer & Exporter India',
+  description: 'Certified manufacturer & exporter of synthetic camphor, D-camphor, and isoborneol flakes. Supplying premium pooja products and chemicals worldwide from India.',
   alternates: { canonical: SITE_URL },
   keywords: [
     'synthetic camphor manufacturer Theni Tamil Nadu',
@@ -44,6 +44,9 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
+      {/* Visually hidden semantic H1 for non-JS search engine crawlers */}
+      <h1 className="sr-only">Kalasam Jaikrishna Industries — Premium Camphor Manufacturer, Supplier & Exporter India</h1>
+      
       <main className="flex-1">
         <HeroSlider />
         <CompanyIntro />
