@@ -27,6 +27,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     setMounted(true);
+    if (window.innerWidth < 1024) {
+      setIsSidebarOpen(false);
+    }
   }, []);
 
   if (!mounted || loading) {
@@ -93,6 +96,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex text-gray-800 font-sans">
+      {/* Sidebar mobile overlay back-drop */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Collapsible Sidebar */}
       <aside className={`bg-[#128C7E] text-white flex flex-col transition-all duration-300 z-40 fixed lg:static inset-y-0 left-0 ${isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 lg:w-20 -translate-x-full lg:translate-x-0 overflow-hidden'
         }`}>
@@ -112,6 +123,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => {
+                  if (window.innerWidth < 1024) {
+                    setIsSidebarOpen(false);
+                  }
+                }}
                 className={`flex items-center gap-3.5 px-4 py-3 rounded-[12px] text-sm font-600 transition-all duration-200 ${isActive
                     ? 'bg-[#25D366] text-white shadow-md'
                     : 'text-white/80 hover:bg-white/10 hover:text-white'
@@ -128,7 +144,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <div className="p-4 border-t border-white/10">
           <button
-            onClick={logout}
+            onClick={() => {
+              logout();
+              if (window.innerWidth < 1024) {
+                setIsSidebarOpen(false);
+              }
+            }}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-[12px] text-sm font-600 text-red-200 hover:bg-red-500/10 hover:text-red-100 transition-colors cursor-pointer"
           >
             <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
