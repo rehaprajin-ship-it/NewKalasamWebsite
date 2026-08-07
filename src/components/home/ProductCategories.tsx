@@ -108,10 +108,11 @@ export default function ProductCategories() {
         />
 
         {/* Product Cards Grid */}
-        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-5 mt-4">
-          {products.map((product) => (
-            <StaggerItem key={product.id || product.href}>
-              <div className="group flex flex-col">
+        {/* Infinite Moving Marquee Wrapper */}
+        <div className="relative flex overflow-x-hidden w-full py-10 mask-gradient animate-marquee-hover-pause">
+          <div className="flex gap-6 animate-marquee whitespace-nowrap">
+            {products.map((product) => (
+              <div key={`marquee-1-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal">
                 {/* Card */}
                 <motion.div
                   whileHover={{ y: -6, boxShadow: '0 12px 32px rgba(37, 211, 102, 0.15)' }}
@@ -126,7 +127,7 @@ export default function ProductCategories() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`WhatsApp enquiry for ${product.title}`}
-                      className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center
+                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
                                  shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -135,7 +136,7 @@ export default function ProductCategories() {
                     <a
                       href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.title}`}
                       aria-label={`Email enquiry for ${product.title}`}
-                      className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center
+                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
                                  shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -166,9 +167,69 @@ export default function ProductCategories() {
                   </h3>
                 </Link>
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            ))}
+          </div>
+
+          <div className="flex gap-6 animate-marquee whitespace-nowrap" aria-hidden="true">
+            {products.map((product) => (
+              <div key={`marquee-2-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal">
+                {/* Card */}
+                <motion.div
+                  whileHover={{ y: -6, boxShadow: '0 12px 32px rgba(37, 211, 102, 0.15)' }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative bg-white rounded-2xl border-2 border-primary/30 overflow-hidden
+                             transition-colors duration-300 group-hover:border-primary/60"
+                >
+                  {/* Top Action Icons */}
+                  <div className="absolute top-3 left-3 right-3 flex justify-between z-10">
+                    <a
+                      href={`https://wa.me/${whatsappNumber}?text=Hi, I'm interested in ${product.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`WhatsApp enquiry for ${product.title}`}
+                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
+                                 shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <WhatsAppIcon />
+                    </a>
+                    <a
+                      href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.title}`}
+                      aria-label={`Email enquiry for ${product.title}`}
+                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
+                                 shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <EmailIcon />
+                    </a>
+                  </div>
+
+                  {/* Product Image */}
+                  <Link href={product.href} className="block">
+                    <div className="w-full aspect-square p-3 sm:p-4 flex items-center justify-center bg-gray-50/30 relative">
+                      <Image
+                        src={product.image}
+                        alt={`${product.title} — Jaikrishna Industries product`}
+                        width={210}
+                        height={210}
+                        className="object-contain max-h-[120px] w-auto group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 16vw"
+                      />
+                    </div>
+                  </Link>
+                </motion.div>
+
+                {/* Product Name — Below Card */}
+                <Link href={product.href}>
+                  <h3 className="mt-4 text-center text-sm sm:text-base font-semibold text-gray-800
+                                 group-hover:text-primary transition-colors duration-300 leading-tight">
+                    {product.title}
+                  </h3>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Browse All CTA */}
         <ScrollReveal delay={0.3}>
