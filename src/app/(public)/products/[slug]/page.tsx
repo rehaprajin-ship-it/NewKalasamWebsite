@@ -152,7 +152,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  let allProducts: any[] = [];
+  try {
+    allProducts = await getProducts();
+  } catch (e) {}
+
+  if (!allProducts || allProducts.length === 0) {
+    allProducts = seedProducts as any[];
+  }
+
   const serializedProduct = JSON.parse(JSON.stringify(product));
+  const serializedAllProducts = JSON.parse(JSON.stringify(allProducts));
 
   // Build breadcrumb items
   const breadcrumbItems = [
@@ -189,7 +199,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Structured Data — Breadcrumb schema */}
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <ProductClientPage initialProduct={serializedProduct} slug={slug} />
+      <ProductClientPage initialProduct={serializedProduct} allProducts={serializedAllProducts} slug={slug} />
     </>
   );
 }
