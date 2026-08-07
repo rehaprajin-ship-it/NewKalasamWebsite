@@ -491,6 +491,62 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
           </div>
         </div>
       </section>
+      {/* ── Related Products — Internal Cross-links ─────────── */}
+      <section className="section-padding bg-white">
+        <div className="container-custom max-w-6xl">
+          <h2 className="text-lg sm:text-xl font-800 text-gray-900 mb-6">Related Products</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {seedProducts
+              .filter((p) => p.slug !== slug && p.status === 'active')
+              .slice(0, 4)
+              .map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/products/${p.slug}`}
+                  className="bg-gray-50 rounded-[14px] border border-gray-200 p-4 hover:border-primary/30 hover:shadow-medium transition-all group"
+                >
+                  <div className="aspect-square bg-white rounded-lg flex items-center justify-center mb-3 overflow-hidden">
+                    <img
+                      src={p.images?.[0] || '/images/products/synthetic-camphor.png'}
+                      alt={p.name || ''}
+                      className="object-contain max-h-[100px] group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <h3 className="text-xs font-700 text-gray-900 line-clamp-1">{p.name}</h3>
+                  <p className="text-[10px] text-gray-400 font-600 mt-0.5">{p.category}</p>
+                  {p.purity && (
+                    <span className="text-[9px] font-700 text-primary mt-1 block">{p.purity} Purity</span>
+                  )}
+                </Link>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Business Page Cross-Links — SEO Internal Linking ── */}
+      <section className="bg-gray-50 py-8 sm:py-10">
+        <div className="container-custom max-w-6xl">
+          <h2 className="text-sm font-800 text-gray-900 mb-4">Looking for More?</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: 'Export Division', href: '/export', desc: 'Ship to 17+ countries', icon: '🌍' },
+              { label: 'OEM Manufacturing', href: '/oem-manufacturing', desc: 'Custom formulations', icon: '🏭' },
+              { label: 'Wholesale Pricing', href: '/wholesale', desc: 'Factory-direct rates', icon: '💰' },
+              { label: 'Become a Distributor', href: '/distributors', desc: 'Partnership program', icon: '🤝' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="bg-white rounded-[12px] border border-gray-200 p-3 sm:p-4 hover:border-primary/30 hover:shadow-sm transition-all group"
+              >
+                <span className="text-lg">{link.icon}</span>
+                <h3 className="text-xs font-700 text-gray-900 mt-1.5 group-hover:text-primary transition-colors">{link.label}</h3>
+                <p className="text-[10px] text-gray-400 mt-0.5">{link.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </div>
   );

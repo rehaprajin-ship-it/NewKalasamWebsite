@@ -9,8 +9,10 @@ import Image from 'next/image';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { CERTIFICATIONS } from '@/lib/constants';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/quality-control` },
   title: 'Quality Control — ISO 9001:2015 Certified Manufacturing',
   description: 'Our multi-stage quality control system ensures every product meets international standards. In-house lab, batch-wise COA, MSDS documentation, and third-party audits.',
 };

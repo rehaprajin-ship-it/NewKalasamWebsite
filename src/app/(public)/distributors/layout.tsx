@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { SITE_NAME } from '@/lib/constants';
+import { SITE_NAME, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/distributors` },
   title: `Become a Distributor | Wholesale Dealership Network | ${SITE_NAME}`,
   description: `Join the distribution network of Kalasam Jaikrishna Industries. Apply for wholesale camphor, sambrani, and agarbathi dealership franchise opportunities across all Indian districts and states.`,
   keywords: [

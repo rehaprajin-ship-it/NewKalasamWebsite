@@ -4,10 +4,12 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/gallery` },
   title: 'Gallery — Factory, Products & Manufacturing',
   description: 'View our state-of-the-art manufacturing facility, product range, quality laboratory, and packaging operations.',
 };

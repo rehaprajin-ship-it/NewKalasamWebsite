@@ -4,12 +4,14 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import Image from 'next/image';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/industrial-chemicals` },
   title: 'Industrial Chemicals Manufacturer | Camphor & Isoborneol Flakes | Kalasam',
   description: 'ISO-certified manufacturer of synthetic camphor, D-camphor, isoborneol powder, and camphor oil in Theni, Tamil Nadu. Shipping bulk chemical intermediates to chemical factories in Mumbai, Gujarat, Delhi, Chennai, and globally.',
   keywords: [

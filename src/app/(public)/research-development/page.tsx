@@ -1,11 +1,13 @@
 import PageHero from '@/components/ui/PageHero';
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import Image from 'next/image';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/research-development` },
   title: 'Research & Development — Innovation in Camphor Chemistry',
   description: 'Our in-house R&D laboratory develops custom formulations, optimizes purity levels, and innovates new product lines for industrial and consumer markets.',
 };

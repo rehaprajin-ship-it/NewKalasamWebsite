@@ -42,6 +42,11 @@ export interface Product {
   privateLabelAvailable?: boolean;
   status: 'active' | 'draft' | 'archived';
   order?: number;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string;
+  };
   createdAt?: string;
   updatedAt?: string;
 }

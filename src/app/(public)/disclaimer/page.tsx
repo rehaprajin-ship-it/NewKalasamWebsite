@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import LegalPage from '@/components/common/LegalPage';
 import { COMPANY } from '@/lib/constants';
 
-export const metadata: Metadata = { title: 'Disclaimer', description: `Disclaimer for ${COMPANY.name} website.` };
+export const metadata: Metadata = {
+  alternates: { canonical: `/disclaimer` }, title: 'Disclaimer', description: `Disclaimer for ${COMPANY.name} website.` };
 
 export default function DisclaimerPage() {
   return (

@@ -3,11 +3,13 @@
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/pooja-products` },
   title: 'Pooja Products Wholesale | Camphor Tablets, Sambrani & Agarbathi',
   description: 'Premium ceremonial pooja products including pure camphor tablets, hand-rolled agarbathi, cup sambrani, and rose water. Manufactured in Theni, Tamil Nadu for distributors in Kerala, Karnataka, Andhra Pradesh, and India.',
   keywords: [

@@ -1,11 +1,13 @@
 import PageHero from '@/components/ui/PageHero';
 /* COA Library */
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
-export const metadata: Metadata = { title: 'COA Library — Certificates of Analysis', description: 'Request batch-wise Certificates of Analysis for Kalasam products.' };
+export const metadata: Metadata = {
+  alternates: { canonical: `/coa-library` }, title: 'COA Library — Certificates of Analysis', description: 'Request batch-wise Certificates of Analysis for Kalasam products.' };
 
 export default function COALibraryPage() {
   return (

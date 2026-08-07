@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import LegalPage from '@/components/common/LegalPage';
 import { COMPANY } from '@/lib/constants';
 
-export const metadata: Metadata = { title: 'Terms & Conditions', description: `Terms and conditions for ${COMPANY.name}.` };
+export const metadata: Metadata = {
+  alternates: { canonical: `/terms-conditions` }, title: 'Terms & Conditions', description: `Terms and conditions for ${COMPANY.name}.` };
 
 export default function TermsPage() {
   return (

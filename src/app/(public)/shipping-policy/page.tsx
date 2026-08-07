@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import LegalPage from '@/components/common/LegalPage';
 
-export const metadata: Metadata = { title: 'Shipping Policy', description: 'Shipping policy for domestic and international orders.' };
+export const metadata: Metadata = {
+  alternates: { canonical: `/shipping-policy` }, title: 'Shipping Policy', description: 'Shipping policy for domestic and international orders.' };
 
 export default function ShippingPolicyPage() {
   return (

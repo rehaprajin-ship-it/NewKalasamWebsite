@@ -4,12 +4,14 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import Image from 'next/image';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/wholesale` },
   title: 'Wholesale Camphor & Pooja Products | Direct Factory Bulk Pricing | Kalasam',
   description: 'Purchase wholesale camphor tablets, agarbathi, sambrani, and ceremonial supplies at direct factory-carton pricing. Supplying retailers, dealers, and distributors across Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, and all Indian states.',
   keywords: [

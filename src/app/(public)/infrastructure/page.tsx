@@ -4,12 +4,14 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/infrastructure` },
   title: 'Infrastructure — World-Class Manufacturing Facility',
   description: 'Our 50,000+ sq ft integrated manufacturing facility houses chemical reactors, distillation units, tablet presses, packaging lines, and a modern QC laboratory.',
 };

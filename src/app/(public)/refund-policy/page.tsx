@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import LegalPage from '@/components/common/LegalPage';
 
-export const metadata: Metadata = { title: 'Refund Policy', description: 'Refund and return policy for Kalasam products.' };
+export const metadata: Metadata = {
+  alternates: { canonical: `/refund-policy` }, title: 'Refund Policy', description: 'Refund and return policy for Kalasam products.' };
 
 export default function RefundPolicyPage() {
   return (

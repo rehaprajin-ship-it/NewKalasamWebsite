@@ -4,12 +4,14 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/manufacturing` },
   title: 'Manufacturing — State-of-the-Art Production Facility',
   description: 'Explore our ISO 9001:2015 certified manufacturing facility in Theni, Tamil Nadu — featuring advanced chemical reactors, automated production lines, and in-house quality laboratory.',
 };

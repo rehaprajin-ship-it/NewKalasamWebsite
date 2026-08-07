@@ -9,6 +9,8 @@ import { notFound } from 'next/navigation';
 import { BLOG_POSTS, getPostBySlug } from '@/data/blog-posts';
 import { getCategoryName, getCategoryImage } from '@/data/blog-categories';
 import ScrollReveal from '@/components/common/ScrollReveal';
+import { SITE_URL, SITE_NAME } from '@/lib/constants';
+import { BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -24,12 +26,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const canonicalUrl = post.canonicalUrl || `${SITE_URL}/blog/${post.slug}`;
+  const ogImage = `${SITE_URL}/opengraph-image.png`;
+
   return {
-    title: `${post.metaTitle} | Kalasam Jaikrishna Industries`,
+    title: post.metaTitle,
     description: post.metaDescription,
     keywords: [post.primaryKeyword, ...post.secondaryKeywords, ...post.tags],
     alternates: {
-      canonical: post.canonicalUrl || `https://www.kalasam.com/blog/${post.slug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: post.metaTitle,
+      description: post.metaDescription,
+      url: canonicalUrl,
+      type: 'article',
+      publishedTime: post.publishDate,
+      modifiedTime: post.modifiedDate,
+      authors: [post.author || SITE_NAME],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metaTitle,
+      description: post.metaDescription,
+      images: [ogImage],
     },
   };
 }
@@ -57,24 +78,24 @@ export default async function BlogDetailPage({ params }: PageProps) {
     '@type': post.schemaType === 'HowTo' ? 'HowTo' : 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.kalasam.com/blog/${post.slug}`,
+      '@id': `${SITE_URL}/blog/${post.slug}`,
     },
     headline: post.title,
     description: post.excerpt,
-    image: `https://www.kalasam.com/images/blog-default.png`,
+    image: `${SITE_URL}/opengraph-image.png`,
     datePublished: post.publishDate,
     dateModified: post.modifiedDate,
     author: {
       '@type': 'Organization',
       name: post.author,
-      url: 'https://www.kalasam.com',
+      url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Kalasam Jaikrishna Industries',
+      name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.kalasam.com/images/logo.png',
+        url: `${SITE_URL}/images/logo.png`,
       },
     },
   };
@@ -91,6 +112,11 @@ export default async function BlogDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: SITE_URL },
+        { name: 'Blog', url: `${SITE_URL}/blog` },
+        { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
+      ]} />
 
       {/* Header Banner */}
       <section className="relative bg-primary-dark py-16 lg:py-24 text-white overflow-hidden">

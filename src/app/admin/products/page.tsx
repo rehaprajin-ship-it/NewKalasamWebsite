@@ -644,6 +644,85 @@ export default function AdminProductsCMS() {
                   </div>
                 </div>
 
+                {/* SEO Optimization — Fields with real-time validation */}
+                <div className="bg-blue-50/50 p-4 rounded-[14px] border border-blue-100">
+                  <h4 className="font-800 text-gray-900 border-b border-blue-100 pb-1.5 mb-3 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    SEO Optimization
+                  </h4>
+                  <div className="space-y-3">
+                    {/* Meta Title */}
+                    <div>
+                      <label className="block font-700 text-gray-600 mb-1">
+                        Meta Title
+                        <span className={`ml-2 text-[10px] font-600 ${(watchMetaTitle?.length || 0) > 60 ? 'text-red-500' : (watchMetaTitle?.length || 0) > 0 ? 'text-green-600' : 'text-gray-400'}`}>
+                          {watchMetaTitle?.length || 0}/60 chars
+                          {(watchMetaTitle?.length || 0) > 60 && ' ⚠️ Too long — will be truncated in Google'}
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        {...register('seo.metaTitle')}
+                        placeholder={`${watchName} | Kalasam`}
+                        className={`w-full px-3 py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden ${(watchMetaTitle?.length || 0) > 60 ? 'border-red-300 bg-red-50/30' : 'border-gray-200'}`}
+                      />
+                    </div>
+
+                    {/* Meta Description */}
+                    <div>
+                      <label className="block font-700 text-gray-600 mb-1">
+                        Meta Description
+                        <span className={`ml-2 text-[10px] font-600 ${
+                          (watchMetaDesc?.length || 0) > 160 ? 'text-red-500' :
+                          (watchMetaDesc?.length || 0) > 0 && (watchMetaDesc?.length || 0) < 120 ? 'text-amber-500' :
+                          (watchMetaDesc?.length || 0) >= 120 ? 'text-green-600' : 'text-gray-400'
+                        }`}>
+                          {watchMetaDesc?.length || 0}/160 chars
+                          {(watchMetaDesc?.length || 0) > 160 && ' ⚠️ Too long'}
+                          {(watchMetaDesc?.length || 0) > 0 && (watchMetaDesc?.length || 0) < 120 && ' ⚠️ Too short — aim for 120-160'}
+                        </span>
+                      </label>
+                      <textarea
+                        {...register('seo.metaDescription')}
+                        rows={2}
+                        placeholder="120-160 chars. Include primary keyword + differentiator (purity %, certification, export-ready)."
+                        className={`w-full px-3 py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none ${
+                          (watchMetaDesc?.length || 0) > 160 ? 'border-red-300 bg-red-50/30' :
+                          (watchMetaDesc?.length || 0) > 0 && (watchMetaDesc?.length || 0) < 120 ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'
+                        }`}
+                      />
+                    </div>
+
+                    {/* Keywords */}
+                    <div>
+                      <label className="block font-700 text-gray-600 mb-1">
+                        Focus Keywords
+                        <span className="ml-2 text-[10px] font-500 text-gray-400">Comma-separated</span>
+                      </label>
+                      <input
+                        type="text"
+                        {...register('seo.keywords')}
+                        placeholder={`${watchName}, ${watchName} manufacturer, ${watchName} supplier India`}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                      />
+                    </div>
+
+                    {/* SEO Completeness indicator */}
+                    <div className="flex items-center gap-3 pt-2 border-t border-blue-100">
+                      <span className="text-[10px] font-700 text-gray-500 uppercase">SEO Score:</span>
+                      <div className="flex gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${watchMetaTitle ? 'bg-green-500' : 'bg-gray-300'}`} title="Meta Title" />
+                        <span className={`w-2 h-2 rounded-full ${watchMetaDesc && (watchMetaDesc.length || 0) >= 120 && (watchMetaDesc.length || 0) <= 160 ? 'bg-green-500' : watchMetaDesc ? 'bg-amber-400' : 'bg-gray-300'}`} title="Meta Description" />
+                        <span className={`w-2 h-2 rounded-full ${watchKeywords ? 'bg-green-500' : 'bg-gray-300'}`} title="Keywords" />
+                        <span className={`w-2 h-2 rounded-full ${(watchImages?.length || 0) > 0 ? 'bg-green-500' : 'bg-gray-300'}`} title="Images" />
+                      </div>
+                      <span className="text-[10px] text-gray-400">
+                        {[watchMetaTitle, watchMetaDesc && (watchMetaDesc.length || 0) >= 120 && (watchMetaDesc.length || 0) <= 160, watchKeywords, (watchImages?.length || 0) > 0].filter(Boolean).length}/4 fields complete
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <footer className="pt-4 border-t border-gray-100 flex justify-end gap-3">
                   <button type="button" onClick={handleCloseModal} className="px-4 py-2 border border-gray-200 rounded-[10px] text-gray-500 hover:bg-gray-50 font-600 cursor-pointer">
                     Cancel

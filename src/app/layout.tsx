@@ -151,10 +151,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
+              '@id': `${SITE_URL}/#organization`,
               name: SITE_NAME,
+              legalName: 'Jaikrishna Industries',
               url: SITE_URL,
-              logo: `${SITE_URL}/images/logo.png`,
+              logo: {
+                '@type': 'ImageObject',
+                url: `${SITE_URL}/images/logo.png`,
+                width: 200,
+                height: 60,
+              },
               description: COMPANY.description,
+              foundingDate: COMPANY.founded,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Telephone Nagar',
@@ -168,29 +176,39 @@ export default function RootLayout({
                   '@type': 'ContactPoint',
                   telephone: COMPANY.contact.phone,
                   contactType: 'sales',
+                  email: COMPANY.contact.email,
                   availableLanguage: ['English', 'Tamil', 'Hindi'],
+                  areaServed: ['IN', 'BD', 'LK', 'MY', 'SG', 'AE', 'SA', 'OM', 'QA', 'KW', 'NG', 'KE', 'US'],
                 },
               ],
               sameAs: Object.values(COMPANY.social),
+              brand: [
+                { '@type': 'Brand', name: 'Kalasam' },
+                { '@type': 'Brand', name: 'Temple Dharisana' },
+              ],
             }),
           }}
         />
 
-        {/* JSON-LD LocalBusiness / Manufacturer Schema */}
+        {/* JSON-LD LocalBusiness + Manufacturer Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
+              '@type': ['LocalBusiness', 'Manufacturer'],
               '@id': `${SITE_URL}/#localbusiness`,
               name: SITE_NAME,
               description: COMPANY.description,
               url: SITE_URL,
               telephone: COMPANY.contact.phone,
-              image: `${SITE_URL}/og-image.jpg`,
+              email: COMPANY.contact.email,
+              image: `${SITE_URL}/opengraph-image.png`,
               logo: `${SITE_URL}/images/logo.png`,
               priceRange: '$$',
+              currenciesAccepted: 'INR, USD',
+              paymentAccepted: 'Bank Transfer, LC',
+              foundingDate: COMPANY.founded,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Telephone Nagar',
@@ -210,7 +228,24 @@ export default function RootLayout({
                 opens: '09:00',
                 closes: '18:00',
               },
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Industrial Chemicals & Pooja Products',
+                itemListElement: [
+                  {
+                    '@type': 'OfferCatalog',
+                    name: 'Industrial Chemicals',
+                    url: `${SITE_URL}/industrial-chemicals`,
+                  },
+                  {
+                    '@type': 'OfferCatalog',
+                    name: 'Pooja & Temple Products',
+                    url: `${SITE_URL}/pooja-products`,
+                  },
+                ],
+              },
               sameAs: Object.values(COMPANY.social),
+              additionalType: 'http://www.productontology.org/id/Chemical_manufacturer',
             }),
           }}
         />

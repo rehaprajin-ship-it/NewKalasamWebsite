@@ -6,8 +6,10 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import { INDUSTRIES } from '@/lib/constants';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/industries-we-serve` },
   title: 'Industries We Serve — Sector Applications',
   description: 'Our chemicals and products serve pharmaceutical, fragrance, cosmetics, food, temple, household, and polymer industries worldwide.',
 };

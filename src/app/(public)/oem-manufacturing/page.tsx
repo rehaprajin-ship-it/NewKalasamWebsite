@@ -4,11 +4,13 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/oem-manufacturing` },
   title: 'OEM Manufacturing — Contract Manufacturing & Custom Formulations',
   description: 'OEM contract manufacturing services for camphor, industrial chemicals, and pooja products. Custom formulations, flexible MOQs, and private formulation development.',
 };

@@ -4,6 +4,7 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Suspense } from 'react';
@@ -14,6 +15,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/blog` },
   title: 'Insights & Technical Blog — Kalasam Jaikrishna Industries',
   description: 'Technical articles, manufacturing guides, export market trends, and spiritual insights about camphor, isoborneol, and pooja products.',
 };

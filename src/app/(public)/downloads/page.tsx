@@ -1,10 +1,12 @@
 import PageHero from '@/components/ui/PageHero';
 /* Downloads Page */
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/downloads` },
   title: 'Downloads — Catalogs, Brochures & Technical Documents',
   description: 'Download product catalogs, company brochures, MSDS, COA templates, and technical data sheets.',
 };

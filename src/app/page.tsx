@@ -22,12 +22,12 @@ import Testimonials from '@/components/home/Testimonials';
 import QualitySection from '@/components/home/QualitySection';
 import ContactCTA from '@/components/home/ContactCTA';
 
-import { SITE_NAME, COMPANY } from '@/lib/constants';
+import { SITE_NAME, SITE_URL, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} — Camphor Manufacturer & Exporter India`,
   description: `Jaikrishna Industries manufactures synthetic camphor, D-camphor, and isoborneol in Theni, Tamil Nadu. ISO-certified, exported to 17+ countries. Get a quote today.`,
-  alternates: { canonical: '/' },
+  alternates: { canonical: SITE_URL },
   keywords: [
     'synthetic camphor manufacturer Theni Tamil Nadu',
     'camphor exporter India',

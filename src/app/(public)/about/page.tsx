@@ -10,8 +10,10 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common
 import SectionHeader from '@/components/ui/SectionHeader';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import { COMPANY, COMPANY_STATS, COMPANY_TIMELINE } from '@/lib/constants';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/about` },
   title: 'About Us — Our Story, Chemical Manufacturing Legacy & Team',
   description: `Discover the story of ${COMPANY.name} — a leading manufacturer and supplier of synthetic camphor and organic intermediates based in Theni, Tamil Nadu, supplying all states and districts of India.`,
   keywords: [

@@ -1,11 +1,13 @@
 import PageHero from '@/components/ui/PageHero';
 /* MSDS Library */
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
-export const metadata: Metadata = { title: 'MSDS Library — Material Safety Data Sheets', description: 'Download MSDS for all Kalasam industrial chemicals.' };
+export const metadata: Metadata = {
+  alternates: { canonical: `/msds-library` }, title: 'MSDS Library — Material Safety Data Sheets', description: 'Download MSDS for all Kalasam industrial chemicals.' };
 
 const msdsList = [
   { product: 'Synthetic Camphor', cas: '76-22-2' },

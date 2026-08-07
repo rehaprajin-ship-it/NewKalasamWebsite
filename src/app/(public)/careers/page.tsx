@@ -1,11 +1,13 @@
 import PageHero from '@/components/ui/PageHero';
 /* Careers Page */
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `/careers` },
   title: 'Careers — Join Our Team',
   description: 'Explore career opportunities at Kalasam Jaikrishna Industries. Join our growing team of professionals in manufacturing, quality, sales, and export.',
 };
