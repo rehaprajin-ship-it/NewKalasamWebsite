@@ -138,7 +138,7 @@ export default function Navbar() {
     setActiveMenu(null);
   }, []);
 
-  const isHidden = scrollDir === 'down' && scrolled && !activeMenu && !mobileOpen;
+  const isHidden = false;
 
   return (
     <>
