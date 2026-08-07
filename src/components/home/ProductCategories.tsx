@@ -85,6 +85,7 @@ export default function ProductCategories() {
         if (data) {
           const topSelling = data.filter((p) => p.featured === true);
           const mapped = topSelling.map((p) => ({
+            id: p.id,
             title: p.name,
             href: `/products/${p.slug}`,
             image: optimizeImageUrl(p.images?.[0] || '/images/products/synthetic-camphor.png'),
@@ -109,7 +110,7 @@ export default function ProductCategories() {
         {/* Product Cards Grid */}
         <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-5 mt-4">
           {products.map((product) => (
-            <StaggerItem key={product.title}>
+            <StaggerItem key={product.id || product.href}>
               <div className="group flex flex-col">
                 {/* Card */}
                 <motion.div

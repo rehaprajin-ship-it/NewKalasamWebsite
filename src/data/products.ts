@@ -389,25 +389,380 @@ export const seedProducts: Partial<Product>[] = [
     faq: [],
     images: [],
     status: 'active',
-    order: 15,
-  },
-  {
-    id: 'pp-7',
-    name: 'Kalasam Temple Pooja Kit',
-    slug: 'kalasam-temple-pooja-kit',
-    category: 'Temple Products',
-    shortDescription: 'Complete pooja essentials kit — camphor, agarbathi, lamp oil, wicks, sambrani.',
-    description: 'A comprehensive kit containing all essential items for daily home and temple pooja. Ideal for gifting during housewarmings, marriages, and festivals.',
-    applications: ['Home pooja', 'Temple rituals', 'Gifting', 'Festival celebrations'],
-    packaging: [{ size: 'Standard', unit: 'kit', description: 'Retail gift box' }],
-    specifications: [
-      { label: 'Contents', value: 'Camphor, Agarbathi, Lamp Oil, Wicks, Sambrani' },
-      { label: 'Packaging', value: 'Premium gift box' },
-    ],
-    downloads: [],
-    faq: [],
-    images: [],
-    status: 'active',
     order: 16,
   },
+
+  // ── 7. NEW IMAGE CATALOG PRODUCTS ──────────────────────────────
+  // ── Kalasam Karpuram (Camphor)
+  {
+    id: 'new-c-1',
+    name: 'Kalasam Rs 1 (50 PCS)',
+    slug: 'kalasam-rs-1-50-pcs',
+    category: 'Camphor',
+    shortDescription: 'Refined pure camphor tablets strip pack, contains 50 tablets for ₹1 retail.',
+    description: 'Refined pure camphor tablets designed for daily spiritual rituals, burning bright with zero residue. Manufactured in a clean, modern facility in Theni, Tamil Nadu.',
+    applications: ['Daily Pooja and Aarti', 'Temple Ceremonies', 'Air Purification'],
+    packaging: [{ size: '₹1', unit: 'strip', description: 'Strip of 50 tablets' }],
+    featured: true,
+    status: 'active',
+    order: 100
+  },
+  {
+    id: 'new-c-2',
+    name: 'Kalasam Rs 2 (50 PCS)',
+    slug: 'kalasam-rs-2-50-pcs',
+    category: 'Camphor',
+    shortDescription: 'Refined pure camphor tablets strip pack, contains 50 tablets for ₹2 retail.',
+    description: 'Clean-burning refined camphor tablets. High purity provides a bright flame and natural fragrance, leaving no black soot or ash.',
+    applications: ['Daily Pooja and Aarti', 'Temple Ceremonies', 'Air Purification'],
+    packaging: [{ size: '₹2', unit: 'strip', description: 'Strip of 50 tablets' }],
+    featured: true,
+    status: 'active',
+    order: 101
+  },
+  {
+    id: 'new-c-3',
+    name: 'Kalasam Rs 5 (40 PCS)',
+    slug: 'kalasam-rs-5-40-pcs',
+    category: 'Camphor',
+    shortDescription: 'Refined pure camphor tablets box pack, contains 40 tablets for ₹5 retail.',
+    description: 'Perfectly compressed pure camphor tablets, burning completely clean. Preserves the sacred atmosphere of home temples.',
+    applications: ['Daily Pooja and Aarti', 'Spiritual Gatherings', 'Meditation'],
+    packaging: [{ size: '₹5', unit: 'box', description: 'Box of 40 tablets' }],
+    featured: true,
+    status: 'active',
+    order: 102
+  },
+  {
+    id: 'new-c-4',
+    name: 'Kalasam Rs 10 (20 PCS)',
+    slug: 'kalasam-rs-10-20-pcs',
+    category: 'Camphor',
+    shortDescription: 'Refined pure camphor tablets box pack, contains 20 tablets for ₹10 retail.',
+    description: 'Large, clean-burning camphor tablets. Refined under strict quality standards for longer burning time.',
+    applications: ['Daily Pooja and Aarti', 'Havan and Yajna', 'Aromatherapy'],
+    packaging: [{ size: '₹10', unit: 'box', description: 'Box of 20 tablets' }],
+    featured: true,
+    status: 'active',
+    order: 103
+  },
+  {
+    id: 'new-c-5',
+    name: 'Kalasam Small/Big/Tablet Pack',
+    slug: 'kalasam-small-big-tablet-pack',
+    category: 'Camphor',
+    shortDescription: 'Various sizes of premium camphor tablets (small/big) for bulk and retail buyers.',
+    description: 'Flexible packaging options of different tablet dimensions to suit individual requirements, burning clean with strong, authentic aroma.',
+    applications: ['Temple Worship', 'Devotional Stores', 'Air Purification'],
+    packaging: [
+      { size: 'Small', unit: 'pack', description: 'Retail pouch' },
+      { size: 'Big', unit: 'pack', description: 'Premium box pack' }
+    ],
+    status: 'active',
+    order: 104
+  },
+
+  // ── Agarbathi Rs 10
+  {
+    id: 'new-ab10-1',
+    name: 'Black Rose Agar Bathi Rs 10',
+    slug: 'black-rose-agarbathi-rs-10',
+    category: 'Agarbathi',
+    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹10 pack) with rich, soothing floral aroma.',
+    description: 'Crafted with premium natural oils and floral extracts, Black Rose Agarbathi diffuses a long-lasting, soothing rose aroma. Available in ₹10 value pack.',
+    applications: ['Prayer & Aarti', 'Meditation', 'Aromatherapy', 'Room Freshening'],
+    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    status: 'active',
+    order: 110
+  },
+  {
+    id: 'new-ab10-2',
+    name: 'Pineapple AgarBathi Rs 10',
+    slug: 'pineapple-agarbathi-rs-10',
+    category: 'Agarbathi',
+    shortDescription: 'Fruity and refreshing Pineapple scented premium incense sticks (₹10 pack).',
+    description: 'Features a fresh, tropical pineapple scent that uplifts the mood and purifies the atmosphere. Available in ₹10 value pack.',
+    applications: ['Home Fragrance', 'Morning Devotion', 'Spiritual Spaces'],
+    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    status: 'active',
+    order: 111
+  },
+  {
+    id: 'new-ab10-3',
+    name: 'Jasmine AgarBathi Rs 10',
+    slug: 'jasmine-agarbathi-rs-10',
+    category: 'Agarbathi',
+    shortDescription: 'Traditional Jasmine scented agarbathi (₹10 pack) for serene and spiritual environments.',
+    description: 'Captures the authentic scent of fresh Jasmine flowers. Creates a calm, peaceful aura during daily worship. Available in ₹10 standard box.',
+    applications: ['Temple Worship', 'Meditation & Yoga', 'Evening Prayers'],
+    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    status: 'active',
+    order: 112
+  },
+  {
+    id: 'new-ab10-4',
+    name: 'Sandal Wood AgarBathi Rs 10',
+    slug: 'sandalwood-agarbathi-rs-10',
+    category: 'Agarbathi',
+    shortDescription: 'Warm, woody Sandalwood agarbathi (₹10 pack) for a divine and traditional environment.',
+    description: 'Pure, warm, and woody traditional Sandalwood incense sticks. Lingers in the air for hours, creating a spiritual sanctuary. Available in ₹10 standard box.',
+    applications: ['Pooja & Aarti', 'Religious Gatherings', 'Aromatherapy'],
+    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    status: 'active',
+    order: 113
+  },
+  {
+    id: 'new-ab10-5',
+    name: 'Rose Agar Bathi Rs 10',
+    slug: 'rose-agarbathi-rs-10',
+    category: 'Agarbathi',
+    shortDescription: 'Fresh floral Rose agarbathi (₹10 pack) for a positive and uplifting environment.',
+    description: 'Diffuses the classic scent of fresh blooming roses. Hand-rolled with natural binding materials. Available in ₹10 standard box.',
+    applications: ['Daily Worship', 'Home Fragrance', 'Relaxation'],
+    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    status: 'active',
+    order: 114
+  },
+
+  // ── Agarbathi Rs 5
+  {
+    id: 'new-ab5-1',
+    name: 'Black Rose Agar Bathi Rs 5',
+    slug: 'black-rose-agarbathi-rs-5',
+    category: 'Agarbathi',
+    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹5 pocket pack).',
+    description: 'Crafted with premium natural oils, Black Rose Agarbathi diffuses a soothing rose aroma. Available in ₹5 pocket pack.',
+    applications: ['Prayer & Aarti', 'Room Freshening'],
+    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
+    status: 'active',
+    order: 120
+  },
+  {
+    id: 'new-ab5-2',
+    name: 'Pineapple AgarBathi Rs 5',
+    slug: 'pineapple-agarbathi-rs-5',
+    category: 'Agarbathi',
+    shortDescription: 'Fruity and refreshing Pineapple scented incense sticks (₹5 pocket pack).',
+    description: 'Fresh tropical pineapple scent to uplift the mood. Available in ₹5 pocket pack.',
+    applications: ['Home Fragrance', 'Morning Devotion'],
+    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
+    status: 'active',
+    order: 121
+  },
+  {
+    id: 'new-ab5-3',
+    name: 'Jasmine AgarBathi Rs 5',
+    slug: 'jasmine-agarbathi-rs-5',
+    category: 'Agarbathi',
+    shortDescription: 'Traditional Jasmine scented agarbathi (₹5 pocket pack).',
+    description: 'Authentic jasmine floral fragrance, hand-rolled. Available in ₹5 pocket pack.',
+    applications: ['Daily Prayers', 'Evening Devotion'],
+    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
+    status: 'active',
+    order: 122
+  },
+  {
+    id: 'new-ab5-4',
+    name: 'Sandal Wood AgarBathi Rs 5',
+    slug: 'sandalwood-agarbathi-rs-5',
+    category: 'Agarbathi',
+    shortDescription: 'Woody Sandalwood agarbathi (₹5 pocket pack).',
+    description: 'Traditional Sandalwood incense stick, warm and calm. Available in ₹5 pocket pack.',
+    applications: ['Pooja & Aarti', 'Relaxation'],
+    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
+    status: 'active',
+    order: 123
+  },
+  {
+    id: 'new-ab5-5',
+    name: 'Rose Agar Bathi Rs 5',
+    slug: 'rose-agarbathi-rs-5',
+    category: 'Agarbathi',
+    shortDescription: 'Fresh floral Rose agarbathi (₹5 pocket pack).',
+    description: 'Diffuses the classic scent of fresh blooming roses. Available in ₹5 pocket pack.',
+    applications: ['Daily Worship', 'Relaxation'],
+    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
+    status: 'active',
+    order: 124
+  },
+
+  // ── Agarbathi Rs 50
+  {
+    id: 'new-ab50-1',
+    name: 'Black Rose Agar Bathi Rs 50',
+    slug: 'black-rose-agarbathi-rs-50',
+    category: 'Agarbathi',
+    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹50 economy mega pack).',
+    description: 'Our popular Black Rose fragrance in a large, value-packed format containing more sticks. Available in ₹50 economy mega pack.',
+    applications: ['Prayer & Aarti', 'Festivals', 'Frequent Use'],
+    packaging: [{ size: '₹50', unit: 'pack', description: 'Economy mega pack' }],
+    status: 'active',
+    order: 130
+  },
+  {
+    id: 'new-ab50-2',
+    name: 'Pineapple AgarBathi Rs 50',
+    slug: 'pineapple-agarbathi-rs-50',
+    category: 'Agarbathi',
+    shortDescription: 'Fruity and refreshing Pineapple scented incense sticks (₹50 economy mega pack).',
+    description: 'Tropical pineapple incense sticks in a large economy pack for regular use. Available in ₹50 economy mega pack.',
+    applications: ['Home Fragrance', 'Festivals', 'Large Gatherings'],
+    packaging: [{ size: '₹50', unit: 'pack', description: 'Economy mega pack' }],
+    status: 'active',
+    order: 131
+  },
+  {
+    id: 'new-ab50-3',
+    name: 'Darisana 5 IN ONE',
+    slug: 'darisana-5-in-one',
+    category: 'Agarbathi',
+    shortDescription: 'Premium multi-fragrance incense pack featuring 5 divine scents in a single pack (₹50 value).',
+    description: 'A curated pack containing five distinct spiritual fragrances (Sandalwood, Rose, Jasmine, Pine, Bouquet) to match different times of your prayer. Available in ₹50 premium pack.',
+    applications: ['Festivals', 'Long Prayer Sessions', 'Multi-room Fragrance'],
+    packaging: [{ size: '₹50', unit: 'pack', description: 'Premium mega multi-pack' }],
+    featured: true,
+    status: 'active',
+    order: 132
+  },
+
+  // ── Deepam Oil
+  {
+    id: 'new-lo-100',
+    name: '100 ML DEEPAM OIL',
+    slug: '100-ml-deepam-oil',
+    category: 'Lamp Oil',
+    shortDescription: 'Clean-burning pooja lamp oil in a handy 100ml bottle.',
+    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame, minimal ash, and a divine aroma in temples and homes. Available in 100ml bottle.',
+    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
+    packaging: [{ size: '100 ml', unit: 'bottle', description: 'Small bottle' }],
+    status: 'active',
+    order: 140
+  },
+  {
+    id: 'new-lo-200',
+    name: '200 ML DEEPAM OIL',
+    slug: '200-ml-deepam-oil',
+    category: 'Lamp Oil',
+    shortDescription: 'Clean-burning pooja lamp oil in a 200ml bottle.',
+    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame and a divine aroma. Available in 200ml bottle.',
+    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
+    packaging: [{ size: '200 ml', unit: 'bottle', description: 'Medium bottle' }],
+    status: 'active',
+    order: 141
+  },
+  {
+    id: 'new-lo-500',
+    name: '500 ML DEEPAM OIL',
+    slug: '500-ml-deepam-oil',
+    category: 'Lamp Oil',
+    shortDescription: 'Clean-burning pooja lamp oil in a 500ml bottle.',
+    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame and a divine aroma. Available in 500ml bottle.',
+    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
+    packaging: [{ size: '500 ml', unit: 'bottle', description: 'Large bottle' }],
+    status: 'active',
+    order: 142
+  },
+  {
+    id: 'new-lo-1000',
+    name: '1000 ML DEEPAM OIL',
+    slug: '1000-ml-deepam-oil',
+    category: 'Lamp Oil',
+    shortDescription: 'Clean-burning pooja lamp oil in a 1000ml bottle.',
+    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame, minimal ash, and a divine aroma. Available in 1000ml bottle.',
+    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
+    packaging: [{ size: '1000 ml', unit: 'bottle', description: 'Economy 1 Litre bottle' }],
+    featured: true,
+    status: 'active',
+    order: 143
+  },
+
+  // ── Pooja Panner (Rose Water)
+  {
+    id: 'new-rw-100',
+    name: '100 PANNER',
+    slug: '100-panner-rose-water',
+    category: 'Rose Water',
+    shortDescription: 'Steam-distilled pure rose water (panner) in a 100ml bottle.',
+    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 100ml bottle.',
+    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
+    packaging: [{ size: '100 ml', unit: 'bottle', description: 'Small bottle' }],
+    status: 'active',
+    order: 150
+  },
+  {
+    id: 'new-rw-200',
+    name: '200 PANNER',
+    slug: '200-panner-rose-water',
+    category: 'Rose Water',
+    shortDescription: 'Steam-distilled pure rose water (panner) in a 200ml bottle.',
+    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 200ml bottle.',
+    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
+    packaging: [{ size: '200 ml', unit: 'bottle', description: 'Medium bottle' }],
+    status: 'active',
+    order: 151
+  },
+  {
+    id: 'new-rw-500',
+    name: '500 PANNER',
+    slug: '500-panner-rose-water',
+    category: 'Rose Water',
+    shortDescription: 'Steam-distilled pure rose water (panner) in a 500ml bottle.',
+    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 500ml bottle.',
+    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
+    packaging: [{ size: '500 ml', unit: 'bottle', description: 'Large bottle' }],
+    status: 'active',
+    order: 152
+  },
+  {
+    id: 'new-rw-1000',
+    name: '1000 PANNER',
+    slug: '1000-panner-rose-water',
+    category: 'Rose Water',
+    shortDescription: 'Steam-distilled pure rose water (panner) in a 1000ml bottle.',
+    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 1000ml bottle.',
+    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
+    packaging: [{ size: '1000 ml', unit: 'bottle', description: '1 Litre bottle' }],
+    featured: true,
+    status: 'active',
+    order: 153
+  },
+
+  // ── Sambrani
+  {
+    id: 'new-s-1',
+    name: 'Cup Sambrani',
+    slug: 'cup-sambrani-new',
+    category: 'Sambrani',
+    shortDescription: 'Premium cup sambrani with natural benzoin resin for divine home fragrance.',
+    description: 'Kalasam Cup Sambrani is crafted using premium natural benzoin resin and a sturdy charcoal base. Simply light the rim and enjoy 20-30 minutes of soothing, traditional sambrani fragrance that purifies the air and creates a sacred atmosphere.',
+    applications: ['Evening Prayers', 'Home Fumigation', 'Aromatherapy', 'Insect Repellent'],
+    packaging: [{ size: '12 cups', unit: 'box', description: 'Retail box' }],
+    featured: true,
+    status: 'active',
+    order: 160
+  },
+  {
+    id: 'new-s-2',
+    name: 'Cup Sambrani Jar',
+    slug: 'cup-sambrani-jar-new',
+    category: 'Sambrani',
+    shortDescription: 'Cup sambrani cups packaged in a premium moisture-proof storage jar.',
+    description: 'Keeps sambrani cups dry and fresh. Retains fragrance for a longer shelf life and offers convenient storage.',
+    applications: ['Daily Worship', 'Moisture-safe storage', 'Home Fragrance'],
+    packaging: [{ size: '24 cups', unit: 'jar', description: 'Moisture-proof jar container' }],
+    status: 'active',
+    order: 161
+  },
+  {
+    id: 'new-s-3',
+    name: 'Computer Sambrani',
+    slug: 'computer-sambrani-new',
+    category: 'Sambrani',
+    shortDescription: 'Traditional computer sambrani blocks with authentic resin fragrance.',
+    description: 'Standard block-style computer sambrani made from natural resins. Slow burning with steady smoke output for traditional prayer spaces.',
+    applications: ['Daily Prayers', 'Home Fumigation', 'Devotional Aura'],
+    packaging: [{ size: 'Standard', unit: 'box', description: 'Retail box' }],
+    status: 'active',
+    order: 162
+  }
 ];
