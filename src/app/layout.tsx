@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: COMPANY.metaDescription,
+  verification: {
+    google: 'googlebf649ec64225c793',
+  },
   keywords: [
     // 1. Company Keywords
     'Kalasam Jaikrishna Industries', 'Jaikrishna Industries', 'Kalasam India', 'Jaikrishna Exporters',
