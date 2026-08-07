@@ -24,6 +24,7 @@ import ContactCTA from '@/components/home/ContactCTA';
 
 import { SITE_NAME, COMPANY } from '@/lib/constants';
 
+<meta name="google-site-verification" content="0eYZe7AYbI2_cdaJ4TddTcfy8HTrMrZYL35TSuO9iN8" />
 export const metadata: Metadata = {
   title: `${SITE_NAME} — Camphor Manufacturer & Exporter India`,
   description: `Jaikrishna Industries manufactures synthetic camphor, D-camphor, and isoborneol in Theni, Tamil Nadu. ISO-certified, exported to 17+ countries. Get a quote today.`,
