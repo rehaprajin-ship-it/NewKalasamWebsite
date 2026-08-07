@@ -24,7 +24,7 @@ const b2bInquirySchema = z.object({
 
 type B2BInquiryData = z.infer<typeof b2bInquirySchema>;
 
-export default function ProductClientPage({ initialProduct, slug }: { initialProduct: any; slug: string }) {
+export default function ProductClientPage({ initialProduct, allProducts = [], slug }: { initialProduct: any; allProducts?: any[]; slug: string }) {
   const [product] = useState<any>(initialProduct);
   const [activeImage, setActiveImage] = useState<string>(initialProduct?.images?.[0] || '/images/products/synthetic-camphor.png');
   const [formSuccess, setFormSuccess] = useState(false);
@@ -419,32 +419,51 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
 
       </section>
 
-      {/* Related Products Section */}
-      <section className="bg-white border-t border-gray-150 py-12">
-        <div className="container-custom space-y-6">
-          <div>
-            <h3 className="text-lg font-800 text-gray-900 tracking-tight">Related Products</h3>
-            <p className="text-xs text-gray-500 mt-1">Discover other high-purity industrial chemicals and pooja items from our portfolio.</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {seedProducts
-              .filter((p) => p.slug !== slug)
-              .slice(0, 4)
-              .map((p: any) => (
+
+
+      {/* ── Related Products — Internal Cross-links ─────────── */}
+      <section className="section-padding bg-white">
+        <div className="container-custom max-w-6xl">
+          <h2 className="text-lg sm:text-xl font-800 text-gray-900 mb-6">Related Products</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {(() => {
+              const sameCategory = allProducts.filter(
+                (p) => p.slug !== slug && p.category === product.category && p.status === 'active'
+              );
+              const diffCategory = allProducts.filter(
+                (p) => p.slug !== slug && p.category !== product.category && p.status === 'active'
+              );
+              const related = [...sameCategory, ...diffCategory];
+              
+              // Deduplicate by slug
+              const seen = new Set();
+              const uniqueRelated = related.filter((item) => {
+                if (!item.slug || seen.has(item.slug)) return false;
+                seen.add(item.slug);
+                return true;
+              }).slice(0, 4);
+
+              return uniqueRelated.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
-                  className="bg-[#F7F8FA] rounded-[18px] border border-gray-200/80 p-4 hover:shadow-md transition-shadow group flex flex-col justify-between"
+                  className="bg-gray-50 rounded-[14px] border border-gray-200 p-4 hover:border-primary/30 hover:shadow-medium transition-all group"
                 >
-                  <div className="aspect-square w-full bg-white rounded-[12px] border border-gray-100 overflow-hidden flex items-center justify-center p-3 mb-3">
-                    <img src={p.image || '/images/products/synthetic-camphor.png'} alt={p.name} className="object-contain max-h-[120px] group-hover:scale-105 transition-transform duration-200" />
+                  <div className="aspect-square bg-white rounded-lg flex items-center justify-center mb-3 overflow-hidden">
+                    <img
+                      src={p.images?.[0] || '/images/products/synthetic-camphor.png'}
+                      alt={p.name || ''}
+                      className="object-contain max-h-[100px] group-hover:scale-105 transition-transform"
+                    />
                   </div>
-                  <div>
-                    <h4 className="font-850 text-xs text-gray-905 group-hover:text-[#128C7E] transition-colors line-clamp-1">{p.name || p.title}</h4>
-                    <p className="text-[10px] text-gray-400 mt-0.5 uppercase tracking-wider font-700">{p.category || 'Chemical'}</p>
-                  </div>
+                  <h3 className="text-xs font-700 text-gray-900 line-clamp-1">{p.name}</h3>
+                  <p className="text-[10px] text-gray-400 font-600 mt-0.5">{p.category}</p>
+                  {p.purity && (
+                    <span className="text-[9px] font-700 text-primary mt-1 block">{p.purity} Purity</span>
+                  )}
                 </Link>
-              ))}
+              ));
+            })()}
           </div>
         </div>
       </section>
@@ -488,37 +507,6 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 )}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-      {/* ── Related Products — Internal Cross-links ─────────── */}
-      <section className="section-padding bg-white">
-        <div className="container-custom max-w-6xl">
-          <h2 className="text-lg sm:text-xl font-800 text-gray-900 mb-6">Related Products</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {seedProducts
-              .filter((p) => p.slug !== slug && p.status === 'active')
-              .slice(0, 4)
-              .map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/products/${p.slug}`}
-                  className="bg-gray-50 rounded-[14px] border border-gray-200 p-4 hover:border-primary/30 hover:shadow-medium transition-all group"
-                >
-                  <div className="aspect-square bg-white rounded-lg flex items-center justify-center mb-3 overflow-hidden">
-                    <img
-                      src={p.images?.[0] || '/images/products/synthetic-camphor.png'}
-                      alt={p.name || ''}
-                      className="object-contain max-h-[100px] group-hover:scale-105 transition-transform"
-                    />
-                  </div>
-                  <h3 className="text-xs font-700 text-gray-900 line-clamp-1">{p.name}</h3>
-                  <p className="text-[10px] text-gray-400 font-600 mt-0.5">{p.category}</p>
-                  {p.purity && (
-                    <span className="text-[9px] font-700 text-primary mt-1 block">{p.purity} Purity</span>
-                  )}
-                </Link>
-              ))}
           </div>
         </div>
       </section>
