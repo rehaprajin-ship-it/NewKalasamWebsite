@@ -62,7 +62,7 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
     <div className="min-h-screen bg-[#F7F8FA] pb-20">
       
       {/* 1. B2B Industrial Hero Section */}
-      <section className="bg-gradient-to-r from-[#128C7E] to-[#1b5d54] text-white py-12 lg:py-16 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-[#128C7E] to-[#1b5d54] text-white py-8 sm:py-12 lg:py-16 relative overflow-hidden">
         <div className="container-custom">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs text-white/50 mb-4 font-500">
@@ -84,11 +84,11 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-900 tracking-tight leading-tight mt-1">
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-900 tracking-tight leading-tight mt-1">
                 {product.name}
               </h1>
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 font-mono text-[11px] text-white/70">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 pt-2 font-mono text-[11px] text-white/70">
                 {product.casNumber && (
                   <div>
                     <p className="text-white/40 font-500 uppercase tracking-wider">CAS No.</p>
@@ -245,7 +245,7 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
           {/* Worldwide Export Profile */}
           <div className="bg-white rounded-[18px] border border-gray-200/80 p-6 shadow-xs space-y-4">
             <h3 className="text-base font-800 text-gray-900">Worldwide Shipping & Container Loading</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 text-xs">
               <div className="p-3 bg-gray-50 border border-gray-100 rounded-[12px]">
                 <span className="text-[10px] text-gray-400 font-600 block">Shipping Ports</span>
                 <span className="font-700 text-gray-955 mt-1 block">Chennai / Tuticorin</span>
@@ -319,7 +319,7 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 {errors.company && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.company.message}</p>}
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-700 text-gray-600 mb-1">Target Country *</label>
                   <input
@@ -332,9 +332,9 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 <div>
                   <label className="block font-700 text-gray-600 mb-1">Contact Phone *</label>
                   <input
-                    type="text"
+                    type="tel"
                     {...register('phone')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-base sm:text-xs"
                   />
                   {errors.phone && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.phone.message}</p>}
                 </div>
@@ -350,7 +350,7 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 {errors.email && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.email.message}</p>}
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-700 text-gray-600 mb-1">Target Volume *</label>
                   <input
@@ -476,10 +476,10 @@ export default function ProductClientPage({ initialProduct, slug }: { initialPro
                 <button
                   type="button"
                   onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full px-5 py-4 text-left flex justify-between items-center hover:bg-gray-50/50 cursor-pointer"
+                  className="w-full px-5 py-4 min-h-[44px] text-left flex justify-between items-center hover:bg-gray-50/50 cursor-pointer"
                 >
-                  <span className="text-xs font-800 text-gray-900">{faq.q}</span>
-                  <span className="text-xs text-gray-400">{activeFaq === index ? '▲' : '▼'}</span>
+                  <span className="text-sm sm:text-xs font-800 text-gray-900">{faq.q}</span>
+                  <span className="text-xs text-gray-400 ml-2 flex-shrink-0">{activeFaq === index ? '▲' : '▼'}</span>
                 </button>
                 {activeFaq === index && (
                   <div className="px-5 pb-4 pt-1 text-xs text-gray-500 leading-relaxed border-t border-gray-50">

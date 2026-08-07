@@ -67,11 +67,11 @@ export default function QualitySection() {
           {/* Certification Grid */}
           <div className="lg:col-span-7">
             <ScrollReveal direction="right" delay={0.2}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                 {CERTIFICATIONS.map((cert, i) => (
                   <div
                     key={cert}
-                    className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center justify-center text-center hover:shadow-medium hover:border-primary/20 transition-all duration-300 group aspect-square"
+                    className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 flex flex-col items-center justify-center text-center hover:shadow-medium hover:border-primary/20 transition-all duration-300 group sm:aspect-square"
                   >
                     <div className="w-12 h-12 rounded-full bg-primary-50 group-hover:bg-primary flex items-center justify-center mb-3 transition-colors">
                       <svg className="w-6 h-6 text-primary group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

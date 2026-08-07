@@ -55,12 +55,12 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-l-lg text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-accent"
+                className="flex-1 min-w-0 px-3 sm:px-4 py-3 bg-white/10 border border-white/20 rounded-l-lg text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-accent"
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-6 py-3 bg-accent hover:bg-accent-dark text-white font-600 text-sm rounded-r-lg transition-colors disabled:opacity-50 whitespace-nowrap"
+                className="px-4 sm:px-6 py-3 bg-accent hover:bg-accent-dark text-white font-600 text-sm rounded-r-lg transition-colors disabled:opacity-50 whitespace-nowrap flex-shrink-0"
               >
                 {submitting ? 'Sending...' : 'Subscribe'}
               </button>
@@ -111,8 +111,7 @@ export default function Footer() {
           </div>
 
           {/* Company Links */}
-          <div>
-            <h4 className="text-sm font-600 text-white uppercase tracking-wider mb-4">Company</h4>
+          <FooterAccordion title="Company">
             <ul className="space-y-2.5">
               {footerNav.company.map((link) => (
                 <li key={link.href}>
@@ -122,11 +121,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterAccordion>
 
           {/* Products Links */}
-          <div>
-            <h4 className="text-sm font-600 text-white uppercase tracking-wider mb-4">Products</h4>
+          <FooterAccordion title="Products">
             <ul className="space-y-2.5">
               {footerNav.products.map((link) => (
                 <li key={link.href}>
@@ -136,11 +134,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterAccordion>
 
           {/* Services Links */}
-          <div>
-            <h4 className="text-sm font-600 text-white uppercase tracking-wider mb-4">Services</h4>
+          <FooterAccordion title="Services">
             <ul className="space-y-2.5">
               {footerNav.services.map((link) => (
                 <li key={link.href}>
@@ -150,11 +147,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterAccordion>
 
           {/* Resources Links */}
-          <div>
-            <h4 className="text-sm font-600 text-white uppercase tracking-wider mb-4">Resources</h4>
+          <FooterAccordion title="Resources">
             <ul className="space-y-2.5">
               {footerNav.resources.map((link) => (
                 <li key={link.href}>
@@ -164,7 +160,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterAccordion>
         </div>
       </div>
 
@@ -183,7 +179,7 @@ export default function Footer() {
 
       {/* ── Bottom Bar ───────────────────────────────────────── */}
       <div className="border-t border-gray-800">
-        <div className="container-custom py-6">
+        <div className="container-custom py-6 pb-20 lg:pb-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-500">
               © {new Date().getFullYear()} {COMPANY.name}. All rights reserved. | Last updated: August {new Date().getFullYear()}
@@ -203,7 +199,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {Object.entries(COMPANY.social).map(([name, url]) => (
                 <a key={name} href={url} target="_blank" rel="noopener noreferrer"
-                   className="text-gray-500 hover:text-accent transition-colors" aria-label={name}>
+                   className="text-gray-500 hover:text-accent transition-colors p-1" aria-label={name}>
                   <FooterSocialIcon name={name} />
                 </a>
               ))}
@@ -212,6 +208,44 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/* ── Footer Accordion (mobile collapsible, desktop always open) ── */
+
+function FooterAccordion({ title, children }: { title: string; children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      {/* Desktop: always visible heading + content */}
+      <div className="hidden lg:block">
+        <h4 className="text-sm font-600 text-white uppercase tracking-wider mb-4">{title}</h4>
+        {children}
+      </div>
+
+      {/* Mobile: accordion */}
+      <div className="lg:hidden">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full flex items-center justify-between py-3 text-sm font-600 text-white uppercase tracking-wider cursor-pointer"
+          aria-expanded={isOpen}
+        >
+          {title}
+          <svg
+            className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {isOpen && (
+          <div className="pb-4">
+            {children}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

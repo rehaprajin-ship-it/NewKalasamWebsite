@@ -1,10 +1,10 @@
 'use client';
 
 /* ═══════════════════════════════════════════════════════════════
-   Testimonials — Carousel with Quote Cards
+   Testimonials — Carousel with Quote Cards + Swipe + Dots
    ═══════════════════════════════════════════════════════════════ */
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '@/components/ui/SectionHeader';
 
@@ -53,11 +53,44 @@ const testimonials = [
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-  const goNext = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const goPrev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  // Touch/swipe tracking
+  const touchStart = useRef<number | null>(null);
+
+  const goTo = (index: number) => {
+    setDirection(index > current ? 1 : -1);
+    setCurrent(index);
+  };
+  const goNext = () => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  };
+  const goPrev = () => {
+    setDirection(-1);
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+  };
 
   const testimonial = testimonials[current];
+
+  const variants = {
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 40 : -40 }),
+    center: { opacity: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -40 : 40 }),
+  };
 
   return (
     <section className="section-padding bg-white overflow-hidden">
@@ -70,19 +103,25 @@ export default function Testimonials() {
 
         <div className="max-w-4xl mx-auto mt-4">
           {/* Quote Card */}
-          <div className="relative bg-gray-50 rounded-2xl p-8 lg:p-12 min-h-[320px] flex flex-col justify-center">
+          <div
+            className="relative bg-gray-50 rounded-2xl p-6 sm:p-8 lg:p-12 min-h-[320px] flex flex-col justify-center touch-pan-y"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
             {/* Large quote mark */}
-            <div className="absolute top-6 left-8 text-8xl font-serif text-primary/5 leading-none select-none">
+            <div className="absolute top-6 left-6 sm:left-8 text-8xl font-serif text-primary/5 leading-none select-none">
               &ldquo;
             </div>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={testimonial.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Type badge */}
                 <span className="inline-block px-3 py-1 bg-primary/5 text-primary text-xs font-600 rounded-full mb-6">
@@ -90,41 +129,38 @@ export default function Testimonials() {
                 </span>
 
                 {/* Quote */}
-                <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed font-400 italic">
+                <blockquote className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-400 italic">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
                 {/* Attribution */}
-                <div className="mt-8 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-700 text-lg">
+                <div className="mt-6 sm:mt-8 flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-primary flex items-center justify-center text-white font-700 text-lg flex-shrink-0">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-base font-600 text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-500">{testimonial.title}</div>
-                    <div className="text-sm text-accent font-500">{testimonial.company}</div>
+                    <div className="text-sm sm:text-base font-600 text-gray-900">{testimonial.name}</div>
+                    <div className="text-xs sm:text-sm text-gray-500">{testimonial.title}</div>
+                    <div className="text-xs sm:text-sm text-accent font-500">{testimonial.company}</div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation */}
-            <div className="absolute bottom-8 right-8 flex items-center gap-3">
+            {/* Navigation arrows — desktop + mobile */}
+            <div className="absolute bottom-6 sm:bottom-8 right-6 sm:right-8 flex items-center gap-2 sm:gap-3">
               <button
                 onClick={goPrev}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors"
+                className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors"
                 aria-label="Previous testimonial"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <span className="text-sm text-gray-400 tabular-nums min-w-[3ch] text-center">
-                {current + 1}/{testimonials.length}
-              </span>
               <button
                 onClick={goNext}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors"
+                className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors"
                 aria-label="Next testimonial"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -132,6 +168,23 @@ export default function Testimonials() {
                 </svg>
               </button>
             </div>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex items-center justify-center gap-2 mt-5">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current
+                    ? 'w-6 h-2.5 bg-primary'
+                    : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
+                }`}
+                style={{ minWidth: '10px', minHeight: '10px' }}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

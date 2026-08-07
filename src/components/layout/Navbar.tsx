@@ -418,7 +418,7 @@ export default function Navbar() {
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl overflow-y-auto"
             >
-              <div className="p-6 pt-20">
+              <div className="p-6 pt-20 pb-24">
                 {/* Mobile Nav Items */}
                 <div className="space-y-1">
                   {navigation.map((item) => (
@@ -547,7 +547,7 @@ function MobileNavItem({
     return (
       <Link
         href={item.href}
-        className={`block px-4 py-3 text-base font-500 rounded-lg transition-colors ${
+        className={`block px-4 py-3.5 text-base font-500 rounded-lg transition-colors min-h-[44px] ${
           isActive ? 'text-primary bg-primary-50' : 'text-gray-700 hover:bg-gray-50'
         }`}
       >
@@ -560,7 +560,7 @@ function MobileNavItem({
     <div>
       <button
         onClick={onToggle}
-        className={`w-full flex items-center justify-between px-4 py-3 text-base font-500 rounded-lg transition-colors ${
+        className={`w-full flex items-center justify-between px-4 py-3.5 text-base font-500 rounded-lg transition-colors min-h-[44px] ${
           isActive ? 'text-primary bg-primary-50' : 'text-gray-700 hover:bg-gray-50'
         }`}
       >

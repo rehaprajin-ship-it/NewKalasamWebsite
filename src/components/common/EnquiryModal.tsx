@@ -1,9 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EnquiryModal() {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Listen for global event from MobileBottomBar
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener('open-enquiry-modal', handler);
+    return () => window.removeEventListener('open-enquiry-modal', handler);
+  }, []);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaChecked, setCaptchaChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -110,16 +117,16 @@ export default function EnquiryModal() {
         }
       `}} />
 
-      {/* Ripple Rings Background animation */}
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none w-10 h-20 overflow-visible">
+      {/* Ripple Rings Background animation — desktop only */}
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none w-10 h-20 overflow-visible hidden lg:block">
         <div className="absolute right-0 top-1/2 w-10 h-20 bg-[#2b8a3e]/30 rounded-l-xl animate-enquiry-ripple-1 origin-right"></div>
         <div className="absolute right-0 top-1/2 w-10 h-20 bg-[#2b8a3e]/15 rounded-l-xl animate-enquiry-ripple-2 origin-right"></div>
       </div>
 
-      {/* Floating Vertical "Enquire Now" Tab */}
+      {/* Floating Vertical "Enquire Now" Tab — desktop only */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed right-0 top-1/2 z-40 shimmer-bg text-white font-700 text-[12px] tracking-wider px-2.5 py-4 rounded-l-xl border-l border-y border-green-700/30 shadow-lg flex items-center justify-center transition-all duration-300 cursor-pointer animate-enquiry-wiggle hover:animate-none hover:-translate-x-1.5"
+        className="fixed right-0 top-1/2 z-40 shimmer-bg text-white font-700 text-[12px] tracking-wider px-2.5 py-4 rounded-l-xl border-l border-y border-green-700/30 shadow-lg hidden lg:flex items-center justify-center transition-all duration-300 cursor-pointer animate-enquiry-wiggle hover:animate-none hover:-translate-x-1.5"
         style={{
           writingMode: 'vertical-rl',
           transform: 'translateY(-50%) rotate(180deg)',
@@ -178,7 +185,7 @@ export default function EnquiryModal() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Your Name *"
-                          className="w-full px-2.5 py-1.5 rounded-md border border-gray-200 text-xs text-gray-900 placeholder-gray-400 bg-gray-50/50 focus:bg-white focus:border-[#2b8a3e] focus:ring-1 focus:ring-[#2b8a3e] outline-hidden transition-all"
+                          className="w-full px-2.5 py-2 rounded-md border border-gray-200 text-base sm:text-xs text-gray-900 placeholder-gray-400 bg-gray-50/50 focus:bg-white focus:border-[#2b8a3e] focus:ring-1 focus:ring-[#2b8a3e] outline-hidden transition-all"
                         />
                       </div>
                       <div>
@@ -247,11 +254,12 @@ export default function EnquiryModal() {
                       <div>
                         <input
                           type="text"
+                          inputMode="numeric"
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleInputChange}
                           placeholder="Pincode"
-                          className="w-full px-2.5 py-1.5 rounded-md border border-gray-200 text-xs text-gray-900 placeholder-gray-400 bg-gray-50/50 focus:bg-white focus:border-[#2b8a3e] focus:ring-1 focus:ring-[#2b8a3e] outline-hidden transition-all"
+                          className="w-full px-2.5 py-2 rounded-md border border-gray-200 text-base sm:text-xs text-gray-900 placeholder-gray-400 bg-gray-50/50 focus:bg-white focus:border-[#2b8a3e] focus:ring-1 focus:ring-[#2b8a3e] outline-hidden transition-all"
                         />
                       </div>
                       <div>

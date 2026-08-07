@@ -20,7 +20,7 @@ export default function FloatingWhatsApp() {
       transition={{ delay: 2, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 left-6 z-[var(--z-overlay)] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+      className="fixed bottom-6 left-6 z-[var(--z-overlay)] w-14 h-14 bg-[#25D366] rounded-full hidden lg:flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
       aria-label="Chat on WhatsApp"
     >
       <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">

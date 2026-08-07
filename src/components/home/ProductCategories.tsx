@@ -107,7 +107,7 @@ export default function ProductCategories() {
         />
 
         {/* Product Cards Grid */}
-        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 mt-4">
+        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-5 mt-4">
           {products.map((product) => (
             <StaggerItem key={product.title}>
               <div className="group flex flex-col">
@@ -125,7 +125,7 @@ export default function ProductCategories() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`WhatsApp enquiry for ${product.title}`}
-                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
+                      className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center
                                  shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -134,7 +134,7 @@ export default function ProductCategories() {
                     <a
                       href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.title}`}
                       aria-label={`Email enquiry for ${product.title}`}
-                      className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
+                      className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center
                                  shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -144,7 +144,7 @@ export default function ProductCategories() {
 
                   {/* Product Image */}
                   <Link href={product.href} className="block">
-                    <div className="w-full aspect-square p-4 flex items-center justify-center bg-gray-50/30 relative">
+                    <div className="w-full aspect-square p-3 sm:p-4 flex items-center justify-center bg-gray-50/30 relative">
                       <Image
                         src={product.image}
                         alt={`${product.title} — Jaikrishna Industries product`}

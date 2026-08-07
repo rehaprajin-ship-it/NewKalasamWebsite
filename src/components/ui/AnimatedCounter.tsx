@@ -28,12 +28,17 @@ export default function AnimatedCounter({
   className = '',
   light = false,
 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(value);
+  const hasAnimated = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    // Reset to 0 and animate up — the zero is only momentary visual
+    setCount(0);
 
     let startTime: number;
     let animationFrame: number;
@@ -66,7 +71,7 @@ export default function AnimatedCounter({
       className={className}
     >
       <div
-        className={`text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight tabular-nums ${
+        className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-800 tracking-tight tabular-nums ${
           light ? 'text-white' : 'text-primary'
         }`}
       >

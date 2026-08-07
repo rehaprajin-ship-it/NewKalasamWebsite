@@ -6,6 +6,7 @@ import { AuthProvider } from '@/context/AuthProvider';
 import { ToastProvider } from '@/context/ToastProvider';
 import { COMPANY, SITE_URL, SITE_NAME } from '@/lib/constants';
 import EnquiryModal from '@/components/common/EnquiryModal';
+import MobileBottomBar from '@/components/layout/MobileBottomBar';
 import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
@@ -232,11 +233,12 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-full flex flex-col bg-white text-gray-800 antialiased">
+      <body className="min-h-full flex flex-col bg-white text-gray-800 antialiased pb-16 lg:pb-0">
         <AuthProvider>
           <ToastProvider>
             {children}
             <EnquiryModal />
+            <MobileBottomBar />
             <Analytics />
           </ToastProvider>
         </AuthProvider>
