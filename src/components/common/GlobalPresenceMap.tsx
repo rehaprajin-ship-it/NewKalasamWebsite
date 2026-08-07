@@ -141,7 +141,10 @@ export default function GlobalPresenceMap({
           iconAnchor: [pinWidth / 2, pinHeight], // Bottom tip of the pin anchored exactly at lat/lng
         });
 
-        const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(map);
+        const marker = L.marker([loc.lat, loc.lng], { 
+          icon: customIcon,
+          title: `${loc.name} - ${isHQ ? 'Manufacturing Headquarters' : 'Export Market'}`,
+        }).addTo(map);
 
         // Bind tooltip on hover & popup on click
         marker.bindTooltip(

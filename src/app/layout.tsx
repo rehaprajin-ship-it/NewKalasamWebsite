@@ -8,7 +8,6 @@ import { COMPANY, SITE_URL, SITE_NAME } from '@/lib/constants';
 import EnquiryModal from '@/components/common/EnquiryModal';
 import { Analytics } from '@vercel/analytics/next';
 
-<meta name="google-site-verification" content="0eYZe7AYbI2_cdaJ4TddTcfy8HTrMrZYL35TSuO9iN8" />
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -225,7 +224,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-6RY7XSD72L');
           `}
         </Script>
       </head>
