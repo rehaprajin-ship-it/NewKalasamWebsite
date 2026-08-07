@@ -67,6 +67,14 @@ function EmailIcon() {
   );
 }
 
+/* Optimize Cloudinary URLs: request 300px wide, auto format/quality */
+function optimizeImageUrl(url: string): string {
+  if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', '/upload/w_300,q_auto,f_auto/');
+  }
+  return url;
+}
+
 export default function ProductCategories() {
   const whatsappNumber = COMPANY.contact.whatsapp;
   const [products, setProducts] = useState<any[]>([]);
@@ -79,7 +87,7 @@ export default function ProductCategories() {
           const mapped = bestsellers.map((p) => ({
             title: p.name,
             href: `/products/${p.slug}`,
-            image: p.images?.[0] || '/images/products/synthetic-camphor.png',
+            image: optimizeImageUrl(p.images?.[0] || '/images/products/synthetic-camphor.png'),
           }));
           setProducts(mapped);
         } else {
@@ -136,11 +144,14 @@ export default function ProductCategories() {
 
                   {/* Product Image */}
                   <Link href={product.href} className="block">
-                    <div className="w-full aspect-square p-4 flex items-center justify-center bg-gray-50/30">
-                      <img
+                    <div className="w-full aspect-square p-4 flex items-center justify-center bg-gray-50/30 relative">
+                      <Image
                         src={product.image}
-                        alt={product.title}
+                        alt={`${product.title} — Jaikrishna Industries product`}
+                        width={210}
+                        height={210}
                         className="object-contain max-h-[120px] w-auto group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 16vw"
                       />
                     </div>
                   </Link>

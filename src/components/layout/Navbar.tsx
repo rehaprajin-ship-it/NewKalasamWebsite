@@ -62,20 +62,10 @@ export default function Navbar() {
   const [selectedLang, setSelectedLang] = useState('');
   const translateInitialized = useRef(false);
 
-  /* ── Google Translate Integration ──────────────────────── */
-  useEffect(() => {
+  /* ── Google Translate Integration (Lazy — loads on first interaction) ── */
+  const loadTranslateScript = useCallback(() => {
     if (translateInitialized.current) return;
     translateInitialized.current = true;
-
-    // Inject Google Translate script
-    const existingScript = document.getElementById('google-translate-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = 'google-translate-script';
-      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      script.async = true;
-      document.body.appendChild(script);
-    }
 
     // Callback for Google Translate
     (window as any).googleTranslateElementInit = () => {
@@ -88,10 +78,21 @@ export default function Navbar() {
         'google_translate_element'
       );
     };
+
+    // Inject Google Translate script only when needed
+    const existingScript = document.getElementById('google-translate-script');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
   const handleLanguageChange = (langCode: string) => {
     setSelectedLang(langCode);
+    loadTranslateScript(); // Lazy-load Google Translate on first use
 
     // Reset to English if empty / "All Languages"
     if (!langCode || langCode === 'en') {

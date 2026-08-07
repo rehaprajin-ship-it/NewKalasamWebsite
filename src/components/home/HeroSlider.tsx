@@ -2,9 +2,11 @@
 
 /* ═══════════════════════════════════════════════════════════════
    Hero Video Background — Full-Viewport Autoplay Video Hero
+   Performance: Poster image = LCP element. Video deferred post-hydration.
    ═══════════════════════════════════════════════════════════════ */
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -46,6 +48,7 @@ const slides = [
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const goTo = useCallback((index: number) => {
@@ -75,6 +78,21 @@ export default function HeroSlider() {
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
+  // Defer video loading — wait for idle or 2s after mount
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const loadVideo = () => setVideoReady(true);
+
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(loadVideo, { timeout: 2000 });
+      return () => (window as any).cancelIdleCallback(id);
+    } else {
+      const timer = setTimeout(loadVideo, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [prefersReducedMotion]);
+
   useEffect(() => {
     if (videoRef.current) {
       if (prefersReducedMotion) {
@@ -83,33 +101,40 @@ export default function HeroSlider() {
         videoRef.current.play().catch(() => {});
       }
     }
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, videoReady]);
 
   const slide = slides[current];
 
   return (
     <section className="relative h-[80vh] md:h-[90vh] lg:h-screen w-full overflow-hidden bg-gray-950">
       
-      {/* Autoplay Video Background */}
-      {!prefersReducedMotion ? (
+      {/* Static Poster Image — LCP element, shown immediately */}
+      <Image
+        src="/images/hero/factory-campus.png"
+        alt="Jaikrishna Industries camphor manufacturing facility"
+        fill
+        priority
+        fetchPriority="high"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          videoReady && !prefersReducedMotion ? 'opacity-0' : 'opacity-90'
+        }`}
+        sizes="100vw"
+      />
+
+      {/* Deferred Video — loads after idle/2s, fades in over poster */}
+      {videoReady && !prefersReducedMotion && (
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           controlsList="nodownload nofullscreen noremoteplayback"
-          poster="/images/hero/factory-campus.png"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-90"
         >
-          <source src="/images/hero vedio.mp4" type="video/mp4" />
+          <source src="/images/hero-video.mp4" type="video/mp4" />
         </video>
-      ) : (
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
-          style={{ backgroundImage: `url('/images/hero/factory-campus.png')` }}
-        />
       )}
 
       {/* Premium Gradient Overlay with Deep Green Tint */}

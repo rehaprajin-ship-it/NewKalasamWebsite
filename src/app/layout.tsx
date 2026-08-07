@@ -214,6 +214,10 @@ export default function RootLayout({
           }}
         />
 
+        {/* Preconnect hints for critical 3rd party origins */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+
         {/* Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-6RY7XSD72L"

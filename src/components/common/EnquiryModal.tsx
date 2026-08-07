@@ -60,7 +60,8 @@ export default function EnquiryModal() {
   return (
     <>
       {/* Custom Styles for Enquiry Button Animation */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes enquiry-wiggle {
           0%, 100% {
             transform: translateY(-50%) rotate(180deg) translateX(0);
@@ -105,6 +106,7 @@ export default function EnquiryModal() {
           background: linear-gradient(120deg, #2b8a3e 30%, #4ccd3c 50%, #2b8a3e 70%);
           background-size: 200% 100%;
           animation: enquiry-shimmer 3s infinite linear;
+          will-change: background-position;
         }
       `}} />
 
@@ -130,7 +132,7 @@ export default function EnquiryModal() {
       {isOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 transition-all duration-300">
           <div className="bg-white rounded-xl w-full max-w-2xl shadow-2xl relative max-h-[95vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            
+
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
@@ -336,8 +338,8 @@ export default function EnquiryModal() {
                         </label>
                         <div className="flex flex-col items-center justify-center opacity-85">
                           <svg className="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.07 4.93A10 10 0 0 0 2 12h3a7 7 0 1 1 7 7v3a10 10 0 0 0 7.07-17.07z"/>
-                            <path d="M12 2a10 10 0 0 0-7.07 17.07L7.07 17.07A7 7 0 1 1 12 5V2z"/>
+                            <path d="M19.07 4.93A10 10 0 0 0 2 12h3a7 7 0 1 1 7 7v3a10 10 0 0 0 7.07-17.07z" />
+                            <path d="M12 2a10 10 0 0 0-7.07 17.07L7.07 17.07A7 7 0 1 1 12 5V2z" />
                           </svg>
                           <span className="text-[7px] text-gray-400 mt-0.5 tracking-tighter">reCAPTCHA</span>
                         </div>

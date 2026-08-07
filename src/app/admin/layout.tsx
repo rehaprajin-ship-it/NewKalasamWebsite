@@ -92,9 +92,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex text-gray-800 font-sans">
       {/* Collapsible Sidebar */}
-      <aside className={`bg-[#128C7E] text-white flex flex-col transition-all duration-300 z-40 fixed lg:static inset-y-0 left-0 ${
-        isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 lg:w-20 -translate-x-full lg:translate-x-0 overflow-hidden'
-      }`}>
+      <aside className={`bg-[#128C7E] text-white flex flex-col transition-all duration-300 z-40 fixed lg:static inset-y-0 left-0 ${isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 lg:w-20 -translate-x-full lg:translate-x-0 overflow-hidden'
+        }`}>
         <div className="p-5 flex items-center justify-between border-b border-white/10">
           <Link href="/admin" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-[10px] bg-white p-1.5 flex items-center justify-center flex-shrink-0">
@@ -111,11 +110,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3.5 px-4 py-3 rounded-[12px] text-sm font-600 transition-all duration-200 ${
-                  isActive
+                className={`flex items-center gap-3.5 px-4 py-3 rounded-[12px] text-sm font-600 transition-all duration-200 ${isActive
                     ? 'bg-[#25D366] text-white shadow-md'
                     : 'text-white/80 hover:bg-white/10 hover:text-white'
-                }`}
+                  }`}
               >
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />

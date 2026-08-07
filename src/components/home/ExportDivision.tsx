@@ -6,8 +6,13 @@
 
 import Link from 'next/link';
 import ScrollReveal from '@/components/common/ScrollReveal';
-import GlobalPresenceMap from '@/components/common/GlobalPresenceMap';
+import dynamic from 'next/dynamic';
 import { EXPORT_COUNTRIES } from '@/lib/constants';
+
+const GlobalPresenceMap = dynamic(
+  () => import('@/components/common/GlobalPresenceMap'),
+  { ssr: false, loading: () => <div className="w-full h-[400px] bg-gray-100 rounded-2xl animate-pulse flex items-center justify-center text-gray-400 text-sm">Loading map…</div> }
+);
 
 const continents = ['Asia', 'Middle East', 'Africa', 'North America'] as const;
 

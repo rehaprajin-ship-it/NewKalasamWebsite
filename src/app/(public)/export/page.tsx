@@ -9,8 +9,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
-import GlobalPresenceMap from '@/components/common/GlobalPresenceMap';
+import dynamic from 'next/dynamic';
 import { COMPANY, EXPORT_COUNTRIES } from '@/lib/constants';
+
+const GlobalPresenceMap = dynamic(
+  () => import('@/components/common/GlobalPresenceMap'),
+  { ssr: false, loading: () => <div className="w-full h-[480px] bg-gray-100 rounded-2xl animate-pulse flex items-center justify-center text-gray-400 text-sm">Loading map…</div> }
+);
 
 const exportServices = [
   { title: 'FCL & LCL Shipping', description: 'Full container load and less-than-container load options for all order sizes.', icon: '🚢' },
