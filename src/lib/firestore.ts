@@ -41,6 +41,30 @@ const COLLECTIONS = {
 
 // ── Generic Helpers ────────────────────────────────────────────
 
+/** Convert Firestore Timestamp objects ({seconds, nanoseconds}) to ISO strings recursively */
+function sanitizeFirestoreData(obj: any): any {
+  if (obj === null || obj === undefined) return obj;
+  // Firestore Timestamp: has seconds & nanoseconds and a toDate method
+  if (typeof obj === 'object' && 'seconds' in obj && 'nanoseconds' in obj && typeof obj.toDate === 'function') {
+    return obj.toDate().toISOString();
+  }
+  // Plain {seconds, nanoseconds} without toDate (already serialized once)
+  if (typeof obj === 'object' && 'seconds' in obj && 'nanoseconds' in obj && Object.keys(obj).length === 2) {
+    return new Date(obj.seconds * 1000).toISOString();
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(sanitizeFirestoreData);
+  }
+  if (typeof obj === 'object' && obj.constructor === Object) {
+    const result: any = {};
+    for (const key of Object.keys(obj)) {
+      result[key] = sanitizeFirestoreData(obj[key]);
+    }
+    return result;
+  }
+  return obj;
+}
+
 async function getCollectionData<T>(
   collectionName: string,
   ...constraints: QueryConstraint[]
@@ -49,7 +73,7 @@ async function getCollectionData<T>(
   const ref = collection(db, collectionName);
   const q = constraints.length > 0 ? query(ref, ...constraints) : ref;
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({
+  return snapshot.docs.map((d) => sanitizeFirestoreData({
     id: d.id,
     ...d.data(),
   })) as T[];
@@ -63,7 +87,7 @@ async function getDocument<T>(
   const ref = doc(db, collectionName, docId);
   const snapshot = await getDoc(ref);
   if (!snapshot.exists()) return null;
-  return { id: snapshot.id, ...snapshot.data() } as T;
+  return sanitizeFirestoreData({ id: snapshot.id, ...snapshot.data() }) as T;
 }
 
 async function addDocument(
