@@ -63,16 +63,6 @@ export function ProductSchema({ product }: { product: ProductSchemaProps }) {
       name: SITE_NAME,
     },
     category: product.category || 'Industrial Chemical',
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'INR',
-      seller: {
-        '@type': 'Organization',
-        name: SITE_NAME,
-      },
-      itemCondition: 'https://schema.org/NewCondition',
-    },
   };
 
   if (product.image) {

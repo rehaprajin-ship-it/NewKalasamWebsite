@@ -4,8 +4,10 @@ import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthProvider';
 import { ToastProvider } from '@/context/ToastProvider';
+import { InquiryProvider } from '@/context/InquiryContext';
 import { COMPANY, SITE_URL, SITE_NAME } from '@/lib/constants';
 import EnquiryModal from '@/components/common/EnquiryModal';
+import InquiryDrawer from '@/components/common/InquiryDrawer';
 import MobileBottomBar from '@/components/layout/MobileBottomBar';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -272,10 +274,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-gray-800 antialiased pb-16 lg:pb-0">
         <AuthProvider>
           <ToastProvider>
-            {children}
-            <EnquiryModal />
-            <MobileBottomBar />
-            <Analytics />
+            <InquiryProvider>
+              {children}
+              <EnquiryModal />
+              <InquiryDrawer />
+              <MobileBottomBar />
+              <Analytics />
+            </InquiryProvider>
           </ToastProvider>
         </AuthProvider>
       </body>

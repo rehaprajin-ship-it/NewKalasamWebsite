@@ -7,7 +7,19 @@ export default function EnquiryModal() {
 
   // Listen for global event from MobileBottomBar
   useEffect(() => {
-    const handler = () => setIsOpen(true);
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const details = customEvent.detail || (typeof window !== 'undefined' ? (window as any).currentProductDetail : null);
+      if (details) {
+        setFormData((prev) => ({
+          ...prev,
+          product: details.product || '',
+          casNo: details.casNo || '',
+          grade: details.grade || '',
+        }));
+      }
+      setIsOpen(true);
+    };
     window.addEventListener('open-enquiry-modal', handler);
     return () => window.removeEventListener('open-enquiry-modal', handler);
   }, []);

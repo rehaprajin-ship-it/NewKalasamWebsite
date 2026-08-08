@@ -48,12 +48,24 @@ export interface Product {
     metaDescription?: string;
     keywords?: string;
   };
+  variants?: ProductVariant[];
   createdAt?: string;
   updatedAt?: string;
 }
 
+export interface ProductVariant {
+  id: string;
+  sku: string;               // e.g. "KC013"
+  attributes: Record<string, string>; // e.g. { shape: "Small Round Tablet" } or { packSize: "25 Pack" }
+  packingType: string;        // e.g. "50 Pack Per Cover", "Half Kg Cover"
+  materialType: string;       // e.g. "Powder", "Round Tablets"
+  customPackingAvailable: boolean;
+  sortOrder?: number;
+}
+
 export type ProductCategory =
   | 'Industrial Chemicals'
+  | 'Pooja Products'
   | 'Camphor'
   | 'Sambrani'
   | 'Agarbathi'

@@ -18,6 +18,7 @@ const productSchema = z.object({
   slug: z.string().min(2, 'Slug is required'),
   category: z.enum([
     'Industrial Chemicals',
+    'Pooja Products',
     'Camphor',
     'Sambrani',
     'Agarbathi',
@@ -55,6 +56,7 @@ type ProductFormData = z.infer<typeof productSchema>;
 
 const CATEGORIES: ProductCategory[] = [
   'Industrial Chemicals',
+  'Pooja Products',
   'Camphor',
   'Sambrani',
   'Agarbathi',
@@ -245,8 +247,17 @@ export default function AdminProductsCMS() {
   };
 
   const handleSeedProducts = async () => {
-    if (!confirm('Are you sure you want to seed default products into Firestore? This will add all predefined items.')) return;
+    if (!confirm('This will DELETE all existing products in Firestore and re-seed the corrected catalog. Are you sure?')) return;
     try {
+      setLoadingData(true);
+      // Fetch and delete existing products
+      const existing = await getProducts();
+      for (const p of existing) {
+        if (p.id) {
+          await removeProduct(p.id);
+        }
+      }
+
       for (const item of seedProducts) {
         const p = item as any;
         const payload = {
@@ -270,6 +281,7 @@ export default function AdminProductsCMS() {
           oemAvailable: !!p.oemAvailable,
           privateLabelAvailable: !!p.privateLabelAvailable,
           order: p.order || 0,
+          variants: p.variants || [],
           seo: {
             metaTitle: p.seo?.metaTitle || `${p.name} | Kalasam Industries`,
             metaDescription: p.seo?.metaDescription || `Industrial grade ${p.name}.`,
@@ -278,10 +290,11 @@ export default function AdminProductsCMS() {
         };
         await saveProduct(payload);
       }
-      alert('Default products seeded successfully!');
+      alert('All products reset and seeded successfully!');
       loadCatalog();
     } catch (err: any) {
       alert(`Seeding failed: ${err.message}`);
+      setLoadingData(false);
     }
   };
 

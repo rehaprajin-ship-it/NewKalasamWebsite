@@ -1,52 +1,28 @@
 'use client';
-import PageHero from '@/components/ui/PageHero';
 
-/* ═══════════════════════════════════════════════════════════════
-   Products Page — Green-Bordered Card Grid (Reference Design)
-   WhatsApp + Email icons, product image, name below card
-   ═══════════════════════════════════════════════════════════════ */
-
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import PageHero from '@/components/ui/PageHero';
 import { seedProducts } from '@/data/products';
 import { COMPANY } from '@/lib/constants';
-
-const categories = ['All', 'Industrial Chemicals', 'Camphor', 'Sambrani', 'Agarbathi', 'Lamp Oil', 'Rose Water', 'Temple Products'];
-
-const whatsappNumber = COMPANY.contact.whatsapp;
-
-/* ── WhatsApp Icon ────────────────────────────────────────────── */
-function WhatsAppIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  );
-}
-
-/* ── Email Icon ───────────────────────────────────────────────── */
-function EmailIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="M22 4L12 13L2 4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-const ITEMS_PER_PAGE = 20;
-
 import { getProducts } from '@/lib/firestore';
+import { useInquiry } from '@/context/InquiryContext';
+
+const CATEGORIES = ['All', 'Industrial Chemicals', 'Pooja Products'];
+const MATERIAL_TYPES = ['All', 'Powder', 'Liquid', 'Flakes', 'Round Tablets', 'Tablet-shaped'];
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const { addItem } = useInquiry();
   const [products, setProducts] = useState<any[]>([]);
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeMaterial, setActiveMaterial] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('default');
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   useEffect(() => {
     getProducts()
@@ -56,37 +32,76 @@ export default function ProductsPage() {
       .catch(() => setProducts(seedProducts));
   }, []);
 
-  // Sync search query from URL (from navbar search)
+  // Sync search query from URL (e.g. from navbar search)
   useEffect(() => {
     const q = searchParams.get('search');
     if (q) setSearchQuery(q);
   }, [searchParams]);
 
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeCategory, searchQuery]);
-
-  const filtered = useMemo(() => {
-    return products.filter((p) => {
+  // Filters & Sorting logic
+  const filteredAndSorted = useMemo(() => {
+    let result = products.filter((p) => {
       const matchCategory = activeCategory === 'All' || p.category === activeCategory;
-      const matchSearch = !searchQuery || p.name?.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchCategory && matchSearch;
+      const matchSearch =
+        !searchQuery ||
+        p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.variants?.some((v: any) => v.sku?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        p.sku?.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchMaterial =
+        activeMaterial === 'All' ||
+        p.appearance?.toLowerCase().includes(activeMaterial.toLowerCase()) ||
+        p.variants?.some((v: any) => v.materialType?.toLowerCase().includes(activeMaterial.toLowerCase()));
+
+      return matchCategory && matchSearch && matchMaterial;
     });
-  }, [products, activeCategory, searchQuery]);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedProducts = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    // Apply Sorting
+    if (sortBy === 'name') {
+      result.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'newest') {
+      // Assuming higher ID or sortOrder means newer/different order
+      result.sort((a, b) => (b.order || 0) - (a.order || 0));
+    } else {
+      // Default: sortOrder
+      result.sort((a, b) => (a.order || 0) - (b.order || 0));
+    }
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+    return result;
+  }, [products, activeCategory, activeMaterial, searchQuery, sortBy]);
+
+  const handleQuickAdd = (product: any) => {
+    // If product has variants, add the first variant
+    if (product.variants && product.variants.length > 0) {
+      const firstVariant = product.variants[0];
+      const attrVal = Object.values(firstVariant.attributes)[0] as string;
+      addItem({
+        id: `${product.slug}-${firstVariant.sku}`,
+        productId: product.id || product.slug,
+        productName: product.name,
+        variantId: firstVariant.id,
+        variantName: attrVal,
+        sku: firstVariant.sku,
+        packingType: firstVariant.packingType,
+        materialType: firstVariant.materialType,
+        image: product.images?.[0]
+      });
+    } else {
+      // No variants, add main product info
+      addItem({
+        id: product.slug,
+        productId: product.id || product.slug,
+        productName: product.name,
+        sku: product.sku || product.id || 'N/A',
+        packingType: product.packaging?.[0]?.size ? `${product.packaging[0].size} ${product.packaging[0].unit}` : 'Custom',
+        materialType: product.appearance || 'Standard',
+        image: product.images?.[0]
+      });
+    }
   };
 
   return (
-    <div>
-      {/* Hero */}
+    <div className="min-h-screen bg-gray-50 pb-16">
       <PageHero
         title="B2B Product Catalog"
         overline="Our Products"
@@ -94,266 +109,258 @@ export default function ProductsPage() {
         backgroundImage="/images/hero/factory-campus.png"
       />
 
-      {/* Filters & Grid */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          {/* Search & Filter Bar */}
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-10">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-sm font-500 transition-all ${
-                    activeCategory === cat
-                      ? 'bg-primary text-white shadow-md'
-                      : 'bg-white text-gray-600 border border-gray-200 hover:border-primary/30'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-            <div className="relative w-full md:w-72">
-              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary"
-              />
-            </div>
-          </div>
-
-          {/* Results count */}
-          <p className="text-sm text-gray-500 mb-6">
-            Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filtered.length)} of{' '}
-            {filtered.length} product{filtered.length !== 1 ? 's' : ''}
-            {activeCategory !== 'All' && ` in ${activeCategory}`}
-          </p>
-
-          {/* Product Cards Grid — Green-Bordered Design */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            <AnimatePresence mode="popLayout">
-              {paginatedProducts.map((product) => (
-                <motion.div
-                  key={product.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="group flex flex-col"
-                >
-                  {/* Card */}
-                  <motion.div
-                    whileHover={{ y: -6, boxShadow: '0 12px 32px rgba(37, 211, 102, 0.15)' }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative bg-white rounded-2xl border-2 border-primary/30 overflow-hidden
-                               transition-colors duration-300 group-hover:border-primary/60"
-                  >
-                    {/* Top Action Icons */}
-                    <div className="absolute top-3 left-3 right-3 flex justify-between z-10">
-                      <a
-                        href={`https://wa.me/${whatsappNumber}?text=Hi, I'm interested in ${product.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`WhatsApp enquiry for ${product.name}`}
-                        className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
-                                   shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <WhatsAppIcon />
-                      </a>
-                      <a
-                        href={`mailto:${COMPANY.contact.email}?subject=Enquiry about ${product.name}`}
-                        aria-label={`Email enquiry for ${product.name}`}
-                        className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center
-                                   shadow-md hover:bg-primary-light hover:scale-110 transition-all duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <EmailIcon />
-                      </a>
-                    </div>
-
-                    {/* Product Image */}
-                    <Link href={`/products/${product.slug}`} className="block">
-                      <div className="relative w-full aspect-square p-6 pt-14 flex items-center justify-center bg-white">
-                        {product.images && product.images.length > 0 ? (
-                          <Image
-                            src={product.images[0]}
-                            alt={`${product.name} — Jaikrishna Industries product`}
-                            fill
-                            className="object-contain p-6 pt-12 group-hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          />
-                        ) : (
-                          <div className="flex flex-col items-center justify-center text-center">
-                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                              <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                              </svg>
-                            </div>
-                            <span className="text-xs text-primary/60 font-500">{product.category}</span>
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  </motion.div>
-
-                  {/* Product Name — Below Card */}
-                  <Link href={`/products/${product.slug}`}>
-                    <h3 className="mt-4 text-center text-sm sm:text-base font-semibold text-gray-800
-                                   group-hover:text-primary transition-colors duration-300 leading-tight">
-                      {product.name}
-                    </h3>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-gray-400 text-lg">No products found.</p>
-              <button onClick={() => { setActiveCategory('All'); setSearchQuery(''); }} className="mt-4 btn btn-outline btn-sm">
-                Clear Filters
-              </button>
-            </div>
-          )}
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
+      <div className="container-custom py-10">
+        {/* Search and Sort controls */}
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+          <div className="relative w-full md:w-96">
+            <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search product name or SKU..."
+              className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-950 placeholder-gray-400 focus:outline-hidden focus:border-primary transition-all shadow-xs"
             />
-          )}
-        </div>
-      </section>
-    </div>
-  );
-}
+          </div>
 
-/* ── Pagination Component ─────────────────────────────────────── */
+          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+            <button
+              onClick={() => setShowMobileFilters(true)}
+              className="md:hidden px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-xs font-700 text-gray-700 flex items-center gap-2 cursor-pointer"
+            >
+              <span>⚙️</span> Filters
+            </button>
 
-function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}) {
-  // Build page numbers: 1..10, ..., lastTwo
-  const getPageNumbers = (): (number | '...')[] => {
-    if (totalPages <= 12) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-
-    const pages: (number | '...')[] = [];
-
-    // Always show first 10 pages
-    const firstBatch = Math.min(10, totalPages);
-    for (let i = 1; i <= firstBatch; i++) {
-      pages.push(i);
-    }
-
-    // If current page is beyond 10 and before the last 2, show it
-    if (currentPage > 10 && currentPage <= totalPages - 2) {
-      pages.push('...');
-      pages.push(currentPage);
-    }
-
-    // Ellipsis before last 2
-    if (totalPages > 12) {
-      pages.push('...');
-    }
-
-    // Last 2 pages
-    pages.push(totalPages - 1);
-    pages.push(totalPages);
-
-    // Remove duplicates
-    const unique: (number | '...')[] = [];
-    for (const p of pages) {
-      if (p === '...') {
-        if (unique[unique.length - 1] !== '...') unique.push(p);
-      } else if (!unique.includes(p)) {
-        unique.push(p);
-      }
-    }
-    return unique;
-  };
-
-  const pages = getPageNumbers();
-
-  return (
-    <nav className="mt-12 flex items-center justify-center" aria-label="Pagination">
-      <ul className="flex items-center gap-1.5">
-        {/* Previous */}
-        <li>
-          <button
-            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-            disabled={currentPage === 1}
-            aria-label="Previous page"
-            className={`w-10 h-10 flex items-center justify-center rounded border text-sm font-600 transition-all duration-200
-              ${currentPage === 1
-                ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                : 'border-gray-300 text-gray-600 hover:border-primary hover:text-primary'
-              }`}
-          >
-            ‹
-          </button>
-        </li>
-
-        {/* Page Numbers */}
-        {pages.map((page, idx) =>
-          page === '...' ? (
-            <li key={`dots-${idx}`}>
-              <span className="w-10 h-10 flex items-center justify-center text-sm text-gray-400 select-none">
-                ...
-              </span>
-            </li>
-          ) : (
-            <li key={page}>
-              <button
-                onClick={() => onPageChange(page)}
-                aria-label={`Page ${page}`}
-                aria-current={currentPage === page ? 'page' : undefined}
-                className={`w-10 h-10 flex items-center justify-center rounded border text-sm font-600 transition-all duration-200
-                  ${currentPage === page
-                    ? 'bg-primary border-primary text-white shadow-md'
-                    : 'border-gray-300 text-gray-700 hover:border-primary hover:text-primary bg-white'
-                  }`}
+            <div className="flex items-center gap-2">
+              <label className="text-xs text-gray-500 font-500 whitespace-nowrap">Sort By:</label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-700 text-gray-700 focus:outline-hidden"
               >
-                {page}
-              </button>
-            </li>
-          )
-        )}
+                <option value="default">Default Order</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="newest">Newest First</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-        {/* Next */}
-        <li>
-          <button
-            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-            disabled={currentPage === totalPages}
-            aria-label="Next page"
-            className={`w-10 h-10 flex items-center justify-center rounded border text-sm font-600 transition-all duration-200
-              ${currentPage === totalPages
-                ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                : 'border-gray-300 text-gray-600 hover:border-primary hover:text-primary'
-              }`}
-          >
-            ›
-          </button>
-        </li>
-      </ul>
-    </nav>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Filters Sidebar - Desktop only */}
+          <aside className="hidden lg:block space-y-6">
+            {/* Category Filter */}
+            <div className="bg-white rounded-xl border border-gray-200/80 p-5 shadow-xs space-y-3">
+              <h3 className="text-xs font-800 text-gray-900 uppercase tracking-wider">Categories</h3>
+              <div className="space-y-1">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs font-700 transition-colors cursor-pointer ${
+                      activeCategory === cat ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Material Type Filter */}
+            <div className="bg-white rounded-xl border border-gray-200/80 p-5 shadow-xs space-y-3">
+              <h3 className="text-xs font-800 text-gray-900 uppercase tracking-wider">Material Form</h3>
+              <div className="space-y-1">
+                {MATERIAL_TYPES.map((mat) => (
+                  <button
+                    key={mat}
+                    onClick={() => setActiveMaterial(mat)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs font-700 transition-colors cursor-pointer ${
+                      activeMaterial === mat ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {mat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* B2B Trust Info Card */}
+            <div className="bg-gradient-to-br from-primary to-primary-dark text-white rounded-xl p-5 shadow-xs space-y-3">
+              <h4 className="text-xs font-800 uppercase tracking-wider text-green-200">B2B Trade Center</h4>
+              <p className="text-[11px] leading-relaxed text-white/80">
+                Jaikrishna Industries is a certified exporter supporting commercial buyers with customized packing, OEM/Private labeling, and certified logistics.
+              </p>
+              <div className="pt-2 border-t border-white/10 text-[10px] font-mono text-green-200 space-y-1">
+                <p>✓ ISO 9001:2015 Registered</p>
+                <p>✓ Export consignments welcome</p>
+                <p>✓ Strict quality lab analysis</p>
+              </div>
+            </div>
+          </aside>
+
+          {/* Product Cards Grid */}
+          <div className="lg:col-span-3 space-y-6">
+            <p className="text-xs text-gray-500 font-500">
+              Showing {filteredAndSorted.length} matching products
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+              <AnimatePresence mode="popLayout">
+                {filteredAndSorted.map((product) => {
+                  const hasVariants = product.variants && product.variants.length > 0;
+                  const variantsCount = product.variants?.length || 0;
+                  // Deduplicate attributes for variant display count
+                  const variantAttrKey = hasVariants ? Object.keys(product.variants[0].attributes)[0] : '';
+                  const attrLabel = variantAttrKey === 'shape' ? 'shapes' : 'pack sizes';
+                  
+                  return (
+                    <motion.div
+                      key={product.id || product.slug}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="group flex flex-col bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md hover:border-primary/50 transition-all duration-300 relative"
+                    >
+                      {/* Product Thumbnail Box */}
+                      <Link href={`/products/${product.slug}`} className="block relative w-full aspect-square bg-gray-50 flex items-center justify-center p-6 border-b border-gray-100">
+                        <img
+                          src={product.images?.[0] || '/images/products/synthetic-camphor.png'}
+                          alt={product.name}
+                          className="object-contain max-h-[140px] w-auto transition-transform duration-300 group-hover:scale-105"
+                        />
+                        {hasVariants && (
+                          <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 bg-[#DCF8C6]/80 text-gray-900 border border-[#DCF8C6] rounded-md text-[9px] font-800">
+                            {variantsCount} {attrLabel} available
+                          </span>
+                        )}
+                      </Link>
+
+                      {/* Info & CTA Actions */}
+                      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div className="space-y-1">
+                          <span className="text-[9px] font-800 uppercase tracking-wider text-gray-400 block">
+                            {product.category}
+                          </span>
+                          <Link href={`/products/${product.slug}`}>
+                            <h3 className="font-800 text-sm text-gray-900 group-hover:text-primary transition-colors leading-tight line-clamp-2">
+                              {product.name}
+                            </h3>
+                          </Link>
+                          <p className="text-[11px] text-gray-500 line-clamp-1">
+                            {product.shortDescription || 'Refined industrial & pooja camphor products.'}
+                          </p>
+                        </div>
+
+                        <div className="pt-2 flex items-center gap-2 border-t border-gray-50">
+                          {/* Details CTA */}
+                          <Link
+                            href={`/products/${product.slug}`}
+                            className="flex-1 py-1.5 bg-gray-50 border border-gray-200 text-center hover:bg-gray-100 text-gray-700 text-[11px] font-700 rounded-lg transition-colors"
+                          >
+                            Details
+                          </Link>
+
+                          {/* Quick Add To Inquiry List Drawer Button */}
+                          <button
+                            onClick={() => handleQuickAdd(product)}
+                            className="p-1.5 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 rounded-lg transition-colors cursor-pointer"
+                            aria-label="Add to inquiry basket"
+                            title="Add to Inquiry List"
+                          >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+
+            {filteredAndSorted.length === 0 && (
+              <div className="text-center py-20 bg-white border border-gray-200 rounded-2xl">
+                <p className="text-gray-400 text-base">No products match your selected criteria.</p>
+                <button
+                  onClick={() => {
+                    setActiveCategory('All');
+                    setActiveMaterial('All');
+                    setSearchQuery('');
+                  }}
+                  className="mt-4 px-4 py-2 bg-primary text-white text-xs font-700 rounded-lg cursor-pointer"
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Filters Drawer Slideout */}
+      <AnimatePresence>
+        {showMobileFilters && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMobileFilters(false)}
+              className="fixed inset-0 bg-black z-50 pointer-events-auto"
+            />
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-55 max-h-[80vh] overflow-y-auto p-5 space-y-5 border-t border-gray-200"
+            >
+              <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                <h3 className="font-800 text-gray-900 text-sm">Filter Products</h3>
+                <button onClick={() => setShowMobileFilters(false)} className="text-gray-400 font-700 text-xs cursor-pointer">Done</button>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-xs font-800 text-gray-400 uppercase tracking-wider">Categories</h4>
+                <div className="flex flex-wrap gap-2">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-700 border transition-all ${
+                        activeCategory === cat ? 'bg-primary text-white border-primary' : 'bg-gray-50 border-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-xs font-800 text-gray-400 uppercase tracking-wider">Material Form</h4>
+                <div className="flex flex-wrap gap-2">
+                  {MATERIAL_TYPES.map((mat) => (
+                    <button
+                      key={mat}
+                      onClick={() => setActiveMaterial(mat)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-700 border transition-all ${
+                        activeMaterial === mat ? 'bg-primary text-white border-primary' : 'bg-gray-50 border-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {mat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

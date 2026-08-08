@@ -16,17 +16,17 @@ export const seedProducts: Partial<Product>[] = [
     slug: 'synthetic-camphor',
     category: 'Industrial Chemicals',
     shortDescription: 'High-purity synthetic camphor powder for pharmaceutical, fragrance, and chemical manufacturing applications.',
-    description: 'Kalasam Synthetic Camphor is manufactured using advanced chemical synthesis processes, yielding a product with 99%+ purity. It is widely used as an intermediate in pharmaceutical manufacturing, as a plasticizer in cellulose nitrate production, in fragrance compounding, and in various chemical synthesis applications. Our synthetic camphor meets international quality standards and is exported to 17+ countries.',
-    casNumber: '76-22-2',
-    molecularFormula: 'C₁₀H₁₆O',
-    molecularWeight: '152.23 g/mol',
-    purity: '≥99.0%',
+    description: 'Synthetic camphor is a widely used industrial input for pharmaceuticals, fragrance compounding, mothball/repellent manufacturing, and religious/pooja products. Jaikrishna Industries is a bulk manufacturer supplying powder-form synthetic camphor in standard 30kg bags with custom packing available for bulk/export buyers.',
+    casNumber: '',
+    molecularFormula: '',
+    molecularWeight: '',
+    purity: '',
     appearance: 'White crystalline powder or granules',
     odor: 'Characteristic camphoraceous',
-    meltingPoint: '175-180°C',
-    boilingPoint: '204°C',
-    density: '0.992 g/cm³',
-    solubility: 'Slightly soluble in water; soluble in ethanol, ether, chloroform',
+    meltingPoint: '',
+    boilingPoint: '',
+    density: '',
+    solubility: '',
     applications: [
       'Pharmaceutical manufacturing',
       'Fragrance and flavor industry',
@@ -36,46 +36,32 @@ export const seedProducts: Partial<Product>[] = [
       'Insect repellent formulations',
     ],
     benefits: [
-      '99%+ purity guaranteed',
-      'Consistent batch quality',
-      'International standard compliance',
-      'Flexible packaging options',
-      'Competitive global pricing',
-      'COA with every shipment',
+      'Bulk manufacturer supply capacity',
+      'Consistent batch quality control',
+      'International shipping standards ready',
+      'Flexible packaging customization options',
+      'COA & MSDS available for verification',
     ],
     packaging: [
-      { size: '25', unit: 'kg', description: 'HDPE drum with liner' },
-      { size: '50', unit: 'kg', description: 'Fiber drum' },
-      { size: '500', unit: 'kg', description: 'Jumbo bag' },
-    ],
-    storage: 'Store in a cool, dry, well-ventilated area away from heat and ignition sources. Keep container tightly closed.',
-    shelfLife: '24 months from date of manufacture',
-    specifications: [
-      { label: 'CAS Number', value: '76-22-2' },
-      { label: 'Molecular Formula', value: 'C₁₀H₁₆O' },
-      { label: 'Molecular Weight', value: '152.23 g/mol' },
-      { label: 'Purity', value: '≥99.0%' },
-      { label: 'Appearance', value: 'White crystalline powder' },
-      { label: 'Melting Point', value: '175-180°C' },
-      { label: 'Optical Rotation', value: 'Racemic (±)' },
+      { size: '30', unit: 'kg', description: 'Standard 30Kg bag supply' },
     ],
     downloads: [
-      { type: 'MSDS', label: 'Material Safety Data Sheet', url: '#' },
-      { type: 'COA', label: 'Certificate of Analysis', url: '#' },
-      { type: 'TDS', label: 'Technical Data Sheet', url: '#' },
+      { type: 'MSDS', label: 'Material Safety Data Sheet (Placeholder)', url: '#' },
+      { type: 'COA', label: 'Certificate of Analysis (Placeholder)', url: '#' },
     ],
     faq: [
-      { question: 'What is the minimum order quantity?', answer: 'MOQ for synthetic camphor is 100 kg for domestic orders and 500 kg for export orders.' },
-      { question: 'Do you provide samples?', answer: 'Yes, we provide free samples (up to 500g) for quality evaluation before placing bulk orders.' },
-      { question: 'What certifications does this product have?', answer: 'Our synthetic camphor is manufactured in an ISO 9001:2015 certified facility and comes with COA for every batch.' },
+      { question: 'Is custom packing available?', answer: 'Yes, we provide custom packing and sorting sizes on request for bulk and export shipments.' }
     ],
-    images: [],
+    images: ['/images/products/synthetic-camphor.png'],
     featured: true,
     exportAvailable: true,
-    oemAvailable: true,
-    privateLabelAvailable: true,
     status: 'active',
     order: 1,
+    seo: {
+      metaTitle: 'Synthetic Camphor Manufacturer | Bulk Supplier India',
+      metaDescription: 'Leading synthetic camphor manufacturer & exporter from Theni, India. Bulk powder supply in 30kg bags, custom packing available. Get a quote today.',
+      keywords: 'synthetic camphor manufacturer India, synthetic camphor bulk supplier, synthetic camphor exporter, synthetic camphor powder 30kg, buy synthetic camphor wholesale'
+    }
   },
   {
     id: 'ic-2',
@@ -83,686 +69,562 @@ export const seedProducts: Partial<Product>[] = [
     slug: 'd-camphor',
     category: 'Industrial Chemicals',
     shortDescription: 'Dextrorotatory natural camphor for pharmaceutical and specialty chemical applications.',
-    description: 'D-Camphor (dextrorotatory camphor) is a naturally occurring terpenoid with specific optical rotation. It is used in pharmaceutical formulations, as a chiral building block in organic synthesis, and in traditional medicine applications. Our D-Camphor meets pharmacopoeia standards.',
-    casNumber: '464-49-3',
-    molecularFormula: 'C₁₀H₁₆O',
-    purity: '≥97.0%',
+    description: 'D-camphor (the dextrorotatory isomer) is used in pharmaceutical formulations, fragrance blending, and specialty chemical applications where isomer purity matters to buyers. Sourced by top-tier laboratories and specialized global manufacturers.',
+    casNumber: '',
+    molecularFormula: '',
+    molecularWeight: '',
+    purity: '',
     appearance: 'White crystalline solid',
     applications: [
       'Pharmaceutical formulations',
       'Chiral synthesis',
-      'Traditional medicine',
+      'Fragrance and cosmetic formulation',
       'Specialty chemicals',
     ],
     benefits: [
-      'High optical purity',
-      'Pharmacopoeia grade',
-      'Consistent quality',
-      'Global export ready',
+      'High isomer purity parameters',
+      'Consistent batch-to-batch properties',
+      'Global export packaging standards',
     ],
     packaging: [
-      { size: '25', unit: 'kg', description: 'HDPE drum' },
-      { size: '50', unit: 'kg', description: 'Fiber drum' },
-    ],
-    specifications: [
-      { label: 'CAS Number', value: '464-49-3' },
-      { label: 'Molecular Formula', value: 'C₁₀H₁₆O' },
-      { label: 'Purity', value: '≥97.0%' },
-      { label: 'Optical Rotation', value: '+41° to +44°' },
+      { size: '30', unit: 'kg', description: 'Standard 30Kg bag supply' },
     ],
     downloads: [],
     faq: [],
-    images: [],
+    images: ['/images/products/synthetic-camphor.png'],
     featured: true,
     exportAvailable: true,
     status: 'active',
     order: 2,
+    seo: {
+      metaTitle: 'D-Camphor Manufacturer & Exporter | Bulk Powder India',
+      metaDescription: 'D-Camphor (dextro-camphor) powder manufactured in Theni, Tamil Nadu. Bulk 30kg bag supply for pharma, fragrance & industrial use. Custom packing available.',
+      keywords: 'D-camphor manufacturer, D-camphor powder supplier India, D-camphor exporter, dextro camphor bulk supply'
+    }
   },
   {
     id: 'ic-3',
-    name: 'Isoborneol Powder',
-    slug: 'isoborneol-powder',
+    name: 'Isoborneol',
+    slug: 'isoborneol',
     category: 'Industrial Chemicals',
-    shortDescription: 'Industrial-grade isoborneol powder for camphor synthesis and chemical manufacturing.',
-    description: 'Isoborneol is a key intermediate in the synthesis of synthetic camphor. Our high-quality isoborneol powder is produced in controlled conditions ensuring consistent purity and particle size distribution.',
-    casNumber: '10385-78-1',
-    molecularFormula: 'C₁₀H₁₈O',
-    purity: '≥95.0%',
-    appearance: 'White to off-white powder',
+    shortDescription: 'Industrial-grade isoborneol powder for fragrance synthesis and chemical intermediate manufacturing.',
+    description: 'Isoborneol is a key intermediate primarily used in fragrance/flavor synthesis and as a precursor in camphor derivative production. Sourced globally in bulk powder form.',
+    casNumber: '',
+    molecularFormula: '',
+    molecularWeight: '',
+    purity: '',
+    appearance: 'White powder',
     applications: [
-      'Camphor synthesis intermediate',
-      'Chemical manufacturing',
-      'Fragrance compounds',
-      'Industrial solvents',
+      'Camphor derivative intermediate',
+      'Fragrance compounds formulation',
+      'Chemical synthesis processing',
     ],
     packaging: [
-      { size: '25', unit: 'kg', description: 'HDPE drum' },
-      { size: '50', unit: 'kg', description: 'Fiber drum' },
-    ],
-    specifications: [
-      { label: 'CAS Number', value: '10385-78-1' },
-      { label: 'Molecular Formula', value: 'C₁₀H₁₈O' },
-      { label: 'Purity', value: '≥95.0%' },
-      { label: 'Form', value: 'Fine powder' },
+      { size: '30', unit: 'kg', description: 'Standard 30Kg bag supply' },
     ],
     downloads: [],
     faq: [],
-    images: [],
+    images: ['/images/products/isoborneol.png'],
+    featured: true,
     exportAvailable: true,
     status: 'active',
     order: 3,
+    seo: {
+      metaTitle: 'Isoborneol Powder Manufacturer | Bulk Supplier India',
+      metaDescription: 'Isoborneol powder manufacturer from Theni, India. High-quality bulk supply in 30kg bags for fragrance & chemical intermediates. Custom packing on request.',
+      keywords: 'isoborneol manufacturer India, isoborneol powder supplier, isoborneol bulk exporter, isoborneol flakes and powder'
+    }
   },
   {
     id: 'ic-4',
-    name: 'Isoborneol Flakes',
-    slug: 'isoborneol-flakes',
-    category: 'Industrial Chemicals',
-    shortDescription: 'Isoborneol in flake form for convenient handling and dosing in bulk manufacturing.',
-    description: 'Isoborneol Flakes offer the same chemical properties as isoborneol powder but in a convenient flake form that reduces dust and improves handling in industrial manufacturing processes.',
-    casNumber: '10385-78-1',
-    molecularFormula: 'C₁₀H₁₈O',
-    purity: '≥95.0%',
-    appearance: 'White to off-white flakes',
-    applications: [
-      'Camphor synthesis',
-      'Bulk chemical manufacturing',
-      'Industrial processing',
-    ],
-    packaging: [
-      { size: '25', unit: 'kg', description: 'HDPE drum' },
-      { size: '50', unit: 'kg', description: 'Fiber drum' },
-      { size: '500', unit: 'kg', description: 'Jumbo bag' },
-    ],
-    specifications: [
-      { label: 'CAS Number', value: '10385-78-1' },
-      { label: 'Molecular Formula', value: 'C₁₀H₁₈O' },
-      { label: 'Purity', value: '≥95.0%' },
-      { label: 'Form', value: 'Flakes' },
-    ],
-    downloads: [],
-    faq: [],
-    images: [],
-    exportAvailable: true,
-    status: 'active',
-    order: 4,
-  },
-  {
-    id: 'ic-5',
     name: 'Camphor Oil',
     slug: 'camphor-oil',
     category: 'Industrial Chemicals',
     shortDescription: 'Pure camphor essential oil for fragrance, pharmaceutical, and industrial applications.',
-    description: 'Kalasam Camphor Oil is steam-distilled to preserve its natural therapeutic properties. Used in aromatherapy, pharmaceutical formulations, balm manufacturing, and fragrance compounding.',
-    casNumber: '8008-51-3',
-    molecularFormula: 'Complex mixture',
-    purity: 'Natural grade',
-    appearance: 'Clear to pale yellow liquid',
-    odor: 'Strong camphoraceous',
+    description: 'Camphor oil is used across pharmaceutical, fragrance, and industrial applications. Since packing is fully custom, we offer tailored volumes, drum weights, and container packing configurations directly on request to suit buyer specifications.',
+    casNumber: '',
+    molecularFormula: '',
+    molecularWeight: '',
+    purity: '',
+    appearance: 'Clear liquid',
     applications: [
-      'Aromatherapy',
       'Pharmaceutical balms and ointments',
-      'Fragrance compounding',
-      'Cosmetic formulations',
-      'Traditional medicine',
+      'Fragrance blending and compounding',
+      'Industrial chemical intermediates',
     ],
     packaging: [
-      { size: '1', unit: 'L', description: 'Glass bottle' },
-      { size: '5', unit: 'L', description: 'HDPE can' },
-      { size: '25', unit: 'L', description: 'HDPE drum' },
-      { size: '200', unit: 'L', description: 'MS drum' },
-    ],
-    specifications: [
-      { label: 'CAS Number', value: '8008-51-3' },
-      { label: 'Appearance', value: 'Clear to pale yellow' },
-      { label: 'Grade', value: 'Natural / Essential oil' },
-      { label: 'Extraction', value: 'Steam distillation' },
+      { size: 'Custom', unit: 'drum', description: 'Custom packaging size on request' },
     ],
     downloads: [],
     faq: [],
-    images: [],
+    images: ['/images/products/synthetic-camphor.png'],
+    featured: true,
     exportAvailable: true,
     status: 'active',
-    order: 5,
+    order: 4,
+    seo: {
+      metaTitle: 'Camphor Oil Manufacturer & Bulk Exporter | India',
+      metaDescription: 'Camphor oil manufacturer and exporter from Tamil Nadu, India. Custom packing and volumes for industrial, pharma & fragrance buyers. Request a quote.',
+      keywords: 'camphor oil manufacturer India, camphor oil bulk supplier, camphor oil exporter Tamil Nadu, industrial camphor oil supply'
+    }
   },
 
-  // ── Traditional / Pooja Products ──────────────────────────────
+  // ── Pooja / Traditional Products ──────────────────────────────
   {
-    id: 'pp-1',
-    name: 'Kalasam Camphor Tablets',
-    slug: 'kalasam-camphor-tablets',
-    category: 'Camphor',
-    shortDescription: 'Premium refined pure camphor tablets for daily pooja, aarti, and temple rituals.',
-    description: 'Kalasam Camphor Tablets are manufactured using 99.9% pure refined camphor crystals in our state-of-the-art tablet pressing facility. Each tablet burns completely clean without leaving any black residue, soot, or ash — preserving the sanctity of your prayer space.',
+    id: 'pp-bhimseni',
+    name: 'Bhimseni / Pachi Karpooram',
+    slug: 'bhimseni-pachi-karpooram',
+    category: 'Pooja Products',
+    shortDescription: 'Pure traditional Bhimseni camphor flakes for residue-free temple and home prayer burning.',
+    description: 'Bhimseni camphor (also known as Pachi Karpooram in Tamil) is a traditionally preferred camphor form for temple and home pooja rituals, valued for burning without residue. Diffuses a pure, calming aroma that clears negative energies.',
+    appearance: 'White crystalline flakes',
     applications: [
-      'Daily pooja and aarti',
-      'Temple rituals',
-      'Havan and yajna',
-      'Air purification',
-      'Meditation',
-      'Vastu remedies',
+      'Temple worship and regular pooja',
+      'Air purification and home aarti',
+      'Spiritual energy cleansing',
     ],
-    benefits: [
-      'Burns 100% clean — no black residue',
-      '99.9% pure refined camphor',
-      'Strong, lasting fragrance',
-      'Bright, clear flame',
-      'Safe for indoor use',
-      'Multiple pack sizes available',
+    variants: [
+      {
+        id: 'pp-bhimseni-v1',
+        sku: 'PK005',
+        attributes: { packSize: 'Pack' },
+        packingType: 'Pack format',
+        materialType: 'Flakes',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'pp-bhimseni-v2',
+        sku: 'PK005-1',
+        attributes: { packSize: 'Box' },
+        packingType: 'Box format',
+        materialType: 'Flakes',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
     ],
-    packaging: [
-      { size: '₹1', unit: 'pcs', moq: '50 pcs/strip', description: 'Strip packaging' },
-      { size: '₹2', unit: 'pcs', moq: '50 pcs/strip', description: 'Strip packaging' },
-      { size: '₹5', unit: 'pcs', description: 'Box packaging' },
-      { size: '₹10', unit: 'pcs', description: 'Box packaging' },
-      { size: '15g', unit: 'pack', description: 'Retail pack' },
-      { size: '25g', unit: 'pack', description: 'Box pack' },
-      { size: '50g', unit: 'pack', description: 'Box pack' },
-    ],
+    images: ['/images/products/synthetic-camphor.png'],
+    status: 'active',
+    order: 5,
+    seo: {
+      metaTitle: 'Bhimseni Camphor (Pachi Karpooram) | Pooja Camphor Flakes',
+      metaDescription: 'Pure Bhimseni camphor (Pachi Karpooram) flakes for pooja and religious use. Available in pack and box formats. Manufactured by Kalasam, Theni, India.',
+      keywords: 'Bhimseni camphor, Pachi Karpooram, pure camphor for pooja, temple camphor supplier India, Bhimseni camphor wholesale'
+    }
+  },
+
+  // ── Kalasam Camphor Tablets Separate Pages ─────────────────────
+  {
+    id: 'kct-rs1',
+    name: 'Kalasam Camphor Rs1',
+    slug: 'kalasam-camphor-rs1',
+    category: 'Pooja Products',
+    shortDescription: 'Budget-friendly pure camphor tablets in Rs1 pocket format.',
+    description: 'Kalasam Camphor Rs1 Tablets are premium refined pure camphor tablets in a convenient pocket/strip format. Formulated for a residue-free clean burn, perfect for daily home prayers and light worship needs.',
     specifications: [
-      { label: 'Purity', value: '99.9% refined' },
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
       { label: 'Form', value: 'Compressed tablets' },
-      { label: 'Residue', value: 'Zero (clean burn)' },
-      { label: 'Certification', value: 'FSSAI, GMP' },
+      { label: 'Residue', value: 'Zero (clean burn)' }
     ],
-    downloads: [],
-    faq: [
-      { question: 'Is Kalasam camphor safe to burn indoors?', answer: 'Yes, our camphor is 99.9% pure and burns completely without releasing toxic fumes or black soot. It is safe for daily indoor use in well-ventilated rooms.' },
-      { question: 'What sizes are available for wholesale?', answer: 'We offer camphor tablets in ₹1, ₹2, ₹5, ₹10, 15g, 20g, 25g, 40g, and 50g packaging. Wholesale cartons are available for all sizes.' },
+    variants: [
+      {
+        id: 'kct-rs1-v1',
+        sku: 'KC006',
+        attributes: { packSize: 'Standard' },
+        packingType: '50 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
     ],
-    images: [],
-    featured: true,
-    bestseller: true,
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 10,
+    seo: {
+      metaTitle: 'Kalasam Camphor Rs1 Tablets | Pooja Camphor Pack',
+      metaDescription: 'Kalasam Camphor Rs1 round tablets, 50 packs per cover. Pure camphor for daily pooja use. Manufactured by Kalasam, Theni, India.',
+      keywords: 'camphor tablets Rs1, pooja camphor small pack, Kalasam camphor Rs1, budget camphor tablets India'
+    }
   },
   {
-    id: 'pp-2',
-    name: 'Kalasam Cup Sambrani',
-    slug: 'kalasam-cup-sambrani',
-    category: 'Sambrani',
-    shortDescription: 'Premium cup sambrani with natural benzoin resin for divine fragrance and air purification.',
-    description: 'Kalasam Cup Sambrani is crafted using premium natural benzoin resin and charcoal base. Simply light the rim and enjoy 20-30 minutes of soothing, traditional sambrani fragrance that purifies the air and creates a sacred atmosphere.',
-    applications: ['Evening prayers', 'Air purification', 'Meditation', 'Aromatherapy', 'Insect repellent'],
-    benefits: ['Natural benzoin resin', 'Long-lasting fragrance (20-30 min)', 'Easy to use', 'No charcoal burner needed', 'Anti-bacterial properties'],
-    packaging: [
-      { size: '12', unit: 'cups/box', description: 'Retail box' },
-      { size: '24', unit: 'cups/box', description: 'Economy box' },
-    ],
+    id: 'kct-rs2',
+    name: 'Kalasam Camphor Rs2',
+    slug: 'kalasam-camphor-rs2',
+    category: 'Pooja Products',
+    shortDescription: 'Refined pure camphor tablets in Rs2 retail strip format.',
+    description: 'Kalasam Camphor Rs2 Tablets are pure, refined camphor tablets packed cleanly in a budget-friendly size. Burning with a bright, smokeless flame, it is ideal for daily aarti and home purification.',
     specifications: [
-      { label: 'Ingredients', value: 'Natural benzoin resin, charcoal' },
-      { label: 'Burn Time', value: '20-30 minutes' },
-      { label: 'Fragrance Duration', value: '2-3 hours lingering' },
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Form', value: 'Compressed tablets' }
     ],
-    downloads: [],
-    faq: [],
-    images: [],
-    bestseller: true,
+    variants: [
+      {
+        id: 'kct-rs2-v1',
+        sku: 'KC007',
+        attributes: { packSize: 'Standard' },
+        packingType: '50 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
+    ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 11,
+    seo: {
+      metaTitle: 'Kalasam Camphor Rs2 Tablets | Pooja Camphor Pack',
+      metaDescription: 'Kalasam Camphor Rs2 round tablets, 50 packs per cover. Trusted pooja camphor from Theni, India — ideal for retail and daily worship.',
+      keywords: 'camphor tablets Rs2, pooja camphor retail pack, Kalasam camphor Rs2'
+    }
   },
   {
-    id: 'pp-3',
-    name: 'Kalasam Computer Sambrani',
-    slug: 'kalasam-computer-sambrani',
-    category: 'Sambrani',
-    shortDescription: 'Traditional computer sambrani blocks with authentic resin fragrance.',
-    description: 'Computer sambrani blocks made from select natural resins for traditional home fumigation and spiritual atmosphere creation.',
-    applications: ['Home fumigation', 'Spiritual atmosphere', 'Air freshening'],
-    packaging: [{ size: 'Standard', unit: 'box', description: 'Retail packaging' }],
-    specifications: [{ label: 'Type', value: 'Computer (block) form' }],
-    downloads: [],
-    faq: [],
-    images: [],
+    id: 'kct-rs5',
+    name: 'Kalasam Camphor Rs5',
+    slug: 'kalasam-camphor-rs5',
+    category: 'Pooja Products',
+    shortDescription: 'Traditional round camphor tablets in Rs5 covers, available in 2 packing sizes.',
+    description: 'Kalasam Camphor Rs5 Tablets are the standard value-pack round tablets preferred by households across South India. Burns cleanly leaving zero black ash or soot behind, ensuring a pure devotional atmosphere.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Form', value: 'Compressed tablets' }
+    ],
+    variants: [
+      {
+        id: 'kct-rs5-v1',
+        sku: 'KC008',
+        attributes: { packSize: '40 Pack' },
+        packingType: '40 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-rs5-v2',
+        sku: 'KC009',
+        attributes: { packSize: '25 Pack' },
+        packingType: '25 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 12,
+    seo: {
+      metaTitle: 'Kalasam Camphor Rs5 Tablets | Pooja Camphor — 2 Pack Sizes',
+      metaDescription: 'Kalasam Camphor Rs5 round tablets, available in 40-pack or 25-pack covers. Pure camphor for pooja and temple use, made in Theni, India.',
+      keywords: 'camphor tablets Rs5, Kalasam camphor Rs5, pooja camphor 40 pack, temple camphor tablets'
+    }
   },
   {
-    id: 'pp-4',
-    name: 'Kalasam Premium Agarbathi',
-    slug: 'kalasam-premium-agarbathi',
-    category: 'Agarbathi',
-    shortDescription: 'Hand-rolled premium incense sticks with natural fragrances for daily worship.',
-    description: 'Kalasam Premium Agarbathi is crafted using natural charcoal bases, wood powders, and premium essential oils. Available in Sandalwood, Jasmine, Rose, and traditional blends.',
-    applications: ['Daily prayers', 'Meditation', 'Aromatherapy', 'Home fragrance'],
-    benefits: ['Natural ingredients', 'Long-lasting fragrance', 'Minimal smoke', 'Multiple fragrances'],
-    packaging: [
-      { size: '20', unit: 'sticks', description: 'Small pack' },
-      { size: '50', unit: 'sticks', description: 'Medium pack' },
-      { size: '100', unit: 'sticks', description: 'Large pack' },
-    ],
+    id: 'kct-rs10',
+    name: 'Kalasam Camphor Rs10',
+    slug: 'kalasam-camphor-rs10',
+    category: 'Pooja Products',
+    shortDescription: 'Premium round camphor tablets in Rs10 covers, available in 2 packing sizes.',
+    description: 'Kalasam Camphor Rs10 Tablets offer a generous count of highly compressed pure camphor tablets. The choice of 40-pack or 20-pack formats makes it convenient for retail shops and regular daily home prayers.',
     specifications: [
-      { label: 'Type', value: 'Hand-rolled incense' },
-      { label: 'Fragrances', value: 'Sandalwood, Jasmine, Rose, Mixed' },
-      { label: 'Burn Time', value: '30-45 minutes per stick' },
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Form', value: 'Compressed tablets' }
     ],
-    downloads: [],
-    faq: [],
-    images: [],
+    variants: [
+      {
+        id: 'kct-rs10-v1',
+        sku: 'KC010',
+        attributes: { packSize: '40 Pack' },
+        packingType: '40 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-rs10-v2',
+        sku: 'KC011',
+        attributes: { packSize: '20 Pack' },
+        packingType: '20 Pack Per Cover',
+        materialType: 'Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 13,
+    seo: {
+      metaTitle: 'Kalasam Camphor Rs10 Tablets | Pooja Camphor — 2 Pack Sizes',
+      metaDescription: 'Kalasam Camphor Rs10 round tablets, available in 40-pack or 20-pack covers. Bulk-friendly pooja camphor from Theni, India.',
+      keywords: 'camphor tablets Rs10, Kalasam camphor Rs10, bulk pooja camphor pack'
+    }
   },
   {
-    id: 'pp-5',
-    name: 'Temple Dharisana Lamp Oil',
-    slug: 'temple-dharisana-lamp-oil',
-    category: 'Lamp Oil',
-    shortDescription: 'Clean-burning lamp oil for pooja deepams with pure sesame base.',
-    description: 'Temple Dharisana Lamp Oil is formulated using refined sesame base blended with traditional sacred herbs. It burns cleanly, producing a steady flame, minimal ash, and a divine aroma.',
-    applications: ['Daily deepam', 'Temple lamps', 'Festival lighting', 'Meditation'],
-    packaging: [
-      { size: '100', unit: 'ml', description: 'Small bottle' },
-      { size: '250', unit: 'ml', description: 'Medium bottle' },
-      { size: '500', unit: 'ml', description: 'Large bottle' },
-      { size: '1', unit: 'L', description: 'Economy pack' },
+    id: 'kct-15g',
+    name: 'Kalasam Camphor 15G',
+    slug: 'kalasam-camphor-15g',
+    category: 'Pooja Products',
+    shortDescription: '15g premium refined camphor tablets in custom shapes.',
+    description: 'Kalasam Camphor 15G retail packs offer exactly weighed premium refined camphor tablets. Available in three custom shapes (Big Round, Small Round, or flat Tablet-Shape) to meet regional preferences and retail packaging requirements.',
+    variants: [
+      {
+        id: 'kct-15g-v1',
+        sku: 'KC012',
+        attributes: { shape: 'Big Round' },
+        packingType: '33 Pack Half-Kg Cover',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-15g-v2',
+        sku: 'KC013',
+        attributes: { shape: 'Small Round' },
+        packingType: '33 Pack Half-Kg Cover',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-15g-v3',
+        sku: 'KC014',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '33 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
     ],
-    specifications: [
-      { label: 'Base', value: 'Refined sesame blend' },
-      { label: 'Smoke', value: 'Low smoke formula' },
-      { label: 'Soot', value: 'Minimal soot output' },
-    ],
-    downloads: [],
-    faq: [],
-    images: [],
-    featured: true,
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 14,
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets 15g | Big Round, Small Round & Tablet-Shape',
+      metaDescription: '15g Kalasam camphor tablets, choice of big round, small round, or tablet-shaped. 33 packs per half-kg cover. Pure pooja camphor, Theni, India.',
+      keywords: '15g camphor tablets, Kalasam camphor 15 gram, round camphor tablets, tablet shape camphor pooja'
+    }
   },
   {
-    id: 'pp-6',
-    name: 'Kalasam Rose Water',
-    slug: 'kalasam-rose-water',
-    category: 'Rose Water',
-    shortDescription: 'Pure steam-distilled rose water for abhishekam, prasad, and personal care.',
-    description: 'Kalasam Rose Water is produced by steam-distilling fresh rose petals under strict hygiene standards. Safe for deity worship, prasad preparation, and daily skincare.',
-    applications: ['Deity abhishekam', 'Prasad preparation', 'Skincare', 'Culinary use'],
-    packaging: [
-      { size: '100', unit: 'ml', description: 'Bottle' },
-      { size: '250', unit: 'ml', description: 'Bottle' },
-      { size: '500', unit: 'ml', description: 'Bottle' },
+    id: 'kct-20g',
+    name: 'Kalasam Camphor 20G',
+    slug: 'kalasam-camphor-20g',
+    category: 'Pooja Products',
+    shortDescription: '20g premium refined camphor tablets in custom shapes.',
+    description: 'Kalasam Camphor 20G is a mid-sized retail pack ideal for monthly household prayer supplies. The tablets are manufactured to burn for a long duration, casting a clear flame with a pleasant therapeutic aroma.',
+    variants: [
+      {
+        id: 'kct-20g-v1',
+        sku: 'KC015',
+        attributes: { shape: 'Big Round' },
+        packingType: '25 Pack Half-Kg Cover',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-20g-v2',
+        sku: 'KC016',
+        attributes: { shape: 'Small Round' },
+        packingType: '25 Pack Half-Kg Cover',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-20g-v3',
+        sku: 'KC017',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '25 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
     ],
-    specifications: [
-      { label: 'Method', value: 'Steam distillation' },
-      { label: 'Certification', value: 'FSSAI compliant' },
-      { label: 'Additives', value: 'None — 100% pure' },
+    images: ['/images/products/synthetic-camphor.png'],
+    status: 'active',
+    order: 15,
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets 20g | Big Round, Small Round & Tablet-Shape',
+      metaDescription: '20g Kalasam camphor tablets in three shapes — big round, small round, tablet-shape. 25 packs per half-kg cover. Manufactured in Theni, India.',
+      keywords: '20g camphor tablets, Kalasam camphor 20 gram, pooja camphor half kg cover'
+    }
+  },
+  {
+    id: 'kct-25g',
+    name: 'Kalasam Camphor 25G',
+    slug: 'kalasam-camphor-25g',
+    category: 'Pooja Products',
+    shortDescription: '25g premium refined camphor tablets in custom shapes.',
+    description: 'Kalasam Camphor 25G retail packs deliver pure, high-potency camphor tablets in a selection of shape configurations. Sourced by distributors for regional retail chains across India.',
+    variants: [
+      {
+        id: 'kct-25g-v1',
+        sku: 'KC018',
+        attributes: { shape: 'Big Round' },
+        packingType: '20 Pack Half-Kg Cover',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-25g-v2',
+        sku: 'KC019',
+        attributes: { shape: 'Small Round' },
+        packingType: '20 Pack Half-Kg Cover',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-25g-v3',
+        sku: 'KC020',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '20 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
     ],
-    downloads: [],
-    faq: [],
-    images: [],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 16,
-  },
-
-  // ── 7. NEW IMAGE CATALOG PRODUCTS ──────────────────────────────
-  // ── Kalasam Karpuram (Camphor)
-  {
-    id: 'new-c-1',
-    name: 'Kalasam Rs 1 (50 PCS)',
-    slug: 'kalasam-rs-1-50-pcs',
-    category: 'Camphor',
-    shortDescription: 'Refined pure camphor tablets strip pack, contains 50 tablets for ₹1 retail.',
-    description: 'Refined pure camphor tablets designed for daily spiritual rituals, burning bright with zero residue. Manufactured in a clean, modern facility in Theni, Tamil Nadu.',
-    applications: ['Daily Pooja and Aarti', 'Temple Ceremonies', 'Air Purification'],
-    packaging: [{ size: '₹1', unit: 'strip', description: 'Strip of 50 tablets' }],
-    featured: true,
-    status: 'active',
-    order: 100
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets 25g | Big Round, Small Round & Tablet-Shape',
+      metaDescription: '25g Kalasam camphor tablets — big round, small round, or tablet-shape. 20 packs per half-kg cover. Pure pooja camphor from Theni, India.',
+      keywords: '25g camphor tablets, Kalasam camphor 25 gram, pooja camphor wholesale pack'
+    }
   },
   {
-    id: 'new-c-2',
-    name: 'Kalasam Rs 2 (50 PCS)',
-    slug: 'kalasam-rs-2-50-pcs',
-    category: 'Camphor',
-    shortDescription: 'Refined pure camphor tablets strip pack, contains 50 tablets for ₹2 retail.',
-    description: 'Clean-burning refined camphor tablets. High purity provides a bright flame and natural fragrance, leaving no black soot or ash.',
-    applications: ['Daily Pooja and Aarti', 'Temple Ceremonies', 'Air Purification'],
-    packaging: [{ size: '₹2', unit: 'strip', description: 'Strip of 50 tablets' }],
-    featured: true,
-    status: 'active',
-    order: 101
-  },
-  {
-    id: 'new-c-3',
-    name: 'Kalasam Rs 5 (40 PCS)',
-    slug: 'kalasam-rs-5-40-pcs',
-    category: 'Camphor',
-    shortDescription: 'Refined pure camphor tablets box pack, contains 40 tablets for ₹5 retail.',
-    description: 'Perfectly compressed pure camphor tablets, burning completely clean. Preserves the sacred atmosphere of home temples.',
-    applications: ['Daily Pooja and Aarti', 'Spiritual Gatherings', 'Meditation'],
-    packaging: [{ size: '₹5', unit: 'box', description: 'Box of 40 tablets' }],
-    featured: true,
-    status: 'active',
-    order: 102
-  },
-  {
-    id: 'new-c-4',
-    name: 'Kalasam Rs 10 (20 PCS)',
-    slug: 'kalasam-rs-10-20-pcs',
-    category: 'Camphor',
-    shortDescription: 'Refined pure camphor tablets box pack, contains 20 tablets for ₹10 retail.',
-    description: 'Large, clean-burning camphor tablets. Refined under strict quality standards for longer burning time.',
-    applications: ['Daily Pooja and Aarti', 'Havan and Yajna', 'Aromatherapy'],
-    packaging: [{ size: '₹10', unit: 'box', description: 'Box of 20 tablets' }],
-    featured: true,
-    status: 'active',
-    order: 103
-  },
-  {
-    id: 'new-c-5',
-    name: 'Kalasam Small/Big/Tablet Pack',
-    slug: 'kalasam-small-big-tablet-pack',
-    category: 'Camphor',
-    shortDescription: 'Various sizes of premium camphor tablets (small/big) for bulk and retail buyers.',
-    description: 'Flexible packaging options of different tablet dimensions to suit individual requirements, burning clean with strong, authentic aroma.',
-    applications: ['Temple Worship', 'Devotional Stores', 'Air Purification'],
-    packaging: [
-      { size: 'Small', unit: 'pack', description: 'Retail pouch' },
-      { size: 'Big', unit: 'pack', description: 'Premium box pack' }
+    id: 'kct-40g',
+    name: 'Kalasam Camphor 40G',
+    slug: 'kalasam-camphor-40g',
+    category: 'Pooja Products',
+    shortDescription: '40g premium refined camphor tablets in custom shapes.',
+    description: 'Kalasam Camphor 40G tablets are perfect for temples, festive seasons, and larger devotional ceremonies. Highly refined composition guarantees 100% ash-free combustion.',
+    variants: [
+      {
+        id: 'kct-40g-v1',
+        sku: 'KC021',
+        attributes: { shape: 'Big Round' },
+        packingType: '12 Pack Half-Kg Cover',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-40g-v2',
+        sku: 'KC022',
+        attributes: { shape: 'Small Round' },
+        packingType: '12 Pack Half-Kg Cover',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-40g-v3',
+        sku: 'KC023',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '12 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
     ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
-    order: 104
-  },
-
-  // ── Agarbathi Rs 10
-  {
-    id: 'new-ab10-1',
-    name: 'Black Rose Agar Bathi Rs 10',
-    slug: 'black-rose-agarbathi-rs-10',
-    category: 'Agarbathi',
-    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹10 pack) with rich, soothing floral aroma.',
-    description: 'Crafted with premium natural oils and floral extracts, Black Rose Agarbathi diffuses a long-lasting, soothing rose aroma. Available in ₹10 value pack.',
-    applications: ['Prayer & Aarti', 'Meditation', 'Aromatherapy', 'Room Freshening'],
-    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
-    status: 'active',
-    order: 110
+    order: 17,
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets 40g | Big Round, Small Round & Tablet-Shape',
+      metaDescription: '40g Kalasam camphor tablets, 3 shape options, 12 packs per half-kg cover. Trusted pooja camphor manufacturer, Theni, India.',
+      keywords: '40g camphor tablets, Kalasam camphor 40 gram, large camphor tablets pooja'
+    }
   },
   {
-    id: 'new-ab10-2',
-    name: 'Pineapple AgarBathi Rs 10',
-    slug: 'pineapple-agarbathi-rs-10',
-    category: 'Agarbathi',
-    shortDescription: 'Fruity and refreshing Pineapple scented premium incense sticks (₹10 pack).',
-    description: 'Features a fresh, tropical pineapple scent that uplifts the mood and purifies the atmosphere. Available in ₹10 value pack.',
-    applications: ['Home Fragrance', 'Morning Devotion', 'Spiritual Spaces'],
-    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    id: 'kct-50g',
+    name: 'Kalasam Camphor 50G',
+    slug: 'kalasam-camphor-50g',
+    category: 'Pooja Products',
+    shortDescription: '50g premium refined camphor tablets in custom shapes.',
+    description: 'Kalasam Camphor 50G is the largest standard retail box pack offered. Combining long burning times with an authentic camphoraceous aroma, it is the preferred choice for major rituals and temple use.',
+    variants: [
+      {
+        id: 'kct-50g-v1',
+        sku: 'KC024',
+        attributes: { shape: 'Big Round' },
+        packingType: '10 Pack Half-Kg Cover',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-50g-v2',
+        sku: 'KC025',
+        attributes: { shape: 'Small Round' },
+        packingType: '10 Pack Half-Kg Cover',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-50g-v3',
+        sku: 'KC026',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '10 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
+    ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
-    order: 111
+    order: 18,
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets 50g | Big Round, Small Round & Tablet-Shape',
+      metaDescription: '50g Kalasam camphor tablets, 3 shape options, 10 packs per half-kg cover. Ideal for temples and bulk pooja use. Made in Theni, India.',
+      keywords: '50g camphor tablets, Kalasam camphor 50 gram, temple camphor bulk pack'
+    }
   },
   {
-    id: 'new-ab10-3',
-    name: 'Jasmine AgarBathi Rs 10',
-    slug: 'jasmine-agarbathi-rs-10',
-    category: 'Agarbathi',
-    shortDescription: 'Traditional Jasmine scented agarbathi (₹10 pack) for serene and spiritual environments.',
-    description: 'Captures the authentic scent of fresh Jasmine flowers. Creates a calm, peaceful aura during daily worship. Available in ₹10 standard box.',
-    applications: ['Temple Worship', 'Meditation & Yoga', 'Evening Prayers'],
-    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
+    id: 'kct-bulk',
+    name: 'Kalasam Camphor Tablets (Bulk, Half/1kg)',
+    slug: 'kalasam-camphor-tablets-bulk',
+    category: 'Pooja Products',
+    shortDescription: 'Wholesale bulk packs of Kalasam camphor tablets in 500g and 1kg sizes.',
+    description: 'Kalasam Camphor Tablets Bulk Packs are specifically prepared for wholesale buyers, packaging distributors, and major religious institutions. Offered in half-kilogram and one-kilogram packs in three shape variants.',
+    variants: [
+      {
+        id: 'kct-bulk-v1',
+        sku: 'KC027',
+        attributes: { shape: 'Big Round' },
+        packingType: 'Half/One Kg Pack',
+        materialType: 'Big Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'kct-bulk-v2',
+        sku: 'KC028',
+        attributes: { shape: 'Small Round' },
+        packingType: 'Half/One Kg Pack',
+        materialType: 'Small Round Tablets',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'kct-bulk-v3',
+        sku: 'KC029',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: 'Half/One Kg Pack',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 3
+      }
+    ],
+    images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
-    order: 112
-  },
-  {
-    id: 'new-ab10-4',
-    name: 'Sandal Wood AgarBathi Rs 10',
-    slug: 'sandalwood-agarbathi-rs-10',
-    category: 'Agarbathi',
-    shortDescription: 'Warm, woody Sandalwood agarbathi (₹10 pack) for a divine and traditional environment.',
-    description: 'Pure, warm, and woody traditional Sandalwood incense sticks. Lingers in the air for hours, creating a spiritual sanctuary. Available in ₹10 standard box.',
-    applications: ['Pooja & Aarti', 'Religious Gatherings', 'Aromatherapy'],
-    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
-    status: 'active',
-    order: 113
-  },
-  {
-    id: 'new-ab10-5',
-    name: 'Rose Agar Bathi Rs 10',
-    slug: 'rose-agarbathi-rs-10',
-    category: 'Agarbathi',
-    shortDescription: 'Fresh floral Rose agarbathi (₹10 pack) for a positive and uplifting environment.',
-    description: 'Diffuses the classic scent of fresh blooming roses. Hand-rolled with natural binding materials. Available in ₹10 standard box.',
-    applications: ['Daily Worship', 'Home Fragrance', 'Relaxation'],
-    packaging: [{ size: '₹10', unit: 'pack', description: 'Standard box' }],
-    status: 'active',
-    order: 114
-  },
-
-  // ── Agarbathi Rs 5
-  {
-    id: 'new-ab5-1',
-    name: 'Black Rose Agar Bathi Rs 5',
-    slug: 'black-rose-agarbathi-rs-5',
-    category: 'Agarbathi',
-    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹5 pocket pack).',
-    description: 'Crafted with premium natural oils, Black Rose Agarbathi diffuses a soothing rose aroma. Available in ₹5 pocket pack.',
-    applications: ['Prayer & Aarti', 'Room Freshening'],
-    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
-    status: 'active',
-    order: 120
-  },
-  {
-    id: 'new-ab5-2',
-    name: 'Pineapple AgarBathi Rs 5',
-    slug: 'pineapple-agarbathi-rs-5',
-    category: 'Agarbathi',
-    shortDescription: 'Fruity and refreshing Pineapple scented incense sticks (₹5 pocket pack).',
-    description: 'Fresh tropical pineapple scent to uplift the mood. Available in ₹5 pocket pack.',
-    applications: ['Home Fragrance', 'Morning Devotion'],
-    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
-    status: 'active',
-    order: 121
-  },
-  {
-    id: 'new-ab5-3',
-    name: 'Jasmine AgarBathi Rs 5',
-    slug: 'jasmine-agarbathi-rs-5',
-    category: 'Agarbathi',
-    shortDescription: 'Traditional Jasmine scented agarbathi (₹5 pocket pack).',
-    description: 'Authentic jasmine floral fragrance, hand-rolled. Available in ₹5 pocket pack.',
-    applications: ['Daily Prayers', 'Evening Devotion'],
-    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
-    status: 'active',
-    order: 122
-  },
-  {
-    id: 'new-ab5-4',
-    name: 'Sandal Wood AgarBathi Rs 5',
-    slug: 'sandalwood-agarbathi-rs-5',
-    category: 'Agarbathi',
-    shortDescription: 'Woody Sandalwood agarbathi (₹5 pocket pack).',
-    description: 'Traditional Sandalwood incense stick, warm and calm. Available in ₹5 pocket pack.',
-    applications: ['Pooja & Aarti', 'Relaxation'],
-    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
-    status: 'active',
-    order: 123
-  },
-  {
-    id: 'new-ab5-5',
-    name: 'Rose Agar Bathi Rs 5',
-    slug: 'rose-agarbathi-rs-5',
-    category: 'Agarbathi',
-    shortDescription: 'Fresh floral Rose agarbathi (₹5 pocket pack).',
-    description: 'Diffuses the classic scent of fresh blooming roses. Available in ₹5 pocket pack.',
-    applications: ['Daily Worship', 'Relaxation'],
-    packaging: [{ size: '₹5', unit: 'pack', description: 'Pocket pack' }],
-    status: 'active',
-    order: 124
-  },
-
-  // ── Agarbathi Rs 50
-  {
-    id: 'new-ab50-1',
-    name: 'Black Rose Agar Bathi Rs 50',
-    slug: 'black-rose-agarbathi-rs-50',
-    category: 'Agarbathi',
-    shortDescription: 'Premium hand-rolled Black Rose incense sticks (₹50 economy mega pack).',
-    description: 'Our popular Black Rose fragrance in a large, value-packed format containing more sticks. Available in ₹50 economy mega pack.',
-    applications: ['Prayer & Aarti', 'Festivals', 'Frequent Use'],
-    packaging: [{ size: '₹50', unit: 'pack', description: 'Economy mega pack' }],
-    status: 'active',
-    order: 130
-  },
-  {
-    id: 'new-ab50-2',
-    name: 'Pineapple AgarBathi Rs 50',
-    slug: 'pineapple-agarbathi-rs-50',
-    category: 'Agarbathi',
-    shortDescription: 'Fruity and refreshing Pineapple scented incense sticks (₹50 economy mega pack).',
-    description: 'Tropical pineapple incense sticks in a large economy pack for regular use. Available in ₹50 economy mega pack.',
-    applications: ['Home Fragrance', 'Festivals', 'Large Gatherings'],
-    packaging: [{ size: '₹50', unit: 'pack', description: 'Economy mega pack' }],
-    status: 'active',
-    order: 131
-  },
-  {
-    id: 'new-ab50-3',
-    name: 'Darisana 5 IN ONE',
-    slug: 'darisana-5-in-one',
-    category: 'Agarbathi',
-    shortDescription: 'Premium multi-fragrance incense pack featuring 5 divine scents in a single pack (₹50 value).',
-    description: 'A curated pack containing five distinct spiritual fragrances (Sandalwood, Rose, Jasmine, Pine, Bouquet) to match different times of your prayer. Available in ₹50 premium pack.',
-    applications: ['Festivals', 'Long Prayer Sessions', 'Multi-room Fragrance'],
-    packaging: [{ size: '₹50', unit: 'pack', description: 'Premium mega multi-pack' }],
-    featured: true,
-    status: 'active',
-    order: 132
-  },
-
-  // ── Deepam Oil
-  {
-    id: 'new-lo-100',
-    name: '100 ML DEEPAM OIL',
-    slug: '100-ml-deepam-oil',
-    category: 'Lamp Oil',
-    shortDescription: 'Clean-burning pooja lamp oil in a handy 100ml bottle.',
-    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame, minimal ash, and a divine aroma in temples and homes. Available in 100ml bottle.',
-    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
-    packaging: [{ size: '100 ml', unit: 'bottle', description: 'Small bottle' }],
-    status: 'active',
-    order: 140
-  },
-  {
-    id: 'new-lo-200',
-    name: '200 ML DEEPAM OIL',
-    slug: '200-ml-deepam-oil',
-    category: 'Lamp Oil',
-    shortDescription: 'Clean-burning pooja lamp oil in a 200ml bottle.',
-    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame and a divine aroma. Available in 200ml bottle.',
-    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
-    packaging: [{ size: '200 ml', unit: 'bottle', description: 'Medium bottle' }],
-    status: 'active',
-    order: 141
-  },
-  {
-    id: 'new-lo-500',
-    name: '500 ML DEEPAM OIL',
-    slug: '500-ml-deepam-oil',
-    category: 'Lamp Oil',
-    shortDescription: 'Clean-burning pooja lamp oil in a 500ml bottle.',
-    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame and a divine aroma. Available in 500ml bottle.',
-    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
-    packaging: [{ size: '500 ml', unit: 'bottle', description: 'Large bottle' }],
-    status: 'active',
-    order: 142
-  },
-  {
-    id: 'new-lo-1000',
-    name: '1000 ML DEEPAM OIL',
-    slug: '1000-ml-deepam-oil',
-    category: 'Lamp Oil',
-    shortDescription: 'Clean-burning pooja lamp oil in a 1000ml bottle.',
-    description: 'Refined sesame-based lamp oil blended with traditional natural herbs. It burns cleanly, producing a steady flame, minimal ash, and a divine aroma. Available in 1000ml bottle.',
-    applications: ['Daily Deepam', 'Temple Lamps', 'Festival Lighting'],
-    packaging: [{ size: '1000 ml', unit: 'bottle', description: 'Economy 1 Litre bottle' }],
-    featured: true,
-    status: 'active',
-    order: 143
-  },
-
-  // ── Pooja Panner (Rose Water)
-  {
-    id: 'new-rw-100',
-    name: '100 PANNER',
-    slug: '100-panner-rose-water',
-    category: 'Rose Water',
-    shortDescription: 'Steam-distilled pure rose water (panner) in a 100ml bottle.',
-    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 100ml bottle.',
-    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
-    packaging: [{ size: '100 ml', unit: 'bottle', description: 'Small bottle' }],
-    status: 'active',
-    order: 150
-  },
-  {
-    id: 'new-rw-200',
-    name: '200 PANNER',
-    slug: '200-panner-rose-water',
-    category: 'Rose Water',
-    shortDescription: 'Steam-distilled pure rose water (panner) in a 200ml bottle.',
-    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 200ml bottle.',
-    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
-    packaging: [{ size: '200 ml', unit: 'bottle', description: 'Medium bottle' }],
-    status: 'active',
-    order: 151
-  },
-  {
-    id: 'new-rw-500',
-    name: '500 PANNER',
-    slug: '500-panner-rose-water',
-    category: 'Rose Water',
-    shortDescription: 'Steam-distilled pure rose water (panner) in a 500ml bottle.',
-    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 500ml bottle.',
-    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
-    packaging: [{ size: '500 ml', unit: 'bottle', description: 'Large bottle' }],
-    status: 'active',
-    order: 152
-  },
-  {
-    id: 'new-rw-1000',
-    name: '1000 PANNER',
-    slug: '1000-panner-rose-water',
-    category: 'Rose Water',
-    shortDescription: 'Steam-distilled pure rose water (panner) in a 1000ml bottle.',
-    description: 'Produced by steam-distilling selected fresh rose petals. 100% pure, natural, and free from synthetic fragrances. Widely used for temple deity abhishekam, puja, and prasad. Available in 1000ml bottle.',
-    applications: ['Deity Abhishekam', 'Spiritual Purification', 'Prasad Prep', 'Skincare'],
-    packaging: [{ size: '1000 ml', unit: 'bottle', description: '1 Litre bottle' }],
-    featured: true,
-    status: 'active',
-    order: 153
-  },
-
-  // ── Sambrani
-  {
-    id: 'new-s-1',
-    name: 'Cup Sambrani',
-    slug: 'cup-sambrani-new',
-    category: 'Sambrani',
-    shortDescription: 'Premium cup sambrani with natural benzoin resin for divine home fragrance.',
-    description: 'Kalasam Cup Sambrani is crafted using premium natural benzoin resin and a sturdy charcoal base. Simply light the rim and enjoy 20-30 minutes of soothing, traditional sambrani fragrance that purifies the air and creates a sacred atmosphere.',
-    applications: ['Evening Prayers', 'Home Fumigation', 'Aromatherapy', 'Insect Repellent'],
-    packaging: [{ size: '12 cups', unit: 'box', description: 'Retail box' }],
-    featured: true,
-    status: 'active',
-    order: 160
-  },
-  {
-    id: 'new-s-2',
-    name: 'Cup Sambrani Jar',
-    slug: 'cup-sambrani-jar-new',
-    category: 'Sambrani',
-    shortDescription: 'Cup sambrani cups packaged in a premium moisture-proof storage jar.',
-    description: 'Keeps sambrani cups dry and fresh. Retains fragrance for a longer shelf life and offers convenient storage.',
-    applications: ['Daily Worship', 'Moisture-safe storage', 'Home Fragrance'],
-    packaging: [{ size: '24 cups', unit: 'jar', description: 'Moisture-proof jar container' }],
-    status: 'active',
-    order: 161
-  },
-  {
-    id: 'new-s-3',
-    name: 'Computer Sambrani',
-    slug: 'computer-sambrani-new',
-    category: 'Sambrani',
-    shortDescription: 'Traditional computer sambrani blocks with authentic resin fragrance.',
-    description: 'Standard block-style computer sambrani made from natural resins. Slow burning with steady smoke output for traditional prayer spaces.',
-    applications: ['Daily Prayers', 'Home Fumigation', 'Devotional Aura'],
-    packaging: [{ size: 'Standard', unit: 'box', description: 'Retail box' }],
-    status: 'active',
-    order: 162
+    order: 19,
+    seo: {
+      metaTitle: 'Kalasam Camphor Tablets — Bulk Half/1kg Pack | Wholesale',
+      metaDescription: 'Bulk Kalasam camphor tablets in half-kg or 1kg packs, 3 shape options. Ideal for distributors, temples & wholesale buyers. Theni, India.',
+      keywords: 'bulk camphor tablets, wholesale camphor pooja, 1kg camphor pack India, camphor tablets distributor'
+    }
   }
 ];
