@@ -69,12 +69,15 @@ export const navigation: NavItem[] = [
           { label: 'OEM Manufacturing', href: '/oem-manufacturing', description: 'Custom manufacturing' },
           { label: 'Private Label', href: '/private-label', description: 'Your brand, our quality' },
           { label: 'Distributor Network', href: '/distributors', description: 'Join our network' },
+          { label: 'Super Stockist', href: '/super-stockist', description: 'State-level partnership' },
           { label: 'Wholesale', href: '/wholesale', description: 'Bulk pricing' },
         ],
       },
       {
-        title: 'Industries',
+        title: 'Buyer Segments',
         items: [
+          { label: 'Retail Store Supply', href: '/retail-supply', description: 'Stock your shop' },
+          { label: 'Temple & Institutional', href: '/temple-supply', description: 'Bulk temple supply' },
           { label: 'Industries We Serve', href: '/industries-we-serve', description: 'Sectors & applications' },
           { label: 'Downloads', href: '/downloads', description: 'Catalogs & brochures' },
           { label: 'MSDS Library', href: '/msds-library', description: 'Safety data sheets' },
@@ -127,7 +130,10 @@ export const footerNav = {
     { label: 'OEM Manufacturing', href: '/oem-manufacturing' },
     { label: 'Private Label', href: '/private-label' },
     { label: 'Distributors', href: '/distributors' },
+    { label: 'Super Stockist', href: '/super-stockist' },
     { label: 'Wholesale', href: '/wholesale' },
+    { label: 'Retail Supply', href: '/retail-supply' },
+    { label: 'Temple Supply', href: '/temple-supply' },
     { label: 'Industries We Serve', href: '/industries-we-serve' },
   ],
   resources: [

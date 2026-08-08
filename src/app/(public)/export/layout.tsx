@@ -2,15 +2,20 @@ import type { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Export Division | Global Chemical Shipping & Logistics | ${SITE_NAME}`,
-  description: `Kalasam Jaikrishna Industries is a certified chemical exporter shipping synthetic camphor, isoborneol flakes, and D-camphor from Chennai and Tuticorin ports to Malaysia, Singapore, UAE, Bangladesh, Europe, and worldwide.`,
+  title: `Camphor Exporter India | Import Synthetic Camphor | ${SITE_NAME}`,
+  description: `Kalasam Jaikrishna Industries — certified camphor exporter from India. Import synthetic camphor, D-camphor, and isoborneol flakes from Chennai and Tuticorin ports to Malaysia, Singapore, UAE, Bangladesh, Europe, and worldwide. FCL/LCL, HS codes, COA per batch.`,
   alternates: { canonical: `${SITE_URL}/export` },
   keywords: [
+    'camphor exporter India',
+    'import synthetic camphor from India',
+    'camphor manufacturer for export',
+    'bulk camphor supplier for import',
+    'India camphor exporter HS code',
+    'D-camphor exporter Tamil Nadu',
     'chemical export company India',
     'camphor exporter Tamil Nadu',
     'isoborneol flakes global shipping',
-    'B2B chemical freight logs Chennai port',
-    'FCL container shipping custom clearance'
+    'FCL container shipping camphor',
   ]
 };
 

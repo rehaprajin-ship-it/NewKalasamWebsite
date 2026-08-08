@@ -464,6 +464,54 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
           </div>
         </div>
       </section>
+      {/* Pharmaceutical & Technical Buyers Section — Synthetic Camphor Only */}
+      {slug === 'synthetic-camphor' && (
+        <section className="container-custom py-10 border-t border-gray-200/60">
+          <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-200/50 p-6 md:p-8 space-y-6">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🔬</span>
+              <div>
+                <h3 className="text-lg font-900 text-gray-900 tracking-tight">For Pharmaceutical & Technical Buyers</h3>
+                <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+                  Kalasam Jaikrishna Industries supplies pharmaceutical-grade synthetic camphor to pharma companies, compounding facilities, and technical chemical buyers across India and internationally. Our camphor powder and crystals are manufactured under strict quality control with batch-wise Certificate of Analysis (COA) available on request.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-2">
+                <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider">Quality Assurance</h4>
+                <ul className="text-xs text-gray-600 space-y-1.5">
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Batch-wise COA (Certificate of Analysis) provided</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> MSDS / SDS documentation available</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Consistent purity across production batches</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Third-party lab testing on request</li>
+                </ul>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-2">
+                <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider">Pharma Supply Capabilities</h4>
+                <ul className="text-xs text-gray-600 space-y-1.5">
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Pharmaceutical-grade camphor available on request</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Custom purity specifications accommodated</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Bulk supply for compounding and formulation</li>
+                  <li className="flex gap-2"><span className="text-blue-500">✓</span> Regulatory documentation support for import/export</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200/50 rounded-lg p-4 text-xs text-blue-900">
+              <strong>Note:</strong> For specific pharmacopeia grade requirements, detailed purity specifications, or custom COA formats, please contact our technical sales team directly. We will provide complete specification sheets and sample availability for evaluation before bulk commitment.
+            </div>
+
+            <button
+              onClick={handleGetQuote}
+              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-700 shadow-md transition-colors cursor-pointer"
+            >
+              Request Pharma-Grade Specification Sheet
+            </button>
+          </div>
+        </section>
+      )}
 
       {/* Cross-Sells Section */}
       <section className="container-custom py-8 border-t border-gray-200/60 space-y-12">

@@ -10,14 +10,18 @@ import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
   alternates: { canonical: `/pooja-products` },
-  title: 'Pooja Products Wholesale | Camphor Tablets, Sambrani & Agarbathi',
-  description: 'Premium ceremonial pooja products including pure camphor tablets, hand-rolled agarbathi, cup sambrani, and rose water. Manufactured in Theni, Tamil Nadu for distributors in Kerala, Karnataka, Andhra Pradesh, and India.',
+  title: 'Pooja Products Manufacturer India | Camphor, Sambrani, Agarbathi Supplier | Kalasam',
+  description: 'Leading pooja items manufacturer India — premium camphor tablets, cup sambrani, hand-rolled agarbathi, lamp oil, and rose water. Buy pooja samagri wholesale from Kalasam Jaikrishna Industries, Theni, Tamil Nadu. Religious items supplier for distributors, temples, and retailers.',
   keywords: [
+    'pooja items manufacturer India',
+    'buy pooja samagri wholesale',
+    'religious items supplier Tamil Nadu',
+    'pooja products company India',
+    'cup sambrani supplier',
+    'agarbathi manufacturer India',
     'pure camphor tablets wholesale Tamil Nadu',
-    'cup sambrani manufacturer India',
-    'hand-rolled agarbathi supplier Kerala Karnataka',
     'temple pooja items bulk distributor',
-    'Theni incense stick manufacturing factory'
+    'Theni incense stick manufacturing factory',
   ]
 };
 

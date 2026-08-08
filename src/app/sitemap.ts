@@ -38,6 +38,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: '/private-label', priority: 0.85, changeFreq: 'monthly' },
     { route: '/wholesale', priority: 0.85, changeFreq: 'monthly' },
     { route: '/distributors', priority: 0.85, changeFreq: 'monthly' },
+    { route: '/retail-supply', priority: 0.85, changeFreq: 'monthly' },
+    { route: '/super-stockist', priority: 0.85, changeFreq: 'monthly' },
+    { route: '/temple-supply', priority: 0.85, changeFreq: 'monthly' },
     { route: '/industries-we-serve', priority: 0.8, changeFreq: 'monthly' },
 
     // Trust / authority pages
@@ -50,6 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Resource pages
     { route: '/blog', priority: 0.8, changeFreq: 'daily' },
     { route: '/faq', priority: 0.7, changeFreq: 'monthly' },
+    { route: '/inquiry', priority: 0.7, changeFreq: 'monthly' },
     { route: '/downloads', priority: 0.6, changeFreq: 'monthly' },
     { route: '/msds-library', priority: 0.6, changeFreq: 'monthly' },
     { route: '/coa-library', priority: 0.6, changeFreq: 'monthly' },
