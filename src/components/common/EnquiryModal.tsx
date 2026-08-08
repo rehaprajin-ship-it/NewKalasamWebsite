@@ -129,23 +129,7 @@ export default function EnquiryModal() {
         }
       `}} />
 
-      {/* Ripple Rings Background animation — desktop only */}
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none w-10 h-20 overflow-visible hidden lg:block">
-        <div className="absolute right-0 top-1/2 w-10 h-20 bg-[#2b8a3e]/30 rounded-l-xl animate-enquiry-ripple-1 origin-right"></div>
-        <div className="absolute right-0 top-1/2 w-10 h-20 bg-[#2b8a3e]/15 rounded-l-xl animate-enquiry-ripple-2 origin-right"></div>
-      </div>
 
-      {/* Floating Vertical "Enquire Now" Tab — desktop only */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed right-0 top-1/2 z-40 shimmer-bg text-white font-700 text-[12px] tracking-wider px-2.5 py-4 rounded-l-xl border-l border-y border-green-700/30 shadow-lg hidden lg:flex items-center justify-center transition-all duration-300 cursor-pointer animate-enquiry-wiggle hover:animate-none hover:-translate-x-1.5"
-        style={{
-          writingMode: 'vertical-rl',
-          transform: 'translateY(-50%) rotate(180deg)',
-        }}
-      >
-        Enquire Now
-      </button>
 
       {/* Modal Dialog Overlay */}
       {isOpen && (

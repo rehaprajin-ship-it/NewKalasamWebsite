@@ -119,6 +119,76 @@ export default function Navbar() {
     }
   };
 
+  const [isHidden, setIsHidden] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isLangFocused, setIsLangFocused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const lastScrollY = useRef(0);
+  const scrollAccumulator = useRef(0);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    // Detect prefers-reduced-motion
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    // Save initial scroll position on mount
+    lastScrollY.current = window.scrollY;
+
+    const updateScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      // Always show at the top of the page
+      if (currentScrollY < 50) {
+        setIsHidden(false);
+        scrollAccumulator.current = 0;
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Check exceptions
+      const hasOpenDropdown = activeMenu !== null;
+      const isInputActive = isSearchFocused || isLangFocused;
+      if (mobileOpen || hasOpenDropdown || isInputActive) {
+        setIsHidden(false);
+        scrollAccumulator.current = 0;
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Show on any meaningful upward movement
+      if (delta < -5) {
+        setIsHidden(false);
+        scrollAccumulator.current = 0;
+      } 
+      // Hide only after scrolling down past a threshold
+      else if (delta > 10) {
+        setIsHidden(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(updateScroll);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener('change', handleMediaChange);
+    };
+  }, [mobileOpen, activeMenu, isSearchFocused, isLangFocused]);
+
   // Close menus on route change
   useEffect(() => {
     setActiveMenu(null);
@@ -139,8 +209,6 @@ export default function Navbar() {
   const handleMouseLeave = useCallback(() => {
     setActiveMenu(null);
   }, []);
-
-  const isHidden = false;
 
   return (
     <>
@@ -177,11 +245,12 @@ export default function Navbar() {
       </div>
 
       {/* ── Main Navbar ─────────────────────────────────────── */}
-      <motion.header
-        initial={false}
-        animate={{ y: isHidden ? -100 : 0 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className={`sticky top-0 z-[var(--z-navbar)] transition-all duration-300 ${
+      <header
+        style={{
+          transform: isHidden ? 'translateY(-100%)' : 'translateY(0%)',
+          transition: prefersReducedMotion ? 'none' : 'transform 0.25s ease-out',
+        }}
+        className={`sticky top-0 z-[var(--z-navbar)] ${
           scrolled
             ? 'glass border-b border-gray-200/60 shadow-subtle'
             : 'bg-white'
@@ -250,6 +319,8 @@ export default function Navbar() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
                   placeholder="Search Products"
                   className="w-48 xl:w-56 pl-4 pr-9 py-2 bg-white border border-gray-300 rounded-full text-sm
                              text-gray-700 placeholder:text-gray-400
@@ -272,6 +343,8 @@ export default function Navbar() {
                 <select
                   value={selectedLang}
                   onChange={(e) => handleLanguageChange(e.target.value)}
+                  onFocus={() => setIsLangFocused(true)}
+                  onBlur={() => setIsLangFocused(false)}
                   className="appearance-none w-40 xl:w-44 pl-4 pr-8 py-2 bg-white border border-gray-300 rounded-full
                              text-sm text-gray-700 cursor-pointer
                              focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20
@@ -410,7 +483,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
 
       {/* Hidden Google Translate element (used by the API) */}
       <div id="google_translate_element" className="hidden" />
