@@ -13,7 +13,7 @@ import { navigation } from '@/data/navigation';
 import { COMPANY } from '@/lib/constants';
 import { useInquiry } from '@/context/InquiryContext';
 import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
-import { useScrolledPast, useScrollDirection } from '@/hooks';
+import { useScrolledPast } from '@/hooks';
 import type { NavItem, NavGroup } from '@/types';
 
 /* ── Language list for Google Translate dropdown ──────────── */
@@ -54,7 +54,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const scrolled = useScrolledPast(20);
-  const scrollDir = useScrollDirection();
   const { items, setIsDrawerOpen } = useInquiry();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -248,12 +247,12 @@ export default function Navbar() {
       <header
         style={{
           transform: isHidden ? 'translateY(-100%)' : 'translateY(0%)',
-          transition: prefersReducedMotion ? 'none' : 'transform 0.25s ease-out',
+          transition: prefersReducedMotion ? 'none' : 'transform 0.25s ease-out, top 0.25s ease-out',
         }}
-        className={`sticky top-0 z-[var(--z-navbar)] ${
+        className={`fixed left-0 right-0 w-full z-[var(--z-navbar)] ${
           scrolled
-            ? 'glass border-b border-gray-200/60 shadow-subtle'
-            : 'bg-white'
+            ? 'top-0 glass border-b border-gray-200/60 shadow-subtle'
+            : 'top-0 lg:top-8 bg-white'
         }`}
       >
         <div className="container-custom">
@@ -484,6 +483,9 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </header>
+
+      {/* Spacer to reserve space for the fixed header in document flow */}
+      <div className="h-18 lg:h-28 w-full" />
 
       {/* Hidden Google Translate element (used by the API) */}
       <div id="google_translate_element" className="hidden" />
