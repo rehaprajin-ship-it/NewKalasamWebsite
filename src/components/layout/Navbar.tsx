@@ -485,7 +485,7 @@ export default function Navbar() {
       </header>
 
       {/* Spacer to reserve space for the fixed header in document flow */}
-      <div className="h-18 lg:h-28 w-full" />
+      <div className="h-18 lg:h-20 w-full" />
 
       {/* Hidden Google Translate element (used by the API) */}
       <div id="google_translate_element" className="hidden" />

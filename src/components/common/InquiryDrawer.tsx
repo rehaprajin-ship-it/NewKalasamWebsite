@@ -46,7 +46,7 @@ export default function InquiryDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-50 pointer-events-auto"
+            className="fixed inset-0 bg-black z-[500] pointer-events-auto"
           />
 
           {/* Sliding Panel */}
@@ -56,7 +56,7 @@ export default function InquiryDrawer() {
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             ref={drawerRef}
-            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-55 flex flex-col border-l border-gray-200"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-[510] flex flex-col border-l border-gray-200"
           >
             {/* Header */}
             <div className="p-4 border-b border-gray-150 flex items-center justify-between bg-gray-50/50">
