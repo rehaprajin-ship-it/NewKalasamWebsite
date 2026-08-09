@@ -112,32 +112,17 @@ export default function CareersPage() {
       sameAs: SITE_URL,
       logo: `${SITE_URL}/images/logo.png`,
     },
-    jobLocation: [
-      {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressRegion: 'Tamil Nadu',
-          addressCountry: 'IN',
-        },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Telephone Nagar',
+        addressLocality: 'Theni',
+        addressRegion: 'Tamil Nadu',
+        postalCode: '625531',
+        addressCountry: 'IN',
       },
-      {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressRegion: 'Kerala',
-          addressCountry: 'IN',
-        },
-      },
-      {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressRegion: 'Karnataka',
-          addressCountry: 'IN',
-        },
-      },
-    ],
+    },
     baseSalary: {
       '@type': 'MonetaryAmount',
       currency: 'INR',
@@ -148,7 +133,10 @@ export default function CareersPage() {
         unitText: 'MONTH',
       },
     },
-    experienceRequirements: '1-3 years FMCG field sales experience preferred',
+    experienceRequirements: {
+      '@type': 'OccupationalExperienceRequirements',
+      monthsOfExperience: 12,
+    },
     qualifications: 'Own two-wheeler with valid driving license. Good communication skills.',
     industry: 'FMCG / Consumer Goods',
     applicantLocationRequirements: {

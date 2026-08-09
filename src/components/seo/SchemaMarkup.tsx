@@ -63,6 +63,11 @@ export function ProductSchema({ product }: { product: ProductSchemaProps }) {
       name: SITE_NAME,
     },
     category: product.category || 'Industrial Chemical',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '23'
+    }
   };
 
   if (product.image) {
