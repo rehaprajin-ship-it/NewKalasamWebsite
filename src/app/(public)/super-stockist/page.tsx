@@ -12,7 +12,6 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common
 import SectionHeader from '@/components/ui/SectionHeader';
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/context/ToastProvider';
-import { saveContact } from '@/lib/firestore';
 
 const ssBenefits = [
   { title: 'State-Level Territory', desc: 'Operate across an entire state or multi-district zone with exclusive supply rights for Kalasam products.', icon: '🗺️' },
@@ -51,6 +50,7 @@ type SSFormData = {
   currentBusiness: string;
   investment: string;
   message: string;
+  website_honeypot?: string;
 };
 
 export default function SuperStockistPage() {
@@ -62,21 +62,29 @@ export default function SuperStockistPage() {
   const onSubmit = async (data: SSFormData) => {
     setSubmitting(true);
     try {
-      await saveContact({
-        name: data.name,
-        company: data.company,
-        email: data.email,
-        phone: data.phone,
-        subject: `Super Stockist Application — ${data.territory}`,
-        message: `Territory: ${data.territory}\nWarehouse: ${data.warehouseSize}\nCurrent Business: ${data.currentBusiness}\nInvestment Capacity: ${data.investment}\n\n${data.message}`,
-        country: 'India',
-        createdAt: new Date(),
+      const res = await fetch('/api/super-stockist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          sourcePage: window.location.pathname,
+        }),
       });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
+      }
+
       showToast('Application submitted! Our distribution head will contact you within 48 hours.');
       setSubmitted(true);
       reset();
-    } catch {
-      showToast('Failed to submit. Please try again or contact us directly.', 'error');
+    } catch (err: any) {
+      console.error('Super stockist submission failed:', err);
+      showToast(
+        'Submission failed. Please call/WhatsApp us directly at +91 6383020848 or email jaikrishnaindustries1@gmail.com.',
+        'error'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -180,6 +188,8 @@ export default function SuperStockistPage() {
             <ScrollReveal>
               <div className="bg-white rounded-2xl border border-gray-200 p-8 mt-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                  {/* Honeypot field for spam prevention */}
+                  <input type="text" {...register('website_honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-500 text-gray-700 mb-1.5">Full Name *</label>

@@ -49,14 +49,15 @@ const openings = [
 
 type JobApplicationData = {
   name: string;
+  email: string;
   phone: string;
   whatsapp: string;
-  email: string;
   currentLocation: string;
   experience: string;
   preferredTerritory: string;
   currentRole: string;
   message: string;
+  website_honeypot?: string;
 };
 
 export default function CareersPage() {
@@ -68,21 +69,29 @@ export default function CareersPage() {
   const onSubmit = async (data: JobApplicationData) => {
     setSubmitting(true);
     try {
-      await saveContact({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        subject: `Job Application — Field Sales Executive`,
-        message: `WhatsApp: ${data.whatsapp}\nCurrent Location: ${data.currentLocation}\nExperience: ${data.experience}\nPreferred Territory: ${data.preferredTerritory}\nCurrent Role: ${data.currentRole}\n\n${data.message}`,
-        company: 'Job Applicant',
-        country: 'India',
-        createdAt: new Date(),
+      const res = await fetch('/api/careers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          sourcePage: window.location.pathname,
+        }),
       });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
+      }
+
       showToast('Application submitted! Our HR team will contact you soon.');
       setSubmitted(true);
       reset();
-    } catch {
-      showToast('Failed to submit. Please try WhatsApp or email instead.', 'error');
+    } catch (err: any) {
+      console.error('Career application submission failed:', err);
+      showToast(
+        'Submission failed. Please call/WhatsApp us directly at +91 6383020848 or email jaikrishnaindustries1@gmail.com.',
+        'error'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -248,6 +257,8 @@ export default function CareersPage() {
             <ScrollReveal>
               <div className="bg-white rounded-2xl border border-gray-200 p-8 mt-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                  {/* Honeypot field for spam prevention */}
+                  <input type="text" {...register('website_honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-500 text-gray-700 mb-1.5">Full Name *</label>

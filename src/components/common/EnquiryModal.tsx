@@ -41,39 +41,72 @@ export default function EnquiryModal() {
     message: '',
   });
 
+  const [websiteHoneypot, setWebsiteHoneypot] = useState('');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!captchaChecked) {
       alert('Please verify that you are not a robot.');
       return;
     }
-    // Simulate submission
+    
     setIsSubmitted(true);
-    setTimeout(() => {
-      setIsOpen(false);
-      setIsSubmitted(false);
-      setCaptchaChecked(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        country: '',
-        city: '',
-        pincode: '',
-        gst: '',
-        product: '',
-        quantity: '',
-        casNo: '',
-        grade: '',
-        message: '',
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          country: formData.country || 'India',
+          quantity: formData.quantity,
+          productName: formData.product,
+          sku: formData.grade,
+          variantName: formData.casNo ? `CAS No: ${formData.casNo}` : '',
+          message: formData.message,
+          website_honeypot: websiteHoneypot,
+          sourcePage: window.location.pathname,
+        }),
       });
-    }, 2500);
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
+      }
+
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsSubmitted(false);
+        setCaptchaChecked(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          country: '',
+          city: '',
+          pincode: '',
+          gst: '',
+          product: '',
+          quantity: '',
+          casNo: '',
+          grade: '',
+          message: '',
+        });
+        setWebsiteHoneypot('');
+      }, 2500);
+    } catch (err: any) {
+      console.error('Enquiry modal submission failed:', err);
+      alert(`Submission failed: ${err.message}. Please reach out directly on WhatsApp at +91 6383020848.`);
+      setIsSubmitted(false);
+    }
   };
 
   return (
@@ -171,6 +204,16 @@ export default function EnquiryModal() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-3">
+                    {/* Honeypot field for spam prevention */}
+                    <input
+                      type="text"
+                      name="website_honeypot"
+                      value={websiteHoneypot}
+                      onChange={(e) => setWebsiteHoneypot(e.target.value)}
+                      className="hidden"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
                     {/* Row 1: Name, Email, Phone */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>

@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useInquiry } from '@/context/InquiryContext';
-import { saveContact } from '@/lib/firestore';
 import { COMPANY } from '@/lib/constants';
 
 const inquiryFormSchema = z.object({
@@ -16,7 +15,8 @@ const inquiryFormSchema = z.object({
   email: z.string().email('Invalid business email address'),
   phone: z.string().min(5, 'Contact number is required'),
   whatsapp: z.string().optional(),
-  message: z.string().min(10, 'Please describe any custom specs or delivery requirements')
+  message: z.string().min(10, 'Please describe any custom specs or delivery requirements'),
+  website_honeypot: z.string().optional(),
 });
 
 type InquiryFormData = z.infer<typeof inquiryFormSchema>;
@@ -43,35 +43,26 @@ export default function ConsolidatedInquiryPage() {
 
     setIsSubmitting(true);
     try {
-      // Format consolidated list of products/variants
-      const itemsListFormatted = items
-        .map(
-          (item) =>
-            `- ${item.productName}${item.variantName ? ` (${item.variantName})` : ''} [SKU: ${item.sku}] (Qty: ${item.quantity})`
-        )
-        .join('\n');
-
-      const messageContent = `Consolidated B2B Inquiry:\n\n${itemsListFormatted}\n\nUser Message:\n${data.message}`;
-
-      await saveContact({
-        name: data.name,
-        company: data.company,
-        country: data.country,
-        email: data.email,
-        phone: data.phone,
-        whatsapp: data.whatsapp || '',
-        quantity: 'Consolidated List',
-        requirementType: 'Contract Supply',
-        message: messageContent,
-        subject: `Consolidated B2B Catalog Inquiry (${items.length} items)`,
-        createdAt: new Date()
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          items,
+          sourcePage: window.location.pathname,
+        }),
       });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
+      }
 
       setIsSubmitted(true);
       clearList();
       reset();
     } catch (err: any) {
-      alert(`Failed to submit inquiry: ${err.message}`);
+      alert(`Failed to submit inquiry: ${err.message}. Please reach out directly on WhatsApp at +91 6383020848.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -172,6 +163,8 @@ export default function ConsolidatedInquiryPage() {
             </h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* Honeypot field for spam prevention */}
+              <input type="text" {...register('website_honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] font-800 uppercase tracking-wider text-gray-400 block">Name *</label>

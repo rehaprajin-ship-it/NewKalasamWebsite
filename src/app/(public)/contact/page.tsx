@@ -10,8 +10,6 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import { COMPANY } from '@/lib/constants';
-import { saveContact } from '@/lib/firestore';
-import { sendEmailWithAutoReply } from '@/lib/emailjs';
 import { useToast } from '@/context/ToastProvider';
 import type { ContactFormData } from '@/types';
 import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
@@ -29,30 +27,33 @@ const departments = [
 export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const { showToast } = useToast();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData & { website_honeypot?: string }>();
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData & { website_honeypot?: string }) => {
     setSubmitting(true);
     try {
-      await saveContact(data);
-      try {
-        await sendEmailWithAutoReply({
-          from_name: data.name,
-          from_email: data.email,
-          phone: data.phone,
-          company: data.company || 'N/A',
-          subject: data.subject,
-          message: data.message,
-          department: data.department || 'sales',
-        });
-      } catch (emailErr) {
-        console.error('EmailJS notification failed to send:', emailErr);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          sourcePage: window.location.pathname,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
       }
+
       showToast('Message sent successfully! We\'ll respond within 24 hours.');
       reset();
-    } catch (dbErr) {
-      console.error('Firestore save failed:', dbErr);
-      showToast('Failed to send message. Please try again.', 'error');
+    } catch (err: any) {
+      console.error('Contact submission failed:', err);
+      showToast(
+        'Submission failed. Please call/WhatsApp us directly at +91 6383020848 or email jaikrishnaindustries1@gmail.com.',
+        'error'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -121,6 +122,8 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-500 mb-8">Fill in the form below and we&apos;ll respond within 24 business hours.</p>
 
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                    {/* Honeypot field for spam prevention */}
+                    <input type="text" {...register('website_honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-500 text-gray-700 mb-1.5">Full Name *</label>

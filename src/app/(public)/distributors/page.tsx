@@ -10,9 +10,9 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { saveDistributorApplication } from '@/lib/firestore';
 import { useToast } from '@/context/ToastProvider';
 import type { DistributorFormData } from '@/types';
+import { COMPANY } from '@/lib/constants';
 
 const distributorBenefits = [
   { title: 'Exclusive Territory', desc: 'Protected sales territory with no overlapping distributors.', icon: '📍' },
@@ -26,16 +26,33 @@ const distributorBenefits = [
 export default function DistributorsPage() {
   const [submitting, setSubmitting] = useState(false);
   const { showToast } = useToast();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<DistributorFormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<DistributorFormData & { website_honeypot?: string }>();
 
-  const onSubmit = async (data: DistributorFormData) => {
+  const onSubmit = async (data: DistributorFormData & { website_honeypot?: string }) => {
     setSubmitting(true);
     try {
-      await saveDistributorApplication(data);
+      const res = await fetch('/api/distributor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          sourcePage: window.location.pathname,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Server error');
+      }
+
       showToast('Application submitted! Our distribution team will contact you within 48 hours.');
       reset();
-    } catch {
-      showToast('Failed to submit application. Please try again.', 'error');
+    } catch (err: any) {
+      console.error('Distributor submission failed:', err);
+      showToast(
+        'Submission failed. Please call/WhatsApp us directly at +91 6383020848 or email jaikrishnaindustries1@gmail.com.',
+        'error'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -75,6 +92,8 @@ export default function DistributorsPage() {
           <ScrollReveal>
             <div className="bg-white rounded-2xl border border-gray-200 p-8 mt-4">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                {/* Honeypot field for spam prevention */}
+                <input type="text" {...register('website_honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-500 text-gray-700 mb-1.5">Full Name *</label>
