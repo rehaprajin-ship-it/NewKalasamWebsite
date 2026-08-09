@@ -251,7 +251,7 @@ export function buildCustomerConfirmationHTML(data: FormatEmailInput): string {
             ${data.productName ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Product:</td><td style="color: #333; font-weight: bold;">${data.productName}</td></tr>` : ''}
             ${data.quantity ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Quantity:</td><td style="color: #25D366; font-weight: bold;">${data.quantity}</td></tr>` : ''}
             ${data.items && data.items.length > 0 ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Total Items:</td><td style="color: #333;">${data.items.length} items requested</td></tr>` : ''}
-            ${data.company ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Company:</td><td style="color: #333;">${data.company}</td></tr>` : ''}
+            ${isJob ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Current Role:</td><td style="color: #333;">${data.company || 'None'}</td></tr>` : (data.company ? `<tr><td style="padding: 4px 0; font-weight: bold; color: #666;">Company:</td><td style="color: #333;">${data.company}</td></tr>` : '')}
           </table>
         </div>
 

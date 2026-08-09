@@ -256,7 +256,9 @@ export default function AdminContactsCRM() {
                   <p className="text-gray-500 mt-1">{selectedContact.email}</p>
                   <p className="text-gray-500 mt-0.5">{selectedContact.phone}</p>
                   {selectedContact.company && (
-                    <p className="text-gray-500 mt-1.5 font-700">Company: {selectedContact.company}</p>
+                    <p className="text-gray-500 mt-1.5 font-700">
+                      {selectedContact.formType === 'Careers Application' ? 'Current Role' : 'Company'}: {selectedContact.company}
+                    </p>
                   )}
                 </div>
                 <span className={`px-2 py-0.5 rounded-sm text-[9px] font-800 uppercase ${
