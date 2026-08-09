@@ -254,6 +254,10 @@ export async function getContacts(): Promise<DocumentData[]> {
   return getCollectionData(COLLECTIONS.contacts, orderBy('createdAt', 'desc'));
 }
 
+export async function removeContact(id: string): Promise<void> {
+  return deleteDocument(COLLECTIONS.contacts, id);
+}
+
 // ── Newsletter ─────────────────────────────────────────────────
 
 export async function subscribeNewsletter(
@@ -288,6 +292,10 @@ export async function getDistributorApplications(): Promise<DocumentData[]> {
   return getCollectionData(COLLECTIONS.distributors, orderBy('createdAt', 'desc'));
 }
 
+export async function removeDistributorApplication(id: string): Promise<void> {
+  return deleteDocument(COLLECTIONS.distributors, id);
+}
+
 // ── Export Inquiries ───────────────────────────────────────────
 
 export async function saveExportInquiry(
@@ -298,6 +306,10 @@ export async function saveExportInquiry(
 
 export async function getExportInquiries(): Promise<DocumentData[]> {
   return getCollectionData(COLLECTIONS.exports, orderBy('createdAt', 'desc'));
+}
+
+export async function removeExportInquiry(id: string): Promise<void> {
+  return deleteDocument(COLLECTIONS.exports, id);
 }
 
 // ── Gallery ────────────────────────────────────────────────────

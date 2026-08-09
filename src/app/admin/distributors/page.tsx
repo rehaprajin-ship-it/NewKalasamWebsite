@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getDistributorApplications } from '@/lib/firestore';
+import { getDistributorApplications, removeDistributorApplication } from '@/lib/firestore';
+import { useToast } from '@/context/ToastProvider';
 
 export default function AdminDistributorsCRM() {
   const [apps, setApps] = useState<any[]>([]);
   const [loadingData, setLoadingData] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedApp, setSelectedApp] = useState<any | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const { showToast } = useToast();
 
   useEffect(() => {
     getDistributorApplications()
@@ -18,6 +21,26 @@ export default function AdminDistributorsCRM() {
       })
       .catch(() => setLoadingData(false));
   }, []);
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to permanently delete this application?')) {
+      return;
+    }
+    setDeletingId(id);
+    try {
+      await removeDistributorApplication(id);
+      setApps(prev => prev.filter(a => a.id !== id));
+      showToast('Application successfully deleted.');
+      if (selectedApp?.id === id) {
+        setSelectedApp(null);
+      }
+    } catch (err) {
+      console.error('Failed to delete application:', err);
+      showToast('Failed to delete application.', 'error');
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const handleExportCSV = () => {
     if (apps.length === 0) return;
@@ -170,6 +193,21 @@ export default function AdminDistributorsCRM() {
                   </p>
                 </div>
               )}
+
+              {/* Delete Button */}
+              <div className="border-t border-gray-100 pt-4">
+                <button
+                  onClick={() => handleDelete(selectedApp.id)}
+                  disabled={deletingId === selectedApp.id}
+                  className="w-full py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 hover:border-rose-300 font-700 rounded-[12px] text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+                >
+                  {deletingId === selectedApp.id ? (
+                    <div className="w-4 h-4 border-2 border-rose-600 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span>🗑️ Delete Application</span>
+                  )}
+                </button>
+              </div>
             </div>
           ) : (
             <div className="bg-dashed border-2 border-dashed border-gray-200 rounded-[18px] p-8 text-center text-gray-400 text-xs">
