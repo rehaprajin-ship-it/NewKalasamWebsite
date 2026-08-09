@@ -35,18 +35,23 @@ export default function ContactPage() {
     setSubmitting(true);
     try {
       await saveContact(data);
-      await sendEmailWithAutoReply({
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone,
-        company: data.company || 'N/A',
-        subject: data.subject,
-        message: data.message,
-        department: data.department || 'sales',
-      });
+      try {
+        await sendEmailWithAutoReply({
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone,
+          company: data.company || 'N/A',
+          subject: data.subject,
+          message: data.message,
+          department: data.department || 'sales',
+        });
+      } catch (emailErr) {
+        console.error('EmailJS notification failed to send:', emailErr);
+      }
       showToast('Message sent successfully! We\'ll respond within 24 hours.');
       reset();
-    } catch {
+    } catch (dbErr) {
+      console.error('Firestore save failed:', dbErr);
       showToast('Failed to send message. Please try again.', 'error');
     } finally {
       setSubmitting(false);
