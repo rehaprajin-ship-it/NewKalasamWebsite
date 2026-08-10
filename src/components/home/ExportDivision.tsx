@@ -69,8 +69,7 @@ export default function ExportDivision() {
 
             <ScrollReveal delay={0.2}>
               <p className="mt-4 text-gray-500 leading-relaxed">
-                Our export division handles complete documentation, customs clearance, containerized FCL/LCL shipping, 
-                and international quality certifications — ensuring seamless delivery to buyers worldwide.
+                When you order for export, our dedicated division handles everything — from customs documentation to containerized FCL/LCL shipping. We currently export to <strong className="text-gray-700">17+ countries</strong> across Asia, the Middle East, Africa, and North America. Furthermore, all shipments comply with <a href="https://www.ippc.int/en/core-activities/standards-setting/ispms/ispm-15/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ISPM-15</a> packaging standards and include COA, MSDS, and phytosanitary certificates.
               </p>
             </ScrollReveal>
 

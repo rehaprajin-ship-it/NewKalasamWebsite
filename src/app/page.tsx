@@ -22,6 +22,7 @@ import Testimonials from '@/components/home/Testimonials';
 import QualitySection from '@/components/home/QualitySection';
 import ContactCTA from '@/components/home/ContactCTA';
 import HomepageFAQ from '@/components/home/HomepageFAQ';
+import ProductComparison from '@/components/home/ProductComparison';
 
 import { SITE_NAME, SITE_URL, COMPANY } from '@/lib/constants';
 
@@ -95,6 +96,7 @@ export default function HomePage() {
         <HeroSlider />
         <CompanyIntro />
         <ProductCategories />
+        <ProductComparison />
         <ManufacturingExcellence />
         <Statistics />
         <ExportDivision />

@@ -31,17 +31,13 @@ export default function CompanyIntro() {
 
             <ScrollReveal delay={0.2}>
               <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                Founded in 1995 in Theni, Tamil Nadu, <strong className="text-gray-800">Kalasam Jaikrishna Industries</strong> has 
-                evolved from a traditional camphor manufacturer into a diversified industrial chemicals and consumer products company 
-                serving global markets.
+                <strong className="text-gray-800">Kalasam Jaikrishna Industries</strong> is a certified manufacturer and exporter of synthetic camphor, industrial chemicals, and premium pooja products. Founded in <time dateTime="1995">1995</time> in Theni, Tamil Nadu, our <strong className="text-gray-800">30,000 sq ft facility</strong> processes over <strong className="text-gray-800">500 metric tons</strong> of camphor-based chemicals annually.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
               <p className="mt-4 text-gray-500 leading-relaxed">
-                Today, we manufacture synthetic camphor, D-camphor, isoborneol, camphor oil, and a premium range of pooja products. 
-                Our state-of-the-art facility, ISO-certified processes, and dedicated R&D laboratory ensure every product meets the 
-                highest international quality standards.
+                <dfn>Synthetic camphor</dfn> is a manufactured alternative to natural camphor, produced from alpha-pinene through catalytic isomerization. You can use it across pharmaceutical, fragrance, plasticizer, and religious applications. Additionally, we produce D-camphor, isoborneol flakes, camphor oil, and a full range of ceremonial products — all tested in our in-house laboratory per <a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ISO 9001:2015</a> standards.
               </p>
             </ScrollReveal>
 
@@ -81,17 +77,20 @@ export default function CompanyIntro() {
           {/* Visual Column — 5 cols */}
           <div className="lg:col-span-5 order-1 lg:order-2">
             <ScrollReveal direction="right" delay={0.2}>
-              <div className="relative">
+              <figure className="relative">
                 {/* Main factory image */}
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                   <Image
                     src="/images/hero/factory-campus.png"
-                    alt="Kalasam Jaikrishna Industries Manufacturing Facility"
+                    alt="Kalasam Jaikrishna Industries 30,000 sq ft manufacturing facility in Theni, Tamil Nadu"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
+                <figcaption className="mt-3 text-xs text-gray-400 text-center">
+                  Our ISO 9001:2015 certified manufacturing campus in Theni, Tamil Nadu — operational since 1995.
+                </figcaption>
 
                 {/* Floating badge */}
                 <motion.div
@@ -113,7 +112,7 @@ export default function CompanyIntro() {
                     </div>
                   </div>
                 </motion.div>
-              </div>
+              </figure>
             </ScrollReveal>
           </div>
         </div>

@@ -39,19 +39,32 @@ export default function QualitySection() {
 
             <ScrollReveal delay={0.2}>
               <p className="mt-4 text-gray-500 leading-relaxed">
-                Our multi-stage quality control process ensures every product meets international standards. 
-                From raw material inspection to final dispatch, we maintain rigorous documentation and batch traceability.
+                You get consistent, verified quality with every order. Our multi-stage quality control process covers raw material intake through final dispatch. As a result, every batch ships with full documentation and traceability — meeting the requirements of <a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ISO 9001:2015</a> quality management standards.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <ul className="mt-6 space-y-3">
+              <h3 className="mt-6 text-sm font-700 text-gray-900 uppercase tracking-wider">Our 5-Step QC Process</h3>
+              <ol className="mt-3 space-y-3 list-decimal list-inside">
                 {[
-                  'In-house analytical laboratory',
-                  'Batch-wise Certificate of Analysis',
-                  'MSDS documentation for all chemicals',
+                  'Incoming raw material inspection and supplier verification',
+                  'In-process monitoring during synthesis and tableting',
+                  'Laboratory purity testing (sublimation rate, moisture, melting point)',
+                  'Batch-wise Certificate of Analysis (COA) generation',
+                  'Final dispatch audit with MSDS documentation',
+                ].map((item) => (
+                  <li key={item} className="text-sm text-gray-600 leading-relaxed">
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <ul className="mt-5 space-y-2">
+                {[
                   'Regular third-party audits',
-                  'Complete traceability system',
+                  'Complete batch traceability system',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
                     <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

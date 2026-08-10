@@ -129,7 +129,7 @@ export default function Testimonials() {
                 </span>
 
                 {/* Quote */}
-                <blockquote className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-400 italic">
+                <blockquote cite={`https://kalasamjaikrishna.co.in/testimonials#${testimonial.id}`} className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-400 italic">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
@@ -141,7 +141,7 @@ export default function Testimonials() {
                   <div>
                     <div className="text-sm sm:text-base font-600 text-gray-900">{testimonial.name}</div>
                     <div className="text-xs sm:text-sm text-gray-500">{testimonial.title}</div>
-                    <div className="text-xs sm:text-sm text-accent font-500">{testimonial.company}</div>
+                    <cite className="text-xs sm:text-sm text-accent font-500 not-italic">{testimonial.company}</cite>
                   </div>
                 </div>
               </motion.div>
@@ -176,11 +176,10 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === current
+                className={`rounded-full transition-all duration-300 ${i === current
                     ? 'w-6 h-2.5 bg-primary'
                     : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-                }`}
+                  }`}
                 style={{ minWidth: '10px', minHeight: '10px' }}
                 aria-label={`Go to testimonial ${i + 1}`}
               />
