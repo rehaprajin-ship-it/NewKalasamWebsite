@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { SITE_URL } from '@/lib/constants';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -262,3 +263,63 @@ export function buildCustomerConfirmationHTML(data: FormatEmailInput): string {
     </div>
   `;
 }
+
+export function buildNewsletterAdminEmailHTML(email: string, source: string): string {
+  const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }) + ' (IST)';
+  return `
+    <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+      <div style="background: linear-gradient(135deg, #128C7E 0%, #25D366 100%); color: #ffffff; padding: 30px 24px; text-align: center;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">New Newsletter Subscriber</h1>
+        <p style="margin: 6px 0 0 0; font-size: 12px; color: rgba(255,255,255,0.9);">Kalasam Jaikrishna Industries</p>
+      </div>
+      <div style="padding: 24px;">
+        <p style="margin-top: 0; font-size: 14px; color: #495057; line-height: 1.6;">
+          You have a new subscriber to your newsletter list.
+        </p>
+        <div style="margin: 20px 0; padding: 15px; border: 1px solid #e9ecef; border-radius: 8px; background-color: #f8f9fa;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <tr><td style="padding: 6px 0; font-weight: bold; color: #666; width: 120px;">Email Address:</td><td style="color: #111; font-weight: bold;"><a href="mailto:${email}" style="color: #128C7E; text-decoration: none;">${email}</a></td></tr>
+            <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Source Widget:</td><td style="color: #333;">${source}</td></tr>
+            <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Timestamp:</td><td style="color: #333;">${timestamp}</td></tr>
+          </table>
+        </div>
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 11px; color: #888; text-align: center;">
+          &copy; ${new Date().getFullYear()} Jaikrishna Industries — Kalasam Branding.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+export function buildNewsletterCustomerConfirmationHTML(email: string): string {
+  return `
+    <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+      <div style="background: linear-gradient(135deg, #128C7E 0%, #25D366 100%); color: #ffffff; padding: 30px 24px; text-align: center;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Welcome to Our Newsletter!</h1>
+        <p style="margin: 6px 0 0 0; font-size: 12px; color: rgba(255,255,255,0.9);">Kalasam Jaikrishna Industries</p>
+      </div>
+      <div style="padding: 24px;">
+        <p style="font-size: 15px; font-weight: bold; color: #111; margin-top: 0;">Hello,</p>
+        <p style="font-size: 14px; color: #495057; line-height: 1.6;">
+          Thank you for subscribing to the Kalasam newsletter. We are excited to have you join our B2B community!
+        </p>
+        <p style="font-size: 14px; color: #495057; line-height: 1.6;">
+          Moving forward, you will receive periodic updates containing:
+        </p>
+        <ul style="font-size: 14px; color: #495057; line-height: 1.6; padding-left: 20px;">
+          <li>Exclusive B2B product catalog updates and price alerts</li>
+          <li>Insightful guides on industrial synthetic camphor and chemical intermediates</li>
+          <li>New launches in agarbathi, cup sambrani, and ceremonial pooja supplies</li>
+          <li>Exclusive partner opportunities and distribution program updates</li>
+        </ul>
+        <div style="margin: 25px 0; text-align: center;">
+          <a href="${SITE_URL || 'https://kalasam.com'}/downloads" style="display: inline-block; background-color: #128C7E; color: #ffffff; text-decoration: none; padding: 12px 24px; font-weight: 700; font-size: 14px; border-radius: 8px; box-shadow: 0 4px 6px rgba(18,140,126,0.15);">Download Product Catalog</a>
+        </div>
+        <p style="font-size: 13px; color: #888; line-height: 1.5; border-top: 1px solid #eee; padding-top: 20px; margin-top: 30px;">
+          This is an automated welcome email. If you subscribed by mistake, you can unsubscribe by replying with "Unsubscribe". For direct B2B inquiries, please call/WhatsApp us at <strong>+91 6383020848</strong>.
+        </p>
+      </div>
+    </div>
+  `;
+}
+

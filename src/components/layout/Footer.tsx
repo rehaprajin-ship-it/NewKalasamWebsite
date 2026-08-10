@@ -10,7 +10,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { footerNav } from '@/data/navigation';
 import { COMPANY, CERTIFICATIONS } from '@/lib/constants';
-import { subscribeNewsletter } from '@/lib/firestore';
 import { useToast } from '@/context/ToastProvider';
 import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
 
@@ -24,7 +23,14 @@ export default function Footer() {
     if (!email.trim()) return;
     setSubmitting(true);
     try {
-      await subscribeNewsletter(email.trim(), 'footer');
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), source: 'footer' }),
+      });
+      
+      if (!res.ok) throw new Error('API request failed');
+      
       showToast('Successfully subscribed to our newsletter!');
       setEmail('');
     } catch {
