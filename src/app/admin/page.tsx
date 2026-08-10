@@ -17,7 +17,7 @@ export default function AdminDashboardOverview() {
   // Health check statuses
   const [firebaseStatus, setFirebaseStatus] = useState<'healthy' | 'checking'>('healthy');
   const [cloudinaryStatus, setCloudinaryStatus] = useState<'healthy' | 'checking'>('healthy');
-  const [emailJSStatus, setEmailJSStatus] = useState<'healthy' | 'checking'>('healthy');
+  const [resendStatus, setResendStatus] = useState<'healthy' | 'checking'>('healthy');
 
   useEffect(() => {
     // Load products
@@ -132,14 +132,14 @@ export default function AdminDashboardOverview() {
               <div className="flex items-center gap-3">
                 <span className="text-lg">✉️</span>
                 <div>
-                  <p className="text-xs font-700 text-gray-950">EmailJS Service</p>
-                  <p className="text-[10px] text-gray-400 mt-0.5">Automatic responder</p>
+                  <p className="text-xs font-700 text-gray-950">Resend Service</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">Transactional emails</p>
                 </div>
               </div>
               <span className={`px-2 py-0.5 rounded-full text-[9px] font-700 ${
-                emailJSStatus === 'healthy' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                resendStatus === 'healthy' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
               }`}>
-                {emailJSStatus === 'healthy' ? 'CONNECTED' : 'CHECKING'}
+                {resendStatus === 'healthy' ? 'CONNECTED' : 'CHECKING'}
               </span>
             </div>
           </div>

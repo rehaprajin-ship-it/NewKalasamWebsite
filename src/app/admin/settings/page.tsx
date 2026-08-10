@@ -56,7 +56,7 @@ export default function AdminSettings() {
             {[
               { name: 'Firebase', status: 'Connected', desc: 'Authentication & Firestore database' },
               { name: 'Cloudinary', status: 'Connected', desc: 'Image optimization & CDN' },
-              { name: 'EmailJS', status: 'Connected', desc: 'Contact form notifications' },
+              { name: 'Resend', status: 'Connected', desc: 'Contact & Inquiry emails' },
             ].map((int) => (
               <div key={int.name} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
                 <div>

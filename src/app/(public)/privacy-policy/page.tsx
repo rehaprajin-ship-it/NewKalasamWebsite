@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
       <p>We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.</p>
 
       <h2>Third-Party Services</h2>
-      <p>We use Firebase (Google) for authentication and data storage, Cloudinary for image hosting, and EmailJS for email notifications. These services have their own privacy policies.</p>
+      <p>We use Firebase (Google) for authentication and data storage, Cloudinary for image hosting, and Resend for email notifications. These services have their own privacy policies.</p>
 
       <h2>Your Rights</h2>
       <p>You have the right to access, correct, or delete your personal information. <a href="/contact">Contact us</a> for any privacy-related requests.</p>
