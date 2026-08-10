@@ -2,21 +2,9 @@ import type { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Camphor Exporter India | Import Synthetic Camphor | ${SITE_NAME}`,
+  title: `Camphor Exporter India — Import Synthetic Camphor — ${SITE_NAME}`,
   description: `Kalasam Jaikrishna Industries — certified camphor exporter from India. Import synthetic camphor, D-camphor, and isoborneol flakes from Chennai and Tuticorin ports to Malaysia, Singapore, UAE, Bangladesh, Europe, and worldwide. FCL/LCL, HS codes, COA per batch.`,
-  alternates: { canonical: `${SITE_URL}/export` },
-  keywords: [
-    'camphor exporter India',
-    'import synthetic camphor from India',
-    'camphor manufacturer for export',
-    'bulk camphor supplier for import',
-    'India camphor exporter HS code',
-    'D-camphor exporter Tamil Nadu',
-    'chemical export company India',
-    'camphor exporter Tamil Nadu',
-    'isoborneol flakes global shipping',
-    'FCL container shipping camphor',
-  ]
+  alternates: { canonical: `${SITE_URL}/export` }
 };
 
 export default function ExportLayout({ children }: { children: React.ReactNode }) {

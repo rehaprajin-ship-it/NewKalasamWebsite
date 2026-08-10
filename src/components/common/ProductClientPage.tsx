@@ -246,7 +246,7 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
                       activeImage === img ? 'border-primary ring-1 ring-primary' : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    <img src={img} alt="" className="object-contain w-full h-full" />
+                    <img src={img} alt="" width={56} height={56} className="object-contain w-full h-full" />
                   </button>
                 ))}
               </div>
@@ -523,7 +523,7 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
               {otherSizes.slice(0, 4).map((p: any) => (
                 <div key={p.id} className="bg-white border border-gray-250/60 rounded-xl p-4 flex flex-col items-center justify-between hover:shadow-xs transition-shadow">
                   <Link href={`/products/${p.slug}`} className="w-full aspect-square bg-gray-50/50 rounded-lg flex items-center justify-center p-4">
-                    <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt={p.name} className="object-contain max-h-[100px] w-auto" />
+                    <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt={p.name} width={100} height={100} className="object-contain max-h-[100px] w-auto" />
                   </Link>
                   <Link href={`/products/${p.slug}`} className="mt-3 text-center">
                     <h4 className="font-800 text-xs text-gray-900 hover:text-primary transition-colors leading-tight line-clamp-1">{p.name}</h4>
@@ -543,7 +543,7 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
               {youMayAlsoLike.slice(0, 4).map((p: any) => (
                 <div key={p.id} className="bg-white border border-gray-250/60 rounded-xl p-4 flex flex-col items-center justify-between hover:shadow-xs transition-shadow">
                   <Link href={`/products/${p.slug}`} className="w-full aspect-square bg-gray-50/50 rounded-lg flex items-center justify-center p-4">
-                    <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt={p.name} className="object-contain max-h-[100px] w-auto" />
+                    <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt={p.name} width={100} height={100} className="object-contain max-h-[100px] w-auto" />
                   </Link>
                   <Link href={`/products/${p.slug}`} className="mt-3 text-center">
                     <h4 className="font-800 text-xs text-gray-900 hover:text-primary transition-colors leading-tight line-clamp-1">{p.name}</h4>

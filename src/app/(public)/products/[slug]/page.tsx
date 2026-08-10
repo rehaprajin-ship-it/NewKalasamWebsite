@@ -79,26 +79,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const customTitle = product.seo?.metaTitle || buildTitle(productName, product.purity);
   const customDesc = product.seo?.metaDescription || buildDescription(product);
 
-  // Build targeted keywords
-  const keywordParts = [
-    productName,
-    `${productName} manufacturer`,
-    `${productName} supplier India`,
-    `${productName} exporter`,
-    product.casNumber ? `CAS ${product.casNumber}` : '',
-    product.category ? `${product.category} manufacturer` : '',
-    `buy ${productName} bulk`,
-    'camphor manufacturer Theni Tamil Nadu',
-  ].filter(Boolean);
-  const customKeywords = product.seo?.keywords || keywordParts.join(', ');
-
   const canonicalUrl = `${SITE_URL}/products/${slug}`;
   const ogImage = product.images?.[0] || `${SITE_URL}/opengraph-image.png`;
 
   return {
     title: customTitle,
     description: customDesc,
-    keywords: customKeywords,
     alternates: {
       canonical: canonicalUrl,
     },

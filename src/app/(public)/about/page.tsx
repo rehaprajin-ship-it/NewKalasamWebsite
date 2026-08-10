@@ -15,13 +15,7 @@ import { SITE_URL } from '@/lib/constants';
 export const metadata: Metadata = {
   alternates: { canonical: `/about` },
   title: 'About Us — Our Story, Chemical Manufacturing Legacy & Team',
-  description: `Discover the story of ${COMPANY.name} — a leading manufacturer and supplier of synthetic camphor and organic intermediates based in Theni, Tamil Nadu, supplying all states and districts of India.`,
-  keywords: [
-    'about Kalasam Jaikrishna Industries',
-    'camphor manufacturing factory Tamil Nadu',
-    'chemical industry legacy Theni',
-    'industrial camphor supplier history India'
-  ]
+  description: `Discover the story of ${COMPANY.name} — a leading manufacturer and supplier of synthetic camphor and organic intermediates based in Theni, Tamil Nadu, supplying all states and districts of India.`
 };
 
 export default function AboutPage() {

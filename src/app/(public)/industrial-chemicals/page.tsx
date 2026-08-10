@@ -12,15 +12,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
   alternates: { canonical: `/industrial-chemicals` },
-  title: 'Industrial Chemicals Manufacturer | Camphor & Isoborneol Flakes | Kalasam',
-  description: 'ISO-certified manufacturer of synthetic camphor, D-camphor, isoborneol powder, and camphor oil in Theni, Tamil Nadu. Shipping bulk chemical intermediates to chemical factories in Mumbai, Gujarat, Delhi, Chennai, and globally.',
-  keywords: [
-    'synthetic camphor manufacturer India',
-    'isoborneol flakes supplier Tamil Nadu',
-    'D-camphor chemical formulation Mumbai Gujarat',
-    'camphor oil bulk distributor',
-    'industrial chemicals manufacturing factory Theni'
-  ]
+  title: 'Industrial Chemicals Manufacturer — Camphor & Isoborneol Flakes — Kalasam',
+  description: 'ISO-certified manufacturer of synthetic camphor, D-camphor, isoborneol powder, and camphor oil in Theni, Tamil Nadu. Shipping bulk chemical intermediates to chemical factories in Mumbai, Gujarat, Delhi, Chennai, and globally.'
 };
 
 const chemicals = [

@@ -13,18 +13,8 @@ import { SITE_URL, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   alternates: { canonical: `/retail-supply` },
-  title: 'Camphor Supplier for Retail Shops | Pooja Items for Store Stock | Kalasam',
-  description: 'Direct factory supply of camphor tablets, agarbathi, sambrani, and pooja items for retail shops. Low MOQ, fast restocking, and competitive shop-friendly pricing from Kalasam Jaikrishna Industries, Theni.',
-  keywords: [
-    'camphor supplier for shop',
-    'pooja items supplier for retail store',
-    'camphor tablets for retail shop India',
-    'buy camphor for shop stock',
-    'wholesale camphor supplier India',
-    'pooja products wholesale supplier Tamil Nadu',
-    'retail camphor supply Tamil Nadu',
-    'camphor tablets retail pack',
-  ],
+  title: 'Camphor Supplier for Retail Shops — Pooja Items for Store Stock — Kalasam',
+  description: 'Direct factory supply of camphor tablets, agarbathi, sambrani, and pooja items for retail shops. Low MOQ, fast restocking, and competitive shop-friendly pricing from Kalasam Jaikrishna Industries, Theni.'
 };
 
 const retailAdvantages = [

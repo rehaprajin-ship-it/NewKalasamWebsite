@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.metaTitle,
     description: post.metaDescription,
-    keywords: [post.primaryKeyword, ...post.secondaryKeywords, ...post.tags],
     alternates: {
       canonical: canonicalUrl,
     },
@@ -141,7 +140,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <span>•</span>
             <span>{post.readTime} read</span>
             <span>•</span>
-            <span>Published: {post.publishDate}</span>
+            <span>Published: <time dateTime={post.publishDate}>{post.publishDate}</time></span>
           </div>
         </div>
       </section>

@@ -173,7 +173,7 @@ export default function HeroSlider() {
               </motion.div>
 
               {/* Title */}
-              <motion.h1
+              <motion.h2
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
@@ -182,7 +182,7 @@ export default function HeroSlider() {
                 className="heading-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-900 tracking-tight leading-[1.15] whitespace-pre-line"
               >
                 {slide.title}
-              </motion.h1>
+              </motion.h2>
 
               {/* Subtitle */}
               <motion.p

@@ -13,18 +13,8 @@ import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   alternates: { canonical: `/temple-supply` },
-  title: 'Camphor Supplier for Temples | Bulk Pooja Items for Temple Trusts | Kalasam',
-  description: 'Dedicated bulk camphor and pooja item supply for temples, religious institutions, and event organisers. Pure Bhimseni Camphor, clean-burning camphor tablets, sambrani, lamp oil — consistent quality for daily aarti and abhishekam.',
-  keywords: [
-    'camphor supplier for temples',
-    'temple camphor bulk supply India',
-    'pooja items supplier for temple trust',
-    'Bhimseni camphor for temple',
-    'camphor for aarti bulk order',
-    'temple pooja items wholesale',
-    'institutional camphor supply',
-    'camphor for abhishekam bulk',
-  ],
+  title: 'Camphor Supplier for Temples — Bulk Pooja Items for Temple Trusts — Kalasam',
+  description: 'Dedicated bulk camphor and pooja item supply for temples, religious institutions, and event organisers. Pure Bhimseni Camphor, clean-burning camphor tablets, sambrani, lamp oil — consistent quality for daily aarti and abhishekam.'
 };
 
 const templeAdvantages = [

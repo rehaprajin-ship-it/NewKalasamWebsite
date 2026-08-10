@@ -1,0 +1,26 @@
+{
+  "name": "Jaikrishna Industries — Camphor & Chemical Manufacturer",
+  "short_name": "Jaikrishna Industries",
+  "description": "Certified manufacturer & exporter of synthetic camphor, D-camphor, isoborneol, and premium pooja products from Theni, Tamil Nadu, India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#25D366",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "shopping"],
+  "lang": "en",
+  "dir": "ltr"
+}

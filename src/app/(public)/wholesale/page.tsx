@@ -12,18 +12,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 
 export const metadata: Metadata = {
   alternates: { canonical: `/wholesale` },
-  title: 'Wholesale Camphor Supplier India | Bulk Pooja Products | Factory Pricing | Kalasam',
-  description: 'Wholesale camphor supplier India — buy bulk camphor tablets, agarbathi, sambrani, and pooja items at direct factory-carton pricing. Serving wholesale stores, retailers, and dealers across Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, and all Indian states.',
-  keywords: [
-    'wholesale camphor supplier India',
-    'camphor wholesale rate',
-    'pooja products wholesale supplier Tamil Nadu',
-    'bulk camphor tablets wholesale',
-    'wholesale pooja items manufacturer',
-    'camphor dealers Tamil Nadu',
-    'agarbathi wholesale price Karnataka Kerala',
-    'sambrani wholesale supplier',
-  ]
+  title: 'Wholesale Camphor Supplier India — Bulk Pooja Products — Factory Pricing — Kalasam',
+  description: 'Wholesale camphor supplier India — buy bulk camphor tablets, agarbathi, sambrani, and pooja items at direct factory-carton pricing. Serving wholesale stores, retailers, and dealers across Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, and all Indian states.'
 };
 
 const wholesaleAdvantages = [

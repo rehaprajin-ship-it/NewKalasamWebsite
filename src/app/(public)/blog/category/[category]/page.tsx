@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${categoryData.metaTitle} | Kalasam Jaikrishna Industries`,
+    title: `${categoryData.metaTitle} — Kalasam Jaikrishna Industries`,
     description: categoryData.metaDescription,
   };
 }
