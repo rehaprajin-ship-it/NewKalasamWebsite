@@ -14,7 +14,7 @@ import { useInquiry } from '@/context/InquiryContext';
 const CATEGORIES = ['All', 'Industrial Chemicals', 'Pooja Products'];
 const MATERIAL_TYPES = ['All', 'Powder', 'Liquid', 'Flakes', 'Round Tablets', 'Tablet-shaped'];
 
-export default function ProductsPage() {
+export default function ProductsPage({ categoryFilter }: { categoryFilter?: string }) {
   const searchParams = useSearchParams();
   const { addItem } = useInquiry();
   const [products, setProducts] = useState<any[]>([]);
@@ -41,6 +41,32 @@ export default function ProductsPage() {
   // Filters & Sorting logic
   const filteredAndSorted = useMemo(() => {
     let result = products.filter((p) => {
+      // Subcategory check from clean routes
+      if (categoryFilter) {
+        const cat = categoryFilter.toLowerCase();
+        if (cat === 'industrial-chemicals') {
+          return p.category === 'Industrial Chemicals';
+        }
+        if (cat === 'pooja-products') {
+          return p.category === 'Pooja Products';
+        }
+        if (cat === 'camphor') {
+          return p.name?.toLowerCase().includes('camphor') || p.slug?.toLowerCase().includes('camphor') || p.name?.toLowerCase().includes('karpooram');
+        }
+        if (cat === 'agarbathi') {
+          return p.name?.toLowerCase().includes('agarbathi') || p.name?.toLowerCase().includes('incense');
+        }
+        if (cat === 'sambrani') {
+          return p.name?.toLowerCase().includes('sambrani');
+        }
+        if (cat === 'lamp-oil') {
+          return p.name?.toLowerCase().includes('lamp oil') || p.name?.toLowerCase().includes('deepam') || p.slug?.toLowerCase().includes('oil');
+        }
+        if (cat === 'rose-water') {
+          return p.name?.toLowerCase().includes('rose water') || p.slug?.toLowerCase().includes('rose-water');
+        }
+      }
+
       const matchCategory = activeCategory === 'All' || p.category === activeCategory;
       const matchSearch =
         !searchQuery ||

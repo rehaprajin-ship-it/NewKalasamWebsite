@@ -34,6 +34,12 @@ export default function AnimatedCounter({
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   useEffect(() => {
+    // Detect search crawler bots and keep the final value for SEO
+    if (typeof window !== 'undefined' && window.navigator) {
+      const isBot = /bot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex/i.test(window.navigator.userAgent);
+      if (isBot) return;
+    }
+
     if (!inView || hasAnimated.current) return;
     hasAnimated.current = true;
 

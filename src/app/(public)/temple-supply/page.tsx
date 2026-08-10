@@ -38,7 +38,7 @@ const templeAdvantages = [
 
 const templeProducts = [
   { name: 'Bhimseni Pachi Karpooram', desc: 'Pure natural camphor — the gold standard for temple aarti. Clean sublimation, divine fragrance.', href: '/products/bhimseni-pachi-karpooram', badge: 'Most Popular' },
-  { name: 'Kalasam Camphor Tablets', desc: 'Refined camphor tablets in 15g, 20g, 30g, and 50g sizes. Burns clean, no residue.', href: '/products?category=Pooja+Products', badge: '' },
+  { name: 'Kalasam Camphor Tablets', desc: 'Refined camphor tablets in 15g, 20g, 30g, and 50g sizes. Burns clean, no residue.', href: '/products/category/pooja-products', badge: '' },
   { name: 'Cup Sambrani', desc: 'Natural benzoin resin dhoop cups. 20-30 minutes of purifying smoke for sanctum fumigation.', href: '/pooja-products', badge: '' },
   { name: 'Temple Lamp Oil', desc: 'Clean-burning sesame-based oil for temple deepam. Low smoke, steady flame, long burn time.', href: '/pooja-products', badge: '' },
 ];

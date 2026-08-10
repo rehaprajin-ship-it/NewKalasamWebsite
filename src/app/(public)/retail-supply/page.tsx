@@ -122,7 +122,7 @@ export default function RetailSupplyPage() {
           <SectionHeader overline="What You Can Stock" title="Popular Retail Products" subtitle="Our best-selling items that move fast on retail shelves." />
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
             {[
-              { name: 'Camphor Tablets', desc: '₹1 to ₹10 MRP retail strips', href: '/products?category=Pooja+Products' },
+              { name: 'Camphor Tablets', desc: '₹1 to ₹10 MRP retail strips', href: '/products/category/pooja-products' },
               { name: 'Bhimseni Camphor', desc: 'Premium pachi karpooram', href: '/products/bhimseni-pachi-karpooram' },
               { name: 'Cup Sambrani', desc: 'Ready-to-use dhoop cups', href: '/pooja-products' },
               { name: 'Agarbathi Sticks', desc: 'Hand-rolled incense', href: '/pooja-products' },

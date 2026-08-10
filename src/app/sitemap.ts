@@ -110,10 +110,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  /* ── 5. Clean product category pages ────────────────────── */
+  const productCategories = ['camphor', 'agarbathi', 'sambrani', 'lamp-oil', 'rose-water', 'industrial-chemicals', 'pooja-products'];
+  const productCategoryRoutes: MetadataRoute.Sitemap = productCategories.map((cat) => ({
+    url: `${SITE_URL}/products/category/${cat}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...productRoutes,
     ...blogRoutes,
     ...categoryRoutes,
+    ...productCategoryRoutes,
   ];
 }
