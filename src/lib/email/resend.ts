@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { SITE_URL } from '@/lib/constants';
+import { SITE_URL, SITE_NAME } from '@/lib/constants';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -66,9 +66,9 @@ interface FormatEmailInput {
 
 export function buildAdminEmailHTML(data: FormatEmailInput): string {
   const timestamp = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }) + ' (IST)';
-  
+
   let segmentSpecificHTML = '';
-  
+
   if (data.role || data.availability) {
     segmentSpecificHTML = `
       <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #17a2b8; border-radius: 4px;">
@@ -209,7 +209,7 @@ export function buildAdminEmailHTML(data: FormatEmailInput): string {
 export function buildCustomerConfirmationHTML(data: FormatEmailInput): string {
   const isJob = !!(data.role || data.availability);
   const themeColor = isJob ? '#17a2b8' : '#128C7E';
-  
+
   let contentText = '';
   if (isJob) {
     contentText = `
@@ -313,7 +313,7 @@ export function buildNewsletterCustomerConfirmationHTML(email: string): string {
           <li>Exclusive partner opportunities and distribution program updates</li>
         </ul>
         <div style="margin: 25px 0; text-align: center;">
-          <a href="${SITE_URL || 'https://kalasam.com'}/downloads" style="display: inline-block; background-color: #128C7E; color: #ffffff; text-decoration: none; padding: 12px 24px; font-weight: 700; font-size: 14px; border-radius: 8px; box-shadow: 0 4px 6px rgba(18,140,126,0.15);">Download Product Catalog</a>
+          <a href="${SITE_URL || 'https://kalasamjaikrishna.co.in'}/downloads" style="display: inline-block; background-color: #128C7E; color: #ffffff; text-decoration: none; padding: 12px 24px; font-weight: 700; font-size: 14px; border-radius: 8px; box-shadow: 0 4px 6px rgba(18,140,126,0.15);">Download Product Catalog</a>
         </div>
         <p style="font-size: 13px; color: #888; line-height: 1.5; border-top: 1px solid #eee; padding-top: 20px; margin-top: 30px;">
           This is an automated welcome email. If you subscribed by mistake, you can unsubscribe by replying with "Unsubscribe". For direct B2B inquiries, please call/WhatsApp us at <strong>+91 6383020848</strong>.
