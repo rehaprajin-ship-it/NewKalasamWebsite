@@ -247,6 +247,7 @@ export default function RootLayout({
               <InquiryDrawer />
               <MobileBottomBar />
               <Analytics />
+              <SpeedInsights />
             </InquiryProvider>
           </ToastProvider>
         </AuthProvider>
