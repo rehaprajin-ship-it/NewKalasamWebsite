@@ -29,8 +29,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Example standard redirects could be placed here if needed at application level,
-      // though DNS/Hosting provider rules are recommended for apex domain (non-www to www) redirection.
+      // Legacy Product Variants -> Consolidated Pages
+      { source: '/products/jasmine-agarbathi-rs-5', destination: '/products/kalasam-premium-agarbathi', permanent: true },
+      { source: '/products/sandalwood-agarbathi-rs-5', destination: '/products/kalasam-premium-agarbathi', permanent: true },
+      { source: '/products/black-rose-agarbathi-rs-5', destination: '/products/kalasam-premium-agarbathi', permanent: true },
+      { source: '/products/kalasam-rs-5-40-pcs', destination: '/products/kalasam-camphor-rs5', permanent: true },
+      { source: '/products/cup-sambrani-jar-new', destination: '/products/kalasam-cup-sambrani', permanent: true },
+      { source: '/products/computer-sambrani-new', destination: '/products/kalasam-computer-sambrani', permanent: true },
+      { source: '/products/1000-ml-deepam-oil', destination: '/products/temple-dharisana-lamp-oil', permanent: true },
+      // Duplicate Blog Post redirects to stronger consolidated pages
+      { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-d-camphor', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-sambrani-cups', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
     ];
   },
 };
