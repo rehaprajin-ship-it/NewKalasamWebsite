@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Category URL Migration Redirects
+      { source: '/products/category/industrial-chemicals', destination: '/products/category/industrial-product', permanent: true },
+      { source: '/products/category/pooja-products', destination: '/products/category/camphor', permanent: true },
+      { source: '/products/industrial-product', destination: '/products/category/industrial-product', permanent: true },
+      { source: '/products/camphor', destination: '/products/category/camphor', permanent: true },
+      { source: '/products/lamp-oil', destination: '/products/category/lamp-oil', permanent: true },
+      { source: '/products/agarbathi', destination: '/products/category/agarbathi', permanent: true },
+      { source: '/products/sambrani', destination: '/products/category/sambrani', permanent: true },
+      { source: '/products/rose-water', destination: '/products/category/rose-water', permanent: true },
+
       // Legacy Product Variants -> Consolidated Pages
       { source: '/products/jasmine-agarbathi-rs-5', destination: '/products/kalasam-premium-agarbathi', permanent: true },
       { source: '/products/sandalwood-agarbathi-rs-5', destination: '/products/kalasam-premium-agarbathi', permanent: true },

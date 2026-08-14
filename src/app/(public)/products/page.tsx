@@ -7,11 +7,11 @@ import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageHero from '@/components/ui/PageHero';
 import { seedProducts } from '@/data/products';
-import { COMPANY } from '@/lib/constants';
+import { PRODUCT_CATEGORIES, COMPANY } from '@/lib/constants';
 import { getProducts } from '@/lib/firestore';
 import { useInquiry } from '@/context/InquiryContext';
 
-const CATEGORIES = ['All', 'Industrial Chemicals', 'Pooja Products'];
+const CATEGORIES = ['All', ...PRODUCT_CATEGORIES.map((c) => c.name)];
 const MATERIAL_TYPES = ['All', 'Powder', 'Liquid', 'Flakes', 'Round Tablets', 'Tablet-shaped'];
 
 export default function ProductsPage({ categoryFilter }: { categoryFilter?: string }) {
@@ -41,29 +41,16 @@ export default function ProductsPage({ categoryFilter }: { categoryFilter?: stri
   // Filters & Sorting logic
   const filteredAndSorted = useMemo(() => {
     let result = products.filter((p) => {
-      // Subcategory check from clean routes
+      // Clean category route mapping
       if (categoryFilter) {
         const cat = categoryFilter.toLowerCase();
-        if (cat === 'industrial-chemicals') {
-          return p.category === 'Industrial Chemicals';
-        }
-        if (cat === 'pooja-products') {
-          return p.category === 'Pooja Products';
-        }
-        if (cat === 'camphor') {
-          return p.name?.toLowerCase().includes('camphor') || p.slug?.toLowerCase().includes('camphor') || p.name?.toLowerCase().includes('karpooram');
-        }
-        if (cat === 'agarbathi') {
-          return p.name?.toLowerCase().includes('agarbathi') || p.name?.toLowerCase().includes('incense');
-        }
-        if (cat === 'sambrani') {
-          return p.name?.toLowerCase().includes('sambrani');
-        }
-        if (cat === 'lamp-oil') {
-          return p.name?.toLowerCase().includes('lamp oil') || p.name?.toLowerCase().includes('deepam') || p.slug?.toLowerCase().includes('oil');
-        }
-        if (cat === 'rose-water') {
-          return p.name?.toLowerCase().includes('rose water') || p.slug?.toLowerCase().includes('rose-water');
+        const matchedCat = PRODUCT_CATEGORIES.find((c) => c.slug === cat);
+        if (matchedCat) {
+          if (p.category !== matchedCat.name) return false;
+        } else if (cat === 'industrial-chemicals') {
+          if (p.category !== 'Industrial Product') return false;
+        } else if (cat === 'pooja-products') {
+          if (p.category === 'Industrial Product') return false;
         }
       }
 
@@ -95,6 +82,55 @@ export default function ProductsPage({ categoryFilter }: { categoryFilter?: stri
 
     return result;
   }, [products, activeCategory, activeMaterial, searchQuery, sortBy]);
+
+  const ITEMS_PER_PAGE = 6;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset to page 1 whenever filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, activeMaterial, searchQuery, sortBy, categoryFilter]);
+
+  const totalPages = Math.ceil(filteredAndSorted.length / ITEMS_PER_PAGE) || 1;
+
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAndSorted.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredAndSorted, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 400, behavior: 'smooth' });
+    }
+  };
+
+  // Helper to generate pagination page numbers with ellipsis
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 4) {
+        for (let i = 1; i <= 5; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 3) {
+        pages.push(1);
+        pages.push('...');
+        for (let i = totalPages - 4; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        pages.push('...');
+        pages.push(currentPage - 1);
+        pages.push(currentPage);
+        pages.push(currentPage + 1);
+        pages.push('...');
+        pages.push(totalPages);
+      }
+    }
+    return pages;
+  };
 
   const handleQuickAdd = (product: any) => {
     // If product has variants, add the first variant
@@ -136,6 +172,30 @@ export default function ProductsPage({ categoryFilter }: { categoryFilter?: stri
       />
 
       <div className="container-custom py-10">
+        {/* Category Cards Navigation Grid */}
+        {!categoryFilter && (
+          <div className="mb-10">
+            <h2 className="text-xs font-800 uppercase tracking-widest text-primary mb-3">Browse by Category</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/products/category/${cat.slug}`}
+                  className="p-4 bg-white rounded-xl border border-gray-200 hover:border-primary/40 hover:shadow-medium transition-all group flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="font-800 text-gray-900 group-hover:text-primary transition-colors text-xs leading-tight">{cat.name}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 line-clamp-2 leading-tight">{cat.description}</p>
+                  </div>
+                  <span className="text-[10px] font-700 text-primary mt-2 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    Explore →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Search and Sort controls */}
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
           <div className="relative w-full md:w-96">
@@ -229,13 +289,20 @@ export default function ProductsPage({ categoryFilter }: { categoryFilter?: stri
 
           {/* Product Cards Grid */}
           <div className="lg:col-span-3 space-y-6">
-            <p className="text-xs text-gray-500 font-500">
-              Showing {filteredAndSorted.length} matching products
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-gray-500 font-500">
+                Showing {paginatedProducts.length > 0 ? (currentPage - 1) * ITEMS_PER_PAGE + 1 : 0}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredAndSorted.length)} of {filteredAndSorted.length} products
+              </p>
+              {totalPages > 1 && (
+                <p className="text-xs text-gray-400 font-600">
+                  Page {currentPage} of {totalPages}
+                </p>
+              )}
+            </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
               <AnimatePresence mode="popLayout">
-                {filteredAndSorted.map((product) => {
+                {paginatedProducts.map((product) => {
                   const hasVariants = product.variants && product.variants.length > 0;
                   const variantsCount = product.variants?.length || 0;
                   // Deduplicate attributes for variant display count
@@ -308,6 +375,62 @@ export default function ProductsPage({ categoryFilter }: { categoryFilter?: stri
                 })}
               </AnimatePresence>
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="pt-8 pb-4 flex items-center justify-center">
+                <nav className="inline-flex items-center gap-1.5 p-1.5 bg-white border border-gray-200 rounded-xl shadow-xs" aria-label="Pagination">
+                  {/* Previous Button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    aria-label="Previous Page"
+                    className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer text-xs font-700"
+                  >
+                    ‹
+                  </button>
+
+                  {/* Numbered Page Buttons */}
+                  {getPageNumbers().map((page, idx) => {
+                    if (page === '...') {
+                      return (
+                        <span key={`ellipsis-${idx}`} className="w-8 h-8 flex items-center justify-center text-xs font-700 text-emerald-700 border border-gray-200 rounded-lg bg-white">
+                          ...
+                        </span>
+                      );
+                    }
+
+                    const pageNum = Number(page);
+                    const isActive = currentPage === pageNum;
+
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => handlePageChange(pageNum)}
+                        aria-current={isActive ? 'page' : undefined}
+                        className={`w-8 h-8 flex items-center justify-center rounded-lg text-xs font-700 transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-[#1E7E34] text-white border border-[#1E7E34] shadow-xs'
+                            : 'bg-white text-emerald-700 border border-gray-200 hover:bg-emerald-50 hover:border-emerald-300'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    aria-label="Next Page"
+                    className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer text-xs font-700"
+                  >
+                    ›
+                  </button>
+                </nav>
+              </div>
+            )}
 
             {filteredAndSorted.length === 0 && (
               <div className="text-center py-20 bg-white border border-gray-200 rounded-2xl">

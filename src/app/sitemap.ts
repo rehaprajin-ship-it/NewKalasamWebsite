@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getProducts } from '@/lib/firestore';
 import { BLOG_POSTS } from '@/data/blog-posts';
 import { seedProducts } from '@/data/products';
-import { SITE_URL } from '@/lib/constants';
+import { SITE_URL, CATEGORY_SLUGS } from '@/lib/constants';
 
 /* ═══════════════════════════════════════════════════════════════
    Dynamic Sitemap — Products, Blogs, Static Pages
@@ -114,12 +114,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   /* ── 5. Clean product category pages ────────────────────── */
-  const productCategories = ['camphor', 'agarbathi', 'sambrani', 'lamp-oil', 'rose-water', 'industrial-chemicals', 'pooja-products'];
-  const productCategoryRoutes: MetadataRoute.Sitemap = productCategories.map((cat) => ({
+  const productCategoryRoutes: MetadataRoute.Sitemap = CATEGORY_SLUGS.map((cat) => ({
     url: `${SITE_URL}/products/category/${cat}`,
     lastModified: now,
     changeFrequency: 'weekly' as const,
-    priority: 0.8,
+    priority: 0.85,
   }));
 
   return [

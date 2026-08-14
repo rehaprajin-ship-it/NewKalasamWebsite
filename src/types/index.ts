@@ -64,15 +64,12 @@ export interface ProductVariant {
 }
 
 export type ProductCategory =
-  | 'Industrial Chemicals'
-  | 'Pooja Products'
+  | 'Industrial Product'
   | 'Camphor'
-  | 'Sambrani'
-  | 'Agarbathi'
   | 'Lamp Oil'
-  | 'Rose Water'
-  | 'Temple Products'
-  | 'Pooja Accessories';
+  | 'Agarbathi'
+  | 'Sambrani'
+  | 'Rose Water';
 
 export interface ProductSpecification {
   label: string;

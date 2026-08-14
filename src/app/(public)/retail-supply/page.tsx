@@ -112,10 +112,10 @@ export default function RetailSupplyPage() {
           <SectionHeader overline="What You Can Stock" title="Popular Retail Products" subtitle="Our best-selling items that move fast on retail shelves." />
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
             {[
-              { name: 'Camphor Tablets', desc: '₹1 to ₹10 MRP retail strips', href: '/products/category/pooja-products' },
+              { name: 'Camphor Tablets', desc: '₹1 to ₹10 MRP retail strips', href: '/products/category/camphor' },
               { name: 'Bhimseni Camphor', desc: 'Premium pachi karpooram', href: '/products/bhimseni-pachi-karpooram' },
-              { name: 'Cup Sambrani', desc: 'Ready-to-use dhoop cups', href: '/pooja-products' },
-              { name: 'Agarbathi Sticks', desc: 'Hand-rolled incense', href: '/pooja-products' },
+              { name: 'Cup Sambrani', desc: 'Ready-to-use dhoop cups', href: '/products/category/sambrani' },
+              { name: 'Agarbathi Sticks', desc: 'Hand-rolled incense', href: '/products/category/agarbathi' },
             ].map((item) => (
               <StaggerItem key={item.name}>
                 <Link href={item.href} className="block bg-gray-50 rounded-xl p-5 text-center hover:shadow-medium hover:bg-white border border-transparent hover:border-primary/20 transition-all group">

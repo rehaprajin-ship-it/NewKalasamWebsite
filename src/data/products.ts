@@ -9,12 +9,12 @@ import type { Product } from '@/types';
  * The admin CMS writes to Firestore; these are initial defaults.
  */
 export const seedProducts: Partial<Product>[] = [
-  // ── Industrial Chemicals ──────────────────────────────────────
+  // ── Industrial Products ──────────────────────────────────────
   {
     id: 'ic-1',
     name: 'Synthetic Camphor',
     slug: 'synthetic-camphor',
-    category: 'Industrial Chemicals',
+    category: 'Industrial Product',
     shortDescription: 'High-purity synthetic camphor powder for pharmaceutical, fragrance, and chemical manufacturing applications.',
     description: 'Synthetic camphor is a widely used industrial input for pharmaceuticals, fragrance compounding, mothball/repellent manufacturing, and religious/pooja products. Jaikrishna Industries is a bulk manufacturer supplying powder-form synthetic camphor in standard 30kg bags with custom packing available for bulk/export buyers.',
     casNumber: '',
@@ -67,7 +67,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'ic-2',
     name: 'D-Camphor',
     slug: 'd-camphor',
-    category: 'Industrial Chemicals',
+    category: 'Industrial Product',
     shortDescription: 'Dextrorotatory natural camphor for pharmaceutical and specialty chemical applications.',
     description: 'D-camphor (the dextrorotatory isomer) is used in pharmaceutical formulations, fragrance blending, and specialty chemical applications where isomer purity matters to buyers. Sourced by top-tier laboratories and specialized global manufacturers.',
     casNumber: '',
@@ -106,7 +106,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'ic-3',
     name: 'Isoborneol',
     slug: 'isoborneol',
-    category: 'Industrial Chemicals',
+    category: 'Industrial Product',
     shortDescription: 'Industrial-grade isoborneol powder for fragrance synthesis and chemical intermediate manufacturing.',
     description: 'Isoborneol is a key intermediate primarily used in fragrance/flavor synthesis and as a precursor in camphor derivative production. Sourced globally in bulk powder form.',
     casNumber: '',
@@ -139,7 +139,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'ic-4',
     name: 'Camphor Oil',
     slug: 'camphor-oil',
-    category: 'Industrial Chemicals',
+    category: 'Industrial Product',
     shortDescription: 'Pure camphor essential oil for fragrance, pharmaceutical, and industrial applications.',
     description: 'Camphor oil is used across pharmaceutical, fragrance, and industrial applications. Since packing is fully custom, we offer tailored volumes, drum weights, and container packing configurations directly on request to suit buyer specifications.',
     casNumber: '',
@@ -169,12 +169,12 @@ export const seedProducts: Partial<Product>[] = [
     }
   },
 
-  // ── Pooja / Traditional Products ──────────────────────────────
+  // ── Camphor Products ──────────────────────────────────────────
   {
     id: 'pp-bhimseni',
     name: 'Bhimseni / Pachi Karpooram',
     slug: 'bhimseni-pachi-karpooram',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Pure traditional Bhimseni camphor flakes for residue-free temple and home prayer burning.',
     description: 'Bhimseni camphor (also known as Pachi Karpooram in Tamil) is a traditionally preferred camphor form for temple and home pooja rituals, valued for burning without residue. Diffuses a pure, calming aroma that clears negative energies.',
     appearance: 'White crystalline flakes',
@@ -218,7 +218,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'kct-rs1',
     name: 'Kalasam Camphor Rs1',
     slug: 'kalasam-camphor-rs1',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Budget-friendly pure camphor tablets in Rs1 pocket format.',
     description: 'Kalasam Camphor Rs1 Tablets are premium refined pure camphor tablets in a convenient pocket/strip format. Formulated for a residue-free clean burn, perfect for daily home prayers and light worship needs.',
     specifications: [
@@ -250,7 +250,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'kct-rs2',
     name: 'Kalasam Camphor Rs2',
     slug: 'kalasam-camphor-rs2',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Refined pure camphor tablets in Rs2 retail strip format.',
     description: 'Kalasam Camphor Rs2 Tablets are pure, refined camphor tablets packed cleanly in a budget-friendly size. Burning with a bright, smokeless flame, it is ideal for daily aarti and home purification.',
     specifications: [
@@ -281,7 +281,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'kct-rs5',
     name: 'Kalasam Camphor Rs5',
     slug: 'kalasam-camphor-rs5',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Traditional round camphor tablets in Rs5 covers, available in 2 packing sizes.',
     description: 'Kalasam Camphor Rs5 Tablets are the standard value-pack round tablets preferred by households across South India. Burns cleanly leaving zero black ash or soot behind, ensuring a pure devotional atmosphere.',
     specifications: [
@@ -321,7 +321,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'kct-rs10',
     name: 'Kalasam Camphor Rs10',
     slug: 'kalasam-camphor-rs10',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Premium round camphor tablets in Rs10 covers, available in 2 packing sizes.',
     description: 'Kalasam Camphor Rs10 Tablets offer a generous count of highly compressed pure camphor tablets. The choice of 40-pack or 20-pack formats makes it convenient for retail shops and regular daily home prayers.',
     specifications: [
@@ -353,23 +353,28 @@ export const seedProducts: Partial<Product>[] = [
     order: 13,
     seo: {
       metaTitle: 'Kalasam Camphor Rs10 Tablets | Pooja Camphor — 2 Pack Sizes',
-      metaDescription: 'Kalasam Camphor Rs10 round tablets, available in 40-pack or 20-pack covers. Bulk-friendly pooja camphor from Theni, India.',
-      keywords: 'camphor tablets Rs10, Kalasam camphor Rs10, bulk pooja camphor pack'
+      metaDescription: 'Kalasam Camphor Rs10 round tablets, 40-pack or 20-pack covers. Refined pure camphor for daily home prayers and temple aarti. Made in Theni, India.',
+      keywords: 'camphor tablets Rs10, pooja camphor 20 pack, Kalasam camphor Rs10'
     }
   },
   {
     id: 'kct-15g',
     name: 'Kalasam Camphor 15G',
     slug: 'kalasam-camphor-15g',
-    category: 'Pooja Products',
-    shortDescription: '15g premium refined camphor tablets in custom shapes.',
-    description: 'Kalasam Camphor 15G retail packs offer exactly weighed premium refined camphor tablets. Available in three custom shapes (Big Round, Small Round, or flat Tablet-Shape) to meet regional preferences and retail packaging requirements.',
+    category: 'Camphor',
+    shortDescription: 'Kalasam pure camphor tablets in 15g pack format, available in 4 tablet shapes.',
+    description: 'Kalasam Camphor 15g Tablets provide an ideal quantity of premium clean-burning camphor for weekly household pooja. Available in Big Round, Small Round, Square, and Tablet-Shape options.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Pack Weight', value: '15 Grams' },
+      { label: 'Shape Options', value: 'Big Round, Small Round, Square, Tablet-Shape' }
+    ],
     variants: [
       {
         id: 'kct-15g-v1',
         sku: 'KC012',
         attributes: { shape: 'Big Round' },
-        packingType: '33 Pack Half-Kg Cover',
+        packingType: '20 Pack Half-Kg Cover',
         materialType: 'Big Round Tablets',
         customPackingAvailable: true,
         sortOrder: 1
@@ -378,7 +383,7 @@ export const seedProducts: Partial<Product>[] = [
         id: 'kct-15g-v2',
         sku: 'KC013',
         attributes: { shape: 'Small Round' },
-        packingType: '33 Pack Half-Kg Cover',
+        packingType: '20 Pack Half-Kg Cover',
         materialType: 'Small Round Tablets',
         customPackingAvailable: true,
         sortOrder: 2
@@ -386,53 +391,67 @@ export const seedProducts: Partial<Product>[] = [
       {
         id: 'kct-15g-v3',
         sku: 'KC014',
-        attributes: { shape: 'Tablet-Shape' },
-        packingType: '33 Pack Half-Kg Cover',
-        materialType: 'Tablet-shaped Camphor',
+        attributes: { shape: 'Square' },
+        packingType: '20 Pack Half-Kg Cover',
+        materialType: 'Square Tablets',
         customPackingAvailable: true,
         sortOrder: 3
+      },
+      {
+        id: 'kct-15g-v4',
+        sku: 'KC015',
+        attributes: { shape: 'Tablet-Shape' },
+        packingType: '20 Pack Half-Kg Cover',
+        materialType: 'Tablet-shaped Camphor',
+        customPackingAvailable: true,
+        sortOrder: 4
       }
     ],
     images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 14,
     seo: {
-      metaTitle: 'Kalasam Camphor Tablets 15g | Big Round, Small Round & Tablet-Shape',
-      metaDescription: '15g Kalasam camphor tablets, choice of big round, small round, or tablet-shaped. 33 packs per half-kg cover. Pure pooja camphor, Theni, India.',
-      keywords: '15g camphor tablets, Kalasam camphor 15 gram, round camphor tablets, tablet shape camphor pooja'
+      metaTitle: 'Kalasam Camphor Tablets 15g | 4 Shapes Available',
+      metaDescription: '15g Kalasam camphor tablets in Big Round, Small Round, Square & Tablet-Shape. 20 packs per half-kg cover. Pure camphor made in Theni, India.',
+      keywords: '15g camphor tablets, Kalasam camphor 15 gram, square camphor tablets, pooja camphor shapes'
     }
   },
   {
     id: 'kct-20g',
     name: 'Kalasam Camphor 20G',
     slug: 'kalasam-camphor-20g',
-    category: 'Pooja Products',
-    shortDescription: '20g premium refined camphor tablets in custom shapes.',
-    description: 'Kalasam Camphor 20G is a mid-sized retail pack ideal for monthly household prayer supplies. The tablets are manufactured to burn for a long duration, casting a clear flame with a pleasant therapeutic aroma.',
+    category: 'Camphor',
+    shortDescription: 'Kalasam pure camphor tablets in 20g format, available in 3 tablet shapes.',
+    description: 'Kalasam Camphor 20g Tablets are prepared from pure refined camphor, pressed into durable, easy-to-light tablets. Available in Big Round, Small Round, and Tablet-Shape formats.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Pack Weight', value: '20 Grams' },
+      { label: 'Shape Options', value: 'Big Round, Small Round, Tablet-Shape' }
+    ],
     variants: [
       {
         id: 'kct-20g-v1',
-        sku: 'KC015',
+        sku: 'KC016',
         attributes: { shape: 'Big Round' },
-        packingType: '25 Pack Half-Kg Cover',
+        packingType: '20 Pack Half-Kg Cover',
         materialType: 'Big Round Tablets',
         customPackingAvailable: true,
         sortOrder: 1
       },
       {
         id: 'kct-20g-v2',
-        sku: 'KC016',
+        sku: 'KC017',
         attributes: { shape: 'Small Round' },
-        packingType: '25 Pack Half-Kg Cover',
+        packingType: '20 Pack Half-Kg Cover',
         materialType: 'Small Round Tablets',
         customPackingAvailable: true,
         sortOrder: 2
       },
       {
         id: 'kct-20g-v3',
-        sku: 'KC017',
+        sku: 'KC018',
         attributes: { shape: 'Tablet-Shape' },
-        packingType: '25 Pack Half-Kg Cover',
+        packingType: '20 Pack Half-Kg Cover',
         materialType: 'Tablet-shaped Camphor',
         customPackingAvailable: true,
         sortOrder: 3
@@ -443,21 +462,26 @@ export const seedProducts: Partial<Product>[] = [
     order: 15,
     seo: {
       metaTitle: 'Kalasam Camphor Tablets 20g | Big Round, Small Round & Tablet-Shape',
-      metaDescription: '20g Kalasam camphor tablets in three shapes — big round, small round, tablet-shape. 25 packs per half-kg cover. Manufactured in Theni, India.',
-      keywords: '20g camphor tablets, Kalasam camphor 20 gram, pooja camphor half kg cover'
+      metaDescription: '20g Kalasam camphor tablets in 3 shapes, 20 packs per half-kg cover. Premium pooja camphor from Theni, India.',
+      keywords: '20g camphor tablets, Kalasam camphor 20 gram, round camphor tablets'
     }
   },
   {
     id: 'kct-25g',
     name: 'Kalasam Camphor 25G',
     slug: 'kalasam-camphor-25g',
-    category: 'Pooja Products',
-    shortDescription: '25g premium refined camphor tablets in custom shapes.',
-    description: 'Kalasam Camphor 25G retail packs deliver pure, high-potency camphor tablets in a selection of shape configurations. Sourced by distributors for regional retail chains across India.',
+    category: 'Camphor',
+    shortDescription: 'Kalasam pure camphor tablets in 25g packs, available in 3 tablet shapes.',
+    description: 'Kalasam Camphor 25g Tablets offer an extended-use pooja pack suitable for regular temple visits, festival preparations, and daily home aarti.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Pack Weight', value: '25 Grams' },
+      { label: 'Shape Options', value: 'Big Round, Small Round, Tablet-Shape' }
+    ],
     variants: [
       {
         id: 'kct-25g-v1',
-        sku: 'KC018',
+        sku: 'KC019',
         attributes: { shape: 'Big Round' },
         packingType: '20 Pack Half-Kg Cover',
         materialType: 'Big Round Tablets',
@@ -466,7 +490,7 @@ export const seedProducts: Partial<Product>[] = [
       },
       {
         id: 'kct-25g-v2',
-        sku: 'KC019',
+        sku: 'KC020',
         attributes: { shape: 'Small Round' },
         packingType: '20 Pack Half-Kg Cover',
         materialType: 'Small Round Tablets',
@@ -475,7 +499,7 @@ export const seedProducts: Partial<Product>[] = [
       },
       {
         id: 'kct-25g-v3',
-        sku: 'KC020',
+        sku: 'KC021',
         attributes: { shape: 'Tablet-Shape' },
         packingType: '20 Pack Half-Kg Cover',
         materialType: 'Tablet-shaped Camphor',
@@ -487,63 +511,64 @@ export const seedProducts: Partial<Product>[] = [
     status: 'active',
     order: 16,
     seo: {
-      metaTitle: 'Kalasam Camphor Tablets 25g | Big Round, Small Round & Tablet-Shape',
-      metaDescription: '25g Kalasam camphor tablets — big round, small round, or tablet-shape. 20 packs per half-kg cover. Pure pooja camphor from Theni, India.',
-      keywords: '25g camphor tablets, Kalasam camphor 25 gram, pooja camphor wholesale pack'
+      metaTitle: 'Kalasam Camphor Tablets 25g | 3 Shape Variations',
+      metaDescription: '25g Kalasam camphor tablets, available in 3 shapes, 20 packs per half-kg cover. Long-burning pure pooja camphor from Theni, India.',
+      keywords: '25g camphor tablets, Kalasam camphor 25 gram, pooja camphor tablets wholesale'
     }
   },
   {
     id: 'kct-40g',
     name: 'Kalasam Camphor 40G',
     slug: 'kalasam-camphor-40g',
-    category: 'Pooja Products',
-    shortDescription: '40g premium refined camphor tablets in custom shapes.',
-    description: 'Kalasam Camphor 40G tablets are perfect for temples, festive seasons, and larger devotional ceremonies. Highly refined composition guarantees 100% ash-free combustion.',
+    category: 'Camphor',
+    shortDescription: 'Larger 40g format Kalasam pure camphor tablets, available in 2 shapes.',
+    description: 'Kalasam Camphor 40g Tablets are ideal for households with daily multi-aarti rituals and small temples. High-density compression ensures steady, complete burning.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Pack Weight', value: '40 Grams' },
+      { label: 'Shape Options', value: 'Big Round, Small Round' }
+    ],
     variants: [
       {
         id: 'kct-40g-v1',
-        sku: 'KC021',
+        sku: 'KC022',
         attributes: { shape: 'Big Round' },
-        packingType: '12 Pack Half-Kg Cover',
+        packingType: '10 Pack Half-Kg Cover',
         materialType: 'Big Round Tablets',
         customPackingAvailable: true,
         sortOrder: 1
       },
       {
         id: 'kct-40g-v2',
-        sku: 'KC022',
+        sku: 'KC023',
         attributes: { shape: 'Small Round' },
-        packingType: '12 Pack Half-Kg Cover',
+        packingType: '10 Pack Half-Kg Cover',
         materialType: 'Small Round Tablets',
         customPackingAvailable: true,
         sortOrder: 2
-      },
-      {
-        id: 'kct-40g-v3',
-        sku: 'KC023',
-        attributes: { shape: 'Tablet-Shape' },
-        packingType: '12 Pack Half-Kg Cover',
-        materialType: 'Tablet-shaped Camphor',
-        customPackingAvailable: true,
-        sortOrder: 3
       }
     ],
     images: ['/images/products/synthetic-camphor.png'],
     status: 'active',
     order: 17,
     seo: {
-      metaTitle: 'Kalasam Camphor Tablets 40g | Big Round, Small Round & Tablet-Shape',
-      metaDescription: '40g Kalasam camphor tablets, 3 shape options, 12 packs per half-kg cover. Trusted pooja camphor manufacturer, Theni, India.',
-      keywords: '40g camphor tablets, Kalasam camphor 40 gram, large camphor tablets pooja'
+      metaTitle: 'Kalasam Camphor Tablets 40g | Big Round & Small Round',
+      metaDescription: '40g Kalasam camphor tablets, 2 shape options, 10 packs per half-kg cover. High-density pure camphor for pooja. Made in Theni, India.',
+      keywords: '40g camphor tablets, Kalasam camphor 40 gram, large camphor pack'
     }
   },
   {
     id: 'kct-50g',
     name: 'Kalasam Camphor 50G',
     slug: 'kalasam-camphor-50g',
-    category: 'Pooja Products',
-    shortDescription: '50g premium refined camphor tablets in custom shapes.',
-    description: 'Kalasam Camphor 50G is the largest standard retail box pack offered. Combining long burning times with an authentic camphoraceous aroma, it is the preferred choice for major rituals and temple use.',
+    category: 'Camphor',
+    shortDescription: 'Generous 50g packs of Kalasam pure camphor tablets, available in 3 tablet shapes.',
+    description: 'Kalasam Camphor 50g Tablets are designed for regular temple donors, large households, and community prayer events. Burns completely without ash residue.',
+    specifications: [
+      { label: 'Purity', value: 'Technical Spec Placeholder' },
+      { label: 'Pack Weight', value: '50 Grams' },
+      { label: 'Shape Options', value: 'Big Round, Small Round, Tablet-Shape' }
+    ],
     variants: [
       {
         id: 'kct-50g-v1',
@@ -586,7 +611,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'kct-bulk',
     name: 'Kalasam Camphor Tablets (Bulk, Half/1kg)',
     slug: 'kalasam-camphor-tablets-bulk',
-    category: 'Pooja Products',
+    category: 'Camphor',
     shortDescription: 'Wholesale bulk packs of Kalasam camphor tablets in 500g and 1kg sizes.',
     description: 'Kalasam Camphor Tablets Bulk Packs are specifically prepared for wholesale buyers, packaging distributors, and major religious institutions. Offered in half-kilogram and one-kilogram packs in three shape variants.',
     variants: [
@@ -633,7 +658,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-50ml',
     name: 'Kalasam Lamp Oil 50ml',
     slug: 'kalasam-lamp-oil-50ml',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Pure lamp oil in a compact 50ml bottle for daily household pooja.',
     description: 'A small, everyday-use bottle of pure lamp oil for daily household pooja and diya (oil lamp) lighting — positioned as the entry-size option for individual/home buyers.',
     specifications: [
@@ -686,7 +711,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-100ml',
     name: 'Kalasam Lamp Oil 100ml',
     slug: 'kalasam-lamp-oil-100ml',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Pure lamp oil in a 100ml bottle for regular daily household worship.',
     description: 'A step-up household size from the 50ml bottle, suited to regular daily-use households or small shrines.',
     specifications: [
@@ -739,7 +764,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-200ml',
     name: 'Kalasam Lamp Oil 200ml',
     slug: 'kalasam-lamp-oil-200ml',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Pure lamp oil available in 200ml or 250ml bottles for regular household and small temple use.',
     description: 'A mid-size lamp oil bottle available in two close fill options (200ml or 250ml) to suit different bottle preferences, ideal for regular household or small temple use.',
     specifications: [
@@ -802,7 +827,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-500ml',
     name: 'Kalasam Lamp Oil 500ml',
     slug: 'kalasam-lamp-oil-500ml',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Pure lamp oil in 500ml or 450ml bottles for temples, shops, and regular bulk household use.',
     description: 'A larger household/small-institutional size, available in two close fill options, suited to shops restocking regularly or larger family shrines.',
     specifications: [
@@ -865,7 +890,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-1000ml',
     name: 'Kalasam Lamp Oil 1000ml',
     slug: 'kalasam-lamp-oil-1000ml',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Pure lamp oil in 1 litre or 900ml bottles for temples, retail stock, and bulk household use.',
     description: 'A full-litre size (with a 900ml alternate fill option) aimed at retail shop stock and temple/institutional buyers who go through lamp oil regularly. This size range is ideal for temples and institutions — see our dedicated temple supply program at /temple-supply for institutional pricing.',
     specifications: [
@@ -928,7 +953,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-16l',
     name: 'Kalasam Lamp Oil 16L Tin',
     slug: 'kalasam-lamp-oil-16l-tin',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Bulk 16 litre tin of pure lamp oil for temples, trusts, and institutional buyers.',
     description: 'A bulk institutional size built for temples, trusts, and large-scale daily-use religious institutions — this is not a retail household product, but a dedicated institutional supply format. See our Temple Supply program at /temple-supply for institutional pricing and recurring order setup.',
     specifications: [
@@ -981,7 +1006,7 @@ export const seedProducts: Partial<Product>[] = [
     id: 'klo-210l',
     name: 'Kalasam Lamp Oil 210L Barrel',
     slug: 'kalasam-lamp-oil-210l-barrel',
-    category: 'Pooja Products',
+    category: 'Lamp Oil',
     shortDescription: 'Wholesale 210 litre barrel of pure lamp oil for distributors, wholesale buyers, and Super Stockists.',
     description: 'The largest bulk size, aimed squarely at wholesale buyers, distributors, and Super Stockists needing drum-scale volume rather than individual bottles. See our wholesale program at /wholesale, distributor opportunities at /distributors, or Super Stockist program at /super-stockist for trade pricing and terms.',
     specifications: [

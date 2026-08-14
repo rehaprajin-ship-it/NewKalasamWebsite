@@ -116,3 +116,66 @@ export const CERTIFICATIONS = [
 
 export const SITE_URL = 'https://kalasamjaikrishna.co.in';
 export const SITE_NAME = 'Jaikrishna Industries';
+
+// ── Product Categories (6 Core Categories) ─────────────────────
+
+export const PRODUCT_CATEGORIES = [
+  {
+    name: 'Industrial Product',
+    slug: 'industrial-product',
+    label: 'Industrial Product',
+    description: 'Bulk industrial chemical inputs including synthetic camphor powder, D-camphor, isoborneol flakes, and camphor oil for pharmaceutical, fragrance, and chemical synthesis buyers.',
+    metaTitle: 'Industrial Chemical Products Manufacturer — Synthetic Camphor, Isoborneol | Kalasam',
+    metaDescription: 'Certified bulk manufacturer of industrial chemical products from Theni, India. High-purity synthetic camphor powder, D-camphor, isoborneol flakes, and camphor oil.',
+    keywords: 'industrial chemical products, synthetic camphor bulk, isoborneol manufacturer India, D-camphor supplier',
+  },
+  {
+    name: 'Camphor',
+    slug: 'camphor',
+    label: 'Camphor',
+    description: 'The core pooja camphor range — pure natural Bhimseni (Pachi) Karpooram and the complete Kalasam Camphor Tablets line across all sizes, formats, and price points.',
+    metaTitle: 'Pure Refined Camphor Tablets & Bhimseni Karpooram Wholesale | Kalasam',
+    metaDescription: 'Buy pure refined camphor tablets and Bhimseni Pachi Karpooram wholesale. Clean-burning, residue-free pooja camphor direct from factory in Theni, India.',
+    keywords: 'camphor tablets, pooja camphor, Bhimseni camphor, Pachi Karpooram, wholesale camphor India',
+  },
+  {
+    name: 'Lamp Oil',
+    slug: 'lamp-oil',
+    label: 'Lamp Oil',
+    description: 'Pure pooja lamp oil across household bottles (50ml–1000ml), institutional 16L tins, and wholesale 210L drums for continuous, low-smoke diya and temple deepam lighting.',
+    metaTitle: 'Pure Pooja Lamp Oil & Temple Deepam Oil Wholesale | Kalasam',
+    metaDescription: 'Pure pooja lamp oil from 50ml retail bottles to 16L institutional tins and 210L wholesale barrels. Low smoke, steady flame for daily pooja and temple lighting.',
+    keywords: 'lamp oil for pooja, deepam oil, temple lamp oil, pure pooja oil wholesale, 16L lamp oil tin',
+  },
+  {
+    name: 'Agarbathi',
+    slug: 'agarbathi',
+    label: 'Agarbathi',
+    description: 'Premium hand-rolled incense sticks in traditional fragrances including Jasmine, Sandalwood, and Black Rose for daily devotional and aromatic atmosphere.',
+    metaTitle: 'Premium Hand-Rolled Agarbathi & Incense Sticks Wholesale | Kalasam',
+    metaDescription: 'Hand-rolled devotional agarbathi and incense sticks in Rose, Sandalwood, and Jasmine fragrances. Direct manufacturer wholesale supply from Theni, India.',
+    keywords: 'agarbathi wholesale, incense sticks India, pooja agarbathi, hand rolled incense',
+  },
+  {
+    name: 'Sambrani',
+    slug: 'sambrani',
+    label: 'Sambrani',
+    description: 'Divine benzoin resin cup sambrani and computer sambrani dhoop for traditional temple fumigation, air purification, and sanctum rituals.',
+    metaTitle: 'Natural Cup Sambrani & Computer Sambrani Manufacturer | Kalasam',
+    metaDescription: 'Natural benzoin resin cup sambrani and computer sambrani manufacturer. High-quality bulk pooja supply for temples and retailers. Low smoke, divine aroma.',
+    keywords: 'cup sambrani, computer sambrani, dhoop cups, benzoin resin sambrani, temple sambrani',
+  },
+  {
+    name: 'Rose Water',
+    slug: 'rose-water',
+    label: 'Rose Water',
+    description: 'Traditional steam-distilled pure rose water formulated for abhishekam rituals, devotional use, and ceremonial pooja preparations.',
+    metaTitle: 'Pure Steam-Distilled Rose Water Bulk Manufacturer | Kalasam',
+    metaDescription: 'Pure steam-distilled rose water for temple abhishekam, devotional rituals, and household pooja use. Direct manufacturer supply from Theni, India.',
+    keywords: 'rose water for pooja, abhishekam rose water, pure rose water bulk manufacturer',
+  },
+] as const;
+
+export const CATEGORY_NAMES = PRODUCT_CATEGORIES.map((c) => c.name);
+export const CATEGORY_SLUGS = PRODUCT_CATEGORIES.map((c) => c.slug);
+

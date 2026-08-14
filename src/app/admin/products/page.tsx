@@ -10,41 +10,43 @@ import { getProducts, saveProduct, removeProduct } from '@/lib/firestore';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 import type { Product, ProductCategory } from '@/types';
 import { seedProducts } from '@/data/products';
+import { PRODUCT_CATEGORIES } from '@/lib/constants';
+
+const CATEGORIES: ProductCategory[] = PRODUCT_CATEGORIES.map((c) => c.name as ProductCategory);
 
 // Zod Validation Schema
 const productSchema = z.object({
   id: z.string().optional(),
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  slug: z.string().min(2, 'Slug is required'),
-  category: z.enum([
-    'Industrial Chemicals',
-    'Pooja Products',
-    'Camphor',
-    'Sambrani',
-    'Agarbathi',
-    'Lamp Oil',
-    'Rose Water',
-    'Temple Products',
-    'Pooja Accessories'
-  ] as const),
+  name: z.string().min(2, 'Name must have at least 2 characters'),
+  slug: z.string().min(2, 'Valid slug required').regex(/^[a-z0-9-]+$/, 'Lower alphanumeric and dashes only'),
+  category: z.string().min(1, 'Category is required'),
   subcategory: z.string().optional(),
-  shortDescription: z.string().min(5, 'Short description is required'),
-  description: z.string().min(10, 'Full description is required'),
-  images: z.array(z.string()).min(1, 'At least one product image is required'),
+  shortDescription: z.string().min(10, 'Short description is required'),
+  description: z.string().min(20, 'Detailed description is required'),
+  images: z.array(z.string()).default([]),
   thumbnail: z.string().optional(),
   casNumber: z.string().optional(),
   molecularFormula: z.string().optional(),
   molecularWeight: z.string().optional(),
   purity: z.string().optional(),
   appearance: z.string().optional(),
-  status: z.enum(['active', 'draft', 'archived'] as const),
-  featured: z.boolean(),
-  bestseller: z.boolean(),
-  exportAvailable: z.boolean(),
-  oemAvailable: z.boolean(),
-  privateLabelAvailable: z.boolean(),
-  order: z.number(),
-  sortOrder: z.number().int().optional(),
+  status: z.enum(['active', 'draft', 'archived']).default('active'),
+  featured: z.boolean().default(false),
+  bestseller: z.boolean().default(false),
+  exportAvailable: z.boolean().default(false),
+  oemAvailable: z.boolean().default(false),
+  privateLabelAvailable: z.boolean().default(false),
+  order: z.number().optional(),
+  sortOrder: z.number().optional(),
+  variants: z.array(z.object({
+    id: z.string(),
+    sku: z.string(),
+    attributes: z.record(z.string(), z.string()),
+    packingType: z.string(),
+    materialType: z.string(),
+    customPackingAvailable: z.boolean(),
+    sortOrder: z.number().optional()
+  })).optional(),
   seo: z.object({
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
@@ -53,18 +55,6 @@ const productSchema = z.object({
 });
 
 type ProductFormData = z.infer<typeof productSchema>;
-
-const CATEGORIES: ProductCategory[] = [
-  'Industrial Chemicals',
-  'Pooja Products',
-  'Camphor',
-  'Sambrani',
-  'Agarbathi',
-  'Lamp Oil',
-  'Rose Water',
-  'Temple Products',
-  'Pooja Accessories'
-];
 
 export default function AdminProductsCMS() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -77,7 +67,7 @@ export default function AdminProductsCMS() {
 
   // Reordering State
   const [isReorderMode, setIsReorderMode] = useState(false);
-  const [activeReorderCategory, setActiveReorderCategory] = useState<ProductCategory>('Industrial Chemicals');
+  const [activeReorderCategory, setActiveReorderCategory] = useState<ProductCategory>(CATEGORIES[0]);
   const [reorderList, setReorderList] = useState<Product[]>([]);
 
   const {
@@ -88,11 +78,11 @@ export default function AdminProductsCMS() {
     reset,
     formState: { errors }
   } = useForm<ProductFormData>({
-    resolver: zodResolver(productSchema),
+    resolver: zodResolver(productSchema) as any,
     defaultValues: {
       name: '',
       slug: '',
-      category: 'Industrial Chemicals',
+      category: 'Industrial Product',
       subcategory: '',
       shortDescription: '',
       description: '',
@@ -111,6 +101,7 @@ export default function AdminProductsCMS() {
       privateLabelAvailable: false,
       order: 0,
       sortOrder: undefined,
+      variants: [],
       seo: {
         metaTitle: '',
         metaDescription: '',
@@ -121,7 +112,7 @@ export default function AdminProductsCMS() {
 
   const watchName = watch('name') || 'Product Name';
   const watchSlug = watch('slug') || 'product-slug';
-  const watchCategory = watch('category') || 'Industrial Chemicals';
+  const watchCategory = watch('category') || 'Industrial Product';
   const watchPurity = watch('purity') || '≥ 96%';
   const watchCasNumber = watch('casNumber') || '76-22-2';
   const watchShortDesc = watch('shortDescription') || 'Configure short descriptions here...';
@@ -416,7 +407,7 @@ export default function AdminProductsCMS() {
           'Perfumery and Aroma Compounds Processing'
         ]
       };
-      await saveProduct(enrichedData, editingId || undefined);
+      await saveProduct(enrichedData as unknown as Partial<Product>, editingId || undefined);
       setIsModalOpen(false);
       loadCatalog();
     } catch (err: any) {
@@ -465,6 +456,32 @@ export default function AdminProductsCMS() {
             + Add Product
           </button>
         </div>
+      </div>
+
+      {/* Category Overview Summary Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {CATEGORIES.map((cat) => {
+          const count = products.filter((p) => p.category === cat).length;
+          return (
+            <div
+              key={cat}
+              onClick={() => {
+                setSearch(cat === search ? '' : cat);
+              }}
+              className={`p-3.5 rounded-[14px] border transition-all cursor-pointer ${
+                search === cat
+                  ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-500/20'
+                  : 'bg-white border-gray-200/80 hover:border-gray-300 shadow-2xs'
+              }`}
+            >
+              <p className="text-[11px] font-700 text-gray-500 truncate">{cat}</p>
+              <p className="text-xl font-900 text-gray-900 mt-1">
+                {count}{' '}
+                <span className="text-[10px] font-600 text-gray-400">SKUs</span>
+              </p>
+            </div>
+          );
+        })}
       </div>
 
       {/* Filter and Search / Reorder Controls */}
