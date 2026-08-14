@@ -37,9 +37,19 @@ const nextConfig: NextConfig = {
       { source: '/products/cup-sambrani-jar-new', destination: '/products/kalasam-cup-sambrani', permanent: true },
       { source: '/products/computer-sambrani-new', destination: '/products/kalasam-computer-sambrani', permanent: true },
       { source: '/products/1000-ml-deepam-oil', destination: '/products/temple-dharisana-lamp-oil', permanent: true },
-      // Duplicate Blog Post redirects to stronger consolidated pages
+      // Duplicate Blog Post redirects — "Tamil Nadu Chemical Industrial Parks" template family (5 variants → 1 canonical)
       { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-d-camphor', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-camphor-tablets', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-isoborneol-flakes', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-sambrani-cups', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      { source: '/blog/tamil-nadu-chemical-industrial-parks-infrastructure-supporting-rose-water', destination: '/blog/india-camphor-export-market-guide', permanent: true },
+      // Duplicate Blog Post redirects — "Catalytic Isomerization Innovations" template family (6 variants → 1 canonical)
       { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-sambrani-cups', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-isoborneol-flakes', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-camphor-tablets', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-rose-water', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-rose-water-volume-9', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
+      { source: '/blog/catalytic-isomerization-innovations-for-synthesizing-d-camphor', destination: '/blog/what-is-isoborneol-properties-uses', permanent: true },
     ];
   },
   async headers() {
