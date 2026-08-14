@@ -106,16 +106,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 /* ── Static params for pre-rendering ──────────────────────── */
 export async function generateStaticParams() {
-  let products: any[] = [];
+  let firestoreProducts: any[] = [];
   try {
-    products = await getProducts();
+    firestoreProducts = await getProducts();
   } catch (e) {}
 
-  if (!products || products.length === 0) {
-    products = seedProducts as any[];
-  }
+  // Merge seedProducts with firestoreProducts deduplicated by slug
+  const allProducts = [...(seedProducts as any[])];
+  firestoreProducts.forEach((fp) => {
+    if (!allProducts.some((p) => p.slug === fp.slug)) {
+      allProducts.push(fp);
+    }
+  });
 
-  return products
+  return allProducts
     .filter((p) => p.slug)
     .map((p) => ({ slug: p.slug }));
 }

@@ -52,6 +52,30 @@ export default function WholesalePage() {
         </div>
       </section>
 
+      {/* Featured Bulk Supply Products */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <SectionHeader overline="Bulk Offerings" title="Featured Wholesale & Industrial SKUs" subtitle="High-volume drum, tin, and carton formats ready for immediate wholesale dispatch." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <Link href="/products/kalasam-lamp-oil-210l-barrel" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Bulk Drum / Barrel</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 210L Barrel</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Direct drum-scale pure pooja lamp oil supply for wholesale distributors, repackaging operations, and large dealers.</p>
+            </Link>
+            <Link href="/products/kalasam-lamp-oil-16l-tin" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Institutional Tin</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 16L Tin</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">16-litre tin packaging ideal for wholesale stockists catering to temple trusts, devasthanams, and retail supply.</p>
+            </Link>
+            <Link href="/products/kalasam-camphor-tablets-bulk" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Bulk Camphor</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Camphor Tablets (Bulk)</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Half-kg and 1kg wholesale master packs in Big Round, Small Round, and Tablet-Shape options.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-primary">
         <div className="container-custom text-center">
           <ScrollReveal>

@@ -626,5 +626,408 @@ export const seedProducts: Partial<Product>[] = [
       metaDescription: 'Bulk Kalasam camphor tablets in half-kg or 1kg packs, 3 shape options. Ideal for distributors, temples & wholesale buyers. Theni, India.',
       keywords: 'bulk camphor tablets, wholesale camphor pooja, 1kg camphor pack India, camphor tablets distributor'
     }
+  },
+
+  // ── Kalasam Lamp Oil Range ──────────────────────────────────────
+  {
+    id: 'klo-50ml',
+    name: 'Kalasam Lamp Oil 50ml',
+    slug: 'kalasam-lamp-oil-50ml',
+    category: 'Pooja Products',
+    shortDescription: 'Pure lamp oil in a compact 50ml bottle for daily household pooja.',
+    description: 'A small, everyday-use bottle of pure lamp oil for daily household pooja and diya (oil lamp) lighting — positioned as the entry-size option for individual/home buyers.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume', value: '50ml' },
+      { label: 'Packing', value: 'Bottle' }
+    ],
+    applications: [
+      'Daily household pooja and aarti',
+      'Diya and agal vilakku lighting',
+      'Small home shrines and prayer rooms',
+      'Travel-size pooja essentials',
+    ],
+    benefits: [
+      'Pure lamp oil for clean, steady flame',
+      'Compact size ideal for daily home use',
+      'Low-smoke burn for indoor worship',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '50', unit: 'ml', description: '50ml bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this lamp oil suitable for brass diyas?', answer: 'Yes, Kalasam pure lamp oil is suitable for all types of traditional brass, copper, and clay diyas and agal vilakkus.' }
+    ],
+    variants: [
+      {
+        id: 'klo-50ml-v1',
+        sku: 'KL030',
+        attributes: { volume: '50ml' },
+        packingType: '50ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 30,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 50ml | Pure Pooja Lamp Oil',
+      metaDescription: 'Kalasam pure lamp oil, 50ml bottle. Ideal for daily pooja and diya lighting at home. Manufactured by Kalasam, Theni, India.',
+      keywords: 'lamp oil for pooja, Kalasam lamp oil 50ml, pure lamp oil small bottle, diya oil India, agal vilakku oil'
+    }
+  },
+  {
+    id: 'klo-100ml',
+    name: 'Kalasam Lamp Oil 100ml',
+    slug: 'kalasam-lamp-oil-100ml',
+    category: 'Pooja Products',
+    shortDescription: 'Pure lamp oil in a 100ml bottle for regular daily household worship.',
+    description: 'A step-up household size from the 50ml bottle, suited to regular daily-use households or small shrines.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume', value: '100ml' },
+      { label: 'Packing', value: 'Bottle' }
+    ],
+    applications: [
+      'Daily household pooja and aarti',
+      'Diya and agal vilakku lighting',
+      'Small shrines and home temples',
+      'Neighbourhood shops and kirana stores',
+    ],
+    benefits: [
+      'Pure lamp oil for clean, steady flame',
+      'Regular household size for daily use',
+      'Low-smoke burn for indoor worship',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '100', unit: 'ml', description: '100ml bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'How long does 100ml of lamp oil last?', answer: 'Approximately 8-12 hours of continuous diya lighting depending on wick size, making it suitable for 1-2 weeks of daily household pooja use.' }
+    ],
+    variants: [
+      {
+        id: 'klo-100ml-v1',
+        sku: 'KL031',
+        attributes: { volume: '100ml' },
+        packingType: '100ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 31,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 100ml | Pure Pooja Lamp Oil',
+      metaDescription: 'Kalasam pure lamp oil, 100ml bottle. Trusted lamp oil for daily worship and diya lighting. Made in Theni, India.',
+      keywords: 'lamp oil 100ml, pure diya oil, Kalasam lamp oil, pooja lamp oil bottle'
+    }
+  },
+  {
+    id: 'klo-200ml',
+    name: 'Kalasam Lamp Oil 200ml',
+    slug: 'kalasam-lamp-oil-200ml',
+    category: 'Pooja Products',
+    shortDescription: 'Pure lamp oil available in 200ml or 250ml bottles for regular household and small temple use.',
+    description: 'A mid-size lamp oil bottle available in two close fill options (200ml or 250ml) to suit different bottle preferences, ideal for regular household or small temple use.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume Options', value: '200ml / 250ml' },
+      { label: 'Packing', value: 'Bottle' }
+    ],
+    applications: [
+      'Regular household pooja and aarti',
+      'Small temple and shrine daily lighting',
+      'Diya and agal vilakku use',
+      'Retail shop stock',
+    ],
+    benefits: [
+      'Two fill sizes to suit bottle preferences',
+      'Pure lamp oil for clean, steady flame',
+      'Mid-size ideal for regular use households',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '200', unit: 'ml', description: '200ml bottle' },
+      { size: '250', unit: 'ml', description: '250ml bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'What is the difference between the 200ml and 250ml options?', answer: 'Both contain the same pure lamp oil — the only difference is the bottle fill volume. Choose the size that suits your usage and bottle preference.' }
+    ],
+    variants: [
+      {
+        id: 'klo-200ml-v1',
+        sku: 'KL032',
+        attributes: { volume: '200ml' },
+        packingType: '200ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'klo-250ml-v1',
+        sku: 'KL033',
+        attributes: { volume: '250ml' },
+        packingType: '250ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 32,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 200ml | Pure Pooja Lamp Oil — 2 Sizes',
+      metaDescription: 'Kalasam pure lamp oil, available in 200ml or 250ml bottles. Reliable lamp oil for pooja and diya use, from Theni, India.',
+      keywords: 'lamp oil 200ml, lamp oil 250ml, pure pooja oil mid size, Kalasam lamp oil bottle'
+    }
+  },
+  {
+    id: 'klo-500ml',
+    name: 'Kalasam Lamp Oil 500ml',
+    slug: 'kalasam-lamp-oil-500ml',
+    category: 'Pooja Products',
+    shortDescription: 'Pure lamp oil in 500ml or 450ml bottles for temples, shops, and regular bulk household use.',
+    description: 'A larger household/small-institutional size, available in two close fill options, suited to shops restocking regularly or larger family shrines.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume Options', value: '500ml / 450ml' },
+      { label: 'Packing', value: 'Bottle' }
+    ],
+    applications: [
+      'Larger household and family shrine daily use',
+      'Retail shop restocking',
+      'Small temple regular supply',
+      'Community prayer hall lighting',
+    ],
+    benefits: [
+      'Two fill sizes for flexibility',
+      'Pure lamp oil for clean, steady flame',
+      'Economical per-ml cost at larger volume',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '500', unit: 'ml', description: '500ml bottle' },
+      { size: '450', unit: 'ml', description: '450ml bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this size suitable for shop restocking?', answer: 'Yes, the 500ml size is one of the most popular SKUs for kirana stores and retail shops that sell pooja items. Available in carton quantities for wholesale orders.' }
+    ],
+    variants: [
+      {
+        id: 'klo-500ml-v1',
+        sku: 'KL034',
+        attributes: { volume: '500ml' },
+        packingType: '500ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'klo-450ml-v1',
+        sku: 'KL035',
+        attributes: { volume: '450ml' },
+        packingType: '450ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 33,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 500ml | Pure Pooja Lamp Oil — 2 Sizes',
+      metaDescription: 'Kalasam pure lamp oil, available in 500ml or 450ml bottles. Ideal for temples, shops, and regular bulk household use.',
+      keywords: 'lamp oil 500ml, lamp oil 450ml, bulk pooja oil, temple lamp oil supply'
+    }
+  },
+  {
+    id: 'klo-1000ml',
+    name: 'Kalasam Lamp Oil 1000ml',
+    slug: 'kalasam-lamp-oil-1000ml',
+    category: 'Pooja Products',
+    shortDescription: 'Pure lamp oil in 1 litre or 900ml bottles for temples, retail stock, and bulk household use.',
+    description: 'A full-litre size (with a 900ml alternate fill option) aimed at retail shop stock and temple/institutional buyers who go through lamp oil regularly. This size range is ideal for temples and institutions — see our dedicated temple supply program at /temple-supply for institutional pricing.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume Options', value: '1000ml / 900ml' },
+      { label: 'Packing', value: 'Bottle' }
+    ],
+    applications: [
+      'Temple and institutional daily lamp supply',
+      'Retail shop bulk stock',
+      'Large household and multi-diya setups',
+      'Festival and event lighting',
+    ],
+    benefits: [
+      'Best per-ml value in bottle range',
+      'Two fill sizes for flexibility',
+      'Pure lamp oil for clean, steady flame',
+      'Ideal for temple recurring orders',
+    ],
+    packaging: [
+      { size: '1000', unit: 'ml', description: '1000ml (1 litre) bottle' },
+      { size: '900', unit: 'ml', description: '900ml bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Can temples order this size in bulk?', answer: 'Yes, this 1-litre size is popular with temples and institutions. We offer institutional pricing and recurring order schedules — visit our Temple Supply page or contact our team for details.' }
+    ],
+    variants: [
+      {
+        id: 'klo-1000ml-v1',
+        sku: 'KL036',
+        attributes: { volume: '1000ml' },
+        packingType: '1000ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'klo-900ml-v1',
+        sku: 'KL037',
+        attributes: { volume: '900ml' },
+        packingType: '900ml Bottle',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 34,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 1 Litre | Pure Pooja Lamp Oil — 2 Sizes',
+      metaDescription: 'Kalasam pure lamp oil in 1000ml or 900ml bottles. Ideal for temples, retail stock, and bulk household use. From Theni, India.',
+      keywords: 'lamp oil 1 litre, lamp oil 900ml, wholesale pooja lamp oil, temple oil supply India'
+    }
+  },
+  {
+    id: 'klo-16l',
+    name: 'Kalasam Lamp Oil 16L Tin',
+    slug: 'kalasam-lamp-oil-16l-tin',
+    category: 'Pooja Products',
+    shortDescription: 'Bulk 16 litre tin of pure lamp oil for temples, trusts, and institutional buyers.',
+    description: 'A bulk institutional size built for temples, trusts, and large-scale daily-use religious institutions — this is not a retail household product, but a dedicated institutional supply format. See our Temple Supply program at /temple-supply for institutional pricing and recurring order setup.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume', value: '16 Litres' },
+      { label: 'Packing', value: 'Tin' }
+    ],
+    applications: [
+      'Temple and devasthanam daily lamp supply',
+      'Religious trust institutional use',
+      'Large-scale festival and event lighting',
+      'Ashram and monastery recurring supply',
+    ],
+    benefits: [
+      'Bulk institutional packing for high-volume use',
+      'Significant per-litre cost advantage over bottles',
+      'Pure lamp oil for clean, steady flame',
+      'Institutional pricing and recurring order support',
+    ],
+    packaging: [
+      { size: '16', unit: 'L', description: '16 Litre tin' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this suitable for temple trusts?', answer: 'Yes, the 16L tin is designed specifically for institutional temple use. We provide GST-compliant invoices and can set up recurring monthly/quarterly dispatch schedules for temple trusts and devasthanams.' }
+    ],
+    variants: [
+      {
+        id: 'klo-16l-v1',
+        sku: 'KL038',
+        attributes: { volume: '16L' },
+        packingType: '16 L Tin',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 35,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 16L Tin | Bulk Pooja Lamp Oil',
+      metaDescription: 'Bulk Kalasam pure lamp oil, 16 litre tin. Ideal for temples, trusts, and institutional buyers needing large-volume supply. Theni, India.',
+      keywords: 'bulk lamp oil, 16 litre lamp oil tin, temple lamp oil bulk supply, lamp oil for trust institutions'
+    }
+  },
+  {
+    id: 'klo-210l',
+    name: 'Kalasam Lamp Oil 210L Barrel',
+    slug: 'kalasam-lamp-oil-210l-barrel',
+    category: 'Pooja Products',
+    shortDescription: 'Wholesale 210 litre barrel of pure lamp oil for distributors, wholesale buyers, and Super Stockists.',
+    description: 'The largest bulk size, aimed squarely at wholesale buyers, distributors, and Super Stockists needing drum-scale volume rather than individual bottles. See our wholesale program at /wholesale, distributor opportunities at /distributors, or Super Stockist program at /super-stockist for trade pricing and terms.',
+    specifications: [
+      { label: 'Material Type', value: 'Pure' },
+      { label: 'Volume', value: '210 Litres' },
+      { label: 'Packing', value: 'Barrel / Drum' }
+    ],
+    applications: [
+      'Wholesale trade and distribution',
+      'Distributor and Super Stockist stock',
+      'Large-scale institutional and event supply',
+      'Bulk repackaging operations',
+    ],
+    benefits: [
+      'Lowest per-litre cost in the range',
+      'Wholesale and distributor pricing available',
+      'Pure lamp oil in industrial drum format',
+      'Direct factory supply from Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '210', unit: 'L', description: '210 Litre barrel / drum' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Can distributors order this barrel size?', answer: 'Yes, the 210L barrel is our primary wholesale and distributor supply format. Contact our trade team for distributor pricing, credit terms, and territory-based supply arrangements.' }
+    ],
+    variants: [
+      {
+        id: 'klo-210l-v1',
+        sku: 'KL039',
+        attributes: { volume: '210L' },
+        packingType: '210 L Barrel',
+        materialType: 'Pure',
+        customPackingAvailable: true,
+        sortOrder: 1
+      }
+    ],
+    images: ['/images/products/lamp-oil-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 36,
+    seo: {
+      metaTitle: 'Kalasam Lamp Oil 210L Barrel | Wholesale Bulk Supply',
+      metaDescription: 'Kalasam pure lamp oil in 210 litre barrels for wholesale and distributor bulk orders. Manufactured in Theni, India — request a quote.',
+      keywords: 'wholesale lamp oil barrel, bulk lamp oil supplier India, 210 litre lamp oil drum, lamp oil distributor supply'
+    }
   }
 ];

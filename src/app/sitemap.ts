@@ -74,19 +74,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }));
 
-  /* ── 2. Dynamic product pages from Firestore (with CMS lastmod) ── */
-  let productsList: any[] = [];
+  /* ── 2. Dynamic product pages from Firestore & Seed (with CMS lastmod) ── */
+  let firestoreProductsList: any[] = [];
   try {
-    productsList = await getProducts();
+    firestoreProductsList = await getProducts();
   } catch (e) {
     // Firestore unavailable — fall through to seed
   }
 
-  if (!productsList || productsList.length === 0) {
-    productsList = seedProducts as any[];
-  }
+  const combinedProductsList = [...(seedProducts as any[])];
+  firestoreProductsList.forEach((fp) => {
+    if (!combinedProductsList.some((p) => p.slug === fp.slug)) {
+      combinedProductsList.push(fp);
+    }
+  });
 
-  const productRoutes: MetadataRoute.Sitemap = productsList.map((p) => ({
+  const productRoutes: MetadataRoute.Sitemap = combinedProductsList.map((p) => ({
     url: `${SITE_URL}/products/${p.slug}`,
     lastModified: safeDate(p.updatedAt || p.createdAt),
     changeFrequency: 'weekly' as const,

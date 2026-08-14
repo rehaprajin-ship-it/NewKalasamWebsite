@@ -170,8 +170,32 @@ export default function SuperStockistPage() {
         </div>
       </section>
 
+      {/* Super Stockist Volume SKUs */}
+      <section className="section-padding bg-white border-b border-gray-200">
+        <div className="container-custom">
+          <SectionHeader overline="Regional Catalog" title="High-Volume Super Stockist Offerings" subtitle="Scale your state-level distribution with bulk industrial containers, institutional tins, and fast-moving retail assortments." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <Link href="/products/kalasam-lamp-oil-210l-barrel" className="block bg-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Bulk 210L Drum</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 210L Barrel</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Direct drum-scale pure pooja oil distribution for supplying wholesale merchants, regional packaging units, and temple hubs.</p>
+            </Link>
+            <Link href="/products/kalasam-lamp-oil-16l-tin" className="block bg-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">16L Institutional Tin</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 16L Tin</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">High-demand temple and trust format for steady regional volume distribution to institutional supply dealers.</p>
+            </Link>
+            <Link href="/products/kalasam-camphor-tablets-bulk" className="block bg-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Master Bulk Camphor</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Camphor Master Packs</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Master cartons of half-kg and 1kg bags, plus full retail strip assortments for state-wide distribution networks.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
           <SectionHeader overline="Apply Now" title="Super Stockist Application" subtitle="Fill in the details below. Our distribution head will review your application and contact you within 48 hours." />
 

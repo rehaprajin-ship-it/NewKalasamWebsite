@@ -6,6 +6,7 @@ import PageHero from '@/components/ui/PageHero';
    ═══════════════════════════════════════════════════════════════ */
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
@@ -85,8 +86,32 @@ export default function DistributorsPage() {
         </div>
       </section>
 
+      {/* Distribution Products Showcase */}
+      <section className="section-padding bg-gray-50 border-y border-gray-200">
+        <div className="container-custom">
+          <SectionHeader overline="Core Catalog" title="High-Volume Distribution SKUs" subtitle="Key retail packs, institutional tins, and bulk industrial drums available for immediate territory distribution." />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <Link href="/products/kalasam-lamp-oil-210l-barrel" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Industrial Drum / Bulk</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 210L Barrel</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Wholesale 210-litre drum format for distributors supplying regional repackers, temple syndicates, and oil merchants.</p>
+            </Link>
+            <Link href="/products/kalasam-lamp-oil-1000ml" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">Retail / Wholesale Bottle</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Lamp Oil 1 Litre</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">High-rotation 1000ml & 900ml consumer bottles for fast movement across kirana, supermarket, and pooja store networks.</p>
+            </Link>
+            <Link href="/products/kalasam-camphor-tablets-bulk" className="block bg-white rounded-xl border border-gray-200 p-6 hover:shadow-medium hover:border-primary/20 transition-all group">
+              <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-800 rounded-md uppercase mb-3">FMCG Retail Line</span>
+              <h4 className="font-700 text-gray-900 group-hover:text-primary transition-colors">Kalasam Camphor Tablets Range</h4>
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">Full range of Rs1, Rs2, Rs5, Rs10 strips, 15g-50g jars, and bulk packs with protected territory margins.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-white">
         <div className="container-custom max-w-3xl">
           <SectionHeader overline="Apply Now" title="Distributor Application" subtitle="Fill in the form below and our distribution team will review your application." />
           <ScrollReveal>
