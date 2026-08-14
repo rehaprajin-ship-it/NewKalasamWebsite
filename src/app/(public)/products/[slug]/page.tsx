@@ -6,6 +6,9 @@ import { SITE_URL, SITE_NAME } from '@/lib/constants';
 import ProductClientPage from '@/components/common/ProductClientPage';
 import { ProductSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
 
+export const dynamic = 'force-static';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 type PageProps = {
   params: Promise<{ slug: string }>;
 };

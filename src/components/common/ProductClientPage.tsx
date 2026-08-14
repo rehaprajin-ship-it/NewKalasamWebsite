@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
-import { saveContact } from '@/lib/firestore';
+import { saveContact, getProductBySlug } from '@/lib/firestore';
 import { useInquiry } from '@/context/InquiryContext';
 import { COMPANY } from '@/lib/constants';
 
@@ -34,16 +34,47 @@ const b2bInquirySchema = z.object({
 type B2BInquiryData = z.infer<typeof b2bInquirySchema>;
 
 export default function ProductClientPage({ initialProduct, allProducts = [], slug }: { initialProduct: any; allProducts?: any[]; slug: string }) {
-  const [product] = useState<any>(initialProduct);
+  const [product, setProduct] = useState<any>(initialProduct);
   const { addItem } = useInquiry();
   const [activeVariant, setActiveVariant] = useState<any>(
     initialProduct?.variants && initialProduct.variants.length > 0
       ? initialProduct.variants[0]
       : null
   );
-  const [activeImage, setActiveImage] = useState<string>(initialProduct?.images?.[0] || '/images/products/synthetic-camphor.png');
+  const [activeImage, setActiveImage] = useState<string>(
+    initialProduct?.images?.[0] || '/images/products/synthetic-camphor.png'
+  );
   const [inquiryQty, setInquiryQty] = useState('100 Kg');
   const [activeTab, setActiveTab] = useState<'specs' | 'apps' | 'downloads' | 'faq'>('specs');
+
+  // Client-side real-time sync with Firestore to ensure newly uploaded images/edits show immediately
+  useEffect(() => {
+    if (!slug) return;
+    getProductBySlug(slug)
+      .then((latest) => {
+        if (latest) {
+          setProduct(latest);
+          if (latest.images && latest.images.length > 0) {
+            setActiveImage((prev) => {
+              // If current activeImage is default or not in updated images, switch to first image
+              if (!latest.images.includes(prev) || prev === '/images/products/synthetic-camphor.png') {
+                return latest.images[0];
+              }
+              return prev;
+            });
+          }
+          const variants = latest.variants;
+          if (variants && variants.length > 0) {
+            setActiveVariant((prev: any) => {
+              if (!prev) return variants[0];
+              const match = variants.find((v: any) => v.id === prev.id || v.sku === prev.sku);
+              return match || variants[0];
+            });
+          }
+        }
+      })
+      .catch(() => {});
+  }, [slug]);
 
   // Sync details to window object for global mobile EnquiryModal
   useEffect(() => {
