@@ -22,9 +22,13 @@ interface EmailParams {
 
 export async function sendEmail({ to, subject, html, replyTo }: EmailParams) {
   try {
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'inquiries@kalasamjaikrishna.co.in';
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'inquiries@kalasamjaikrishna.co.in';
+    const from = fromAddress.includes('<')
+      ? fromAddress
+      : `Kalasam Jaikrishna Industries <${fromAddress}>`;
+
     const { data, error } = await getResend().emails.send({
-      from: fromEmail,
+      from,
       to,
       subject,
       html,
