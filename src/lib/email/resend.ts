@@ -1,7 +1,17 @@
 import { Resend } from 'resend';
 import { SITE_URL, SITE_NAME } from '@/lib/constants';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY environment variable is not set. Add it to your .env.local and Vercel project settings.');
+    }
+    _resend = new Resend(apiKey);
+  }
+  return _resend;
+}
 
 interface EmailParams {
   to: string;
@@ -13,7 +23,7 @@ interface EmailParams {
 export async function sendEmail({ to, subject, html, replyTo }: EmailParams) {
   try {
     const fromEmail = process.env.RESEND_FROM_EMAIL || 'inquiries@kalasamjaikrishna.co.in';
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: fromEmail,
       to,
       subject,
