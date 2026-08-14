@@ -79,7 +79,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://translate.googleapis.com",
               "img-src 'self' data: blob: https://res.cloudinary.com https://lh3.googleusercontent.com https://firebasestorage.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://*.basemaps.cartocdn.com https://unpkg.com https://translate.google.com https://www.gstatic.com https://*.gstatic.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://firestore.googleapis.com https://firebase.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://api.resend.com https://translate.googleapis.com",
+              "connect-src 'self' https://api.cloudinary.com https://firestore.googleapis.com https://firebase.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://api.resend.com https://translate.googleapis.com",
               "frame-src 'self' https://www.google.com https://maps.google.com https://vercel.live https://translate.google.com",
               "media-src 'self' blob:",
               "object-src 'none'",
