@@ -13,6 +13,31 @@ function getResend(): Resend {
   return _resend;
 }
 
+/**
+ * Route form submissions to the corresponding segment inbox
+ */
+export function getRecipientForFormType(formType: string): string {
+  const normalized = (formType || '').toLowerCase().trim();
+  switch (normalized) {
+    case 'export':
+    case 'export inquiry':
+    case 'export product':
+      return process.env.RESEND_ADMIN_EMAIL_EXPORT || 'export@kalasamjaikrishna.co.in';
+    case 'careers':
+    case 'job application':
+    case 'field sales application':
+      return process.env.RESEND_ADMIN_EMAIL_CAREERS || 'company@kalasamjaikrishna.co.in';
+    case 'support':
+    case 'newsletter':
+    case 'general support':
+      return process.env.RESEND_ADMIN_EMAIL_SUPPORT || 'support@kalasamjaikrishna.co.in';
+    default:
+      // contact, wholesale, distributor, super-stockist, retail-supply,
+      // oem, private-label, product-quote, consolidated-inquiry, temple-supply, etc.
+      return process.env.RESEND_ADMIN_EMAIL_SALES || 'salesteam@kalasamjaikrishna.co.in';
+  }
+}
+
 interface EmailParams {
   to: string;
   subject: string;

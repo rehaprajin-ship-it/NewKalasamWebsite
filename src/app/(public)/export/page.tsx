@@ -11,6 +11,7 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common
 import SectionHeader from '@/components/ui/SectionHeader';
 import dynamic from 'next/dynamic';
 import { COMPANY, EXPORT_COUNTRIES } from '@/lib/constants';
+import ObfuscatedEmail, { ENCODED_EMAIL_EXPORT } from '@/components/common/ObfuscatedEmail';
 
 const GlobalPresenceMap = dynamic(
   () => import('@/components/common/GlobalPresenceMap'),
@@ -134,9 +135,9 @@ export default function ExportPage() {
             <p className="mt-3 text-white/60 max-w-xl mx-auto">Send us your inquiry with product name, quantity, and destination port for a competitive quotation.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn btn-gold btn-lg">Export Inquiry</Link>
-              <a href={`mailto:${COMPANY.contact.exportEmail}`} className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20">
-                {COMPANY.contact.exportEmail}
-              </a>
+              <span className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20">
+                <ObfuscatedEmail encoded={ENCODED_EMAIL_EXPORT} className="text-white" subject="Export Inquiry" />
+              </span>
             </div>
           </ScrollReveal>
         </div>

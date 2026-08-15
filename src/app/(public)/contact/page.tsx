@@ -12,7 +12,7 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import { COMPANY } from '@/lib/constants';
 import { useToast } from '@/context/ToastProvider';
 import type { ContactFormData } from '@/types';
-import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
+import ObfuscatedEmail, { ENCODED_EMAIL_SUPPORT } from '@/components/common/ObfuscatedEmail';
 import PageHero from '@/components/ui/PageHero';
 
 const departments = [
@@ -101,7 +101,7 @@ export default function ContactPage() {
                       <div>
                         <div className="text-xs font-600 uppercase tracking-wider text-gray-400 mb-1">{item.label}</div>
                         {'isEmail' in item && item.isEmail ? (
-                          <ObfuscatedEmail encoded={ENCODED_EMAIL} className="text-sm text-gray-700 hover:text-primary transition-colors" />
+                          <ObfuscatedEmail encoded={ENCODED_EMAIL_SUPPORT} className="text-sm text-gray-700 hover:text-primary transition-colors" />
                         ) : item.href ? (
                           <a href={item.href} className="text-sm text-gray-700 hover:text-primary transition-colors">{item.value}</a>
                         ) : (

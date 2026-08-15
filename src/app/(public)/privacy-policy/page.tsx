@@ -2,9 +2,11 @@ import type { Metadata } from 'next';
 import { SITE_URL } from '@/lib/constants';
 import LegalPage from '@/components/common/LegalPage';
 import { COMPANY } from '@/lib/constants';
+import PrivacyPolicyContent from './PrivacyPolicyContent';
 
 export const metadata: Metadata = {
-  alternates: { canonical: `/privacy-policy` }, title: 'Privacy Policy', description: `Privacy policy for ${COMPANY.name} website.` };
+  alternates: { canonical: `/privacy-policy` }, title: 'Privacy Policy', description: `Privacy policy for ${COMPANY.name} website.`
+};
 
 export default function PrivacyPolicyPage() {
   return (
@@ -31,7 +33,7 @@ export default function PrivacyPolicyPage() {
       <p>You have the right to access, correct, or delete your personal information. <a href="/contact">Contact us</a> for any privacy-related requests.</p>
 
       <h2>Contact</h2>
-      <p>{COMPANY.name}<br />{COMPANY.location.address}<br />Phone: {COMPANY.contact.phone}<br /><a href="/contact">Contact Form</a></p>
+      <PrivacyPolicyContent />
     </LegalPage>
   );
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { saveContact } from '@/lib/firestore';
-import { sendEmail, buildAdminEmailHTML, buildCustomerConfirmationHTML } from '@/lib/email/resend';
+import { sendEmail, buildAdminEmailHTML, buildCustomerConfirmationHTML, getRecipientForFormType } from '@/lib/email/resend';
 
 // Simple honeypot & basic structure validation
 export async function POST(request: Request) {
@@ -57,7 +57,8 @@ export async function POST(request: Request) {
     }
 
     // 2. Secondary operation: Send emails via Resend
-    const adminEmail = process.env.ADMIN_EMAIL || 'srinisrkp@gmail.com';
+    const formType = department === 'export' ? 'export' : (department === 'support' ? 'support' : (department === 'hr' ? 'careers' : 'contact'));
+    const adminEmail = getRecipientForFormType(formType);
     const emailParams = {
       formType: 'General Contact',
       name,

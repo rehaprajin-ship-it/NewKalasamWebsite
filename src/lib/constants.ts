@@ -22,8 +22,8 @@ export const COMPANY = {
   },
   contact: {
     phone: '+91 6383020848',
-    email: 'jaikrishnaindustries1@gmail.com',
-    exportEmail: 'jaikrishnaindustries1@gmail.com',
+    email: 'support@kalasamjaikrishna.co.in',
+    exportEmail: 'export@kalasamjaikrishna.co.in',
     whatsapp: '916383020848',
   },
   social: {

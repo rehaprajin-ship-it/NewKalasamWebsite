@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import { COMPANY } from '@/lib/constants';
-import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
+import ObfuscatedEmail, { ENCODED_EMAIL_SUPPORT } from '@/components/common/ObfuscatedEmail';
 
 export default function ContactCTA() {
   return (
@@ -78,12 +78,12 @@ export default function ContactCTA() {
               {COMPANY.contact.phone}
             </a>
             <span className="w-px h-4 bg-white/10 hidden sm:block" />
-            <a href={`mailto:${COMPANY.contact.email}`} className="flex items-center gap-2 hover:text-accent transition-colors">
+            <span className="flex items-center gap-2 hover:text-accent transition-colors cursor-pointer">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <ObfuscatedEmail encoded={ENCODED_EMAIL} className="" asLink={false} />
-            </a>
+              <ObfuscatedEmail encoded={ENCODED_EMAIL_SUPPORT} className="" />
+            </span>
             <span className="w-px h-4 bg-white/10 hidden sm:block" />
             <span className="flex items-center gap-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

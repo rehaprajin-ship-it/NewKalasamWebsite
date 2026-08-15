@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { subscribeNewsletter } from '@/lib/firestore';
-import { sendEmail, buildNewsletterAdminEmailHTML, buildNewsletterCustomerConfirmationHTML } from '@/lib/email/resend';
+import { sendEmail, buildNewsletterAdminEmailHTML, buildNewsletterCustomerConfirmationHTML, getRecipientForFormType } from '@/lib/email/resend';
 
 export async function POST(request: Request) {
   try {
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     }
 
     // 2. Secondary operation: Send emails via Resend
-    const adminEmail = process.env.ADMIN_EMAIL || 'srinisrkp@gmail.com';
+    const adminEmail = getRecipientForFormType('newsletter');
     let adminSent = false;
     let customerSent = false;
 

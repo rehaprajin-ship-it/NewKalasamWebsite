@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { footerNav } from '@/data/navigation';
 import { COMPANY, CERTIFICATIONS } from '@/lib/constants';
 import { useToast } from '@/context/ToastProvider';
-import ObfuscatedEmail, { ENCODED_EMAIL } from '@/components/common/ObfuscatedEmail';
+import ObfuscatedEmail, { ENCODED_EMAIL_SUPPORT } from '@/components/common/ObfuscatedEmail';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -100,12 +100,12 @@ export default function Footer() {
                 </svg>
                 {COMPANY.contact.phone}
               </a>
-              <a href={`mailto:${COMPANY.contact.email}`} className="flex items-center gap-2.5 text-gray-400 hover:text-accent transition-colors">
+              <span className="flex items-center gap-2.5 text-gray-400 hover:text-accent transition-colors cursor-pointer">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <ObfuscatedEmail encoded={ENCODED_EMAIL} className="" asLink={false} />
-              </a>
+                <ObfuscatedEmail encoded={ENCODED_EMAIL_SUPPORT} className="" />
+              </span>
               <div className="flex items-start gap-2.5 text-gray-400">
                 <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

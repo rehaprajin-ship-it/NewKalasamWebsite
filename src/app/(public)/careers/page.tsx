@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { useToast } from '@/context/ToastProvider';
 import { saveContact } from '@/lib/firestore';
 import { COMPANY, SITE_URL } from '@/lib/constants';
+import ObfuscatedEmail, { ENCODED_EMAIL_COMPANY } from '@/components/common/ObfuscatedEmail';
 
 const openings = [
   {
@@ -344,8 +345,12 @@ export default function CareersPage() {
           <ScrollReveal delay={0.2}>
             <div className="mt-10 text-center bg-gray-50 rounded-2xl p-8">
               <h3 className="text-xl font-700 text-gray-900 mb-2">Don&apos;t See Your Role?</h3>
-              <p className="text-sm text-gray-500 mb-6">Send us your resume and we&apos;ll keep it on file for future opportunities.</p>
-              <Link href="mailto:careers@kalasam.com" className="btn btn-outline">Send Resume</Link>
+              <p className="text-sm text-gray-500 mb-4">Send us your resume and we&apos;ll keep it on file for future opportunities.</p>
+              <div className="flex items-center justify-center gap-2 text-sm text-gray-600 mb-4">
+                <span>📧 Email your resume to:</span>
+                <ObfuscatedEmail encoded={ENCODED_EMAIL_COMPANY} className="text-primary font-600 hover:underline" subject="Job Application — Resume" />
+              </div>
+              <Link href="#apply" className="btn btn-outline">Or Apply Online Above</Link>
             </div>
           </ScrollReveal>
         </div>

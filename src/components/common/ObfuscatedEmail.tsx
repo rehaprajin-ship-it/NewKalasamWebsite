@@ -51,7 +51,21 @@ export default function ObfuscatedEmail({
 }
 
 /**
- * Pre-computed base64 for the company email.
- * btoa('jaikrishnaindustries1@gmail.com')
+ * Pre-computed base64 encoded email addresses.
+ * These are decoded client-side only, preventing bot harvesting from source.
  */
-export const ENCODED_EMAIL = 'amFpa3Jpc2huYWluZHVzdHJpZXMxQGdtYWlsLmNvbQ==';
+
+/** support@kalasamjaikrishna.co.in — Footer general contact / fallback */
+export const ENCODED_EMAIL_SUPPORT = btoa('support@kalasamjaikrishna.co.in');
+
+/** export@kalasamjaikrishna.co.in — Export page direct contact */
+export const ENCODED_EMAIL_EXPORT = btoa('export@kalasamjaikrishna.co.in');
+
+/** company@kalasamjaikrishna.co.in — Careers / legal correspondence */
+export const ENCODED_EMAIL_COMPANY = btoa('company@kalasamjaikrishna.co.in');
+
+/**
+ * @deprecated Use ENCODED_EMAIL_SUPPORT for footer, or the segment-specific constants.
+ * Kept temporarily for backward compatibility during migration.
+ */
+export const ENCODED_EMAIL = ENCODED_EMAIL_SUPPORT;
