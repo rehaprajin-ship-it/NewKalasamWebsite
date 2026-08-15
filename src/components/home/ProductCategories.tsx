@@ -111,6 +111,7 @@ export default function ProductCategories() {
         {/* Infinite Moving Marquee Wrapper */}
         <div className="relative flex overflow-x-hidden w-full py-10 mask-gradient animate-marquee-hover-pause">
           <div className="flex gap-6 animate-marquee whitespace-nowrap">
+            {/* Set 1 */}
             {products.map((product) => (
               <div key={`marquee-1-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal">
                 {/* Card */}
@@ -168,11 +169,10 @@ export default function ProductCategories() {
                 </Link>
               </div>
             ))}
-          </div>
 
-          <div className="flex gap-6 animate-marquee whitespace-nowrap" aria-hidden="true">
+            {/* Set 2 (Seamless loop clone) */}
             {products.map((product) => (
-              <div key={`marquee-2-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal">
+              <div key={`marquee-2-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal" aria-hidden="true">
                 {/* Card */}
                 <motion.div
                   whileHover={{ y: -6, boxShadow: '0 12px 32px rgba(37, 211, 102, 0.15)' }}
