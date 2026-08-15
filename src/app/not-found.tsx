@@ -13,7 +13,7 @@ export default function NotFound() {
         <div className="mb-6 flex justify-center">
           <Image
             src="/images/logo.png"
-            alt="Kalasam Jaikrishna Industries Logo"
+            alt="Jaikrishna Industries Logo"
             width={200}
             height={70}
             className="h-auto max-h-[70px] object-contain"

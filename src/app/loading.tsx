@@ -18,7 +18,7 @@ export default function Loading() {
 
         <Image
           src="/images/logo.png"
-          alt="Kalasam Jaikrishna Industries Logo"
+          alt="Jaikrishna Industries Logo"
           width={280}
           height={90}
           priority

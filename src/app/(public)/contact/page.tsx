@@ -78,7 +78,7 @@ export default function ContactPage() {
                 <div className="mb-6">
                   <Image
                     src="/images/logo.png"
-                    alt="Kalasam Jaikrishna Industries Logo"
+                    alt="Jaikrishna Industries Logo"
                     width={200}
                     height={65}
                     className="h-auto max-h-[65px] object-contain"

@@ -89,6 +89,21 @@ export default function RootLayout({
         {/* Web App Manifest for installability signals */}
         <link rel="manifest" href="/manifest.json" />
 
+        {/* JSON-LD WebSite Schema (Google Sitename Signal) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': `${SITE_URL}/#website`,
+              name: 'Jaikrishna Industries',
+              alternateName: 'Kalasam',
+              url: SITE_URL,
+            }),
+          }}
+        />
+
         {/* JSON-LD Organization Schema */}
         <script
           type="application/ld+json"
@@ -97,7 +112,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               '@id': `${SITE_URL}/#organization`,
-              name: SITE_NAME,
+              name: 'Jaikrishna Industries',
+              alternateName: 'Kalasam',
               legalName: 'Jaikrishna Industries',
               url: SITE_URL,
               logo: {

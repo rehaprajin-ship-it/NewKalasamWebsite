@@ -228,7 +228,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" aria-label="Kalasam Jaikrishna Industries Home">
               <Image
                 src="/images/logo.png"
-                alt="Kalasam Jaikrishna Industries Logo"
+                alt="Jaikrishna Industries Logo"
                 width={220}
                 height={60}
                 priority

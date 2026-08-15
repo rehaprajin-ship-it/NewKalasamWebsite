@@ -83,7 +83,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-4 mb-5 group" aria-label="Kalasam Jaikrishna Industries Home">
               <Image
                 src="/images/logo.png"
-                alt="Kalasam Jaikrishna Industries Logo"
+                alt="Jaikrishna Industries Logo"
                 width={250}
                 height={70}
                 className="h-auto max-h-[70px] max-w-[250px] object-contain"

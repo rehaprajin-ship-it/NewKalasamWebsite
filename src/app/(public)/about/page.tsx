@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <div className="mb-6">
                   <Image
                     src="/images/logo.png"
-                    alt="Kalasam Jaikrishna Industries Logo"
+                    alt="Jaikrishna Industries Logo"
                     width={240}
                     height={80}
                     className="h-auto max-h-[80px] object-contain"

@@ -51,7 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="w-24 mx-auto mb-6">
             <Image
               src="/images/logo.png"
-              alt="Kalasam Jaikrishna Industries Logo"
+              alt="Jaikrishna Industries Logo"
               width={200}
               height={80}
               priority
