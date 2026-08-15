@@ -5,7 +5,7 @@
    Green-bordered cards with product images, action icons & names
    ═══════════════════════════════════════════════════════════════ */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -78,6 +78,18 @@ function optimizeImageUrl(url: string): string {
 export default function ProductCategories() {
   const whatsappNumber = COMPANY.contact.whatsapp;
   const [products, setProducts] = useState<any[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 260;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   useEffect(() => {
     getProducts()
@@ -101,16 +113,65 @@ export default function ProductCategories() {
   return (
     <section className="section-padding bg-gray-50">
       <div className="container-custom">
-        <SectionHeader
-          overline="Our Portfolio"
-          title="Our Top-Selling Products"
-          subtitle="Premium quality chemicals and camphor products manufactured to international standards for global markets."
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-4">
+          <SectionHeader
+            overline="Our Portfolio"
+            title="Our Top-Selling Products"
+            subtitle="Premium quality chemicals and camphor products manufactured to international standards for global markets."
+          />
+          
+          {/* Arrow Navigation Controls */}
+          <div className="hidden sm:flex items-center gap-3 mb-8 self-end">
+            <button
+              onClick={() => scroll('left')}
+              aria-label="Previous products"
+              className="w-11 h-11 rounded-full bg-white border border-gray-200/80 shadow-xs hover:border-primary hover:text-primary hover:bg-primary/5 flex items-center justify-center text-gray-700 transition-all duration-200 cursor-pointer active:scale-95 group"
+            >
+              <svg className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              aria-label="Next products"
+              className="w-11 h-11 rounded-full bg-white border border-gray-200/80 shadow-xs hover:border-primary hover:text-primary hover:bg-primary/5 flex items-center justify-center text-gray-700 transition-all duration-200 cursor-pointer active:scale-95 group"
+            >
+              <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-        {/* Product Cards Grid */}
-        {/* Infinite Moving Marquee Wrapper */}
-        <div className="relative flex overflow-x-hidden w-full py-10 mask-gradient animate-marquee-hover-pause">
-          <div className="flex gap-6 animate-marquee whitespace-nowrap">
+        {/* Product Cards Carousel with Left & Right Buttons for Mobile/Desktop */}
+        <div className="relative group/carousel">
+          {/* Mobile Overlay Arrows */}
+          <button
+            onClick={() => scroll('left')}
+            aria-label="Scroll left"
+            className="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-gray-200 text-gray-700 flex items-center justify-center active:scale-90 transition-all"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            aria-label="Scroll right"
+            className="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-gray-200 text-gray-700 flex items-center justify-center active:scale-90 transition-all"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Scroll Track */}
+          <div
+            ref={scrollContainerRef}
+            className="relative flex overflow-x-auto scrollbar-none w-full py-6 mask-gradient scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className={`flex gap-6 ${isPaused ? '' : 'animate-marquee'} whitespace-nowrap`}>
             {/* Set 1 */}
             {products.map((product) => (
               <div key={`marquee-1-${product.id}`} className="w-[180px] sm:w-[220px] flex-shrink-0 group flex flex-col whitespace-normal">
@@ -228,6 +289,7 @@ export default function ProductCategories() {
                 </Link>
               </div>
             ))}
+            </div>
           </div>
         </div>
 
