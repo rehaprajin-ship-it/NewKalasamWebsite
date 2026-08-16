@@ -66,6 +66,7 @@ export default function AdminProductsCMS() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [previewTab, setPreviewTab] = useState<'seo' | 'card' | 'faq'>('seo');
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   // Reordering State
   const [isReorderMode, setIsReorderMode] = useState(false);
@@ -421,9 +422,40 @@ export default function AdminProductsCMS() {
     if (!confirm('Are you sure you want to delete this product?')) return;
     try {
       await removeProduct(id);
+      setSelectedIds((prev) => { const next = new Set(prev); next.delete(id); return next; });
       loadCatalog();
     } catch (err: any) {
       alert(`Delete failed: ${err.message}`);
+    }
+  };
+
+  const handleBulkDelete = async () => {
+    if (selectedIds.size === 0) return;
+    if (!confirm(`Delete ${selectedIds.size} selected product${selectedIds.size > 1 ? 's' : ''}? This cannot be undone.`)) return;
+    try {
+      for (const id of Array.from(selectedIds)) {
+        await removeProduct(id);
+      }
+      setSelectedIds(new Set());
+      loadCatalog();
+    } catch (err: any) {
+      alert(`Bulk delete failed: ${err.message}`);
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.size === filtered.length && filtered.length > 0) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(filtered.map((p) => p.id)));
     }
   };
 
@@ -587,21 +619,63 @@ export default function AdminProductsCMS() {
         </div>
       ) : (
         <div className="bg-white rounded-[18px] border border-gray-200/80 shadow-xs overflow-hidden">
+          {/* Bulk action bar */}
+          {selectedIds.size > 0 && (
+            <div className="flex items-center justify-between px-4 py-2.5 bg-rose-50 border border-rose-200 rounded-t-[18px] border-b-0">
+              <span className="text-xs font-700 text-rose-800">
+                {selectedIds.size} product{selectedIds.size > 1 ? 's' : ''} selected
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setSelectedIds(new Set())}
+                  className="px-3 py-1.5 text-xs font-700 text-gray-600 hover:text-gray-900 cursor-pointer"
+                >
+                  Clear
+                </button>
+                <button
+                  onClick={handleBulkDelete}
+                  className="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-700 rounded-[10px] cursor-pointer transition-colors shadow-xs flex items-center gap-1.5"
+                >
+                  🗑️ Delete {selectedIds.size} Selected
+                </button>
+              </div>
+            </div>
+          )}
           <table className="w-full text-xs text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-150 text-gray-400 font-800 uppercase tracking-wider">
-                <th className="px-5 py-4 w-2/5">Product Profile</th>
-                <th className="px-5 py-4">Category</th>
-                <th className="px-5 py-4">CAS Registry</th>
-                <th className="px-5 py-4">Sort Order</th>
-                <th className="px-5 py-4">Status</th>
-                <th className="px-5 py-4 text-right">Actions</th>
+                <th className="px-4 py-4 w-10">
+                  <input
+                    type="checkbox"
+                    checked={filtered.length > 0 && selectedIds.size === filtered.length}
+                    onChange={toggleSelectAll}
+                    className="w-4 h-4 accent-[#128C7E] cursor-pointer rounded"
+                    title={selectedIds.size === filtered.length ? 'Deselect all' : 'Select all'}
+                  />
+                </th>
+                <th className="px-4 py-4 w-2/5">Product Profile</th>
+                <th className="px-4 py-4">Category</th>
+                <th className="px-4 py-4">CAS Registry</th>
+                <th className="px-4 py-4">Sort Order</th>
+                <th className="px-4 py-4">Status</th>
+                <th className="px-4 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filtered.map((p) => (
-                <tr key={p.id} className="hover:bg-gray-50/40 transition-colors">
-                  <td className="px-5 py-4">
+                <tr
+                  key={p.id}
+                  className={`hover:bg-gray-50/40 transition-colors ${selectedIds.has(p.id) ? 'bg-rose-50/30' : ''}`}
+                >
+                  <td className="px-4 py-4">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.has(p.id)}
+                      onChange={() => toggleSelect(p.id)}
+                      className="w-4 h-4 accent-[#128C7E] cursor-pointer rounded"
+                    />
+                  </td>
+                  <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gray-50 border border-gray-100 rounded-[8px] overflow-hidden p-1 flex items-center justify-center flex-shrink-0">
                         <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt="" className="object-contain w-full h-full" />
@@ -612,10 +686,10 @@ export default function AdminProductsCMS() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-4">
+                  <td className="px-4 py-4">
                     <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-600">{p.category}</span>
                   </td>
-                  <td className="px-5 py-4 text-gray-500">
+                  <td className="px-4 py-4 text-gray-500">
                     {p.casNumber ? (
                       <span className="font-mono text-[10px] bg-slate-50 border border-slate-200/60 px-1.5 py-0.5 rounded-sm">
                         CAS: {p.casNumber}
@@ -659,14 +733,14 @@ export default function AdminProductsCMS() {
                       )}
                     </div>
                   </td>
-                  <td className="px-5 py-4">
+                  <td className="px-4 py-4">
                     <span className={`px-2 py-0.5 text-[10px] rounded-md font-700 uppercase tracking-wider ${
                       p.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
                     }`}>
                       {p.status}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-right">
+                  <td className="px-4 py-4 text-right">
                     <button onClick={() => handleOpenEdit(p)} className="text-[#128C7E] hover:underline mr-4 font-700 cursor-pointer">Edit</button>
                     <button onClick={() => handleDelete(p.id)} className="text-red-500 hover:underline font-700 cursor-pointer">Delete</button>
                   </td>
