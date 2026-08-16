@@ -386,7 +386,7 @@ export default function BulkImportModal({
           continue;
         }
 
-        const newVariant: ProductVariant = {
+        const newVariant: any = {
           id: `var-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
           sku: v.sku,
           attributes: {
@@ -395,8 +395,10 @@ export default function BulkImportModal({
           packingType: v.packing_type || 'Standard Pack',
           materialType: v.material_type || 'Standard',
           customPackingAvailable: v.custom_packing_available?.toLowerCase() === 'yes',
-          sortOrder: v.sort_order,
         };
+        if (v.sort_order !== undefined && !isNaN(v.sort_order)) {
+          newVariant.sortOrder = v.sort_order;
+        }
 
         // Fetch latest parent from memory or DB
         const currentVariants: ProductVariant[] = parentFromDb?.variants ? [...parentFromDb.variants] : [];

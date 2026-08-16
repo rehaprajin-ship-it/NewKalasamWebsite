@@ -90,14 +90,35 @@ async function getDocument<T>(
   return sanitizeFirestoreData({ id: snapshot.id, ...snapshot.data() }) as T;
 }
 
+/** Recursively remove undefined values from objects/arrays before passing to Firestore */
+function cleanFirestorePayload(obj: any): any {
+  if (obj === null || obj === undefined) return null;
+  if (Array.isArray(obj)) {
+    return obj
+      .filter((item) => item !== undefined)
+      .map(cleanFirestorePayload);
+  }
+  if (typeof obj === 'object' && obj.constructor === Object) {
+    const result: any = {};
+    for (const key of Object.keys(obj)) {
+      if (obj[key] !== undefined) {
+        result[key] = cleanFirestorePayload(obj[key]);
+      }
+    }
+    return result;
+  }
+  return obj;
+}
+
 async function addDocument(
   collectionName: string,
   data: DocumentData
 ): Promise<string> {
   const db = getFirebaseDb();
   const ref = collection(db, collectionName);
+  const cleaned = cleanFirestorePayload(data);
   const docRef = await addDoc(ref, {
-    ...data,
+    ...cleaned,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
@@ -111,8 +132,9 @@ async function updateDocument(
 ): Promise<void> {
   const db = getFirebaseDb();
   const ref = doc(db, collectionName, docId);
+  const cleaned = cleanFirestorePayload(data);
   await updateDoc(ref, {
-    ...data,
+    ...cleaned,
     updatedAt: serverTimestamp(),
   });
 }
