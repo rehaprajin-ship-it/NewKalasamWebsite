@@ -10,6 +10,13 @@ import { saveContact, getProductBySlug } from '@/lib/firestore';
 import { useInquiry } from '@/context/InquiryContext';
 import { COMPANY } from '@/lib/constants';
 import { FAQAccordionItem } from '@/components/ui/FAQAccordion';
+import {
+  getCategoryHeroStats,
+  getCategorySpecs,
+  getCategoryFAQs,
+  getCategoryBonusSection,
+  getCategoryBadge,
+} from '@/data/categoryProductData';
 
 function WhatsAppIcon() {
   return (
@@ -181,7 +188,7 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
                   {product.category}
                 </span>
                 <span className="px-2.5 py-0.5 bg-green-300/20 text-green-200 rounded-md text-[10px] font-700 uppercase border border-green-300/25">
-                  Export Certified
+                  {getCategoryBadge(product.category)}
                 </span>
               </div>
 
@@ -190,39 +197,12 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
               </h1>
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 pt-2 font-mono text-[11px] text-white/70">
-                {product.casNumber ? (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">CAS No.</p>
-                    <p className="text-green-200 font-700 mt-0.5">{product.casNumber}</p>
+                {getCategoryHeroStats(product).map((stat, idx) => (
+                  <div key={idx}>
+                    <p className="text-white/40 font-500 uppercase tracking-wider">{stat.label}</p>
+                    <p className={`font-700 mt-0.5 ${stat.highlight ? 'text-green-200' : 'text-white'}`}>{stat.value}</p>
                   </div>
-                ) : (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">CAS No.</p>
-                    <p className="text-white/55 font-600 mt-0.5 italic">Pending COA</p>
-                  </div>
-                )}
-                {product.molecularFormula ? (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">Formula</p>
-                    <p className="text-white font-700 mt-0.5">{product.molecularFormula}</p>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">Formula</p>
-                    <p className="text-white/55 font-600 mt-0.5 italic">Pending COA</p>
-                  </div>
-                )}
-                {product.purity ? (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">Assay / Purity</p>
-                    <p className="text-green-400 font-700 mt-0.5">{product.purity}</p>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-white/40 font-500 uppercase tracking-wider">Assay / Purity</p>
-                    <p className="text-white/55 font-600 mt-0.5 italic">Pending COA</p>
-                  </div>
-                )}
+                ))}
               </div>
 
               <p className="text-white/80 text-sm leading-relaxed max-w-3xl pt-2">
@@ -232,9 +212,13 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
 
             {/* Quick CTAs card */}
             <div className="lg:col-span-1 bg-white/10 backdrop-blur-md rounded-[18px] border border-white/10 p-5 space-y-3">
-              <h4 className="text-xs font-700 text-green-200 uppercase tracking-wider">B2B Action Center</h4>
+              <h4 className="text-xs font-700 text-green-200 uppercase tracking-wider">
+                {product.category === 'Industrial Product' ? 'B2B Action Center' : 'Quick Contact'}
+              </h4>
               <p className="text-[11px] text-white/70 leading-relaxed">
-                Connect directly with our technical sales division for bulk volume discounts and global freight bookings.
+                {product.category === 'Industrial Product'
+                  ? 'Connect directly with our technical sales division for bulk volume discounts and global freight bookings.'
+                  : 'Get wholesale pricing, bulk order quotes, or distributor enquiry support directly from our sales team.'}
               </p>
               <button
                 onClick={handleGetQuote}
@@ -326,71 +310,68 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
               {activeTab === 'specs' && (
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-700">
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Chemical Name</span>
-                      <span className="font-700 text-gray-900">{product.name}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Category Group</span>
-                      <span className="font-700 text-gray-900">{product.category}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">CAS Registry No</span>
-                      <span className="font-700 text-gray-900">{product.casNumber || <span className="text-gray-400 italic">Pending COA/MSDS upload</span>}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Assay / Purity</span>
-                      <span className="font-700 text-gray-900">{product.purity || <span className="text-gray-400 italic">Pending COA/MSDS upload</span>}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Formula String</span>
-                      <span className="font-700 text-gray-900">{product.molecularFormula || <span className="text-gray-400 italic">Pending COA/MSDS upload</span>}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Molecular Weight</span>
-                      <span className="font-700 text-gray-900">{product.molecularWeight || <span className="text-gray-400 italic">Pending COA/MSDS upload</span>}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Appearance Form</span>
-                      <span className="font-700 text-gray-900">{product.appearance || 'Standard'}</span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-gray-100">
-                      <span className="font-600 text-gray-400">Storage Parameters</span>
-                      <span className="font-700 text-gray-900">{product.storage || 'Keep in cool, dry place. Avoid direct sunlight.'}</span>
-                    </div>
+                    {getCategorySpecs(product).map((spec, idx) => (
+                      <div key={idx} className="flex justify-between py-1.5 border-b border-gray-100">
+                        <span className="font-600 text-gray-400">{spec.label}</span>
+                        <span className="font-700 text-gray-900 text-right max-w-[60%]">{spec.value}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
 
               {activeTab === 'apps' && (
                 <div className="space-y-4">
-                  <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider mb-2">Industry Use Cases</h4>
+                  <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider mb-2">
+                    {product.category === 'Industrial Product' ? 'Industry Use Cases' : 'Ideal For / Applications'}
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {product.applications?.map((app: string, idx: number) => (
-                      <span key={idx} className="px-3 py-1 bg-gray-100 border border-gray-200 rounded-lg text-xs font-600 text-gray-700">
+                      <span key={idx} className="px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-xs font-600 text-gray-700">
                         {app}
                       </span>
-                    )) || <p className="text-xs text-gray-400">Standard chemical intermediates & B2B application support.</p>}
+                    )) || <p className="text-xs text-gray-400">Multiple applications across pooja, retail, and B2B channels.</p>}
                   </div>
                 </div>
               )}
 
               {activeTab === 'downloads' && (
                 <div className="space-y-4">
-                  <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider mb-2">Technical Documentation</h4>
+                  <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider mb-2">
+                    {product.category === 'Industrial Product' ? 'Technical Documentation' : 'Product Documentation'}
+                  </h4>
                   <div className="flex flex-wrap gap-3">
-                    <a
-                      href="#"
-                      className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
-                    >
-                      📄 Download MSDS Safety Sheet
-                    </a>
-                    <a
-                      href="#"
-                      className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
-                    >
-                      📄 Download COA Quality Certificate
-                    </a>
+                    {product.category === 'Industrial Product' ? (
+                      <>
+                        <a
+                          href="#"
+                          className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
+                        >
+                          📄 Download MSDS Safety Sheet
+                        </a>
+                        <a
+                          href="#"
+                          className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
+                        >
+                          📄 Download COA Quality Certificate
+                        </a>
+                      </>
+                    ) : (
+                      <>
+                        <a
+                          href="#"
+                          className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
+                        >
+                          📄 Product Information Sheet
+                        </a>
+                        <a
+                          href="#"
+                          className="px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-700 flex items-center gap-2 transition-colors cursor-pointer"
+                        >
+                          📄 Distributor Price List (Request)
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
@@ -399,18 +380,7 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
                 <div className="space-y-3">
                   {(product.faq && product.faq.length > 0
                     ? product.faq
-                    : [
-                        {
-                          question: 'What is the MOQ for this product?',
-                          answer:
-                            'Standard MOQ for synthetic camphor and intermediates is 30kg (one standard bag). Custom packing and smaller trial orders are available on request.',
-                        },
-                        {
-                          question: 'Are custom packaging options available for export?',
-                          answer:
-                            'Yes, we customize bag weight, drum lining, and container packing configurations to align with regional customs compliance and distributor logistics.',
-                        },
-                      ]
+                    : getCategoryFAQs(product)
                   ).map((faq: any, idx: number) => (
                     <FAQAccordionItem
                       key={idx}
@@ -501,8 +471,8 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
           </div>
         </div>
       </section>
-      {/* Pharmaceutical & Technical Buyers Section — Synthetic Camphor Only */}
-      {slug === 'synthetic-camphor' && (
+      {/* Category-Specific Bonus Section */}
+      {slug === 'synthetic-camphor' ? (
         <section className="container-custom py-10 border-t border-gray-200/60">
           <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-200/50 p-6 md:p-8 space-y-6">
             <div className="flex items-start gap-3">
@@ -548,7 +518,56 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
             </button>
           </div>
         </section>
-      )}
+      ) : (() => {
+        const bonus = getCategoryBonusSection(product);
+        if (!bonus) return null;
+        const colorMap: Record<string, { bg: string; border: string; cardBorder: string; noteBg: string; noteBorder: string; noteText: string; btnBg: string; btnHover: string; checkColor: string }> = {
+          blue:    { bg: 'from-blue-50 to-white', border: 'border-blue-200/50', cardBorder: 'border-gray-200', noteBg: 'bg-blue-50', noteBorder: 'border-blue-200/50', noteText: 'text-blue-900', btnBg: 'bg-blue-600', btnHover: 'hover:bg-blue-700', checkColor: 'text-blue-500' },
+          amber:   { bg: 'from-amber-50 to-white', border: 'border-amber-200/50', cardBorder: 'border-amber-100', noteBg: 'bg-amber-50', noteBorder: 'border-amber-200/50', noteText: 'text-amber-900', btnBg: 'bg-amber-600', btnHover: 'hover:bg-amber-700', checkColor: 'text-amber-500' },
+          orange:  { bg: 'from-orange-50 to-white', border: 'border-orange-200/50', cardBorder: 'border-orange-100', noteBg: 'bg-orange-50', noteBorder: 'border-orange-200/50', noteText: 'text-orange-900', btnBg: 'bg-orange-600', btnHover: 'hover:bg-orange-700', checkColor: 'text-orange-500' },
+          rose:    { bg: 'from-rose-50 to-white', border: 'border-rose-200/50', cardBorder: 'border-rose-100', noteBg: 'bg-rose-50', noteBorder: 'border-rose-200/50', noteText: 'text-rose-900', btnBg: 'bg-rose-600', btnHover: 'hover:bg-rose-700', checkColor: 'text-rose-500' },
+          purple:  { bg: 'from-purple-50 to-white', border: 'border-purple-200/50', cardBorder: 'border-purple-100', noteBg: 'bg-purple-50', noteBorder: 'border-purple-200/50', noteText: 'text-purple-900', btnBg: 'bg-purple-600', btnHover: 'hover:bg-purple-700', checkColor: 'text-purple-500' },
+          emerald: { bg: 'from-emerald-50 to-white', border: 'border-emerald-200/50', cardBorder: 'border-emerald-100', noteBg: 'bg-emerald-50', noteBorder: 'border-emerald-200/50', noteText: 'text-emerald-900', btnBg: 'bg-emerald-600', btnHover: 'hover:bg-emerald-700', checkColor: 'text-emerald-500' },
+        };
+        const c = colorMap[bonus.accentColor] || colorMap.blue;
+        return (
+          <section className="container-custom py-10 border-t border-gray-200/60">
+            <div className={`bg-gradient-to-br ${c.bg} rounded-2xl ${c.border} border p-6 md:p-8 space-y-6`}>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{bonus.icon}</span>
+                <div>
+                  <h3 className="text-lg font-900 text-gray-900 tracking-tight">{bonus.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1 leading-relaxed">{bonus.subtitle}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {bonus.cards.map((card, cidx) => (
+                  <div key={cidx} className={`bg-white rounded-xl border ${c.cardBorder} p-4 space-y-2`}>
+                    <h4 className="text-xs font-800 text-gray-900 uppercase tracking-wider">{card.title}</h4>
+                    <ul className="text-xs text-gray-600 space-y-1.5">
+                      {card.items.map((item, iidx) => (
+                        <li key={iidx} className="flex gap-2"><span className={c.checkColor}>✓</span> {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className={`${c.noteBg} border ${c.noteBorder} rounded-lg p-4 text-xs ${c.noteText}`}>
+                <strong>Note:</strong> {bonus.note}
+              </div>
+
+              <button
+                onClick={handleGetQuote}
+                className={`px-6 py-2.5 ${c.btnBg} ${c.btnHover} text-white rounded-xl text-xs font-700 shadow-md transition-colors cursor-pointer`}
+              >
+                {bonus.ctaLabel}
+              </button>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Cross-Sells Section */}
       <section className="container-custom py-8 border-t border-gray-200/60 space-y-12">
