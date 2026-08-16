@@ -1054,5 +1054,494 @@ export const seedProducts: Partial<Product>[] = [
       metaDescription: 'Kalasam pure lamp oil in 210 litre barrels for wholesale and distributor bulk orders. Manufactured in Theni, India — request a quote.',
       keywords: 'wholesale lamp oil barrel, bulk lamp oil supplier India, 210 litre lamp oil drum, lamp oil distributor supply'
     }
+  },
+
+  // ── Sambrani ──────────────────────────────────────────────────
+  {
+    id: 'ks-055',
+    name: 'Kalasam Cup Sambrani',
+    slug: 'kalasam-cup-sambrani',
+    category: 'Sambrani',
+    shortDescription: 'Traditional cup-style sambrani for daily pooja and temple ritual fragrance, 12 pieces per box.',
+    description: 'A traditional cup-style sambrani used for daily pooja and temple ritual fragrance, packed 12 pieces per box for convenient regular use.',
+    specifications: [
+      { label: 'Packing', value: '12 Pcs Per Box' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Daily pooja and aarti',
+      'Temple ritual fragrance',
+      'Home shrine incense',
+      'Religious ceremonies',
+    ],
+    benefits: [
+      'Traditional cup-style format',
+      'Long-lasting fragrance',
+      'Convenient box packing',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '12', unit: 'pcs', description: '12 Pcs Per Box' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is custom packing available for Sambrani?', answer: 'Yes, custom packing is available on request for bulk and institutional buyers.' }
+    ],
+    images: ['/images/products/sambrani-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 40,
+    seo: {
+      metaTitle: 'Kalasam Cup Sambrani | Traditional Pooja Fragrance',
+      metaDescription: 'Kalasam Cup Sambrani, 12 pieces per box. Traditional fragrance for daily pooja and temple use. Manufactured by Kalasam, Theni, India.',
+      keywords: 'cup sambrani, Kalasam sambrani, pooja sambrani cup, temple fragrance India'
+    }
+  },
+  {
+    id: 'ks-056',
+    name: 'Kalasam Computer Sambrani',
+    slug: 'kalasam-computer-sambrani',
+    category: 'Sambrani',
+    shortDescription: 'Pressed/molded computer sambrani fragrance cups for pooja and religious use, 12 pieces per box.',
+    description: '"Computer sambrani" is a popular pressed/molded fragrance cup format for pooja use, packed 12 pieces per box — a related but distinct format buyers search for by name alongside Cup Sambrani.',
+    specifications: [
+      { label: 'Packing', value: '12 Pcs Per Box' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Daily pooja and aarti',
+      'Temple ritual fragrance',
+      'Home shrine incense',
+      'Religious ceremonies',
+    ],
+    benefits: [
+      'Pressed/molded fragrance cup format',
+      'Long-lasting fragrance',
+      'Convenient box packing',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '12', unit: 'pcs', description: '12 Pcs Per Box' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'What is computer sambrani?', answer: 'Computer sambrani refers to a pressed/molded fragrance cup format that is popular for pooja use — similar to cup sambrani but in a distinct pressed shape that buyers recognise by this name.' }
+    ],
+    images: ['/images/products/sambrani-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 41,
+    seo: {
+      metaTitle: 'Kalasam Computer Sambrani | Pooja Fragrance Cups',
+      metaDescription: 'Kalasam Computer Sambrani, 12 pieces per box. Long-lasting fragrance cups for pooja and religious use. Made in Theni, India.',
+      keywords: 'computer sambrani, Kalasam sambrani box, sambrani cups pooja, fragrance cups for temple'
+    }
+  },
+
+  // ── Rose Water ────────────────────────────────────────────────
+  {
+    id: 'krs-057',
+    name: 'Kalasam Rose Water 100ml',
+    slug: 'kalasam-rose-water-100ml',
+    category: 'Rose Water',
+    shortDescription: 'Pure rose water in a compact 100ml bottle for pooja, rituals, and everyday use.',
+    description: 'A small everyday-use bottle of pure rose water for pooja and household ritual use.',
+    specifications: [
+      { label: 'Volume', value: '100ml' },
+      { label: 'Packing', value: '100ml Bottle' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Daily pooja and ritual use',
+      'Home shrine and prayer room',
+      'Personal fragrance and freshening',
+      'Small household use',
+    ],
+    benefits: [
+      'Pure rose water for pooja',
+      'Compact everyday-use bottle',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '100', unit: 'ml', description: '100ml Bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this rose water suitable for pooja use?', answer: 'Yes, Kalasam rose water is suitable for all traditional pooja and ritual uses.' }
+    ],
+    images: ['/images/products/rose-water-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 42,
+    seo: {
+      metaTitle: 'Kalasam Rose Water 100ml | Pure Pooja Rose Water',
+      metaDescription: 'Kalasam pure rose water, 100ml bottle. Ideal for pooja, rituals, and everyday use. Manufactured in Theni, India.',
+      keywords: 'rose water for pooja, Kalasam rose water 100ml, pure rose water small bottle'
+    }
+  },
+  {
+    id: 'krs-058',
+    name: 'Kalasam Rose Water 200ml',
+    slug: 'kalasam-rose-water-200ml',
+    category: 'Rose Water',
+    shortDescription: 'Pure rose water in a 200ml bottle for regular household or small temple use.',
+    description: 'A mid-size rose water bottle suited to regular household or small temple use.',
+    specifications: [
+      { label: 'Volume', value: '200ml' },
+      { label: 'Packing', value: '200ml Bottle' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Regular household pooja use',
+      'Small temple and shrine use',
+      'Neighbourhood kirana shops',
+    ],
+    benefits: [
+      'Pure rose water for pooja',
+      'Mid-size for regular use households',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '200', unit: 'ml', description: '200ml Bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this rose water suitable for pooja use?', answer: 'Yes, Kalasam rose water is suitable for all traditional pooja and ritual uses.' }
+    ],
+    images: ['/images/products/rose-water-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 43,
+    seo: {
+      metaTitle: 'Kalasam Rose Water 200ml | Pure Pooja Rose Water',
+      metaDescription: 'Kalasam pure rose water, 200ml bottle. Trusted rose water for pooja and religious rituals. Made in Theni, India.',
+      keywords: 'rose water 200ml, pure pooja rose water, Kalasam rose water bottle'
+    }
+  },
+  {
+    id: 'krs-059',
+    name: 'Kalasam Rose Water 500ml',
+    slug: 'kalasam-rose-water-500ml',
+    category: 'Rose Water',
+    shortDescription: 'Pure rose water in a 500ml bottle, ideal for temples, shops, and regular bulk household use.',
+    description: 'A larger household/small-institutional size, suited to shops restocking regularly or larger temple use.',
+    specifications: [
+      { label: 'Volume', value: '500ml' },
+      { label: 'Packing', value: '500ml Bottle' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Small temple and shrine regular use',
+      'Retail shop stock',
+      'Larger household pooja use',
+    ],
+    benefits: [
+      'Pure rose water for pooja',
+      'Larger size for frequent-use buyers',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '500', unit: 'ml', description: '500ml Bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Is this suitable for temple use?', answer: 'Yes, the 500ml bottle is well-suited for temples and shops that use rose water regularly and prefer a larger, economical bottle.' }
+    ],
+    images: ['/images/products/rose-water-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 44,
+    seo: {
+      metaTitle: 'Kalasam Rose Water 500ml | Pure Pooja Rose Water',
+      metaDescription: 'Kalasam pure rose water, 500ml bottle. Ideal for temples, shops, and regular bulk household use.',
+      keywords: 'rose water 500ml, bulk pooja rose water, temple rose water supply'
+    }
+  },
+  {
+    id: 'krs-060',
+    name: 'Kalasam Rose Water 1000ml',
+    slug: 'kalasam-rose-water-1000ml',
+    category: 'Rose Water',
+    shortDescription: 'Pure rose water in a 1 litre bottle for temples, retail stock, and bulk household use.',
+    description: 'A full-litre size aimed at retail shop stock and temple/institutional buyers who use rose water regularly. For institutional supply or temple orders, visit our <a href="/temple-supply">temple supply</a> page.',
+    specifications: [
+      { label: 'Volume', value: '1000ml (1 Litre)' },
+      { label: 'Packing', value: '1 Litre Bottle' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Retail shop stock',
+      'Temple and institutional supply',
+      'Bulk household pooja use',
+    ],
+    benefits: [
+      'Pure rose water for pooja',
+      'Full-litre size for institutional and retail buyers',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '1000', unit: 'ml', description: '1 Litre Bottle' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Do you supply in bulk to temples?', answer: 'Yes, we supply to temples and institutions. Visit our temple supply page at /temple-supply for details on institutional pricing and arrangements.' }
+    ],
+    images: ['/images/products/rose-water-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 45,
+    seo: {
+      metaTitle: 'Kalasam Rose Water 1 Litre | Pure Pooja Rose Water',
+      metaDescription: 'Kalasam pure rose water, 1000ml bottle. Ideal for temples, retail stock, and bulk household use. From Theni, India.',
+      keywords: 'rose water 1 litre, wholesale pooja rose water, temple rose water bulk'
+    }
+  },
+
+  // ── Agarbathi ─────────────────────────────────────────────────
+  {
+    id: 'ka-040',
+    name: 'Kalasam AgarBathi Rs5',
+    slug: 'kalasam-agarbathi-rs5',
+    category: 'Agarbathi',
+    shortDescription: 'Entry-level incense stick pack, five sticks per box, available in five fragrances.',
+    description: 'An entry-level incense stick pack available in five distinct fragrances, sized for everyday household pooja use and easy retail-shop restocking.',
+    specifications: [
+      { label: 'Packing', value: 'Five Sticks Per Box' },
+      { label: 'Flavours', value: 'Rose, Lavender, Black, Jasmine, Pineapple' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Daily household pooja',
+      'Retail shop stock',
+      'Home and office fragrance',
+      'Religious ceremonies',
+    ],
+    benefits: [
+      'Five fragrance options in one format',
+      'Entry price point for household use',
+      'Easy retail shelf restocking',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '5', unit: 'sticks', description: 'Five Sticks Per Box' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Which flavours are available in the Rs5 pack?', answer: 'The Rs5 pack is available in Rose, Lavender, Black, Jasmine, and Pineapple fragrance options.' }
+    ],
+    variants: [
+      {
+        id: 'ka-040-v1',
+        sku: 'KA041',
+        attributes: { flavour: 'Rose' },
+        packingType: 'Five Sticks Per Box',
+        materialType: 'Rose Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'ka-040-v2',
+        sku: 'KA042',
+        attributes: { flavour: 'Lavender' },
+        packingType: 'Five Sticks Per Box',
+        materialType: 'Lavender Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'ka-040-v3',
+        sku: 'KA043',
+        attributes: { flavour: 'Black' },
+        packingType: 'Five Sticks Per Box',
+        materialType: 'Black Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 3
+      },
+      {
+        id: 'ka-040-v4',
+        sku: 'KA044',
+        attributes: { flavour: 'Jasmine' },
+        packingType: 'Five Sticks Per Box',
+        materialType: 'Jasmine Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 4
+      },
+      {
+        id: 'ka-040-v5',
+        sku: 'KA045',
+        attributes: { flavour: 'Pineapple' },
+        packingType: 'Five Sticks Per Box',
+        materialType: 'Pineapple Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 5
+      }
+    ],
+    images: ['/images/products/agarbathi-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 50,
+    seo: {
+      metaTitle: 'Kalasam Agarbathi Rs5 | Incense Sticks — 5 Flavours',
+      metaDescription: 'Kalasam Agarbathi Rs5 pack, five sticks per box. Available in Rose, Lavender, Black, Jasmine, and Pineapple. Made in Theni, India.',
+      keywords: 'agarbathi Rs5, Kalasam incense sticks, rose agarbathi, jasmine agarbathi, pooja incense sticks India'
+    }
+  },
+  {
+    id: 'ka-046',
+    name: 'Kalasam AgarBathi Rs10',
+    slug: 'kalasam-agarbathi-rs10',
+    category: 'Agarbathi',
+    shortDescription: 'Mid-range incense stick pack, ten sticks per box, available in five fragrances.',
+    description: 'A step-up incense stick pack with more sticks per box across the same five fragrance options, suited to regular household or shop use.',
+    specifications: [
+      { label: 'Packing', value: 'Ten Sticks Per Box' },
+      { label: 'Flavours', value: 'Rose, Lavender, Black, Jasmine, Pineapple' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Regular household pooja',
+      'Retail shop stock',
+      'Home and office fragrance',
+      'Religious ceremonies and events',
+    ],
+    benefits: [
+      'More sticks per box for regular users',
+      'Five fragrance options',
+      'Good value household/shop format',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '10', unit: 'sticks', description: 'Ten Sticks Per Box' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Which flavours are available in the Rs10 pack?', answer: 'The Rs10 pack is available in Rose, Lavender, Black, Jasmine, and Pineapple fragrance options.' }
+    ],
+    variants: [
+      {
+        id: 'ka-046-v1',
+        sku: 'KA047',
+        attributes: { flavour: 'Rose' },
+        packingType: 'Ten Sticks Per Box',
+        materialType: 'Rose Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'ka-046-v2',
+        sku: 'KA048',
+        attributes: { flavour: 'Lavender' },
+        packingType: 'Ten Sticks Per Box',
+        materialType: 'Lavender Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 2
+      },
+      {
+        id: 'ka-046-v3',
+        sku: 'KA049',
+        attributes: { flavour: 'Black' },
+        packingType: 'Ten Sticks Per Box',
+        materialType: 'Black Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 3
+      },
+      {
+        id: 'ka-046-v4',
+        sku: 'KA050',
+        attributes: { flavour: 'Jasmine' },
+        packingType: 'Ten Sticks Per Box',
+        materialType: 'Jasmine Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 4
+      },
+      {
+        id: 'ka-046-v5',
+        sku: 'KA051',
+        attributes: { flavour: 'Pineapple' },
+        packingType: 'Ten Sticks Per Box',
+        materialType: 'Pineapple Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 5
+      }
+    ],
+    images: ['/images/products/agarbathi-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 51,
+    seo: {
+      metaTitle: 'Kalasam Agarbathi Rs10 | Incense Sticks — 5 Flavours',
+      metaDescription: 'Kalasam Agarbathi Rs10 pack, ten sticks per box. Available in Rose, Lavender, Black, Jasmine, and Pineapple. Made in Theni, India.',
+      keywords: 'agarbathi Rs10, incense sticks 10 pack, Kalasam agarbathi flavours, lavender agarbathi India'
+    }
+  },
+  {
+    id: 'ka-052',
+    name: 'Kalasam AgarBathi Rs50',
+    slug: 'kalasam-agarbathi-rs50',
+    category: 'Agarbathi',
+    shortDescription: 'Larger 100g incense stick box, available in Black and Pineapple — ideal for regular users, shops, and temples.',
+    description: 'A larger 100g box format aimed at buyers who go through incense sticks regularly — shops, temples, or bulk household stock — currently available in Black and Pineapple. See our <a href="/wholesale">wholesale</a> and <a href="/retail-supply">retail supply</a> pages for trade pricing.',
+    specifications: [
+      { label: 'Packing', value: '100g Per Box' },
+      { label: 'Flavours', value: 'Black, Pineapple' },
+      { label: 'Custom Packing', value: 'Available' },
+    ],
+    applications: [
+      'Regular shop and temple use',
+      'Wholesale and retail trade stock',
+      'Bulk household incense use',
+    ],
+    benefits: [
+      '100g bulk-friendly box format',
+      'Black and Pineapple fragrance options',
+      'Suitable for shop/institutional buyers',
+      'Manufactured in Theni, Tamil Nadu',
+    ],
+    packaging: [
+      { size: '100', unit: 'g', description: '100g Per Box' },
+    ],
+    downloads: [],
+    faq: [
+      { question: 'Which flavours are available in the Rs50 pack?', answer: 'The Rs50 (100g) pack is currently available in Black and Pineapple fragrance options.' },
+      { question: 'Is wholesale pricing available for this size?', answer: 'Yes, please visit our wholesale and retail supply pages for trade pricing and ordering details.' }
+    ],
+    variants: [
+      {
+        id: 'ka-052-v1',
+        sku: 'KA053',
+        attributes: { flavour: 'Black' },
+        packingType: '100g Per Box',
+        materialType: 'Black Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 1
+      },
+      {
+        id: 'ka-052-v2',
+        sku: 'KA054',
+        attributes: { flavour: 'Pineapple' },
+        packingType: '100g Per Box',
+        materialType: 'Pineapple Agarbathi',
+        customPackingAvailable: true,
+        sortOrder: 2
+      }
+    ],
+    images: ['/images/products/agarbathi-placeholder.png'],
+    featured: false,
+    exportAvailable: false,
+    status: 'active',
+    order: 52,
+    seo: {
+      metaTitle: 'Kalasam Agarbathi Rs50 | 100g Incense Sticks',
+      metaDescription: 'Kalasam Agarbathi Rs50 pack, 100g per box. Available in Black and Pineapple. Bulk-friendly incense sticks from Theni, India.',
+      keywords: 'agarbathi 100g, bulk incense sticks India, Kalasam agarbathi Rs50, wholesale agarbathi box'
+    }
   }
 ];
