@@ -78,21 +78,21 @@ export default function CompanyIntro() {
           <div className="lg:col-span-5 order-1 lg:order-2">
             <ScrollReveal direction="right" delay={0.2}>
               <figure className="relative">
-                {/* Main factory image */}
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+                {/* Kalasam Brand Poster */}
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated">
                   <Image
-                    src="/images/hero/factory-campus.png"
-                    alt="Kalasam Jaikrishna Industries 30,000 sq ft manufacturing facility in Theni, Tamil Nadu"
+                    src="/images/about/kalasam-brand-poster.png"
+                    alt="Kalasam brand by Jaikrishna Industries — Pure, Authentic, Traditional camphor products"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
                 <figcaption className="mt-3 text-xs text-gray-400 text-center">
-                  Our ISO 9001:2015 certified manufacturing campus in Theni, Tamil Nadu — operational since 1995.
+                  Kalasam — Our flagship brand for premium camphor and pooja products since 1995.
                 </figcaption>
 
-                {/* Floating badge */}
+                {/* Floating brand badge */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -101,14 +101,12 @@ export default function CompanyIntro() {
                   className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-elevated p-5 border border-gray-100"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                      </svg>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <span className="text-xl font-900 text-primary leading-none">K</span>
                     </div>
                     <div>
-                      <div className="text-sm font-700 text-gray-900">ISO 9001:2015</div>
-                      <div className="text-xs text-gray-500">Certified Manufacturer</div>
+                      <div className="text-sm font-700 text-gray-900">Kalasam</div>
+                      <div className="text-xs text-gray-500">Jaikrishna Industries</div>
                     </div>
                   </div>
                 </motion.div>
