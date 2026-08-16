@@ -81,7 +81,7 @@ export default function CompanyIntro() {
                 {/* Kalasam Brand Poster */}
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated">
                   <Image
-                    src="/images/about/kalasam-brand-poster.png"
+                    src="/images/about/Kalasam-Brand-Img.png"
                     alt="Kalasam brand by Jaikrishna Industries — Pure, Authentic, Traditional camphor products"
                     fill
                     className="object-cover"
