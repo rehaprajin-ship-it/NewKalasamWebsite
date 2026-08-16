@@ -27,11 +27,10 @@ export const COMPANY = {
     whatsapp: '916383020848',
   },
   social: {
-    facebook: 'https://facebook.com/jaikrishnaindustries',
-    instagram: 'https://instagram.com/jaikrishnaindustries',
-    linkedin: 'https://linkedin.com/company/jaikrishnaindustries',
-    youtube: 'https://youtube.com/@jaikrishnaindustries',
-    twitter: 'https://twitter.com/jaikrishna_ind',
+    facebook: 'https://www.facebook.com/profile.php?id=61586218173998',
+    instagram: 'https://www.instagram.com/jaikrishna_industries/?__pwa=1',
+    linkedin: 'https://www.linkedin.com/in/jaikrishna-industries/',
+    twitter: 'https://twitter.com/jaikrishnaindus',
   },
   businessHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
 } as const;
