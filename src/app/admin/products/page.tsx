@@ -11,6 +11,7 @@ import { uploadToCloudinary } from '@/lib/cloudinary';
 import type { Product, ProductCategory } from '@/types';
 import { seedProducts } from '@/data/products';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
+import BulkImportModal from '@/components/admin/BulkImportModal';
 
 const CATEGORIES: ProductCategory[] = PRODUCT_CATEGORIES.map((c) => c.name as ProductCategory);
 
@@ -61,6 +62,7 @@ export default function AdminProductsCMS() {
   const [loadingData, setLoadingData] = useState(true);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBulkImportOpen, setIsBulkImportOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [previewTab, setPreviewTab] = useState<'seo' | 'card' | 'faq'>('seo');
@@ -439,20 +441,34 @@ export default function AdminProductsCMS() {
           <h2 className="text-xl font-800 text-gray-900 tracking-tight">Enterprise Product CMS</h2>
           <p className="text-xs text-gray-500 mt-1 font-500">Configure catalog properties, chemical specifications, and display sequence.</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="/api/admin/bulk-template"
+            download="kalasam-bulk-product-import-template.xlsx"
+            className="px-3.5 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-700 rounded-[12px] text-xs transition-colors shadow-2xs cursor-pointer inline-flex items-center gap-1.5"
+            title="Download Excel template for offline product preparation"
+          >
+            <span>⬇️</span> Download Template
+          </a>
+          <button
+            onClick={() => setIsBulkImportOpen(true)}
+            className="px-3.5 py-2 bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 text-emerald-800 font-700 rounded-[12px] text-xs transition-colors shadow-2xs cursor-pointer inline-flex items-center gap-1.5"
+          >
+            <span>📊</span> Bulk Import
+          </button>
           {/* Hide/Disable migration button if products already have sortOrder to prevent accidental overwrites */}
           {products.some((p) => p.sortOrder === undefined) && (
-            <button onClick={runSortOrderMigration} className="px-4 py-2 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
+            <button onClick={runSortOrderMigration} className="px-3.5 py-2 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
               ⚙️ Run Sort Migration
             </button>
           )}
-          <button onClick={() => setIsReorderMode(!isReorderMode)} className={`px-4 py-2 border font-700 rounded-[12px] text-xs transition-colors cursor-pointer ${isReorderMode ? 'bg-[#128C7E] text-white border-[#128C7E]' : 'bg-gray-100 border-gray-200 hover:bg-gray-200 text-gray-700'}`}>
+          <button onClick={() => setIsReorderMode(!isReorderMode)} className={`px-3.5 py-2 border font-700 rounded-[12px] text-xs transition-colors cursor-pointer ${isReorderMode ? 'bg-[#128C7E] text-white border-[#128C7E]' : 'bg-gray-100 border-gray-200 hover:bg-gray-200 text-gray-700'}`}>
             {isReorderMode ? '✕ Exit Reorder' : '⇅ Reorder Mode'}
           </button>
-          <button onClick={handleSeedProducts} className="px-4 py-2 bg-gray-100 border border-gray-200 hover:bg-gray-200 text-gray-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
-            Seed Default Products
+          <button onClick={handleSeedProducts} className="px-3.5 py-2 bg-gray-100 border border-gray-200 hover:bg-gray-200 text-gray-700 font-700 rounded-[12px] text-xs transition-colors cursor-pointer">
+            Seed Defaults
           </button>
-          <button onClick={handleOpenAdd} className="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[12px] text-xs transition-colors shadow-sm cursor-pointer">
+          <button onClick={handleOpenAdd} className="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[12px] text-xs transition-colors shadow-sm cursor-pointer inline-flex items-center gap-1">
             + Add Product
           </button>
         </div>
@@ -1051,6 +1067,16 @@ export default function AdminProductsCMS() {
           </div>
         </div>
       )}
+
+      {/* Bulk Excel Import Modal */}
+      <BulkImportModal
+        isOpen={isBulkImportOpen}
+        onClose={() => setIsBulkImportOpen(false)}
+        existingProducts={products}
+        onImportComplete={() => {
+          loadCatalog();
+        }}
+      />
     </main>
   );
 }
