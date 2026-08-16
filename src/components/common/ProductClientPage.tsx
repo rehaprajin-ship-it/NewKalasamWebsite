@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { saveContact, getProductBySlug } from '@/lib/firestore';
 import { useInquiry } from '@/context/InquiryContext';
 import { COMPANY } from '@/lib/constants';
+import { FAQAccordionItem } from '@/components/ui/FAQAccordion';
 
 function WhatsAppIcon() {
   return (
@@ -395,24 +396,29 @@ export default function ProductClientPage({ initialProduct, allProducts = [], sl
               )}
 
               {activeTab === 'faq' && (
-                <div className="space-y-4">
-                  {product.faq?.map((faq: any, idx: number) => (
-                    <div key={idx} className="border-b border-gray-100 pb-3">
-                      <h4 className="font-800 text-gray-900 text-xs">{faq.question}</h4>
-                      <p className="text-[11px] text-gray-600 mt-1">{faq.answer}</p>
-                    </div>
-                  )) || (
-                    <div className="space-y-3">
-                      <div className="border-b border-gray-100 pb-3">
-                        <h4 className="font-800 text-gray-900 text-xs">What is the MOQ for this product?</h4>
-                        <p className="text-[11px] text-gray-600 mt-1">Standard MOQ for synthetic camphor and intermediates is 30kg (one standard bag). Custom packing and smaller trial orders are available on request.</p>
-                      </div>
-                      <div className="border-b border-gray-100 pb-3">
-                        <h4 className="font-800 text-gray-900 text-xs">Are custom packaging options available for export?</h4>
-                        <p className="text-[11px] text-gray-600 mt-1">Yes, we customize bag weight, drum lining, and container packing configurations to align with regional customs compliance and distributor logistics.</p>
-                      </div>
-                    </div>
-                  )}
+                <div className="space-y-3">
+                  {(product.faq && product.faq.length > 0
+                    ? product.faq
+                    : [
+                        {
+                          question: 'What is the MOQ for this product?',
+                          answer:
+                            'Standard MOQ for synthetic camphor and intermediates is 30kg (one standard bag). Custom packing and smaller trial orders are available on request.',
+                        },
+                        {
+                          question: 'Are custom packaging options available for export?',
+                          answer:
+                            'Yes, we customize bag weight, drum lining, and container packing configurations to align with regional customs compliance and distributor logistics.',
+                        },
+                      ]
+                  ).map((faq: any, idx: number) => (
+                    <FAQAccordionItem
+                      key={idx}
+                      question={faq.question}
+                      answer={faq.answer}
+                      defaultOpen={false}
+                    />
+                  ))}
                 </div>
               )}
             </div>

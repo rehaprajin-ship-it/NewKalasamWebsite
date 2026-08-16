@@ -10,6 +10,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
+import FAQAccordion from '@/components/ui/FAQAccordion';
+import { SITE_URL, COMPANY } from '@/lib/constants';
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/context/ToastProvider';
 
@@ -283,15 +285,8 @@ export default function SuperStockistPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
           <SectionHeader overline="Common Questions" title="Super Stockist FAQ" />
-          <div className="space-y-4 mt-6">
-            {ssFaqs.map((faq, idx) => (
-              <ScrollReveal key={idx}>
-                <div className="bg-white rounded-xl border border-gray-200 p-6">
-                  <h3 className="font-700 text-gray-900 text-sm">{faq.question}</h3>
-                  <p className="text-sm text-gray-500 mt-2 leading-relaxed">{faq.answer}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="mt-8">
+            <FAQAccordion items={ssFaqs} />
           </div>
         </div>
       </section>

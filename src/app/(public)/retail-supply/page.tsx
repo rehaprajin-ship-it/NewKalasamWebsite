@@ -9,6 +9,7 @@ import Link from 'next/link';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { FAQSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
+import FAQAccordion from '@/components/ui/FAQAccordion';
 import { SITE_URL, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -132,15 +133,8 @@ export default function RetailSupplyPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
           <SectionHeader overline="Common Questions" title="Retail Supply FAQ" />
-          <div className="space-y-4 mt-6">
-            {retailFaqs.map((faq, idx) => (
-              <ScrollReveal key={idx}>
-                <div className="bg-white rounded-xl border border-gray-200 p-6">
-                  <h3 className="font-700 text-gray-900 text-sm">{faq.question}</h3>
-                  <p className="text-sm text-gray-500 mt-2 leading-relaxed">{faq.answer}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="mt-8">
+            <FAQAccordion items={retailFaqs} />
           </div>
         </div>
       </section>

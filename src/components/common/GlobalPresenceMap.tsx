@@ -6,7 +6,7 @@
    Guarantees 100% accurate pin placement on exact country coordinates.
    ═══════════════════════════════════════════════════════════════ */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export interface CountryPin {
   code: string;
@@ -53,6 +53,7 @@ export default function GlobalPresenceMap({
 }: GlobalPresenceMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -106,6 +107,8 @@ export default function GlobalPresenceMap({
         maxZoom: 8,
         zoomControl: true,
         scrollWheelZoom: false,
+        dragging: isInteractive,
+        touchZoom: isInteractive,
       });
 
       mapInstanceRef.current = map;
@@ -138,7 +141,7 @@ export default function GlobalPresenceMap({
           className: 'clean-map-pin',
           html: svgPin,
           iconSize: [pinWidth, pinHeight],
-          iconAnchor: [pinWidth / 2, pinHeight], // Bottom tip of the pin anchored exactly at lat/lng
+          iconAnchor: [pinWidth / 2, pinHeight],
         });
 
         const marker = L.marker([loc.lat, loc.lng], { 
@@ -150,7 +153,7 @@ export default function GlobalPresenceMap({
         marker.bindTooltip(
           `<div style="font-weight:700; font-size:11px; font-family:sans-serif;">${isHQ ? '🏭 ' : ''}${loc.name}</div>`,
           {
-            permanent: isHQ, // Keep India HQ label visible, others on hover
+            permanent: isHQ,
             direction: 'top',
             offset: [0, -pinHeight],
             className: 'custom-map-tooltip',
@@ -182,29 +185,77 @@ export default function GlobalPresenceMap({
     };
   }, [center, initialZoom]);
 
+  // Sync interactivity with map
+  useEffect(() => {
+    if (mapInstanceRef.current) {
+      if (isInteractive) {
+        mapInstanceRef.current.dragging.enable();
+        mapInstanceRef.current.touchZoom.enable();
+        mapInstanceRef.current.scrollWheelZoom.enable();
+      } else {
+        mapInstanceRef.current.dragging.disable();
+        mapInstanceRef.current.touchZoom.disable();
+        mapInstanceRef.current.scrollWheelZoom.disable();
+      }
+    }
+  }, [isInteractive]);
+
   return (
     <div className="rounded-2xl overflow-hidden border-2 border-primary/20 shadow-elevated relative bg-gray-100 flex flex-col">
       {/* Title Bar */}
       {showTitleBar && (
-        <div className="bg-primary-dark px-5 py-3 flex items-center gap-3 z-10 flex-shrink-0">
-          <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center flex-shrink-0">
-            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-            </svg>
+        <div className="bg-primary-dark px-5 py-3 flex items-center justify-between z-10 flex-shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-white font-600 text-sm">Kalasam Jaikrishna Industries — Global Presence</h3>
+              <p className="text-white/60 text-xs">Exporting to 17+ countries across Asia, Middle East, Africa & North America</p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-white font-600 text-sm">Kalasam Jaikrishna Industries — Global Presence</h3>
-            <p className="text-white/60 text-xs">Exporting to 17+ countries across Asia, Middle East, Africa & North America</p>
-          </div>
+
+          {/* Interactive control toggle button */}
+          <button
+            type="button"
+            onClick={() => setIsInteractive(!isInteractive)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-700 transition-all cursor-pointer flex items-center gap-1.5 ${
+              isInteractive
+                ? 'bg-accent text-primary shadow-xs'
+                : 'bg-white/15 text-white hover:bg-white/25'
+            }`}
+          >
+            <span>{isInteractive ? '🔓 Map Active' : '👆 Tap to Explore'}</span>
+          </button>
         </div>
       )}
 
-      {/* Map Canvas */}
-      <div
-        ref={containerRef}
-        style={{ height }}
-        className="w-full relative z-0 flex-1 min-h-[300px]"
-      />
+      {/* Map Container with Tap to Explore Overlay */}
+      <div className="relative w-full flex-1">
+        <div
+          ref={containerRef}
+          style={{ height }}
+          className="w-full relative z-0 flex-1 min-h-[300px]"
+        />
+
+        {/* Tap to Explore overlay (when inactive) */}
+        {!isInteractive && (
+          <div
+            onClick={() => setIsInteractive(true)}
+            className="absolute inset-0 z-20 bg-black/15 backdrop-blur-[1px] flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-black/10 group"
+          >
+            <div className="px-5 py-3 bg-white/95 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 transform group-hover:scale-105 transition-transform">
+              <span className="text-2xl animate-bounce">👆</span>
+              <div className="text-left">
+                <p className="text-xs font-800 text-gray-900">Tap / Click to Explore Map</p>
+                <p className="text-[11px] text-gray-500 font-500">Pan, zoom, and inspect 17+ global export markets</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Footer Legend */}
       <div className="bg-white px-5 py-2.5 border-t border-gray-200 flex flex-wrap items-center justify-between text-xs text-gray-600 z-10 flex-shrink-0">
@@ -219,7 +270,20 @@ export default function GlobalPresenceMap({
             17+ Global Export Destinations
           </div>
         </div>
-        <span className="text-gray-400 hidden sm:inline text-[11px]">Hover or click any pin for country details</span>
+        <div className="flex items-center gap-2">
+          {isInteractive && (
+            <button
+              type="button"
+              onClick={() => setIsInteractive(false)}
+              className="text-[11px] text-primary hover:underline font-600 cursor-pointer"
+            >
+              🔒 Lock Map
+            </button>
+          )}
+          <span className="text-gray-400 hidden sm:inline text-[11px]">
+            {isInteractive ? 'Map is unlocked. Drag to pan & scroll to zoom.' : 'Tap to interact with markers'}
+          </span>
+        </div>
       </div>
     </div>
   );

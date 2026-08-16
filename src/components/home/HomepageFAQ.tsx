@@ -39,7 +39,7 @@ const homepageFaqs = [
 ];
 
 export default function HomepageFAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="section-padding bg-gray-50/50">
