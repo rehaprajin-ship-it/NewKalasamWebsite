@@ -88,6 +88,8 @@ export default function RootLayout({
       <head>
         {/* Web App Manifest for installability signals */}
         <link rel="manifest" href="/manifest.json" />
+        {/* LLMs.txt link relation for AI agents & crawlers (https://llmstxt.org/) */}
+        <link rel="describedby" href="/llms.txt" type="text/markdown" />
 
         {/* JSON-LD WebSite Schema (Google Sitename Signal) */}
         <script
