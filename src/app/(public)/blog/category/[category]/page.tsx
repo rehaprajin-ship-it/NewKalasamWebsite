@@ -10,6 +10,7 @@ import { BLOG_CATEGORIES, getCategoryBySlug, getCategoryImage } from '@/data/blo
 import { getPostsByCategory } from '@/data/blog-posts';
 import ShareButton from '@/components/ui/ShareButton';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/common/ScrollReveal';
+import { SITE_URL } from '@/lib/constants';
 
 type PageProps = {
   params: Promise<{ category: string }>;
@@ -25,9 +26,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const canonicalUrl = `${SITE_URL}/blog/category/${category}`;
+
   return {
     title: `${categoryData.metaTitle} — Kalasam Jaikrishna Industries`,
     description: categoryData.metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${categoryData.metaTitle} — Kalasam Jaikrishna Industries`,
+      description: categoryData.metaDescription,
+      url: canonicalUrl,
+      type: 'website',
+    },
   };
 }
 
