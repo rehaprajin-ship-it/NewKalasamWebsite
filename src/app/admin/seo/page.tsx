@@ -164,7 +164,7 @@ export default function SEODashboard() {
   const goodCount = entries.filter((e) => e.overallScore >= 80).length;
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-5 lg:space-y-6 animate-in fade-in duration-300">
       {/* Header */}
       <div>
         <h2 className="text-xl font-800 text-gray-900 tracking-tight">SEO Manager</h2>
@@ -196,12 +196,12 @@ export default function SEODashboard() {
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex items-center gap-2 overflow-x-auto admin-tabs-scroll pb-1">
         {(['all', 'products', 'blogs'] as const).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1.5 text-[11px] font-700 rounded-full border transition-all capitalize cursor-pointer ${
+            className={`px-3.5 py-2 text-xs font-700 rounded-full border transition-all capitalize cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               filter === f
                 ? 'bg-[#25D366] text-white border-[#25D366]'
                 : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'
@@ -210,12 +210,12 @@ export default function SEODashboard() {
             {f}
           </button>
         ))}
-        <span className="w-px h-5 bg-gray-200 mx-1" />
+        <span className="w-px h-5 bg-gray-200 mx-1 flex-shrink-0" />
         {(['all', 'good', 'issues'] as const).map((f) => (
           <button
             key={f}
             onClick={() => setStatusFilter(f)}
-            className={`px-3 py-1.5 text-[11px] font-700 rounded-full border transition-all cursor-pointer ${
+            className={`px-3.5 py-2 text-xs font-700 rounded-full border transition-all cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               statusFilter === f
                 ? 'bg-gray-800 text-white border-gray-800'
                 : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'
@@ -226,15 +226,76 @@ export default function SEODashboard() {
         ))}
       </div>
 
-      {/* Table */}
+      {/* Table & Cards */}
       {loading ? (
         <div className="text-center py-20 bg-white rounded-[18px] border border-gray-200/80">
           <div className="w-8 h-8 border-3 border-[#25D366] border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-xs text-gray-400 mt-3 font-600">Analyzing SEO health...</p>
         </div>
       ) : (
-        <div className="bg-white rounded-[18px] border border-gray-200/80 overflow-hidden">
-          <table className="w-full text-xs text-left border-collapse">
+        <div className="bg-white rounded-[18px] border border-gray-200/80 overflow-hidden shadow-xs">
+          {/* ═══ Mobile Card View ═══ */}
+          <div className="admin-cards-mobile divide-y divide-gray-100">
+            {filtered.map((entry) => (
+              <div key={`${entry.type}-${entry.slug}`} className="p-4 space-y-2.5">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[9px] font-800 uppercase px-1.5 py-0.5 rounded ${
+                        entry.type === 'product'
+                          ? 'bg-blue-100 text-blue-600'
+                          : 'bg-purple-100 text-purple-600'
+                      }`}>
+                        {entry.type}
+                      </span>
+                      <h4 className="font-800 text-gray-900 text-sm truncate">{entry.name}</h4>
+                    </div>
+                    <p className="text-[11px] text-gray-400 font-mono mt-0.5 truncate">
+                      /{entry.type === 'product' ? 'products' : 'blog'}/{entry.slug}
+                    </p>
+                  </div>
+                  {scoreBadge(entry.overallScore)}
+                </div>
+
+                <div className="grid grid-cols-5 gap-1.5 bg-gray-50/70 p-2.5 rounded-xl text-center text-[10px]">
+                  <div>
+                    <span className="text-gray-400 block font-600">Title</span>
+                    <div className="mt-1 flex items-center justify-center gap-1">
+                      {statusDot(entry.titleStatus)}
+                      <span className="text-gray-600 font-mono">{entry.titleLength}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block font-600">Desc</span>
+                    <div className="mt-1 flex items-center justify-center gap-1">
+                      {statusDot(entry.descStatus)}
+                      <span className="text-gray-600 font-mono">{entry.descLength}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block font-600">Keywords</span>
+                    <div className="mt-1">{statusDot(entry.keywordsStatus)}</div>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block font-600">Images</span>
+                    <div className="mt-1">{statusDot(entry.imagesStatus)}</div>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block font-600">FAQ</span>
+                    <div className="mt-1">{statusDot(entry.faqStatus)}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {filtered.length === 0 && (
+              <div className="p-8 text-center text-gray-400 text-xs font-600">
+                No pages match the current filters.
+              </div>
+            )}
+          </div>
+
+          {/* ═══ Desktop Table ═══ */}
+          <table className="w-full text-xs text-left border-collapse admin-table-desktop">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-150 text-gray-400 font-800 uppercase tracking-wider">
                 <th className="px-4 py-3 w-1/3">Page</th>

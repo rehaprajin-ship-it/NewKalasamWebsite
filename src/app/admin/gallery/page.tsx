@@ -77,7 +77,7 @@ export default function AdminGalleryCMS() {
   if (!isAdmin) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><p className="text-gray-500 font-600">Access denied</p></div>;
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-5 lg:space-y-6 animate-in fade-in duration-300">
       
       {/* Header bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -88,31 +88,31 @@ export default function AdminGalleryCMS() {
       </div>
 
       {/* Upload Zone */}
-      <div className="bg-white rounded-[18px] border border-gray-200/80 p-6 shadow-xs grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-        <div className="md:col-span-1">
+      <div className="bg-white rounded-[18px] border border-gray-200/80 p-4 lg:p-6 shadow-xs grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 lg:gap-6 items-end">
+        <div>
           <label className="block text-xs font-700 text-gray-600 mb-1">Asset Title (Optional)</label>
           <input
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             placeholder="e.g. Factory Boiler Unit"
-            className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-xs focus:outline-hidden text-gray-950 bg-white"
+            className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-sm lg:text-xs focus:outline-hidden text-gray-950 bg-white"
           />
         </div>
-        <div className="md:col-span-1">
+        <div>
           <label className="block text-xs font-700 text-gray-600 mb-1">Target Album *</label>
           <select
             value={selectedAlbum}
             onChange={(e) => setSelectedAlbum(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-xs focus:outline-hidden text-gray-950 bg-white"
+            className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-sm lg:text-xs focus:outline-hidden text-gray-950 bg-white min-h-[44px] lg:min-h-0"
           >
             {ALBUMS.map((alb) => (
               <option key={alb} value={alb}>{alb} Folder</option>
             ))}
           </select>
         </div>
-        <div className="md:col-span-1">
-          <label className="w-full py-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[10px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm">
+        <div className="sm:col-span-2 md:col-span-1">
+          <label className="w-full py-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[10px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]">
             {uploading ? (
               <>
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -135,12 +135,12 @@ export default function AdminGalleryCMS() {
       </div>
 
       {/* Albums Tabs */}
-      <div className="flex gap-2 overflow-x-auto border-b border-gray-200 pb-px">
+      <div className="flex gap-2 overflow-x-auto border-b border-gray-200 pb-px admin-tabs-scroll">
         {ALBUMS.map((alb) => (
           <button
             key={alb}
             onClick={() => setSelectedAlbum(alb)}
-            className={`px-4 py-2 text-xs font-700 border-b-2 transition-all cursor-pointer ${
+            className={`px-4 py-2 text-xs font-700 border-b-2 transition-all cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               selectedAlbum === alb
                 ? 'border-[#25D366] text-[#128C7E]'
                 : 'border-transparent text-gray-500 hover:text-gray-900'
@@ -173,18 +173,19 @@ export default function AdminGalleryCMS() {
                   <h4 className="font-800 text-gray-900 line-clamp-1 leading-tight">{img.title}</h4>
                   <p className="text-[10px] text-gray-400 mt-1 font-500 uppercase tracking-wider">{img.category}</p>
                 </div>
-                <div className="flex gap-2.5 pt-2 border-t border-gray-100">
+                <div className="flex gap-2 pt-2 border-t border-gray-100">
                   <button
                     onClick={() => handleCopyLink(img.url)}
-                    className="flex-1 py-1.5 bg-gray-50 border border-gray-200 rounded-[8px] text-[10px] font-700 text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-all cursor-pointer"
+                    className="flex-1 py-2 bg-gray-50 border border-gray-200 rounded-[8px] text-[11px] font-700 text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-all cursor-pointer min-h-[38px]"
                   >
                     Copy Link
                   </button>
                   <button
                     onClick={() => handleDelete(img.id)}
-                    className="py-1.5 px-2 bg-red-50 border border-red-100 text-red-600 hover:bg-red-100 rounded-[8px] transition-colors cursor-pointer"
+                    className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-[8px] border border-gray-200 transition-all cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
+                    title="Delete Image"
                   >
-                    ✕
+                    🗑️
                   </button>
                 </div>
               </div>

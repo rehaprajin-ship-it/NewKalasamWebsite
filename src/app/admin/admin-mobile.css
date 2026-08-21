@@ -1,0 +1,96 @@
+/* ═══════════════════════════════════════════════════════════════
+   Admin Panel — Mobile-Specific Overrides
+   Scoped to < lg (1024px) breakpoint only.
+   Desktop admin experience is completely unchanged.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Touch Target Minimums ─────────────────────────────────── */
+@media (max-width: 1023px) {
+
+  /* All interactive elements in admin get minimum 44px touch targets */
+  .admin-touch button,
+  .admin-touch a,
+  .admin-touch [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Checkboxes need larger tap area */
+  .admin-touch input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+
+  /* Form selects need adequate height */
+  .admin-touch select {
+    min-height: 44px;
+  }
+
+  /* ── Reorder Drag Touch Support ──────────────────────────── */
+  .admin-reorder-item {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* ── Modal Full-Screen on Mobile ─────────────────────────── */
+  .admin-modal-mobile {
+    position: fixed !important;
+    inset: 0 !important;
+    max-width: 100% !important;
+    max-height: 100dvh !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .admin-modal-mobile-content {
+    max-height: calc(100dvh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Table Hide on Mobile (replaced by cards) ────────────── */
+  .admin-table-desktop {
+    display: none !important;
+  }
+
+  /* Card view visible only on mobile */
+  .admin-cards-mobile {
+    display: block !important;
+  }
+
+  /* ── Safe Area Insets for Notched Devices ─────────────────── */
+  .admin-safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* ── Horizontal Scroll Tabs ──────────────────────────────── */
+  .admin-tabs-scroll {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 0.25rem;
+    flex-wrap: nowrap !important;
+  }
+
+  .admin-tabs-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .admin-tabs-scroll > * {
+    flex-shrink: 0;
+  }
+}
+
+/* ── Desktop: hide mobile-only elements ────────────────────── */
+@media (min-width: 1024px) {
+  .admin-cards-mobile {
+    display: none !important;
+  }
+}

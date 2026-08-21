@@ -27,14 +27,26 @@ export default function AdminNewsletter() {
         <h1 className="text-sm font-700 text-gray-900">Newsletter Subscribers</h1>
         <span className="text-xs text-gray-400 ml-auto">{subs.length} subscribers</span>
       </header>
-      <main className="p-6 lg:p-8 max-w-4xl mx-auto">
+      <main className="p-4 lg:p-8 max-w-4xl mx-auto">
         {loadingData ? (
           <div className="text-center py-20"><div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mx-auto" /></div>
         ) : subs.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-xl border border-gray-200"><p className="text-gray-400">No subscribers yet.</p></div>
+          <div className="text-center py-20 bg-white rounded-xl border border-gray-200"><p className="text-gray-400 text-sm">No subscribers yet.</p></div>
         ) : (
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-            <table className="w-full text-sm">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs">
+            {/* Mobile View */}
+            <div className="admin-cards-mobile divide-y divide-gray-100">
+              {subs.map((s) => (
+                <div key={s.email} className="p-4 text-xs space-y-1">
+                  <p className="font-700 text-gray-900 text-sm break-all">{s.email}</p>
+                  <p className="text-gray-500">Source: <span className="font-600">{s.source || 'website'}</span></p>
+                  <p className="text-gray-400 text-[11px]">Subscribed: {s.subscribedAt || '—'}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table */}
+            <table className="w-full text-sm admin-table-desktop">
               <thead><tr className="bg-gray-50 border-b border-gray-200">
                 <th className="text-left px-4 py-3 font-600 text-gray-600">Email</th>
                 <th className="text-left px-4 py-3 font-600 text-gray-600">Source</th>

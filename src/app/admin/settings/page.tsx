@@ -16,10 +16,10 @@ export default function AdminSettings() {
         <span className="text-gray-300">/</span>
         <h1 className="text-sm font-700 text-gray-900">Settings</h1>
       </header>
-      <main className="p-6 lg:p-8 max-w-3xl mx-auto space-y-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-700 text-gray-900 mb-4">Site Configuration</h2>
-          <div className="space-y-4">
+      <main className="p-4 lg:p-8 max-w-3xl mx-auto space-y-4 lg:space-y-6">
+        <div className="bg-white rounded-xl border border-gray-200 p-4 lg:p-6 shadow-xs">
+          <h2 className="text-base lg:text-lg font-700 text-gray-900 mb-4">Site Configuration</h2>
+          <div className="space-y-3 lg:space-y-4">
             {[
               { label: 'Company Name', value: COMPANY.name },
               { label: 'Tagline', value: COMPANY.tagline },
@@ -29,13 +29,13 @@ export default function AdminSettings() {
               { label: 'WhatsApp', value: COMPANY.contact.whatsapp },
               { label: 'Address', value: COMPANY.location.address },
             ].map((cfg) => (
-              <div key={cfg.label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
-                <span className="text-sm text-gray-500">{cfg.label}</span>
-                <span className="text-sm font-500 text-gray-900">{cfg.value}</span>
+              <div key={cfg.label} className="flex flex-col sm:flex-row sm:items-center justify-between py-2 border-b border-gray-100 last:border-0 gap-1 text-xs sm:text-sm">
+                <span className="text-gray-500 font-500">{cfg.label}</span>
+                <span className="font-600 text-gray-900 break-words">{cfg.value}</span>
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-400 mt-4">Site configuration is managed in <code className="bg-gray-100 px-1 py-0.5 rounded text-[11px]">src/lib/constants.ts</code></p>
+          <p className="text-[11px] text-gray-400 mt-4">Site configuration is managed in <code className="bg-gray-100 px-1 py-0.5 rounded text-[10px]">src/lib/constants.ts</code></p>
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 p-6">

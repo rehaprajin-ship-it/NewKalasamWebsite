@@ -52,21 +52,21 @@ export default function AdminDashboardOverview() {
   ];
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-6 lg:space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
       
       {/* Welcome Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-[#128C7E] to-[#25D366] p-6 rounded-[18px] text-white shadow-md">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-[#128C7E] to-[#25D366] p-5 lg:p-6 rounded-[18px] text-white shadow-md">
         <div>
-          <h2 className="text-xl md:text-2xl font-800 tracking-tight">Enterprise CMS Overview</h2>
-          <p className="text-sm text-white/90 mt-1.5 font-500 max-w-xl">
-            Welcome to the Kalasam Jaikrishna Industries control dashboard. Real-time Firestore sync and Cloudinary media configurations are fully connected.
+          <h2 className="text-lg lg:text-2xl font-800 tracking-tight">Enterprise CMS Overview</h2>
+          <p className="text-xs lg:text-sm text-white/90 mt-1 font-500 max-w-xl">
+            Welcome to the Kalasam control dashboard. Real-time Firestore sync and Cloudinary media are connected.
           </p>
         </div>
-        <div className="flex gap-3">
-          <Link href="/admin/products" className="px-4 py-2.5 bg-white text-[#128C7E] hover:bg-gray-50 rounded-[12px] text-xs font-700 shadow-sm transition-colors text-center">
+        <div className="flex flex-wrap gap-2.5 sm:gap-3">
+          <Link href="/admin/products" className="flex-1 sm:flex-none px-4 py-2.5 bg-white text-[#128C7E] hover:bg-gray-50 rounded-[12px] text-xs font-700 shadow-sm transition-colors text-center min-h-[44px] flex items-center justify-center">
             Manage Catalog
           </Link>
-          <Link href="/admin/blog" className="px-4 py-2.5 bg-white/20 text-white hover:bg-white/30 rounded-[12px] text-xs font-700 border border-white/30 transition-colors text-center">
+          <Link href="/admin/blog" className="flex-1 sm:flex-none px-4 py-2.5 bg-white/20 text-white hover:bg-white/30 rounded-[12px] text-xs font-700 border border-white/30 transition-colors text-center min-h-[44px] flex items-center justify-center">
             Write Article
           </Link>
         </div>

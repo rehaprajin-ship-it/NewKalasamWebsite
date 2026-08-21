@@ -142,7 +142,7 @@ export default function AdminContactsCRM() {
   ];
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-5 lg:space-y-6 animate-in fade-in duration-300">
       
       {/* Header bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -155,8 +155,8 @@ export default function AdminContactsCRM() {
         </button>
       </div>
 
-      {/* Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-200 pb-px">
+      {/* Tabs with Horizontal Scroll */}
+      <div className="flex gap-2 border-b border-gray-200 pb-px overflow-x-auto admin-tabs-scroll">
         {tabs.map(tab => (
           <button
             key={tab.type}
@@ -164,28 +164,28 @@ export default function AdminContactsCRM() {
               setActiveTab(tab.type);
               setSelectedContact(null);
             }}
-            className={`px-4 py-2 text-xs font-700 border-b-2 transition-all cursor-pointer ${
+            className={`px-3.5 py-2 text-xs font-700 border-b-2 transition-all cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === tab.type
                 ? 'border-[#25D366] text-[#128C7E]'
                 : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
-            {tab.label} <span className="ml-1 px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-600">{tab.count}</span>
+            {tab.label} <span className="ml-1.5 px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-600">{tab.count}</span>
           </button>
         ))}
       </div>
 
       {/* Filter and Search */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
-        <div className="relative flex-1 max-w-md">
+      <div className="flex items-center gap-4 bg-white p-3 lg:p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
+        <div className="relative flex-1 lg:max-w-md">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search inquiries by name, email, company..."
-            className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-[10px] text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
+            className="w-full pl-9 pr-4 py-2.5 lg:py-2 border border-gray-200 rounded-[10px] text-sm lg:text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
           />
-          <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+          <svg className="w-4 h-4 text-gray-400 absolute left-3 top-3 lg:top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
@@ -245,8 +245,8 @@ export default function AdminContactsCRM() {
           )}
         </div>
 
-        {/* Right column: Detail view card */}
-        <div className="lg:col-span-1">
+        {/* Right column: Detail view card (Desktop sticky / Mobile overlay) */}
+        <div className="hidden lg:block lg:col-span-1">
           {selectedContact ? (
             <div className="bg-white rounded-[18px] border border-gray-200/80 p-6 shadow-xs sticky top-24 space-y-5 text-xs text-gray-700">
               <div className="flex justify-between items-start">
@@ -342,6 +342,81 @@ export default function AdminContactsCRM() {
         </div>
 
       </div>
+
+      {/* Mobile Detail Modal / Bottom Sheet */}
+      {selectedContact && (
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="bg-white w-full max-w-lg rounded-t-2xl sm:rounded-2xl max-h-[85vh] overflow-y-auto p-5 shadow-2xl space-y-4 text-xs text-gray-700 animate-in slide-in-from-bottom duration-200">
+            <div className="flex justify-between items-start border-b border-gray-100 pb-3">
+              <div>
+                <span className="text-[10px] text-gray-400 font-700 uppercase tracking-wider block">Submission Detail</span>
+                <h3 className="text-base font-800 text-gray-950 mt-1">{selectedContact.name}</h3>
+                <p className="text-gray-500 mt-0.5">{selectedContact.email} • {selectedContact.phone}</p>
+              </div>
+              <button
+                onClick={() => setSelectedContact(null)}
+                className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold min-h-[44px] min-w-[44px] -mr-2 -mt-2 cursor-pointer"
+                aria-label="Close detail"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className={`px-2 py-1 rounded-md text-[10px] font-800 uppercase ${
+                selectedContact.formType === 'Super Stockist' ? 'bg-rose-50 text-rose-700 border border-rose-100' :
+                selectedContact.formType === 'Distributor' ? 'bg-indigo-50 text-indigo-700 border border-indigo-100' :
+                selectedContact.formType === 'Careers Application' ? 'bg-amber-50 text-amber-700 border border-amber-100' :
+                selectedContact.formType === 'Product Inquiry' || selectedContact.formType === 'Consolidated Inquiry' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
+                'bg-gray-50 text-gray-700 border border-gray-100'
+              }`}>
+                {selectedContact.formType || 'Contact'}
+              </span>
+              {selectedContact.company && (
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md font-700">
+                  {selectedContact.company}
+                </span>
+              )}
+            </div>
+
+            {selectedContact.formType === 'Distributor' && (
+              <div className="bg-gray-50 p-3 rounded-xl space-y-2 border border-gray-100">
+                <p><strong>Territory:</strong> {selectedContact.city || '—'}, {selectedContact.state || '—'} ({selectedContact.territory || 'Default'})</p>
+                <p><strong>Investment:</strong> <span className="text-emerald-700 font-bold">{selectedContact.investmentCapacity || '—'}</span></p>
+                <p><strong>Experience:</strong> {selectedContact.experience ? `${selectedContact.experience} Yrs` : '—'}</p>
+              </div>
+            )}
+
+            <div>
+              <span className="text-[10px] text-gray-400 font-700 uppercase tracking-wider block">Subject</span>
+              <p className="font-800 text-gray-900 mt-1">{selectedContact.subject}</p>
+            </div>
+
+            <div>
+              <span className="text-[10px] text-gray-400 font-700 uppercase tracking-wider block">Message</span>
+              <p className="text-gray-600 leading-relaxed mt-1 p-3 bg-gray-50 rounded-xl border border-gray-100 whitespace-pre-wrap text-xs">
+                {selectedContact.message}
+              </p>
+            </div>
+
+            <div className="pt-2 flex gap-2">
+              <button
+                onClick={() => setSelectedContact(null)}
+                className="flex-1 py-3 border border-gray-200 text-gray-700 font-700 rounded-xl text-xs min-h-[44px] cursor-pointer"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => handleDelete(selectedContact.id, selectedContact.formType)}
+                disabled={deletingId === selectedContact.id}
+                className="flex-1 py-3 bg-rose-50 text-rose-600 border border-rose-200 font-700 rounded-xl text-xs min-h-[44px] flex items-center justify-center gap-1 cursor-pointer disabled:opacity-50"
+              >
+                {deletingId === selectedContact.id ? 'Deleting...' : '🗑️ Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

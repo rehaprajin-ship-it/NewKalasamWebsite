@@ -442,16 +442,16 @@ export default function BulkImportModal({
   const variantCount = parsedRows.filter((r) => r.errors.length === 0 && r.row_type.toLowerCase() === 'variant').length;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] shadow-2xl flex flex-col overflow-hidden border border-gray-100">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-0 lg:p-4 overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-white rounded-none lg:rounded-2xl max-w-4xl w-full h-full lg:h-auto lg:max-h-[90vh] shadow-2xl flex flex-col overflow-hidden border border-gray-100">
         {/* Modal Header */}
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="p-4 lg:p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50 flex-shrink-0">
           <div>
-            <h3 className="text-lg font-800 text-gray-900 flex items-center gap-2">
-              <span>📊</span> Bulk Product Import via Excel
+            <h3 className="text-base lg:text-lg font-800 text-gray-900 flex items-center gap-2">
+              <span>📊</span> Bulk Product Import
             </h3>
-            <p className="text-xs text-gray-500 mt-1">
-              Upload, validate, and preview your offline Excel catalog before committing changes to Firestore.
+            <p className="text-xs text-gray-500 mt-0.5 line-clamp-1 lg:line-clamp-none">
+              Validate and preview your offline Excel catalog before committing.
             </p>
           </div>
           <button
@@ -459,23 +459,24 @@ export default function BulkImportModal({
               resetState();
               onClose();
             }}
-            className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-sm cursor-pointer transition-colors"
+            className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-base cursor-pointer transition-colors min-h-[44px] min-w-[44px]"
+            aria-label="Close modal"
           >
             ✕
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto flex-1">
+        <div className="p-4 lg:p-6 overflow-y-auto flex-1">
           {importStep === 'upload' && (
-            <div className="space-y-6">
-              <div className="border-2 border-dashed border-gray-200 hover:border-[#128C7E] rounded-2xl p-10 text-center transition-colors bg-gray-50/40">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 text-[#128C7E] text-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="space-y-4 lg:space-y-6">
+              <div className="border-2 border-dashed border-gray-200 hover:border-[#128C7E] rounded-2xl p-6 lg:p-10 text-center transition-colors bg-gray-50/40">
+                <div className="w-12 lg:w-16 h-12 lg:h-16 rounded-full bg-emerald-50 text-[#128C7E] text-xl lg:text-2xl flex items-center justify-center mx-auto mb-3 lg:mb-4">
                   📥
                 </div>
-                <h4 className="text-base font-700 text-gray-900">Upload Filled Products Excel File</h4>
+                <h4 className="text-sm lg:text-base font-700 text-gray-900">Upload Products Excel File</h4>
                 <p className="text-xs text-gray-500 mt-1 max-w-md mx-auto">
-                  Select your completed <code className="text-[#128C7E] bg-emerald-50 px-1.5 py-0.5 rounded-sm">.xlsx</code> template. The system will parse every row and display a full preview before saving anything.
+                  Select your completed <code className="text-[#128C7E] bg-emerald-50 px-1.5 py-0.5 rounded-sm">.xlsx</code> template.
                 </p>
 
                 <input
@@ -487,64 +488,120 @@ export default function BulkImportModal({
                   id="bulk-import-file"
                 />
 
-                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <div className="mt-5 lg:mt-6 flex flex-col sm:flex-row justify-center gap-3">
                   <label
                     htmlFor="bulk-import-file"
-                    className="px-5 py-2.5 bg-[#128C7E] hover:bg-[#075E54] text-white font-700 text-xs rounded-xl shadow-xs cursor-pointer transition-all inline-flex items-center gap-2"
+                    className="px-5 py-3 lg:py-2.5 bg-[#128C7E] hover:bg-[#075E54] text-white font-700 text-xs rounded-xl shadow-xs cursor-pointer transition-all inline-flex items-center justify-center gap-2 min-h-[44px]"
                   >
                     {parsing ? 'Parsing Excel...' : 'Choose .xlsx File'}
                   </label>
                   <a
                     href="/api/admin/bulk-template"
                     download="kalasam-bulk-product-import-template.xlsx"
-                    className="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-700 text-xs rounded-xl cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                    className="px-4 py-3 lg:py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-700 text-xs rounded-xl cursor-pointer transition-colors inline-flex items-center justify-center gap-1.5 min-h-[44px]"
                   >
-                    ⬇️ Download Fresh Template
+                    ⬇️ Download Template
                   </a>
                 </div>
 
                 {file && (
                   <p className="mt-4 text-xs font-600 text-emerald-700">
-                    Selected file: {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                    Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
                   </p>
                 )}
               </div>
 
-              <div className="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-800 space-y-1">
+              <div className="bg-amber-50 border border-amber-200/80 rounded-xl p-3.5 lg:p-4 text-xs text-amber-800 space-y-1">
                 <p className="font-700 flex items-center gap-1">
-                  <span>💡</span> Import Rules & Safety Highlights:
+                  <span>💡</span> Import Rules & Safety:
                 </p>
-                <p>• Blank spec fields will NOT overwrite existing verified CAS or Purity data in the database.</p>
-                <p>• Variant rows must reference their parent product SKU via the <code className="font-mono">parent_sku</code> column.</p>
-                <p>• Short image filenames will automatically link to Cloudinary’s products directory.</p>
+                <p>• Blank spec fields will NOT overwrite existing verified CAS or Purity data.</p>
+                <p>• Variant rows must reference their parent product SKU via <code className="font-mono">parent_sku</code>.</p>
+                <p>• Image filenames link to Cloudinary automatically.</p>
               </div>
             </div>
           )}
 
           {importStep === 'preview' && (
-            <div className="space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               {/* Summary Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 text-center">
-                  <span className="text-[10px] font-800 uppercase tracking-wider text-emerald-700 block">New Products</span>
-                  <span className="text-2xl font-900 text-emerald-900 mt-0.5 block">{newCount}</span>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-3">
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-2.5 lg:p-3.5 text-center">
+                  <span className="text-[9px] lg:text-[10px] font-800 uppercase tracking-wider text-emerald-700 block">New Products</span>
+                  <span className="text-xl lg:text-2xl font-900 text-emerald-900 mt-0.5 block">{newCount}</span>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-xl p-3.5 text-center">
-                  <span className="text-[10px] font-800 uppercase tracking-wider text-blue-700 block">Updates & Variants</span>
-                  <span className="text-2xl font-900 text-blue-900 mt-0.5 block">{updateCount + variantCount}</span>
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-2.5 lg:p-3.5 text-center">
+                  <span className="text-[9px] lg:text-[10px] font-800 uppercase tracking-wider text-blue-700 block">Updates</span>
+                  <span className="text-xl lg:text-2xl font-900 text-blue-900 mt-0.5 block">{updateCount + variantCount}</span>
                 </div>
-                <div className={`rounded-xl p-3.5 text-center border ${errorCount > 0 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-gray-50 border-gray-200 text-gray-700'}`}>
-                  <span className="text-[10px] font-800 uppercase tracking-wider block">Rows with Errors</span>
-                  <span className="text-2xl font-900 mt-0.5 block">{errorCount}</span>
+                <div className={`rounded-xl p-2.5 lg:p-3.5 text-center border ${errorCount > 0 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-gray-50 border-gray-200 text-gray-700'}`}>
+                  <span className="text-[9px] lg:text-[10px] font-800 uppercase tracking-wider block">Errors</span>
+                  <span className="text-xl lg:text-2xl font-900 mt-0.5 block">{errorCount}</span>
                 </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-center">
-                  <span className="text-[10px] font-800 uppercase tracking-wider text-amber-700 block">Warnings</span>
-                  <span className="text-2xl font-900 text-amber-900 mt-0.5 block">{warningCount}</span>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 lg:p-3.5 text-center">
+                  <span className="text-[9px] lg:text-[10px] font-800 uppercase tracking-wider text-amber-700 block">Warnings</span>
+                  <span className="text-xl lg:text-2xl font-900 text-amber-900 mt-0.5 block">{warningCount}</span>
                 </div>
               </div>
 
-              {/* Table of parsed rows */}
-              <div className="border border-gray-200 rounded-xl overflow-hidden shadow-2xs">
+              {/* Mobile Card Preview List */}
+              <div className="admin-cards-mobile space-y-2.5 max-h-[50vh] overflow-y-auto pr-1">
+                {parsedRows.map((r) => {
+                  const hasErrors = r.errors.length > 0;
+                  const hasWarnings = r.warnings.length > 0;
+                  return (
+                    <div
+                      key={r.rowNumber}
+                      className={`p-3.5 rounded-xl border text-xs space-y-2 ${
+                        hasErrors ? 'bg-rose-50/50 border-rose-200' : hasWarnings ? 'bg-amber-50/40 border-amber-200' : 'bg-gray-50/50 border-gray-200'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-gray-500 font-700">#{r.rowNumber}</span>
+                          <span className={`px-2 py-0.5 rounded-sm text-[9px] font-800 uppercase ${r.row_type.toLowerCase() === 'main product' ? 'bg-purple-100 text-purple-800' : 'bg-cyan-100 text-cyan-800'}`}>
+                            {r.row_type}
+                          </span>
+                        </div>
+                        {hasErrors ? (
+                          <span className="text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full text-[10px] font-800">
+                            Will Skip
+                          </span>
+                        ) : r.row_type.toLowerCase() === 'variant' ? (
+                          <span className="text-cyan-700 bg-cyan-100 px-2 py-0.5 rounded-full text-[10px] font-800">
+                            Link Variant
+                          </span>
+                        ) : r.isNew ? (
+                          <span className="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full text-[10px] font-800">
+                            + Create New
+                          </span>
+                        ) : (
+                          <span className="text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full text-[10px] font-800">
+                            🔄 Update
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-800 text-gray-900 text-sm">{r.product_name || `Variant for ${r.parent_sku}`}</p>
+                        <p className="font-mono text-gray-500 text-[11px] mt-0.5">SKU: {r.sku} • Category: {r.category || '—'}</p>
+                      </div>
+                      {hasErrors && (
+                        <p className="text-[11px] text-rose-600 font-600 bg-white p-2 rounded-lg border border-rose-200">
+                          ❌ {r.errors.join(' | ')}
+                        </p>
+                      )}
+                      {hasWarnings && (
+                        <p className="text-[11px] text-amber-600 font-500 bg-white p-2 rounded-lg border border-amber-200">
+                          ⚠️ {r.warnings.join(' | ')}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Desktop Table of parsed rows */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden shadow-2xs admin-table-desktop">
                 <div className="max-h-72 overflow-y-auto">
                   <table className="w-full text-left text-xs">
                     <thead className="bg-gray-50 text-gray-600 font-700 border-b border-gray-200 sticky top-0">

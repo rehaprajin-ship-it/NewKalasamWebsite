@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { getBlogPosts, saveBlogPost, removeBlogPost } from '@/lib/firestore';
 import { uploadToCloudinary } from '@/lib/cloudinary';
+import { useAuth } from '@/context/AuthProvider';
 import type { BlogPost, BlogCategory } from '@/types';
 
 // Zod Validation Schema for Blogs
@@ -86,7 +87,7 @@ export default function AdminBlogCMS() {
     }
   }, [watchTitle, setValue, editingId]);
 
-  const loadBlogs = () => {
+  const loadPosts = () => {
     setLoadingData(true);
     getBlogPosts()
       .then((data) => {
@@ -97,7 +98,7 @@ export default function AdminBlogCMS() {
   };
 
   useEffect(() => {
-    loadBlogs();
+    loadPosts();
   }, []);
 
   const handleOpenAdd = () => {
@@ -115,18 +116,18 @@ export default function AdminBlogCMS() {
     setIsModalOpen(true);
   };
 
-  const handleOpenEdit = (p: BlogPost) => {
-    setEditingId(p.id);
+  const handleOpenEdit = (post: BlogPost) => {
+    setEditingId(post.id);
     reset({
-      id: p.id,
-      title: p.title,
-      slug: p.slug,
-      category: p.category,
-      excerpt: p.excerpt || '',
-      content: p.content || '',
-      coverImage: p.coverImage || '',
-      status: p.status || 'published',
-      publishedAt: p.publishedAt || new Date().toISOString().split('T')[0]
+      id: post.id,
+      title: post.title,
+      slug: post.slug,
+      category: post.category as BlogCategory,
+      excerpt: post.excerpt,
+      content: post.content,
+      coverImage: post.coverImage || '',
+      status: post.status as 'published' | 'draft',
+      publishedAt: post.publishedAt || new Date().toISOString().split('T')[0]
     });
     setIsModalOpen(true);
   };
@@ -142,7 +143,7 @@ export default function AdminBlogCMS() {
 
     setUploadingImage(true);
     try {
-      const result = await uploadToCloudinary(file, 'blogs');
+      const result = await uploadToCloudinary(file, 'blog');
       setValue('coverImage', result.url);
     } catch (err: any) {
       alert(`Upload failed: ${err.message}`);
@@ -153,29 +154,28 @@ export default function AdminBlogCMS() {
 
   const onSubmit = async (data: BlogFormData) => {
     try {
-      // Mock author to satisfy BlogPost interface
-      const postPayload = {
+      const payload = {
         ...data,
         author: {
-          name: user?.displayName || 'Kalasam Admin',
-          avatar: user?.photoURL || ''
-        },
-        readTime: `${Math.ceil(data.content.split(/\s+/).length / 200)} min read`,
-        tags: [data.category.toLowerCase()]
+          name: user?.displayName || 'Kalasam Editorial Team',
+          role: 'Technical Research Lead',
+          avatar: user?.photoURL || '/images/logo.png'
+        }
       };
-      await saveBlogPost(postPayload, editingId || undefined);
+
+      await saveBlogPost(payload, editingId || undefined);
       setIsModalOpen(false);
-      loadBlogs();
+      loadPosts();
     } catch (err: any) {
       alert(`Save failed: ${err.message}`);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this blog post?')) return;
+    if (!confirm('Are you sure you want to delete this article?')) return;
     try {
       await removeBlogPost(id);
-      loadBlogs();
+      loadPosts();
     } catch (err: any) {
       alert(`Delete failed: ${err.message}`);
     }
@@ -187,35 +187,35 @@ export default function AdminBlogCMS() {
   );
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-5 lg:space-y-6 animate-in fade-in duration-300">
       {/* Header bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-800 text-gray-900 tracking-tight">Enterprise Blog CMS</h2>
           <p className="text-xs text-gray-500 mt-1 font-500">Publish guides, supplier information, and industry articles.</p>
         </div>
-        <button onClick={handleOpenAdd} className="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[12px] text-xs transition-colors shadow-sm cursor-pointer">
+        <button onClick={handleOpenAdd} className="px-4 py-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white font-700 rounded-[12px] text-xs transition-colors shadow-sm cursor-pointer min-h-[44px] inline-flex items-center justify-center">
           + New Post
         </button>
       </div>
 
       {/* Filter and Search */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
-        <div className="relative flex-1 max-w-md">
+      <div className="flex items-center gap-4 bg-white p-3 lg:p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
+        <div className="relative flex-1 lg:max-w-md">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search articles..."
-            className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-[10px] text-xs focus:outline-hidden focus:border-[#25D366] focus:ring-1 focus:ring-[#25D366] text-gray-900"
+            className="w-full pl-9 pr-4 py-2.5 lg:py-2 border border-gray-200 rounded-[10px] text-sm lg:text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
           />
-          <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+          <svg className="w-4 h-4 text-gray-400 absolute left-3 top-3 lg:top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
       </div>
 
-      {/* Blogs Table */}
+      {/* Blogs List */}
       {loadingData ? (
         <div className="text-center py-20 bg-white rounded-[18px] border border-gray-200/80 shadow-xs">
           <div className="w-8 h-8 border-3 border-[#25D366] border-t-transparent rounded-full animate-spin mx-auto" />
@@ -225,11 +225,46 @@ export default function AdminBlogCMS() {
         <div className="text-center py-20 bg-white rounded-[18px] border border-gray-200/80 shadow-xs">
           <span className="text-3xl">📝</span>
           <p className="text-gray-400 text-sm font-700 mt-3">No posts found in database.</p>
-          <button onClick={handleOpenAdd} className="btn btn-primary btn-sm mt-4">Create First Post</button>
+          <button onClick={handleOpenAdd} className="mt-4 px-4 py-2.5 bg-[#25D366] text-white font-700 rounded-xl text-xs">Create First Post</button>
         </div>
       ) : (
         <div className="bg-white rounded-[18px] border border-gray-200/80 shadow-xs overflow-hidden">
-          <table className="w-full text-xs">
+          {/* ═══ Mobile Card View ═══ */}
+          <div className="admin-cards-mobile divide-y divide-gray-100 md:hidden">
+            {filtered.map((p) => (
+              <div key={p.id} className="p-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-14 h-14 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                    {p.coverImage ? (
+                      <img src={p.coverImage} alt="" className="object-cover w-full h-full" />
+                    ) : (
+                      <span className="text-lg">📝</span>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-800 text-gray-900 text-sm leading-snug">{p.title}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5 font-mono truncate">{p.slug}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 text-xs">
+                  <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-600">{p.category}</span>
+                  <span className={`px-2 py-0.5 text-[10px] rounded-md font-700 uppercase tracking-wider ${
+                    p.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                  }`}>
+                    {p.status}
+                  </span>
+                  <span className="text-gray-400 text-[11px] font-500">{p.publishedAt}</span>
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <button onClick={() => handleOpenEdit(p)} className="flex-1 py-2.5 text-xs font-700 text-[#128C7E] bg-emerald-50 rounded-lg text-center cursor-pointer min-h-[44px]">Edit</button>
+                  <button onClick={() => handleDelete(p.id)} className="flex-1 py-2.5 text-xs font-700 text-red-600 bg-red-50 rounded-lg text-center cursor-pointer min-h-[44px]">Delete</button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ═══ Desktop Table ═══ */}
+          <table className="w-full text-xs hidden md:table">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200 text-gray-500 font-700 uppercase tracking-wider text-left">
                 <th className="px-5 py-3.5">Article Title</th>
@@ -281,23 +316,23 @@ export default function AdminBlogCMS() {
 
       {/* Editor Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-[18px] w-full max-w-3xl shadow-2xl relative max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-gray-100">
-            <header className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-              <h2 className="text-base font-800 text-gray-900">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-0 lg:p-4">
+          <div className="bg-white rounded-none lg:rounded-[18px] w-full max-w-3xl shadow-2xl relative h-full lg:h-auto lg:max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-gray-100">
+            <header className="px-4 lg:px-6 py-3.5 lg:py-4 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
+              <h2 className="text-sm lg:text-base font-800 text-gray-900">
                 {editingId ? 'Modify Blog Post' : 'Compose New Blog Post'}
               </h2>
-              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer">✕</button>
+              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 text-lg min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer">✕</button>
             </header>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-6 space-y-4 text-xs text-gray-700">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 text-xs text-gray-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                 <div>
                   <label className="block font-700 text-gray-600 mb-1">Post Title *</label>
                   <input
                     type="text"
                     {...register('title')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden focus:border-primary"
+                    className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                   />
                   {errors.title && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.title.message}</p>}
                 </div>
@@ -306,18 +341,18 @@ export default function AdminBlogCMS() {
                   <input
                     type="text"
                     {...register('slug')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                    className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                   />
                   {errors.slug && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.slug.message}</p>}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
                 <div>
                   <label className="block font-700 text-gray-600 mb-1">Category *</label>
                   <select
                     {...register('category')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                    className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs min-h-[44px] lg:min-h-0"
                   >
                     {BLOG_CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -329,7 +364,7 @@ export default function AdminBlogCMS() {
                   <label className="block font-700 text-gray-600 mb-1">Status</label>
                   <select
                     {...register('status')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                    className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs min-h-[44px] lg:min-h-0"
                   >
                     <option value="published">Published</option>
                     <option value="draft">Draft</option>
@@ -340,7 +375,7 @@ export default function AdminBlogCMS() {
                   <input
                     type="date"
                     {...register('publishedAt')}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                    className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs min-h-[44px] lg:min-h-0"
                   />
                   {errors.publishedAt && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.publishedAt.message}</p>}
                 </div>
@@ -351,7 +386,7 @@ export default function AdminBlogCMS() {
                 <input
                   type="text"
                   {...register('excerpt')}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                  className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                 />
                 {errors.excerpt && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.excerpt.message}</p>}
               </div>
@@ -361,27 +396,27 @@ export default function AdminBlogCMS() {
                 <textarea
                   {...register('content')}
                   rows={8}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden font-mono resize-none"
+                  className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden font-mono resize-none text-sm lg:text-xs"
                 />
                 {errors.content && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.content.message}</p>}
               </div>
 
               {/* Cover Image upload to Cloudinary */}
-              <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100">
-                <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3">Cover Image (Cloudinary)</h4>
-                <div className="flex items-center gap-4">
+              <div className="bg-gray-50/50 p-3.5 lg:p-4 rounded-[14px] border border-gray-100">
+                <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3 text-xs">Cover Image (Cloudinary)</h4>
+                <div className="flex flex-wrap items-center gap-3">
                   {watchCoverImage && (
                     <div className="w-20 h-20 border rounded-[10px] overflow-hidden bg-white shadow-xs">
                       <img src={watchCoverImage} alt="" className="object-cover w-full h-full" />
                     </div>
                   )}
-                  <label className="px-4 py-2 border border-dashed border-gray-300 rounded-[10px] flex items-center gap-2 cursor-pointer hover:bg-gray-50 bg-white">
+                  <label className="px-4 py-2.5 border border-dashed border-gray-300 rounded-[10px] flex items-center gap-2 cursor-pointer hover:bg-gray-50 bg-white min-h-[44px]">
                     {uploadingImage ? (
                       <span className="w-4 h-4 border-2 border-[#25D366] border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <>
-                        <span className="text-sm text-gray-400">+</span>
-                        <span className="text-xs text-gray-500 font-500">Upload Image</span>
+                        <span className="text-sm text-gray-400 font-bold">+</span>
+                        <span className="text-xs text-gray-700 font-600">Upload Image</span>
                       </>
                     )}
                     <input
@@ -396,19 +431,19 @@ export default function AdminBlogCMS() {
                 {errors.coverImage && <p className="text-red-500 text-[10px] mt-2 font-600">{errors.coverImage.message}</p>}
               </div>
 
-              <footer className="pt-4 border-t border-gray-100 flex justify-end gap-3">
+              <footer className="pt-4 border-t border-gray-100 flex justify-end gap-3 sticky bottom-0 bg-white pb-2">
                 <button
                   type="button"
                   onClick={handleCloseModal}
-                  className="px-4 py-2 border border-gray-200 rounded-[10px] text-gray-500 hover:bg-gray-50 font-600 cursor-pointer"
+                  className="px-4 py-2.5 border border-gray-200 rounded-[10px] text-gray-600 hover:bg-gray-50 font-600 cursor-pointer min-h-[44px]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-[10px] font-700 cursor-pointer shadow-sm"
+                  className="px-5 py-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-[10px] font-700 cursor-pointer shadow-sm min-h-[44px]"
                 >
-                  Publish Article
+                  Save Post
                 </button>
               </footer>
             </form>
@@ -417,9 +452,4 @@ export default function AdminBlogCMS() {
       )}
     </main>
   );
-}
-
-function useAuth() {
-  const { user, loading, isAdmin, logout } = require('@/context/AuthProvider').useAuth();
-  return { user, loading, isAdmin, logout };
 }

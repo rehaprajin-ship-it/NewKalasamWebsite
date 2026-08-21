@@ -465,7 +465,7 @@ export default function AdminProductsCMS() {
   );
 
   return (
-    <main className="p-6 md:p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-300">
+    <main className="p-4 lg:p-8 max-w-7xl mx-auto space-y-5 lg:space-y-6 animate-in fade-in duration-300">
       
       {/* Header bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -473,7 +473,7 @@ export default function AdminProductsCMS() {
           <h2 className="text-xl font-800 text-gray-900 tracking-tight">Enterprise Product CMS</h2>
           <p className="text-xs text-gray-500 mt-1 font-500">Configure catalog properties, chemical specifications, and display sequence.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           <a
             href="/api/admin/bulk-template"
             download="kalasam-bulk-product-import-template.xlsx"
@@ -558,16 +558,16 @@ export default function AdminProductsCMS() {
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-4 bg-white p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
-          <div className="relative flex-1 max-w-md">
+        <div className="flex items-center gap-4 bg-white p-3 lg:p-4 rounded-[14px] border border-gray-200/80 shadow-xs">
+          <div className="relative flex-1 lg:max-w-md">
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search products by name, category..."
-              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-[10px] text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
+              className="w-full pl-9 pr-4 py-2.5 lg:py-2 border border-gray-200 rounded-[10px] text-sm lg:text-xs focus:outline-hidden focus:border-[#25D366] text-gray-900"
             />
-            <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+            <svg className="w-4 h-4 text-gray-400 absolute left-3 top-3 lg:top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -592,21 +592,22 @@ export default function AdminProductsCMS() {
                 <Reorder.Item
                   key={p.id}
                   value={p}
-                  className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200/60 rounded-[12px] hover:border-emerald-500/30 hover:bg-emerald-50/10 cursor-grab active:cursor-grabbing transition-colors"
+                  style={{ touchAction: 'none' }}
+                  className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200/60 rounded-[12px] hover:border-emerald-500/30 hover:bg-emerald-50/10 cursor-grab active:cursor-grabbing transition-colors admin-reorder-item"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-gray-400 font-mono">☰</span>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-gray-400 font-mono text-lg">☰</span>
                     <div className="w-10 h-10 bg-white border border-gray-100 rounded-[8px] overflow-hidden p-1 flex items-center justify-center flex-shrink-0">
                       <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt="" className="object-contain w-full h-full" />
                     </div>
-                    <div>
-                      <h4 className="font-800 text-gray-955 leading-tight">{p.name}</h4>
-                      <p className="text-[10px] text-gray-400 mt-0.5 font-sans leading-none">{p.slug}</p>
+                    <div className="min-w-0">
+                      <h4 className="font-800 text-gray-955 leading-tight truncate">{p.name}</h4>
+                      <p className="text-[10px] text-gray-400 mt-0.5 font-sans leading-none truncate">{p.slug}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-xs">
-                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-600">{p.category}</span>
-                    <span className="font-mono text-gray-500">Order: {p.sortOrder !== undefined ? p.sortOrder : '—'}</span>
+                  <div className="flex items-center gap-2 lg:gap-4 text-xs flex-shrink-0">
+                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-600 hidden sm:inline">{p.category}</span>
+                    <span className="font-mono text-gray-500">#{p.sortOrder !== undefined ? p.sortOrder : '—'}</span>
                   </div>
                 </Reorder.Item>
               ))}
@@ -621,27 +622,66 @@ export default function AdminProductsCMS() {
         <div className="bg-white rounded-[18px] border border-gray-200/80 shadow-xs overflow-hidden">
           {/* Bulk action bar */}
           {selectedIds.size > 0 && (
-            <div className="flex items-center justify-between px-4 py-2.5 bg-rose-50 border border-rose-200 rounded-t-[18px] border-b-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 py-2.5 gap-2 bg-rose-50 border border-rose-200 rounded-t-[18px] border-b-0">
               <span className="text-xs font-700 text-rose-800">
                 {selectedIds.size} product{selectedIds.size > 1 ? 's' : ''} selected
               </span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setSelectedIds(new Set())}
-                  className="px-3 py-1.5 text-xs font-700 text-gray-600 hover:text-gray-900 cursor-pointer"
+                  className="px-3 py-2 text-xs font-700 text-gray-600 hover:text-gray-900 cursor-pointer min-h-[44px]"
                 >
                   Clear
                 </button>
                 <button
                   onClick={handleBulkDelete}
-                  className="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-700 rounded-[10px] cursor-pointer transition-colors shadow-xs flex items-center gap-1.5"
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-700 rounded-[10px] cursor-pointer transition-colors shadow-xs flex items-center gap-1.5 min-h-[44px]"
                 >
                   🗑️ Delete {selectedIds.size} Selected
                 </button>
               </div>
             </div>
           )}
-          <table className="w-full text-xs text-left border-collapse">
+
+          {/* ═══ Mobile Card View ═══ */}
+          <div className="admin-cards-mobile divide-y divide-gray-100">
+            {filtered.map((p) => (
+              <div key={p.id} className={`p-4 ${selectedIds.has(p.id) ? 'bg-rose-50/30' : ''}`}>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(p.id)}
+                    onChange={() => toggleSelect(p.id)}
+                    className="w-5 h-5 accent-[#128C7E] cursor-pointer rounded mt-1 flex-shrink-0"
+                  />
+                  <div className="w-12 h-12 bg-gray-50 border border-gray-100 rounded-[8px] overflow-hidden p-1 flex items-center justify-center flex-shrink-0">
+                    <img src={p.images?.[0] || '/images/products/synthetic-camphor.png'} alt="" className="object-contain w-full h-full" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-800 text-gray-900 text-sm leading-tight truncate">{p.name}</h4>
+                    <p className="text-[11px] text-gray-400 mt-0.5 font-mono truncate">{p.slug}</p>
+                  </div>
+                </div>
+                <div className="mt-3 ml-8 flex flex-wrap items-center gap-2 text-xs">
+                  <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-md font-600">{p.category}</span>
+                  {p.casNumber && (
+                    <span className="font-mono text-[10px] bg-slate-50 border border-slate-200/60 px-1.5 py-0.5 rounded-sm">CAS: {p.casNumber}</span>
+                  )}
+                  <span className={`px-2 py-0.5 text-[10px] rounded-md font-700 uppercase tracking-wider ${
+                    p.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                  }`}>{p.status}</span>
+                  <span className="font-mono text-gray-500 text-[10px]">Order: {p.sortOrder ?? '—'}</span>
+                </div>
+                <div className="mt-3 ml-8 flex items-center gap-3">
+                  <button onClick={() => handleOpenEdit(p)} className="px-4 py-2 text-xs font-700 text-[#128C7E] bg-emerald-50 rounded-[8px] cursor-pointer min-h-[44px] flex-1 text-center">Edit</button>
+                  <button onClick={() => handleDelete(p.id)} className="px-4 py-2 text-xs font-700 text-red-600 bg-red-50 rounded-[8px] cursor-pointer min-h-[44px] flex-1 text-center">Delete</button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ═══ Desktop Table View ═══ */}
+          <table className="w-full text-xs text-left border-collapse admin-table-desktop">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-150 text-gray-400 font-800 uppercase tracking-wider">
                 <th className="px-4 py-4 w-10">
@@ -751,33 +791,39 @@ export default function AdminProductsCMS() {
         </div>
       )}
 
-      {/* Split-screen Form Modal with Live Previews */}
+      {/* Split-screen Form Modal with Live Previews on Desktop / Single-column Full-screen on Mobile */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-[18px] w-full max-w-6xl shadow-2xl relative max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-gray-100 overflow-hidden">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-0 lg:p-4">
+          <div className="bg-white rounded-none lg:rounded-[18px] w-full max-w-6xl shadow-2xl relative h-full lg:h-auto lg:max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-gray-100 overflow-hidden">
             
-            <header className="px-6 py-4 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
-              <h2 className="text-base font-800 text-gray-900">
+            <header className="px-4 lg:px-6 py-3.5 lg:py-4 border-b border-gray-100 flex items-center justify-between flex-shrink-0 bg-white z-10">
+              <h2 className="text-sm lg:text-base font-800 text-gray-900 truncate">
                 {editingId ? 'Modify Product Specifications' : 'Add New Product to Catalog'}
               </h2>
-              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer">✕</button>
+              <button 
+                onClick={handleCloseModal} 
+                className="text-gray-400 hover:text-gray-600 text-xl p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
             </header>
 
-            <div className="flex-1 flex overflow-hidden">
+            <div className="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
               
-              {/* Left Column: Form Editor */}
-              <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 overflow-y-auto p-6 space-y-5 text-xs text-gray-700 border-r border-gray-100">
+              {/* Form Editor Column */}
+              <form onSubmit={handleSubmit(onSubmit)} className="w-full lg:w-1/2 lg:overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 text-xs text-gray-700 lg:border-r border-gray-100">
                 
                 {/* Product Basic Info */}
-                <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100 space-y-4">
-                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5">General Information</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50/50 p-3.5 lg:p-4 rounded-[14px] border border-gray-100 space-y-3 lg:space-y-4">
+                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 text-xs">General Information</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">Product Name *</label>
                       <input
                         type="text"
                         {...register('name')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                       {errors.name && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.name.message}</p>}
                     </div>
@@ -786,18 +832,18 @@ export default function AdminProductsCMS() {
                       <input
                         type="text"
                         {...register('slug')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                       {errors.slug && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.slug.message}</p>}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">Category *</label>
                       <select
                         {...register('category')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs min-h-[44px] lg:min-h-0"
                       >
                         {CATEGORIES.map((cat) => (
                           <option key={cat} value={cat}>{cat}</option>
@@ -809,23 +855,24 @@ export default function AdminProductsCMS() {
                       <input
                         type="text"
                         {...register('subcategory')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                     </div>
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">Sort Order</label>
                       <input
                         type="number"
+                        inputMode="numeric"
                         {...register('sortOrder', { valueAsNumber: true })}
-                        placeholder="Leave blank for auto (+10)"
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        placeholder="Auto (+10)"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                     </div>
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">Status</label>
                       <select
                         {...register('status')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs min-h-[44px] lg:min-h-0"
                       >
                         <option value="active">Active</option>
                         <option value="draft">Draft</option>
@@ -836,110 +883,82 @@ export default function AdminProductsCMS() {
                 </div>
 
                 {/* Chemical Specifications */}
-                <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100 space-y-4">
-                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5">Chemical Specifications</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-50/50 p-3.5 lg:p-4 rounded-[14px] border border-gray-100 space-y-3 lg:space-y-4">
+                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 text-xs">Chemical Specifications</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">CAS Number</label>
                       <input
                         type="text"
                         {...register('casNumber')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        placeholder="e.g. 76-22-2"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                     </div>
                     <div>
-                      <label className="block font-700 text-gray-600 mb-1">Purity</label>
+                      <label className="block font-700 text-gray-600 mb-1">Purity / Assay</label>
                       <input
                         type="text"
                         {...register('purity')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        placeholder="e.g. ≥ 96%"
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
                     </div>
                   </div>
                 </div>
 
                 {/* Toggles & Promotion Settings */}
-                <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100">
-                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3">Toggles & Promotion Settings</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
-                      <input type="checkbox" {...register('featured')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>Top Selling Product</span>
+                <div className="bg-gray-50/50 p-3.5 lg:p-4 rounded-[14px] border border-gray-100">
+                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3 text-xs">Toggles & Promotion Settings</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                    <label className="flex items-center gap-2.5 cursor-pointer font-600 text-gray-700 min-h-[40px]">
+                      <input type="checkbox" {...register('featured')} className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                      <span className="text-xs">Top Selling</span>
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
-                      <input type="checkbox" {...register('bestseller')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>Bestseller</span>
+                    <label className="flex items-center gap-2.5 cursor-pointer font-600 text-gray-700 min-h-[40px]">
+                      <input type="checkbox" {...register('bestseller')} className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                      <span className="text-xs">Bestseller</span>
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
-                      <input type="checkbox" {...register('exportAvailable')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>Export Product</span>
+                    <label className="flex items-center gap-2.5 cursor-pointer font-600 text-gray-700 min-h-[40px]">
+                      <input type="checkbox" {...register('exportAvailable')} className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                      <span className="text-xs">Export</span>
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
-                      <input type="checkbox" {...register('oemAvailable')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>OEM Product</span>
+                    <label className="flex items-center gap-2.5 cursor-pointer font-600 text-gray-700 min-h-[40px]">
+                      <input type="checkbox" {...register('oemAvailable')} className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                      <span className="text-xs">OEM</span>
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer font-600 text-gray-700">
-                      <input type="checkbox" {...register('privateLabelAvailable')} className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
-                      <span>Private Label</span>
+                    <label className="flex items-center gap-2.5 cursor-pointer font-600 text-gray-700 min-h-[40px]">
+                      <input type="checkbox" {...register('privateLabelAvailable')} className="w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                      <span className="text-xs">Private Label</span>
                     </label>
-                  </div>
-                </div>
-
-                {/* Optional SEO Custom Overrides */}
-                <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100 space-y-4">
-                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5">SEO & Meta Overrides (Optional)</h4>
-                  <div>
-                    <label className="block font-700 text-gray-600 mb-1">Custom Meta Title</label>
-                    <input
-                      type="text"
-                      {...register('seo.metaTitle')}
-                      placeholder="Leave blank for auto-generation"
-                      className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-700 text-gray-600 mb-1">Custom Meta Description</label>
-                    <textarea
-                      {...register('seo.metaDescription')}
-                      rows={2}
-                      placeholder="Leave blank for auto-generation"
-                      className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-700 text-gray-600 mb-1">Custom Keywords (Comma Separated)</label>
-                    <input
-                      type="text"
-                      {...register('seo.keywords')}
-                      placeholder="e.g. synthetic camphor, camphor powder, pooja"
-                      className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
-                    />
                   </div>
                 </div>
 
                 {/* Descriptions */}
-                <div className="space-y-4">
+                <div className="space-y-3 lg:space-y-4">
                   <div>
                     <label className="block font-700 text-gray-600 mb-1">Short Description *</label>
                     <input
                       type="text"
                       {...register('shortDescription')}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                      className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                     />
+                    {errors.shortDescription && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.shortDescription.message}</p>}
                   </div>
                   <div>
                     <label className="block font-700 text-gray-600 mb-1">Detailed Description *</label>
                     <textarea
                       {...register('description')}
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none"
+                      className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none text-sm lg:text-xs"
                     />
+                    {errors.description && <p className="text-red-500 text-[10px] mt-1 font-600">{errors.description.message}</p>}
                   </div>
                 </div>
 
                 {/* Media upload */}
-                <div className="bg-gray-50/50 p-4 rounded-[14px] border border-gray-100">
-                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3">Product Media (Cloudinary)</h4>
+                <div className="bg-gray-50/50 p-3.5 lg:p-4 rounded-[14px] border border-gray-100">
+                  <h4 className="font-800 text-gray-900 border-b border-gray-100 pb-1.5 mb-3 text-xs">Product Media (Cloudinary)</h4>
                   <div className="flex flex-wrap gap-3 items-center">
                     {watchImages.map((img, idx) => (
                       <div key={idx} className="w-16 h-16 border rounded-[10px] overflow-hidden relative group bg-white">
@@ -947,48 +966,45 @@ export default function AdminProductsCMS() {
                         <button
                           type="button"
                           onClick={() => handleRemoveImage(idx)}
-                          className="absolute inset-0 bg-black/60 text-white text-[9px] font-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer uppercase"
+                          className="absolute inset-0 bg-black/60 text-white text-[10px] font-700 flex items-center justify-center opacity-90 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity cursor-pointer uppercase min-h-[44px]"
                         >
                           Remove
                         </button>
                       </div>
                     ))}
-                    <label className="w-16 h-16 border border-dashed border-gray-300 rounded-[10px] flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors bg-white">
+                    <label className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-[10px] flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors bg-white min-h-[44px]">
                       {uploadingImage ? (
-                        <span className="w-4 h-4 border-2 border-[#25D366] border-t-transparent rounded-full animate-spin" />
+                        <span className="w-5 h-5 border-2 border-[#25D366] border-t-transparent rounded-full animate-spin" />
                       ) : (
-                        <span className="text-gray-400 font-700">+ Add</span>
+                        <span className="text-gray-500 font-700 text-xs">+ Add</span>
                       )}
                       <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploadingImage} className="hidden" />
                     </label>
                   </div>
                 </div>
 
-                {/* SEO Optimization — Fields with real-time validation */}
-                <div className="bg-blue-50/50 p-4 rounded-[14px] border border-blue-100">
-                  <h4 className="font-800 text-gray-900 border-b border-blue-100 pb-1.5 mb-3 flex items-center gap-2">
+                {/* SEO Optimization Fields */}
+                <div className="bg-blue-50/50 p-3.5 lg:p-4 rounded-[14px] border border-blue-100">
+                  <h4 className="font-800 text-gray-900 border-b border-blue-100 pb-1.5 mb-3 flex items-center gap-2 text-xs">
                     <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    SEO Optimization
+                    SEO Optimization (Optional Overrides)
                   </h4>
                   <div className="space-y-3">
-                    {/* Meta Title */}
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">
                         Meta Title
                         <span className={`ml-2 text-[10px] font-600 ${(watchMetaTitle?.length || 0) > 60 ? 'text-red-500' : (watchMetaTitle?.length || 0) > 0 ? 'text-green-600' : 'text-gray-400'}`}>
                           {watchMetaTitle?.length || 0}/60 chars
-                          {(watchMetaTitle?.length || 0) > 60 && ' ⚠️ Too long — will be truncated in Google'}
                         </span>
                       </label>
                       <input
                         type="text"
                         {...register('seo.metaTitle')}
                         placeholder={`${watchName} | Kalasam`}
-                        className={`w-full px-3 py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden ${(watchMetaTitle?.length || 0) > 60 ? 'border-red-300 bg-red-50/30' : 'border-gray-200'}`}
+                        className={`w-full px-3 py-2.5 lg:py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs ${(watchMetaTitle?.length || 0) > 60 ? 'border-red-300 bg-red-50/30' : 'border-gray-200'}`}
                       />
                     </div>
 
-                    {/* Meta Description */}
                     <div>
                       <label className="block font-700 text-gray-600 mb-1">
                         Meta Description
@@ -998,73 +1014,60 @@ export default function AdminProductsCMS() {
                           (watchMetaDesc?.length || 0) >= 120 ? 'text-green-600' : 'text-gray-400'
                         }`}>
                           {watchMetaDesc?.length || 0}/160 chars
-                          {(watchMetaDesc?.length || 0) > 160 && ' ⚠️ Too long'}
-                          {(watchMetaDesc?.length || 0) > 0 && (watchMetaDesc?.length || 0) < 120 && ' ⚠️ Too short — aim for 120-160'}
                         </span>
                       </label>
                       <textarea
                         {...register('seo.metaDescription')}
                         rows={2}
-                        placeholder="120-160 chars. Include primary keyword + differentiator (purity %, certification, export-ready)."
-                        className={`w-full px-3 py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none ${
+                        placeholder="120-160 chars recommended."
+                        className={`w-full px-3 py-2.5 lg:py-2 border rounded-[8px] text-gray-900 bg-white focus:outline-hidden resize-none text-sm lg:text-xs ${
                           (watchMetaDesc?.length || 0) > 160 ? 'border-red-300 bg-red-50/30' :
                           (watchMetaDesc?.length || 0) > 0 && (watchMetaDesc?.length || 0) < 120 ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'
                         }`}
                       />
                     </div>
 
-                    {/* Keywords */}
                     <div>
-                      <label className="block font-700 text-gray-600 mb-1">
-                        Focus Keywords
-                        <span className="ml-2 text-[10px] font-500 text-gray-400">Comma-separated</span>
-                      </label>
+                      <label className="block font-700 text-gray-600 mb-1">Focus Keywords</label>
                       <input
                         type="text"
                         {...register('seo.keywords')}
-                        placeholder={`${watchName}, ${watchName} manufacturer, ${watchName} supplier India`}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden"
+                        placeholder={`${watchName}, ${watchName} manufacturer`}
+                        className="w-full px-3 py-2.5 lg:py-2 border border-gray-200 rounded-[8px] text-gray-900 bg-white focus:outline-hidden text-sm lg:text-xs"
                       />
-                    </div>
-
-                    {/* SEO Completeness indicator */}
-                    <div className="flex items-center gap-3 pt-2 border-t border-blue-100">
-                      <span className="text-[10px] font-700 text-gray-500 uppercase">SEO Score:</span>
-                      <div className="flex gap-1.5">
-                        <span className={`w-2 h-2 rounded-full ${watchMetaTitle ? 'bg-green-500' : 'bg-gray-300'}`} title="Meta Title" />
-                        <span className={`w-2 h-2 rounded-full ${watchMetaDesc && (watchMetaDesc.length || 0) >= 120 && (watchMetaDesc.length || 0) <= 160 ? 'bg-green-500' : watchMetaDesc ? 'bg-amber-400' : 'bg-gray-300'}`} title="Meta Description" />
-                        <span className={`w-2 h-2 rounded-full ${watchKeywords ? 'bg-green-500' : 'bg-gray-300'}`} title="Keywords" />
-                        <span className={`w-2 h-2 rounded-full ${(watchImages?.length || 0) > 0 ? 'bg-green-500' : 'bg-gray-300'}`} title="Images" />
-                      </div>
-                      <span className="text-[10px] text-gray-400">
-                        {[watchMetaTitle, watchMetaDesc && (watchMetaDesc.length || 0) >= 120 && (watchMetaDesc.length || 0) <= 160, watchKeywords, (watchImages?.length || 0) > 0].filter(Boolean).length}/4 fields complete
-                      </span>
                     </div>
                   </div>
                 </div>
 
-                <footer className="pt-4 border-t border-gray-100 flex justify-end gap-3">
-                  <button type="button" onClick={handleCloseModal} className="px-4 py-2 border border-gray-200 rounded-[10px] text-gray-500 hover:bg-gray-50 font-600 cursor-pointer">
+                <footer className="pt-4 border-t border-gray-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white pb-2">
+                  <button 
+                    type="button" 
+                    onClick={handleCloseModal} 
+                    className="px-4 py-2.5 border border-gray-200 rounded-[10px] text-gray-600 hover:bg-gray-50 font-600 cursor-pointer min-h-[44px]"
+                  >
                     Cancel
                   </button>
-                  <button type="submit" className="px-4 py-2 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-[10px] font-700 cursor-pointer shadow-sm">
+                  <button 
+                    type="submit" 
+                    className="px-5 py-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-[10px] font-700 cursor-pointer shadow-sm min-h-[44px]"
+                  >
                     Save Product
                   </button>
                 </footer>
 
               </form>
 
-              {/* Right Column: Live Previews */}
-              <div className="w-1/2 overflow-y-auto p-6 bg-gray-50/60 flex flex-col space-y-5 text-xs">
+              {/* Right Column: Live Previews (Collapsible / Stacked on Mobile) */}
+              <div className="w-full lg:w-1/2 lg:overflow-y-auto p-4 lg:p-6 bg-gray-50/60 flex flex-col space-y-4 lg:space-y-5 text-xs border-t lg:border-t-0 border-gray-200">
                 
                 {/* Tab buttons */}
-                <div className="flex gap-2 border-b border-gray-200 pb-px flex-shrink-0">
+                <div className="flex gap-2 border-b border-gray-200 pb-px flex-shrink-0 admin-tabs-scroll">
                   {['seo', 'card', 'faq'].map((tab) => (
                     <button
                       key={tab}
                       type="button"
                       onClick={() => setPreviewTab(tab as any)}
-                      className={`px-3 py-1.5 text-[11px] font-700 border-b-2 transition-all cursor-pointer capitalize ${
+                      className={`px-3 py-2 text-xs font-700 border-b-2 transition-all cursor-pointer capitalize min-h-[44px] ${
                         previewTab === tab ? 'border-[#25D366] text-[#128C7E]' : 'border-transparent text-gray-400 hover:text-gray-600'
                       }`}
                     >
@@ -1075,23 +1078,17 @@ export default function AdminProductsCMS() {
 
                 {/* Tab content */}
                 <div className="flex-1">
-                  
                   {previewTab === 'seo' && (
-                    <div className="bg-white rounded-[14px] border border-gray-200/80 p-5 shadow-xs space-y-2">
+                    <div className="bg-white rounded-[14px] border border-gray-200/80 p-4 lg:p-5 shadow-xs space-y-2">
                       <span className="text-[10px] text-gray-400 font-700 uppercase tracking-wider block">Google Search Preview</span>
                       <div className="pt-2">
-                        <span className="text-[11px] text-gray-500 block leading-tight">https://www.kalasam.com › products › {watchSlug}</span>
+                        <span className="text-[11px] text-gray-500 block leading-tight truncate">https://www.kalasam.com › products › {watchSlug}</span>
                         <h4 className="text-sm font-600 text-blue-800 hover:underline leading-snug mt-1 cursor-pointer">
                           {watchMetaTitle || `${watchName} Manufacturer & Exporter | Kalasam Industries`}
                         </h4>
                         <p className="text-gray-600 leading-relaxed mt-1 text-[11px]">
                           {watchMetaDesc || `High-purity industrial grade ${watchName} manufactured by Kalasam Jaikrishna Industries. ISO certified quality, bulk packaging, global shipping ready.`}
                         </p>
-                        {watchKeywords && (
-                          <p className="text-[10px] text-gray-400 mt-2 font-mono">
-                            Keywords: {watchKeywords}
-                          </p>
-                        )}
                       </div>
                     </div>
                   )}
@@ -1110,7 +1107,6 @@ export default function AdminProductsCMS() {
 
                   {previewTab === 'faq' && (
                     <div className="space-y-4">
-                      {/* Specifications Preview */}
                       <div className="bg-white rounded-[14px] border border-gray-200/80 p-4 space-y-2.5 shadow-xs">
                         <h4 className="font-800 text-gray-900 border-b pb-1.5">Specs Properties</h4>
                         <div className="space-y-1.5 text-[11px]">
@@ -1118,20 +1114,8 @@ export default function AdminProductsCMS() {
                           <div className="flex justify-between"><span className="text-gray-400 font-500">Assay / Purity</span><span className="font-700 text-[#128C7E]">{watchPurity}</span></div>
                         </div>
                       </div>
-
-                      {/* FAQs Preview */}
-                      <div className="bg-white rounded-[14px] border border-gray-200/80 p-4 space-y-3 shadow-xs">
-                        <h4 className="font-800 text-gray-900 border-b pb-1.5">Auto-Generated FAQ Accordion</h4>
-                        <div className="space-y-2">
-                          <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-100">
-                            <p className="font-700 text-gray-800">Q: What is the minimum assay purity of {watchName}?</p>
-                            <p className="text-gray-500 mt-1">A: Our standard production batches of {watchName} are synthesized to match premium grade specifications...</p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   )}
-
                 </div>
 
               </div>
