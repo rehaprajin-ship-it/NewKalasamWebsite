@@ -78,26 +78,43 @@ export async function signInWithGoogle(): Promise<User> {
     );
   }
 
-  if (isMobileDevice()) {
-    // Mobile: use redirect flow (reliable, works with Safari ITP, no popup blockers)
-    await signInWithRedirect(auth, googleProvider);
-    // This will redirect the user away and back — result is handled by handleRedirectResult()
-    // The function won't reach here after redirect, but TypeScript needs a return
-    throw new Error('REDIRECT_IN_PROGRESS');
+  // First try signInWithPopup on all devices (mobile browsers handle popups well on direct tap events,
+  // avoiding third-party cookie/storage partition issues with redirect on iOS Safari and Chrome Android)
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    try {
+      await saveUser(user.uid, {
+        name: user.displayName || '',
+        email: user.email,
+        photoURL: user.photoURL || '',
+        role: user.email === ADMIN_EMAIL ? 'admin' : 'user',
+      });
+    } catch (saveErr) {
+      console.warn('Could not save user profile to firestore:', saveErr);
+    }
+
+    return user;
+  } catch (popupError: any) {
+    // If popup was blocked or not supported on this device, fallback to redirect
+    if (
+      popupError?.code === 'auth/popup-blocked' ||
+      popupError?.code === 'auth/cancelled-popup-request' ||
+      popupError?.code === 'auth/operation-not-supported-in-this-environment' ||
+      isMobileDevice()
+    ) {
+      if (popupError?.code === 'auth/popup-closed-by-user') {
+        // User intentionally closed popup
+        throw popupError;
+      }
+      console.info('Popup fallback: initiating signInWithRedirect...');
+      await signInWithRedirect(auth, googleProvider);
+      throw new Error('REDIRECT_IN_PROGRESS');
+    }
+
+    throw popupError;
   }
-
-  // Desktop: use popup flow (faster UX, works reliably on desktop browsers)
-  const result = await signInWithPopup(auth, googleProvider);
-  const user = result.user;
-
-  await saveUser(user.uid, {
-    name: user.displayName || '',
-    email: user.email,
-    photoURL: user.photoURL || '',
-    role: user.email === ADMIN_EMAIL ? 'admin' : 'user',
-  });
-
-  return user;
 }
 
 /* ── Handle Redirect Result (call on page load) ──────────────── */

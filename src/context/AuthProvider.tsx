@@ -52,27 +52,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Listen to auth state changes
+  // Listen to auth state changes and process redirect result
   useEffect(() => {
-    const unsubscribe = onAuthChange((u) => {
-      setUser(u);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+    let isSubscribed = true;
 
-  // Handle redirect result on page load (for mobile signInWithRedirect)
-  useEffect(() => {
+    // First handle any redirect result from mobile signInWithRedirect
     handleRedirectResult()
       .then((redirectUser) => {
-        if (redirectUser) {
+        if (redirectUser && isSubscribed) {
           setUser(redirectUser);
           setLoginError(null);
+          setLoading(false);
         }
       })
       .catch((err) => {
         console.warn('Redirect result handling error:', err);
       });
+
+    // Also listen to ongoing auth changes (Firebase persistence)
+    const unsubscribe = onAuthChange((u) => {
+      if (isSubscribed) {
+        setUser(u);
+        setLoading(false);
+      }
+    });
+
+    return () => {
+      isSubscribed = false;
+      unsubscribe();
+    };
   }, []);
 
   const clearLoginError = useCallback(() => setLoginError(null), []);
