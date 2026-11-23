@@ -912,9 +912,6 @@ export const COMING_SOON_HTML = `<!DOCTYPE html>
       <p class="copyright">
         &copy; <span id="currentYear">2026</span> <strong>Kalasam by Jaikrishna</strong>. All Rights Reserved.
       </p>
-      <p class="trust-tagline">
-        Crafted with devotion &bull; ISO 9001:2015 Certified Manufacturing Facility
-      </p>
     </footer>
 
   </div>
