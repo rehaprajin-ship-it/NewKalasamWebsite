@@ -1,0 +1,21 @@
+# Apache .htaccess - Kalasam Maintenance / Coming Soon Rule
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Allow existing static assets, images, fonts, and the coming-soon.html file itself
+  RewriteCond %{REQUEST_URI} ^/coming-soon\.html$ [OR]
+  RewriteCond %{REQUEST_URI} ^/(images|css|js|_next|favicon\.ico|manifest\.json|robots\.txt|sitemap\.xml) [OR]
+  RewriteCond %{REQUEST_URI} \.(svg|png|jpg|jpeg|gif|webp|ico|css|js|woff|woff2|ttf|txt|json)$ [NC]
+  RewriteRule ^ - [L]
+
+  # Rewrite all requests to /coming-soon.html with 503 Service Unavailable & Retry-After header for SEO safety
+  ErrorDocument 503 /coming-soon.html
+  RewriteRule ^(.*)$ /coming-soon.html [R=503,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # 1 day Retry-After header so Googlebot and search crawlers preserve existing rankings
+  Header always set Retry-After "86400"
+</IfModule>
+

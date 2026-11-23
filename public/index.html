@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Kalasam by Jaikrishna — Something Divine Is Coming Soon</title>
+  <meta name="description" content="We're getting our website ready for you. Pure, traditional pooja essentials, delivered across Tamil Nadu. Kalasam by Jaikrishna.">
+  <meta name="keywords" content="Kalasam, Jaikrishna, pooja essentials, pure camphor, d-camphor, lamp oil, agarbathi, sambrani, Tamil Nadu">
+  <meta name="author" content="Kalasam by Jaikrishna">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kalasamjaikrishna.co.in/">
+  <meta property="og:site_name" content="Kalasam by Jaikrishna">
+  <meta property="og:title" content="Kalasam by Jaikrishna — Something Divine Is Coming Soon">
+  <meta property="og:description" content="We're getting our website ready for you. Pure, traditional pooja essentials, delivered across Tamil Nadu.">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kalasam by Jaikrishna — Something Divine Is Coming Soon">
+  <meta name="twitter:description" content="Pure, traditional pooja essentials, delivered across Tamil Nadu. Official website coming soon.">
+
+  <!-- 🪔 Emoji Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.88em%22 font-size=%2286%22>🪔</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.88em%22 font-size=%2286%22>🪔</text></svg>">
+
+  <!-- Google Fonts: Playfair Display + Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --maroon-deep: #160307;
+      --maroon-dark: #24050d;
+      --maroon-card: rgba(38, 7, 15, 0.72);
+      --maroon-light: #440d1a;
+      --gold-primary: #d4af37;
+      --gold-light: #fef08a;
+      --gold-shimmer: #ffd700;
+      --gold-border: rgba(212, 175, 55, 0.42);
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --saffron-bright: #ff7700;
+      --saffron-warm: #ff9933;
+      --cream-text: #fffdf9;
+      --cream-subtext: #f0e6d6;
+      --cream-muted: #d8c8b4;
+      --whatsapp-green: #25D366;
+      --whatsapp-hover: #1eb956;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100vh;
+      width: 100%;
+      background-color: var(--maroon-deep);
+      color: var(--cream-text);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* Ambient Spiritual Background with Dynamic CSS Gradients */
+    body {
+      background:
+        radial-gradient(ellipse 85% 60% at 50% 12%, rgba(255, 130, 20, 0.16), transparent 70%),
+        radial-gradient(circle 500px at 50% 48%, rgba(212, 175, 55, 0.10), transparent 75%),
+        radial-gradient(circle 400px at 15% 85%, rgba(180, 25, 45, 0.22), transparent 70%),
+        radial-gradient(circle 400px at 85% 85%, rgba(180, 25, 45, 0.22), transparent 70%),
+        linear-gradient(180deg, var(--maroon-deep) 0%, var(--maroon-dark) 50%, var(--maroon-deep) 100%);
+      background-attachment: fixed;
+    }
+
+    /* CSS Floating Gold Particles / Sparks */
+    .particles-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff7c2 0%, var(--gold-shimmer) 60%, transparent 100%);
+      opacity: 0;
+      animation: floatSparkle 14s infinite ease-in-out;
+    }
+
+    .particle:nth-child(1)  { width: 4px; height: 4px; left: 12%; top: 85%; animation-delay: 0s;   animation-duration: 11s; }
+    .particle:nth-child(2)  { width: 6px; height: 6px; left: 24%; top: 92%; animation-delay: 2.2s; animation-duration: 13s; }
+    .particle:nth-child(3)  { width: 3px; height: 3px; left: 38%; top: 80%; animation-delay: 4.1s; animation-duration: 15s; }
+    .particle:nth-child(4)  { width: 5px; height: 5px; left: 52%; top: 88%; animation-delay: 1.4s; animation-duration: 12s; }
+    .particle:nth-child(5)  { width: 7px; height: 7px; left: 66%; top: 90%; animation-delay: 3.5s; animation-duration: 14s; }
+    .particle:nth-child(6)  { width: 4px; height: 4px; left: 78%; top: 82%; animation-delay: 5.6s; animation-duration: 16s; }
+    .particle:nth-child(7)  { width: 5px; height: 5px; left: 88%; top: 86%; animation-delay: 0.8s; animation-duration: 12.5s; }
+    .particle:nth-child(8)  { width: 3px; height: 3px; left: 18%; top: 70%; animation-delay: 6.2s; animation-duration: 17s; }
+    .particle:nth-child(9)  { width: 6px; height: 6px; left: 45%; top: 75%; animation-delay: 7.1s; animation-duration: 13.5s; }
+    .particle:nth-child(10) { width: 4px; height: 4px; left: 82%; top: 72%; animation-delay: 8.4s; animation-duration: 14.5s; }
+    .particle:nth-child(11) { width: 5px; height: 5px; left: 30%; top: 60%; animation-delay: 3.8s; animation-duration: 18s; }
+    .particle:nth-child(12) { width: 3px; height: 3px; left: 60%; top: 65%; animation-delay: 9.2s; animation-duration: 15s; }
+
+    @keyframes floatSparkle {
+      0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.85;
+      }
+      50% {
+        transform: translateY(-40vh) scale(1.1) rotate(180deg);
+        opacity: 0.95;
+      }
+      85% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-90vh) scale(0.3) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Main Page Wrapper */
+    .page-wrapper {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 1.25rem 3.5rem;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* Top Aura Glow Bar */
+    .divine-aura-top {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(800px, 92vw);
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), var(--saffron-warm), var(--gold-primary), transparent);
+      box-shadow: 0 0 24px var(--gold-shimmer);
+      opacity: 0.9;
+    }
+
+    /* Header & Brand Identity */
+    .brand-section {
+      text-align: center;
+      margin-bottom: 1.75rem;
+      animation: fadeInDown 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1.1rem;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--gold-border);
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--gold-primary);
+    }
+
+    .brand-title-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .brand-logo-icon {
+      margin-bottom: 0.6rem;
+      filter: drop-shadow(0 0 14px rgba(255, 184, 0, 0.55));
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #FFF6D6 0%, #F5CE68 40%, #D4AF37 75%, #AA8018 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand-subtitle {
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      font-weight: 400;
+      margin-top: 0.35rem;
+    }
+
+    .brand-subtitle strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* Diya Centerpiece */
+    .diya-centerpiece {
+      position: relative;
+      margin: 1rem 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInScale 1.3s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s;
+    }
+
+    .diya-glow-halo {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 150, 20, 0.4) 0%, rgba(212, 175, 55, 0.2) 45%, transparent 70%);
+      filter: blur(14px);
+      animation: haloPulse 3s infinite alternate ease-in-out;
+      pointer-events: none;
+    }
+
+    .flame-core {
+      animation: flameWobble 2.4s infinite ease-in-out;
+      transform-origin: 50% 90%;
+    }
+
+    @keyframes flameWobble {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+      }
+      25% {
+        transform: scale(1.08, 0.95) rotate(-2deg);
+      }
+      50% {
+        transform: scale(0.96, 1.06) rotate(1.5deg);
+      }
+      75% {
+        transform: scale(1.04, 0.98) rotate(-1deg);
+      }
+    }
+
+    @keyframes haloPulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.65;
+      }
+      100% {
+        transform: scale(1.22);
+        opacity: 1;
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Core Hero Messaging */
+    .hero-content {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.25rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s;
+    }
+
+    .headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--cream-text);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .headline-highlight {
+      background: linear-gradient(120deg, #FFE899, #FFAE33, #FF8000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .subtext {
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      line-height: 1.7;
+      color: var(--cream-subtext);
+      font-weight: 300;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Offerings Pill Badges */
+    .offerings-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .offering-pill {
+      font-size: 0.82rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: var(--cream-muted);
+      letter-spacing: 0.02em;
+      transition: all 0.25s ease;
+    }
+
+    .offering-pill:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* Glassmorphism Contact Card */
+    .contact-card-container {
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      animation: fadeInUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) both 0.45s;
+    }
+
+    .contact-card {
+      position: relative;
+      background: var(--maroon-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px var(--gold-glow),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(212, 175, 55, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Corner Mandala / Floral Accents */
+    .card-corner-motif {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .motif-top-left { top: 12px; left: 12px; }
+    .motif-top-right { top: 12px; right: 12px; transform: scaleX(-1); }
+    .motif-bottom-left { bottom: 12px; left: 12px; transform: scaleY(-1); }
+    .motif-bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
+
+    .card-heading {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .card-subtitle {
+      font-size: 0.86rem;
+      color: var(--cream-muted);
+      margin-top: 0.2rem;
+    }
+
+    .contact-links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .contact-links-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      padding: 1rem 1.15rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 16px;
+      color: var(--cream-text);
+      text-decoration: none;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-link-item:hover, .contact-link-item:focus-visible {
+      background: rgba(212, 175, 55, 0.16);
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.2);
+      outline: none;
+    }
+
+    .contact-icon-box {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(255, 119, 0, 0.15));
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      transition: transform 0.25s ease;
+    }
+
+    .contact-link-item:hover .contact-icon-box {
+      transform: scale(1.08);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(255, 119, 0, 0.25));
+    }
+
+    .contact-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .contact-info-text {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .contact-info-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--cream-muted);
+      font-weight: 500;
+    }
+
+    .contact-info-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cream-text);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-top: 0.1rem;
+    }
+
+    .contact-link-item:hover .contact-info-value {
+      color: var(--gold-light);
+    }
+
+    /* Card Footer Note */
+    .card-footer-note {
+      text-align: center;
+      margin-top: 1.35rem;
+      font-size: 0.8rem;
+      color: var(--cream-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+    }
+
+    .card-footer-note svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--gold-primary);
+    }
+
+    /* Footer Section */
+    .page-footer {
+      text-align: center;
+      width: 100%;
+      margin-top: 1.5rem;
+      animation: fadeIn 1.5s ease both 0.6s;
+    }
+
+    .footer-divider {
+      width: 160px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+      margin: 0 auto 1.25rem;
+    }
+
+    .copyright {
+      font-size: 0.82rem;
+      color: var(--cream-muted);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .copyright strong {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .trust-tagline {
+      font-size: 0.76rem;
+      color: rgba(240, 230, 214, 0.65);
+      margin-top: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Floating Green WhatsApp Button with Pulse Animation */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both 0.8s;
+    }
+
+    .whatsapp-circle {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      background-color: var(--whatsapp-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45), 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .whatsapp-circle:hover {
+      background-color: var(--whatsapp-hover);
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 14px 32px rgba(37, 211, 102, 0.6), 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .whatsapp-circle svg {
+      width: 34px;
+      height: 34px;
+      fill: #ffffff;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+    }
+
+    /* Double Pulse Rings Animation */
+    .whatsapp-pulse-ring,
+    .whatsapp-pulse-ring-2 {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--whatsapp-green);
+      pointer-events: none;
+      animation: whatsappPulse 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .whatsapp-pulse-ring-2 {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes whatsappPulse {
+      0% {
+        transform: scale(0.92);
+        opacity: 0.9;
+      }
+      70% {
+        transform: scale(1.58);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.7);
+        opacity: 0;
+      }
+    }
+
+    .whatsapp-label {
+      background: rgba(22, 3, 7, 0.92);
+      border: 1px solid var(--gold-border);
+      color: var(--cream-text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0.95;
+      display: none;
+      transition: opacity 0.2s ease;
+    }
+
+    @media (min-width: 768px) {
+      .whatsapp-label {
+        display: inline-block;
+      }
+    }
+
+    .whatsapp-float:hover .whatsapp-label {
+      opacity: 1;
+      border-color: var(--whatsapp-green);
+      color: #ffffff;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0%   { opacity: 0; transform: scale(0.3) translateY(40px); }
+      50%  { opacity: 0.9; transform: scale(1.1) translateY(-8px); }
+      70%  { transform: scale(0.95) translateY(2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Mobile First Adjustments */
+    @media (max-width: 480px) {
+      .page-wrapper {
+        padding: 1.75rem 1rem 4rem;
+      }
+
+      .contact-card {
+        padding: 1.75rem 1.25rem;
+        border-radius: 20px;
+      }
+
+      .contact-link-item {
+        padding: 0.85rem 1rem;
+      }
+
+      .contact-icon-box {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+      }
+
+      .contact-icon-box svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .whatsapp-float {
+        bottom: 18px;
+        right: 18px;
+      }
+
+      .whatsapp-circle {
+        width: 54px;
+        height: 54px;
+      }
+
+      .whatsapp-circle svg {
+        width: 29px;
+        height: 29px;
+      }
+
+      .brand-title {
+        font-size: 2.35rem;
+      }
+
+      .headline {
+        font-size: 1.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Ambient Particles Layer -->
+  <div class="particles-layer" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Golden Top Divine Aura -->
+  <div class="divine-aura-top" aria-hidden="true"></div>
+
+  <!-- Main Content Container -->
+  <div class="page-wrapper">
+
+    <!-- Top Brand Section -->
+    <header class="brand-section">
+      <div class="brand-badge">
+        <!-- Lotus Inline SVG -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C12.5 5 15 8 18 10C15 12 13 15 12 20C11 15 9 12 6 10C9 8 11.5 5 12 2Z"/>
+          <path d="M12 11C13.5 13 16 14.5 19 15C16.5 17 14 18.5 12 22C10 18.5 7.5 17 5 15C8 14.5 10.5 13 12 11Z" opacity="0.6"/>
+        </svg>
+        <span>Pure Pooja Essentials</span>
+      </div>
+
+      <div class="brand-title-group">
+        <!-- Sacred Kalasam Pot & Leaves Motif (Inline SVG) -->
+        <div class="brand-logo-icon" aria-hidden="true">
+          <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+            <!-- Outer Glow Circle -->
+            <circle cx="50" cy="50" r="44" stroke="url(#goldGradient)" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7"/>
+            
+            <!-- Sacred Coconut (Narikelam) Top -->
+            <path d="M50 18C44 26 42 34 50 40C58 34 56 26 50 18Z" fill="url(#saffronGradient)"/>
+            
+            <!-- Mango Leaves (Amra Pallava) radiating from neck -->
+            <path d="M50 36C38 31 30 22 28 14C37 17 45 25 50 36Z" fill="url(#goldGradient)" opacity="0.9"/>
+            <path d="M50 36C62 31 70 22 72 14C63 17 55 25 50 36Z" fill="url(#goldGradient)" opacity="0.9"/>
+            <path d="M50 37C33 36 22 30 18 24C27 28 39 33 50 37Z" fill="url(#saffronGradient)" opacity="0.75"/>
+            <path d="M50 37C67 36 78 30 82 24C73 28 61 33 50 37Z" fill="url(#saffronGradient)" opacity="0.75"/>
+
+            <!-- Kalasam Pot Body (Kumbham) -->
+            <ellipse cx="50" cy="40" rx="14" ry="4" fill="url(#goldGradient)"/>
+            <path d="M38 41C34 46 25 57 25 68C25 80 36 86 50 86C64 86 75 80 75 68C75 57 66 46 62 41H38Z" fill="url(#potGradient)" stroke="url(#goldGradient)" stroke-width="2"/>
+            
+            <!-- Sacred Swastika / Auspicious Center Dot on Pot -->
+            <circle cx="50" cy="65" r="4" fill="url(#goldGradient)"/>
+            <circle cx="43" cy="65" r="1.5" fill="url(#goldGradient)" opacity="0.8"/>
+            <circle cx="57" cy="65" r="1.5" fill="url(#goldGradient)" opacity="0.8"/>
+            <circle cx="50" cy="58" r="1.5" fill="url(#goldGradient)" opacity="0.8"/>
+            <circle cx="50" cy="72" r="1.5" fill="url(#goldGradient)" opacity="0.8"/>
+
+            <!-- Pot Base -->
+            <path d="M38 85C38 87 43 90 50 90C57 90 62 87 62 85H38Z" fill="url(#goldGradient)"/>
+
+            <defs>
+              <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF5D1"/>
+                <stop offset="50%" stop-color="#D4AF37"/>
+                <stop offset="100%" stop-color="#997514"/>
+              </linearGradient>
+              <linearGradient id="saffronGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFA834"/>
+                <stop offset="100%" stop-color="#E65100"/>
+              </linearGradient>
+              <linearGradient id="potGradient" x1="20%" y1="20%" x2="90%" y2="90%">
+                <stop offset="0%" stop-color="#6E1528"/>
+                <stop offset="60%" stop-color="#410815"/>
+                <stop offset="100%" stop-color="#24050D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <h1 class="brand-title">Kalasam</h1>
+        <p class="brand-subtitle">BY <strong>JAIKRISHNA</strong></p>
+      </div>
+    </header>
+
+    <!-- Glowing Sacred Diya Centerpiece -->
+    <div class="diya-centerpiece" aria-hidden="true">
+      <div class="diya-glow-halo"></div>
+      
+      <!-- Glowing Diya Lamp (Inline SVG) -->
+      <svg width="100" height="92" viewBox="0 0 100 92" fill="none">
+        <!-- Animated Flickering Flame -->
+        <g class="flame-core">
+          <!-- Outer Saffron Flare -->
+          <path d="M50 4C48 16 38 27 38 39C38 50 44 56 50 56C56 56 62 50 62 39C62 27 52 16 50 4Z" fill="url(#flameOuter)" filter="drop-shadow(0 0 10px rgba(255, 120, 0, 0.9))"/>
+          <!-- Warm Gold Middle Flame -->
+          <path d="M50 14C49 22 42 29 42 39C42 47 46 52 50 52C54 52 58 47 58 39C58 29 51 22 50 14Z" fill="url(#flameMid)"/>
+          <!-- Inner White/Yellow Hot Core -->
+          <path d="M50 25C49.5 30 46 35 46 41C46 46 48 48 50 48C52 48 54 46 54 41C54 35 50.5 30 50 25Z" fill="#FFFBE6"/>
+        </g>
+
+        <!-- Brass / Clay Diya Bowl -->
+        <path d="M18 54C18 54 28 72 50 72C72 72 82 54 82 54C82 54 74 65 50 65C26 65 18 54 18 54Z" fill="url(#brassDark)"/>
+        <path d="M12 50C16 66 32 78 50 78C68 78 84 66 88 50C88 50 74 58 50 58C26 58 12 50 12 50Z" fill="url(#brassGradient)" stroke="url(#goldGradient)" stroke-width="1.5"/>
+        <ellipse cx="50" cy="51" rx="38" ry="7" fill="url(#oilGradient)"/>
+
+        <!-- Diya Base Stand -->
+        <path d="M42 78L36 86H64L58 78H42Z" fill="url(#brassGradient)"/>
+        <ellipse cx="50" cy="86" rx="16" ry="3" fill="url(#brassDark)"/>
+
+        <defs>
+          <linearGradient id="flameOuter" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#FF3D00"/>
+            <stop offset="45%" stop-color="#FF9100"/>
+            <stop offset="100%" stop-color="#FFEA00"/>
+          </linearGradient>
+          <linearGradient id="flameMid" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#FFF36D"/>
+            <stop offset="100%" stop-color="#FFA000"/>
+          </linearGradient>
+          <linearGradient id="brassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFEAA7"/>
+            <stop offset="40%" stop-color="#D4AF37"/>
+            <stop offset="85%" stop-color="#8C6D14"/>
+            <stop offset="100%" stop-color="#554005"/>
+          </linearGradient>
+          <linearGradient id="brassDark" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#73560D"/>
+            <stop offset="100%" stop-color="#362502"/>
+          </linearGradient>
+          <linearGradient id="oilGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#6B1324"/>
+            <stop offset="50%" stop-color="#B87333"/>
+            <stop offset="100%" stop-color="#6B1324"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Main Headline & Subtext -->
+    <main class="hero-content">
+      <h2 class="headline">
+        Something Divine Is <span class="headline-highlight">Coming Soon</span>
+      </h2>
+      <p class="subtext">
+        We're getting our website ready for you. Pure, traditional pooja essentials, delivered across Tamil Nadu.
+      </p>
+
+      <!-- Traditional Product Offerings Pill Highlights -->
+      <div class="offerings-grid" aria-label="Our core offerings">
+        <span class="offering-pill">Pure Camphor (கற்பூரம்)</span>
+        <span class="offering-pill">Temple Deepam Lamp Oil</span>
+        <span class="offering-pill">Handcrafted Agarbathi</span>
+        <span class="offering-pill">Traditional Cup Sambrani</span>
+        <span class="offering-pill">Sacred Pooja Essentials</span>
+      </div>
+    </main>
+
+    <!-- Glassmorphic Contact Card with Gold Border -->
+    <section class="contact-card-container" aria-label="Contact Information">
+      <div class="contact-card">
+        <!-- Decorative Corner Motifs -->
+        <svg class="card-corner-motif motif-top-left" viewBox="0 0 40 40" fill="none">
+          <path d="M2 38V12C2 6.47715 6.47715 2 12 2H38" stroke="url(#goldGradient)" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+        </svg>
+        <svg class="card-corner-motif motif-top-right" viewBox="0 0 40 40" fill="none">
+          <path d="M2 38V12C2 6.47715 6.47715 2 12 2H38" stroke="url(#goldGradient)" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+        </svg>
+        <svg class="card-corner-motif motif-bottom-left" viewBox="0 0 40 40" fill="none">
+          <path d="M2 38V12C2 6.47715 6.47715 2 12 2H38" stroke="url(#goldGradient)" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+        </svg>
+        <svg class="card-corner-motif motif-bottom-right" viewBox="0 0 40 40" fill="none">
+          <path d="M2 38V12C2 6.47715 6.47715 2 12 2H38" stroke="url(#goldGradient)" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+        </svg>
+
+        <div class="card-heading">
+          <h3 class="card-title">Get in Touch Directly</h3>
+          <p class="card-subtitle">For wholesale, temple supplies & personal pooja orders</p>
+        </div>
+
+        <div class="contact-links-grid">
+          <!-- Phone Direct Link -->
+          <a href="tel:6383020848" class="contact-link-item" title="Call Kalasam Support">
+            <div class="contact-icon-box" aria-hidden="true">
+              <!-- Phone Inline SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Call Support</span>
+              <span class="contact-info-value">+91 63830 20848</span>
+            </div>
+          </a>
+
+          <!-- Email Direct Link -->
+          <a href="mailto:support@kalasamjaikrishna.co.in" class="contact-link-item" title="Email Kalasam Support">
+            <div class="contact-icon-box" aria-hidden="true">
+              <!-- Mail Inline SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Email Support</span>
+              <span class="contact-info-value">support@kalasamjaikrishna.co.in</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="card-footer-note">
+          <!-- Sparkle SVG -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Available Mon &ndash; Sat &bull; Direct Dispatch Across Tamil Nadu</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <footer class="page-footer">
+      <div class="footer-divider" aria-hidden="true"></div>
+      <p class="copyright">
+        &copy; <span id="currentYear">2026</span> <strong>Kalasam by Jaikrishna</strong>. All Rights Reserved.
+      </p>
+      <p class="trust-tagline">
+        Crafted with devotion &bull; ISO 9001:2015 Certified Manufacturing Facility
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Floating Green WhatsApp Button with Pulse Animation -->
+  <a
+    href="https://wa.me/916383020848?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20Kalasam%20products."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with Kalasam on WhatsApp"
+    title="Chat with us on WhatsApp"
+  >
+    <span class="whatsapp-label">Chat on WhatsApp</span>
+    <div class="whatsapp-circle">
+      <div class="whatsapp-pulse-ring" aria-hidden="true"></div>
+      <div class="whatsapp-pulse-ring-2" aria-hidden="true"></div>
+      
+      <!-- WhatsApp Brand Icon (Inline SVG) -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.454 5.71 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </div>
+  </a>
+
+  <!-- Minimal Accessibility & Utility Script -->
+  <script>
+    (function() {
+      // Keep copyright year strictly accurate
+      var yearEl = document.getElementById('currentYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+
+</body>
+</html>

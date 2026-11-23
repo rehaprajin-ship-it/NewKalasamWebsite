@@ -1,0 +1,13 @@
+# Netlify / Cloudflare Pages Redirects
+/_next/*   /_next/:splat   200
+/images/*  /images/:splat  200
+/*.svg     /:splat.svg     200
+/*.png     /:splat.png     200
+/*.jpg     /:splat.jpg     200
+/*.webp    /:splat.webp    200
+/*.ico     /:splat.ico     200
+/*.css     /:splat.css     200
+/*.js      /:splat.js      200
+/*.json    /:splat.json    200
+/*         /coming-soon.html 200
+

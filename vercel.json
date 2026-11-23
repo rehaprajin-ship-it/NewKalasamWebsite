@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/((?!_next|images|coming-soon\\.html|favicon\\.ico|manifest\\.json|robots\\.txt|sitemap\\.xml|.*\\.(?:svg|png|jpg|jpeg|webp|ico|css|js|woff|woff2|ttf)).*)",
+      "destination": "/coming-soon.html"
+    }
+  ]
+}
